@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.8'
+gem 'rails', '~> 3.2.8'
+gem 'inherited_resources'
+gem 'slim-rails'
 
 group :development do
   gem 'sqlite3'
@@ -34,3 +36,5 @@ gem 'amazon_flex_pay'
 
 # Configuration File
 gem 'rails_config'
+
+
