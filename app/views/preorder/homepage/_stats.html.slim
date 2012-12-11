@@ -19,7 +19,7 @@
 
 
     #reserve_container
-      p#ship_date= Settings.ships
+      p#ship_date= t 'home.ships', date: l(Settings.expiration_date, format: :as_date)
       = link_to t('home.call_to_action'), checkout_path, class: 'blue_button reserve'
       /small#price= Settings.price_human
       p= t 'home.reason_to_say_no' 
