@@ -9,6 +9,12 @@
 project_goal: 100
 # If you want to edit the FAQ, head over to app/views/preorder/homepage/_faqs.html.erb
 
+
+# How many people do you need to back with how much?
+project_total: <%= 100 * 19.95 %>
+# 100 is the number of backers backing with 19.95 each. Configure at your will.
+
+
 # This'll be both the page title (<title></title>) and the name in the header
 product_name: "Selfstarter"
 
@@ -16,11 +22,9 @@ product_name: "Selfstarter"
 # It should be in app/assets/images
 product_image_path: "my-product-image.png"
 
-# The message on the preorder page, Lockitron's 
-value_proposition: "Roll your own crowdfunding"
 
 # YouTube or Vimeo Video URL (The embed URL, without the query string options)
-video_embed_url: "https://www.youtube.com/v/D1L3o88GKew"
+video_embed_url: "http://www.youtube.com/embed/iO5tm0JropI"
 
 # Amazon settings -- you'll need an Amazon Payments account, sign up here --> http://bit.ly/SGksTv
 
@@ -35,37 +39,20 @@ payment_description: "You really should change this text because people will see
 # You probably should add some leeway to account for international shipping
 charge_limit: 25.00
 
-# Stats settings
-
-# On Lockitron, it's "backers"
-primary_stat: "backers"
-# This'll show up in the tweet as, "I'm forker number ..."
-primary_stat_verb: 'backer'
-
-# The 2nd call to action button, towards the middle-ish of the page
-middle_reserve_text: "Reserve Now"
 
 # When the project should end
-expiration_date: <%= DateTime.now + 29 %>
-
-# Text to show inside the progress bar, when the goal reaches/exceeds 100%
-progress_text: "Implemented"
-
-# Call to action section
+expiration_date: <%= Time.now + 45.days %>
 
 # On Lockitron, it's "First Batch Ships in March 2013"
-ships: "Ships...sometime"
+ships: "O projeto será realizado se financiado até <%= I18n.l(Settings.expiration_date, format: :as_date) %>"
 
-# On Lockitron, it's "Reserve Now"
-call_to_action: "Reserve Now"
+
 # On Lockitron, this is "Only $149 for a limited time"
-price_human: "It costs money!"
-
-# The paragraph below the price. You'd probably say something about how you're not going to charge them before it ships (so it's less risky).
-dont_give_them_a_reason_to_say_no: "You'll get this exact site. All you'll need to get started is a great product."
+price_human: "Apoie com R$ 10 agora!"
 
 # Social Stuff
 facebook_app_id: "1234567890"
+
 # Tweets are prefixed with "I'm #{Settings.primary_stat} number X for #{Settings.product_name}"
 # Maybe mention something about your product vision -- e.g. "to replace keys with my phone"
 tweet_text: "to crowdfund"
