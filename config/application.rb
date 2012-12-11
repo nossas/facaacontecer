@@ -11,14 +11,14 @@ module Selfstarter
   class Application < Rails::Application
 
     # --- Standard Rails Config ---
-    config.time_zone            = 'Pacific Time (US & Canada)'
+    config.time_zone            = 'Brasilia'
     config.encoding             = "utf-8"
     config.i18n.default_locale  = "pt-BR"
     config.filter_parameters    += [:password]
     config.active_record.whitelist_attributes = true
     # Enable the asset pipeline
     config.assets.enabled           = true
-    config.initialize_on_precompile = false
+    config.assets.initialize_on_precompile = false
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version           = '1.0'
   end
