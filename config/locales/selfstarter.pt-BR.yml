@@ -1,0 +1,30 @@
+pt-BR:
+  home:
+    value_proposition: "Monte seu próprio crowdfunding!" 
+    call_to_action: "Apoie agora!"
+    # The paragraph below the price. 
+    # You'd probably say something about how you're not 
+    # going to charge them before it ships (so it's less risky).
+    reason_to_say_no: "Você terá este site aqui; igualzinho ou com seu próprio design. Tudo que você precisa é de um ótimo produto ou projeto! :-)"
+    
+    key_points: 
+      what_is: "O que é o Selfstarter?"
+      what_is_text: "Selfstarter é uma ferramenta open source para que qualquer possa criar seu próprio crowdfunding, diretamente aos seus apoiadores, amigos ou pessoas que estão interessadas no projeto/produto. Seja ele de produto maneiro ou de algum projeto bem legal!"
+      how_to_use: "O que eu faço?"
+      how_to_use_text: "Selfstarter é o seu ponto de partida para construir sua própria solução. Você pode escolher como receber seu dinheiro, quais formas de pagamento e afins."
+      just_skeleton: "É apenas um molde"
+      just_skeleton_text: "O Selfstarter é bem simples; porém você pode adicionar o que quiser nele. Administração, código, etc."
+      lets_get_started: "Vamos começar?"
+      lets_get_started_text: "A maioria das coisas que você precisa, estão no LEIAME do projeto. Selfstarter foi feito utilizando Ruby on Rails e o código foi feito com carinho ; )."
+
+  activerecord:
+    user:
+      one: "Apoiador"
+      other: "Apoiadores"
+  backers_html:
+    one: "%{count} <span>apoiador</span>"
+    other: "%{count} <span>apoiadores</span>"
+  goal:
+    reached_of_html: "%{current} <span>de %{goal}</span>"
+    days_remaining_html: "%{days} dias<span>restantes</span>"
+    progress_text: "%{percent}% alcançados"
