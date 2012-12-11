@@ -27,11 +27,13 @@ product_image_path: "my-product-image.png"
 video_embed_url: "http://www.youtube.com/embed/iO5tm0JropI"
 
 # Amazon settings -- you'll need an Amazon Payments account, sign up here --> http://bit.ly/SGksTv
-
 # To find your access key and secret key, head over to here --> http://bit.ly/R4I4ky (Follow that guide in the Seller Central page)
 amazon_access_key: "YOUR_AMAZON_ACCESS_KEY"
 amazon_secret_key: "YOUR_AMAZON_SECRET_KEY"
 price: 	19.95
+
+# Moip settings -- you'll need a moip account, signup here -->
+
 
 payment_description: "You really should change this text because people will see it on Amazon's order page!!!!!"
 
@@ -41,7 +43,7 @@ charge_limit: 25.00
 
 
 # When the project should end
-expiration_date: <%= Time.now + 45.days %>
+expiration_date: <%= DateTime.now + 45 %>
 
 # On Lockitron, it's "First Batch Ships in March 2013"
 ships: "O projeto será realizado se financiado até <%= I18n.l(Settings.expiration_date, format: :as_date) %>"

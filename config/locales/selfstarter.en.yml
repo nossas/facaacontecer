@@ -9,6 +9,14 @@ en:
 
     key_points: 
       what_is: "O que é o Selfstarter?"
+      what_is_text: "Selfstarter is an open source starting point for building your own ad-hoc crowdfunding site. It was put together by Lockitron after they were turned down from Kickstarter."
+      how_to_use: "How do I use it?"
+      how_to_use_text: "Selftstarter is a starting point for you to build your own solution. It is set up to collect reservations using Amazon Payments, but you can choose your own provider too."
+      just_skeleton: "It's just a skeleton"
+      just_skeleton_text: "We've kept Selfstarter really simple, but that also means that you should beef it up with your own authentication, administration and product management code."
+      lets_get_started: "Let's get started"
+      lets_get_started_text: "Most of what you need to get started is in the Readme. Selfstarter is based on Ruby on Rails, and we've tried to break up all of the different parts in a sensible fashion."
+
   activerecord:
     user:
       one: "Backer"
