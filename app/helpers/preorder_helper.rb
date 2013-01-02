@@ -12,14 +12,15 @@ module PreorderHelper
   end
 
   def video_url
-    "#{Project.first.video}?" + case Project.first.video
+    project = Project.first
+    case project.video
     when /vimeo/
       'title=0&byline=0&portrait=0&autoplay=0'
     when /youtube/
       'autohide=1&showinfo=0&rel=0&autoplay=0'
     else
       ''
-    end
+    end unless project.nil?
   end
 
   def encoded_root_url

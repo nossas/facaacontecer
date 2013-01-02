@@ -27,7 +27,9 @@ group :development, :test do
 end
 
 group :test do
+  gem 'machinist'
   gem 'cucumber-rails', require: false
+  gem 'database_cleaner'
   gem 'shoulda'
 end
 

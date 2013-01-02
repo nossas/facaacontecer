@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130102004056) do
+ActiveRecord::Schema.define(:version => 20130102222722) do
 
   create_table "orders", :id => false, :force => true do |t|
     t.string   "token"
@@ -25,19 +25,17 @@ ActiveRecord::Schema.define(:version => 20130102004056) do
     t.string   "status"
     t.string   "number"
     t.string   "uuid"
-    t.string   "user_id"
-    t.decimal  "price"
-    t.decimal  "shipping"
-    t.string   "tracking_number"
     t.string   "phone"
     t.string   "name"
     t.date     "expiration"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
     t.integer  "project_id"
     t.decimal  "value"
+    t.string   "email"
   end
 
+  add_index "orders", ["email"], :name => "index_orders_on_email"
   add_index "orders", ["project_id"], :name => "index_orders_on_project_id"
 
   create_table "projects", :force => true do |t|
@@ -49,12 +47,6 @@ ActiveRecord::Schema.define(:version => 20130102004056) do
     t.string   "video"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
-  end
-
-  create_table "users", :force => true do |t|
-    t.string   "email"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
   end
 
 end
