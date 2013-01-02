@@ -1,17 +1,56 @@
-.big_wrapper
-  .wrapper#two
+.big_wrapper.how_it_works
+  .wrapper
     .point_copy.right
       h3 Como funciona? 
-      p Lorem ipsum
+      p
+        |Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz e... 
 
-.big_wrapper
-  .wrapper#three
-    h3 E temos recompensas 
-    p Hello world
+.big_wrapper.rewards
+  .wrapper
+    h3 E melhor: temos recompensas 
+    ol
+      li
+        = image_tag ""
+        strong.value R$ 10
+        p.description
+          | Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz e... 
+        = link_to "Apoiar", new_project_order_path(@project, value: 10), class: 'blue_button'
+      li
+        = image_tag ""
+        strong.value R$ 25
+        p.description
+          | Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz e... 
 
-.big_wrapper
-  .wrapper#four
+        = link_to "Apoiar", new_project_order_path(@project, value: 25), class: 'blue_button'
+      li
+        = image_tag ""
+        strong.value R$ 50
+        p.description
+          | Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz e... 
+        = link_to "Apoiar", new_project_order_path(@project, value: 50), class: 'blue_button'
+      li.last
+        = image_tag ""
+        strong.value R$ 100 ou mais
+        p.description
+          | Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz e... 
+        = link_to "Apoiar", new_project_order_path(@project, value: 100), class: 'blue_button'
+
+
+
+
+
+.big_wrapper.meet_them
+  .wrapper
     h3 Conheça nossos estagiários
     ol
-      li Estagiario 1
-      li Estagiario 2
+      li
+        = image_tag ""
+        strong Rafael Rezende
+        p.description
+          | Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz e... 
+      li
+        = image_tag ""
+        strong Felipe Areas 
+        p.description
+          | Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz e... 
+

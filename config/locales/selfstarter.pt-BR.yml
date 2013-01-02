@@ -22,9 +22,9 @@ pt-BR:
       one: "Apoiador"
       other: "Apoiadores"
   backers_html:
-    one: "%{count} <span>apoiador</span>"
-    other: "%{count} <span>apoiadores</span>"
+    one: "<strong>%{count}</strong> <span>apoiador</span>"
+    other: "<strong>%{count}</strong> <span>apoiadores</span>"
   goal:
-    reached_of_html: "%{current} <span>de %{goal}</span>"
-    days_remaining_html: "%{days} dias<span>restantes</span>"
-    progress_text: "%{percent}% alcançados"
+    reached_of_html: "<strong>%{current}</strong> <span>de %{goal}</span>"
+    days_remaining_html: "<strong>%{days} dias</strong><span>restantes</span>"
+    progress_text: "<strong>%{percent}%</strong> alcançados"

@@ -69,7 +69,8 @@ class Order < ActiveRecord::Base
 
   # Implement these three methods to
   def self.goal
-    Project.first.goal
+    project = Project.first
+    return project.goal if project.present?
   end
 
   def self.percent
