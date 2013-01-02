@@ -6,7 +6,7 @@ end
 Given /^there were (\d+) orders of \$(\d+) from other backers in this project$/ do |arg1, arg2|
   @orders = []
   arg1.to_i.times do 
-    @orders << Order.make!(value: arg2, project: @project)
+    @orders << Order.make!(value: arg2.to_f, project: @project)
   end
 end
 
@@ -22,3 +22,6 @@ Then /^I should not see "(.*?)"$/ do |arg1|
   page.should_not have_content(arg1)
 end
 
+When /^I click "(.*?)"$/ do |arg1|
+  click_on arg1
+end
