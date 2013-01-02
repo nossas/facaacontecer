@@ -12,7 +12,7 @@ module PreorderHelper
   end
 
   def video_url
-    "#{Settings.video_embed_url}?" + case Settings.video_embed_url
+    "#{Project.first.video}?" + case Project.first.video
     when /vimeo/
       'title=0&byline=0&portrait=0&autoplay=0'
     when /youtube/

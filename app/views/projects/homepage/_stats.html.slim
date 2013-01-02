@@ -1,0 +1,26 @@
+.wrapper.clearfix
+  #video
+    iframe width='512' height='385' src=video_url
+  
+
+  #backing
+    ul
+      li.stats#backers  = t 'backers_html', count: Order.current
+      li.stats#reached  = t 'goal.reached_of_html', current: number_to_currency(Order.revenue, precision: 0), goal: number_to_currency(@project.goal, :precision => 0) 
+      li.stats#days     = if @project.expiration_date then t('goal.days_remaining_html', days: ((@project.expiration_date - Time.now)/1.day).to_i) else t('goal.days_remaining_html', days: raw("&infin;")) end
+
+    - if Order.current < @project.goal 
+      #progress_bg.small
+        #progress style='width: #{Order.percent}%'
+    - else
+      #progress_bg
+        #progress
+        #progress_text= t 'goal.progress_text', percent: Order.percent
+
+
+    #reserve_container
+      /p#ship_date= t 'home.ships', date: l(@project.expiration_date, format: :as_date)
+      p= truncate @project.description, length: 160 
+      = link_to t('home.call_to_action'), new_project_order_path(@project), class: 'blue_button reserve'
+      = like_button
+

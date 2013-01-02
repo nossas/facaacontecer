@@ -1,10 +1,14 @@
 describe Order do
 
+  context "association" do
+    it { should belong_to :project }
+  end
+
   context "attributes" do
 
     [:address_one, :address_two, :city, :country, :number, :state, :status,
       :token, :transaction_id, :zip, :shipping, :tracking_number, :name,
-      :price, :phone, :expiration
+      :price, :phone, :expiration, :value
       ].each do |property|
         it { should allow_mass_assignment_of property }
       end
@@ -171,7 +175,8 @@ describe Order do
 
     describe ".goal" do
       it "returns the project goal from Settings" do
-        Order.goal.should == Settings.project_goal
+        project = stub_model(Project, goal: 12)
+        Order.goal.should == project.goal
       end
     end
 

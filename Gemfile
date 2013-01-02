@@ -24,16 +24,16 @@ end
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.0'
+end
+
+group :test do
+  gem 'cucumber-rails', require: false
   gem 'shoulda'
 end
 
 # jQuery
 gem 'jquery-rails'
 
-# Kickstarter's awesome Amazon Flexible Payments gem
-gem 'amazon_flex_pay'
 
-# Configuration File
-gem 'rails_config'
-
-
+# MyMoip Gem
+gem 'mymoip'

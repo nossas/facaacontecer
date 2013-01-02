@@ -1,8 +1,18 @@
 class Order < ActiveRecord::Base
-  attr_accessible :address_one, :address_two, :city, :country, :number, :state, :status, :token, :transaction_id, :zip, :shipping, :tracking_number, :name, :price, :phone, :expiration
+  attr_accessible :address_one, :address_two, :city, :country, 
+                  :number, :state, :status, :token, :transaction_id, 
+                  :zip, :shipping, :tracking_number, :name, :price, 
+                  :phone, :expiration, :value
+
+
   attr_readonly :uuid
   before_validation :generate_uuid!, :on => :create
+
+  belongs_to :project
   belongs_to :user
+
+  validates_presence_of :name, :price, :user_id
+
   self.primary_key = 'uuid'
 
   # This is where we create our Caller Reference for Amazon Payments, and prefill some other information.
@@ -51,23 +61,24 @@ class Order < ActiveRecord::Base
     end while Order.find_by_uuid(self.uuid).present?
   end
 
+
+  def self.revenue
+    Order.sum(:value)
+  end
+
+
   # Implement these three methods to
   def self.goal
-    Settings.project_goal
+    Project.first.goal
   end
 
   def self.percent
-    (Order.current.to_f / Order.goal.to_f) * 100.to_f
+    (self.current.to_f / self.goal.to_f) * 100.to_f
   end
 
   # See what it looks like when you have some backers! Drop in a number instead of Order.count
   def self.current
     Order.where("token != ? OR token != ?", "", nil).count
-  end
+  end 
 
-  def self.revenue
-    Order.current.to_f * Settings.price
-  end
-
-  validates_presence_of :name, :price, :user_id
 end
