@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130102222722) do
+ActiveRecord::Schema.define(:version => 20130103002925) do
 
   create_table "orders", :id => false, :force => true do |t|
     t.string   "token"
@@ -28,11 +28,14 @@ ActiveRecord::Schema.define(:version => 20130102222722) do
     t.string   "phone"
     t.string   "name"
     t.date     "expiration"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
     t.integer  "project_id"
     t.decimal  "value"
     t.string   "email"
+    t.string   "cpf"
+    t.string   "address_neighbourhood"
+    t.integer  "address_number"
   end
 
   add_index "orders", ["email"], :name => "index_orders_on_email"

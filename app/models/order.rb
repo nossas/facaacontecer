@@ -1,8 +1,9 @@
 class Order < ActiveRecord::Base
   attr_accessible :address_one, :address_two, :city, :country, 
                   :number, :state, :status, :token,
-                  :zip, :name, :price, 
-                  :phone, :value
+                  :zip, :name, :email,
+                  :phone, :value, :cpf,
+                  :address_number, :address_neighbourhood
 
 
   attr_readonly :uuid
@@ -11,7 +12,7 @@ class Order < ActiveRecord::Base
   belongs_to :project
   belongs_to :user
 
-  validates_presence_of :name, :email, :address_one, :address_two,
+  validates_presence_of :name, :email, :cpf, :address_one, :address_two, :address_number, :address_neighbourhood,
     :city, :state, :country, :zip, :phone, :value
 
   self.primary_key = 'uuid'
@@ -24,6 +25,9 @@ class Order < ActiveRecord::Base
     @order.email          = options[:email]
     @order.address_one    = options[:address_one]
     @order.address_two    = options[:address_two]
+    @order.address_number = options[:address_number]
+    @order.address_neighbourhood    = options[:address_neighbourhood]
+    @order.cpf            = options[:cpf]
     @order.city           = options[:city]
     @order.state          = options[:state]
     @order.zip            = options[:zip]
@@ -54,7 +58,7 @@ class Order < ActiveRecord::Base
 
 
   def self.revenue
-    Order.sum(:value)
+    self.current.zero? ? 0 : Order.sum(:value)
   end
 
 

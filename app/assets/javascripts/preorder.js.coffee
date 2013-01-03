@@ -3,20 +3,20 @@ Selfstarter =
 	validateEmail: ->
 		# The regex we use for validating email
 		# It probably should be a parser, but there isn't enough time for that (Maybe in the future though!)
-		if /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/.test($("#email").val())
-			$("#email").removeClass("highlight")
-			$("#amazon_button").removeClass("disabled")
+		if /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/.test($("#order_email").val())
+			$("#order_email").removeClass("highlight")
+			$("#self_button").removeClass("disabled")
 		else
-			$("#email").addClass("highlight") unless Selfstarter.firstTime
-			$("#amazon_button").addClass("disabled") unless $("#amazon_button").hasClass("disabled")
+			$("#order_email").addClass("highlight") unless Selfstarter.firstTime
+			$("#self_button").addClass("disabled") unless $("#self_button").hasClass("disabled")
 	init: ->
-		$("#email").bind "textchange", ->
+		$("#order_email").bind "textchange", ->
 			Selfstarter.validateEmail()
-		$("#email").bind "hastext", ->
+		$("#order_email").bind "hastext", ->
 			Selfstarter.validateEmail()
 		# The first time they type in their email, we don't want it to throw a validation error
-		$("#email").change ->
+		$("#order_email").change ->
 			Selfstarter.firstTime = false
 $ ->
 	Selfstarter.init()
-	$("#email").focus()
+	$("#order_email").focus()

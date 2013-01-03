@@ -1,4 +1,23 @@
 pt-BR:
+  helpers:
+    label:
+      order:
+        name: "Nome completo"
+        email: "Seu email"
+        cpf:  "Seu CPF (sem '-' ou '.', por favor)" 
+        address_one: "Endereço"
+        address_two: "Complemento"
+        address_number: "Número"
+        address_neighbourhood: "Bairro"
+        state: "Estado"
+        city: "Cidade"
+        zip: "CEP"
+        phone: "Celular (ou fixo, insira o DDD)"
+  activerecord:
+    attributes:
+      order:
+        name: 'Nome'
+        email: 'E-mail'
   home:
     value_proposition: "Monte seu próprio crowdfunding!" 
     call_to_action: "Apoie agora!"

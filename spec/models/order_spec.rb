@@ -9,7 +9,7 @@ describe Order do
     [
       :name, :email, :address_one, :address_two,
       :city, :state, :country, :zip, :phone, 
-      :value
+      :value, :cpf, :address_neighbourhood, :address_number
     ].each do |attribute|
       it { should validate_presence_of attribute }
     end
@@ -48,11 +48,14 @@ describe Order do
         @options = {
           name: 'marin',
           email: 'juca@juca.com',
+          cpf: '2312312313',
           project: @project,
           phone:  '2197137471',
           price: 10,
           address_one: "Minha rua",
           address_two: "Proximo àlgum lugar",
+          address_number: "100",
+          address_neighbourhood: "Laranjeiras",
           city: 'rio',
           state: 'rj',
           zip: '22234230',

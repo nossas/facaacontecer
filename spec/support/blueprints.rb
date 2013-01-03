@@ -4,8 +4,11 @@ require 'machinist/active_record'
 Order.blueprint do
   name        { "Juquinha da silva" }
   email       { "juquinha@zip.net" }
+  cpf         { "12312312312" }
   address_one { "Rua Belisario Tavora 500" }
   address_two { "Laranjeiras" }
+  address_number { "100" }
+  address_neighbourhood { "Laranjeiras" }
   city        { "Rio de Janeiro" }
   state       { "RJ" }
   country     { "BRA" }
