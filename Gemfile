@@ -38,4 +38,4 @@ gem 'jquery-rails'
 
 
 # MyMoip Gem
-gem 'mymoip'
+gem 'mymoip', git: 'git://github.com/Irio/mymoip.git'

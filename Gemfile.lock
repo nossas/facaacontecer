@@ -1,3 +1,12 @@
+GIT
+  remote: git://github.com/Irio/mymoip.git
+  revision: fb5f4071f776791afd3a80364dc74038c5b0d3a3
+  specs:
+    mymoip (0.4.0)
+      activemodel
+      builder
+      httparty
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -97,10 +106,6 @@ GEM
       metaclass (~> 0.0.1)
     multi_json (1.5.0)
     multi_xml (0.5.1)
-    mymoip (0.4.1)
-      activemodel
-      builder
-      httparty
     nokogiri (1.5.5)
     pg (0.14.1)
     polyglot (0.3.3)
@@ -208,7 +213,7 @@ DEPENDENCIES
   inherited_resources
   jquery-rails
   machinist
-  mymoip
+  mymoip!
   pg
   pry-rails
   rails (~> 3.2.8)
