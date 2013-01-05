@@ -12,8 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery-ui
-//= require jquery.details
+//= require jquery.mask
+//= require jquery.money
 //= require jquery.textchange
-//= require preorder
+//= require order 
 //= require_tree .

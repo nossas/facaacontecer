@@ -1,18 +1,18 @@
 class Order < ActiveRecord::Base
-  attr_accessible :address_one, :address_two, :city, :country, 
+  attr_accessible :address_one, :address_two, :city, :birthday,
                   :number, :state, :status, :token,
-                  :zip, :name, :email,
+                  :zip, :name, :email, :country, 
                   :phone, :value, :cpf,
                   :address_number, :address_neighbourhood
 
 
   attr_readonly :uuid
-  before_validation :generate_uuid!, :on => :create
+  before_create :generate_uuid!
 
   belongs_to :project
   belongs_to :user
 
-  validates_presence_of :name, :email, :cpf, :address_one, :address_two, :address_number, :address_neighbourhood,
+  validates_presence_of :name, :email, :birthday, :cpf, :address_one, :address_two, :address_number, :address_neighbourhood,
     :city, :state, :country, :zip, :phone, :value
 
   self.primary_key = 'uuid'
@@ -21,6 +21,7 @@ class Order < ActiveRecord::Base
   def self.prefill!(options = {})
     @order                = Order.new
     @order.name           = options[:name]
+    @order.birthday       = options[:birthday]
     @order.project        = options[:project]
     @order.email          = options[:email]
     @order.address_one    = options[:address_one]
@@ -76,5 +77,10 @@ class Order < ActiveRecord::Base
   def self.current
     Order.where("token != ? OR token != ?", "", nil).count
   end 
+
+
+  def to_param
+    self.uuid
+  end
 
 end

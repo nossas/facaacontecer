@@ -1,52 +1,94 @@
 .gray_background
   .wrapper.clearfix
-    .main_content
-      h3 Escolha como pretende apoiar! 
-      p
-        | As informações que coletamos abaixo nunca serão revendidas ou utilizadas por terceiros. Apenas entraremos em contato com você utilizando o e-mail que você fornecer. 
-      ol
-        - if @order.errors.any?
-          - @order.errors.each do |k,v|
-            li= "#{k} #{v}"
-      = form_for :order, url: project_orders_path do |f|
-        p
-          = f.label :name
-          = f.text_field :name
-        p
-          = f.label :cpf
-          = f.text_field :cpf
-        p
-          = f.label :address_one
-          = f.text_field :address_one
-        p
-          = f.label :address_two
-          = f.text_field :address_two
-        p
-          = f.label :address_number
-          = f.text_field :address_number, maxlength: 6
-        p
-          = f.label :address_neighbourhood
-          = f.text_field :address_neighbourhood
-        p
-          = f.label :zip
-          = f.phone_field :zip, placeholder: '22245-040', maxlength: 9
-        p
-          = f.label :city
-          = f.text_field :city, placeholder: 'Rio de Janeiro'
-        p
-          = f.label :state
-          = f.text_field :state, placeholder: 'RJ', maxlength: 2
-        p
-          = f.label :email
-          = f.text_field :email, placeholder: 'email@provedor.com.br'
-        p
-          = f.label :phone
-          = f.phone_field :phone, placeholder: '(21) 9713-7471'
-        p
-          = f.hidden_field :value, value: 10 
-          = f.hidden_field :country, value: 'BRA'
-        p.submit
-          = f.submit class: 'blue_button reserve disabled', id: :self_button
+    #order.main_content
+      
+      .steps.step_1[class=(@order.errors.any? or params[:value] ? 'hidden' : '')]
+        h3 Apoie com um valor e você ganha um brinde especial logo após :)
+        ol.values
+          li= link_to "R$ 10", "#/", data: { value: 10 }
+          li= link_to "R$ 25", "#/", data: { value: 25 }
+          li= link_to "R$ 50", "#/", data: { value: 50 }
+          li= link_to "R$ 100", "#/", data: { value: 100 }
+          li= link_to "?", "#/", data: { value: 0 }
+
+   
+
+
+      .steps.step_2.hidden
+        h3 Escolha como pretende apoiar o projeto! 
+        ol.payment_options
+          li.cc= link_to "Cartão de Crédito", '#/'
+          li.boleto= link_to "Boleto", '#/'
+
+      .steps.step_3[class=(@order.errors.any? ? '' : 'hidden')]
+        p As informações que coletamos abaixo nunca serão revendidas ou utilizadas por terceiros. Apenas entraremos em contato com você utilizando o e-mail que você fornecer. 
+
+        = form_for :order, html: { id: :order_form }, url: project_orders_path do |f|
+          p
+            = f.label :name
+            = f.text_field :name, placeholder: 'Fulano da Silva'
+            .error=@order.errors[:name].to_sentence
+          p
+            = f.label :birthday
+            = f.text_field :birthday, placeholder: '12/11/1988', maxlength: 10, class: :date
+          p
+            = f.label :cpf
+            = f.text_field :cpf, maxlength: 14, placeholder: '011.011.111-11', class: :cpf
+            .error=@order.errors[:cpf].to_sentence
+
+          p.zip
+            = f.label :zip
+            = f.text_field :zip, placeholder: '22245-040', maxlength: 9, class: :cep
+            .error=@order.errors[:zip].to_sentence
+
+
+          p
+            = f.label :address_one
+            = f.text_field :address_one
+            .error=@order.errors[:address_one].to_sentence
+          p
+            = f.label :address_two
+            = f.text_field :address_two
+            .error=@order.errors[:address_two].to_sentence
+          p
+            = f.label :address_number
+            = f.text_field :address_number, maxlength: 6
+            .error=@order.errors[:address_two].to_sentence
+
+          p
+            = f.label :address_neighbourhood
+            = f.text_field :address_neighbourhood
+            .error=@order.errors[:address_neighbourhood].to_sentence
+
+          p
+            = f.label :city
+            = f.text_field :city, placeholder: 'Rio de Janeiro'
+            .error=@order.errors[:city].to_sentence
+
+          p.state
+            = f.label :state
+            = f.text_field :state, placeholder: 'RJ', maxlength: 2
+            .error=@order.errors[:state].to_sentence
+
+
+          p.email
+            = f.label :email
+            = f.text_field :email, placeholder: 'email@provedor.com.br'
+            .error=@order.errors[:email].to_sentence
+          p
+            = f.label :phone
+            = f.text_field :phone, placeholder: '(21) 97137471', class: :phone
+            .error=@order.errors[:phone].to_sentence
+
+          p.hidden
+            = f.label :value
+            = f.text_field :value, class: :money 
+            .error=@order.errors[:value].to_sentence
+
+          p
+            = f.hidden_field :country, value: 'BRA'
+          p.submit
+            = f.submit class: 'blue_button reserve disabled', id: :self_button
 
 
 
@@ -56,8 +98,8 @@
 
 
 
-      /= form_tag "/preorder/prefill", :id => "checkout" do
-        = email_field_tag "email", nil, :placeholder => "hello@lockitron.com", :required => "required", :id => "email"
-        = hidden_field_tag "preorder", true
-        = hidden_field_tag "quantity", params[:quantity]
-        = submit_tag "Checkout", :class => "blue_button disabled", :id => "amazon_button"
+        /= form_tag "/preorder/prefill", :id => "checkout" do
+          = email_field_tag "email", nil, :placeholder => "hello@lockitron.com", :required => "required", :id => "email"
+          = hidden_field_tag "preorder", true
+          = hidden_field_tag "quantity", params[:quantity]
+          = submit_tag "Checkout", :class => "blue_button disabled", :id => "amazon_button"

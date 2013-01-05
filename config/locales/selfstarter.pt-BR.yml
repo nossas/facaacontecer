@@ -3,8 +3,9 @@ pt-BR:
     label:
       order:
         name: "Nome completo"
+        birthday: "Data de Nascimento"
         email: "Seu email"
-        cpf:  "Seu CPF (sem '-' ou '.', por favor)" 
+        cpf:  "Seu CPF"
         address_one: "Endereço"
         address_two: "Complemento"
         address_number: "Número"
@@ -13,7 +14,10 @@ pt-BR:
         city: "Cidade"
         zip: "CEP"
         phone: "Celular (ou fixo, insira o DDD)"
+        value: "Quero apoiar com..."
   activerecord:
+    models:
+      order: "Apoio"
     attributes:
       order:
         name: 'Nome'

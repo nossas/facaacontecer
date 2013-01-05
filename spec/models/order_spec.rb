@@ -8,7 +8,7 @@ describe Order do
   context "validations" do
     [
       :name, :email, :address_one, :address_two,
-      :city, :state, :country, :zip, :phone, 
+      :city, :state, :country, :zip, :phone, :birthday,
       :value, :cpf, :address_neighbourhood, :address_number
     ].each do |attribute|
       it { should validate_presence_of attribute }
@@ -19,11 +19,12 @@ describe Order do
   context "attributes" do
 
     [
-      :address_one, :address_two, :city, :country, 
+     :address_one, :address_two, :city, :birthday,
       :number, :state, :status, :token,
-      :zip, :name, :price, 
-      :phone, :value
-      ].each do |property|
+      :zip, :name, :email, :country, 
+      :phone, :value, :cpf,
+      :address_number, :address_neighbourhood
+    ].each do |property|
         it { should allow_mass_assignment_of property }
       end
 
@@ -47,6 +48,7 @@ describe Order do
         @project = Project.make!
         @options = {
           name: 'marin',
+          birthday: "1988/11/12",
           email: 'juca@juca.com',
           cpf: '2312312313',
           project: @project,
@@ -136,9 +138,15 @@ describe Order do
     end
 
     describe ".revenue" do
-      it "return the sum of the column value of all orders" do
+      it "should return the sum of the column value of all orders if current is greater than ZERO" do
+        Order.stub(:current).and_return(10)
         Order.stub(:sum).with(:value).and_return(50)
         Order.revenue.should == 50
+      end
+
+      it "should not return the sum of the column value of all orders if current is ZERO" do
+        Order.stub(:sum).with(:value).and_return(50)
+        Order.revenue.should_not == 50
       end
     end
 

@@ -3,6 +3,7 @@ require 'machinist/active_record'
 
 Order.blueprint do
   name        { "Juquinha da silva" }
+  birthday    { "1988/11/12" }
   email       { "juquinha@zip.net" }
   cpf         { "12312312312" }
   address_one { "Rua Belisario Tavora 500" }

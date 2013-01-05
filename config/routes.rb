@@ -1,7 +1,8 @@
 Selfstarter::Application.routes.draw do
 
+
   resources :projects, except: [:new, :create, :destroy, :show] do
-    resources :orders, only: [:new,:create,:update]
+    resources :orders, except: [:index, :destroy]
   end
 
 

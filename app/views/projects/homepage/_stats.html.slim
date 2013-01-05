@@ -21,6 +21,5 @@
     #reserve_container
       /p#ship_date= t 'home.ships', date: l(@project.expiration_date, format: :as_date)
       p= truncate @project.description, length: 160 
-      = link_to t('home.call_to_action'), new_project_order_path(@project), class: 'blue_button reserve'
-      = like_button
+      p= link_to t('home.call_to_action'), new_project_order_path(@project), class: 'blue_button reserve'
 
