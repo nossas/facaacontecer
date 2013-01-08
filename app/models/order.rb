@@ -7,7 +7,7 @@ class Order < ActiveRecord::Base
 
 
   attr_readonly :uuid
-  before_create :generate_uuid!
+  before_validation :generate_uuid!, on: :create
 
   belongs_to :project
   belongs_to :user
@@ -18,45 +18,10 @@ class Order < ActiveRecord::Base
   self.primary_key = 'uuid'
 
   # This is where we create our Payer Reference for MoIP Payments, and prefill some other information.
-  def self.prefill!(options = {})
-    @order                = Order.new
-    @order.name           = options[:name]
-    @order.birthday       = options[:birthday]
-    @order.project        = options[:project]
-    @order.email          = options[:email]
-    @order.address_one    = options[:address_one]
-    @order.address_two    = options[:address_two]
-    @order.address_number = options[:address_number]
-    @order.address_neighbourhood    = options[:address_neighbourhood]
-    @order.cpf            = options[:cpf]
-    @order.city           = options[:city]
-    @order.state          = options[:state]
-    @order.zip            = options[:zip]
-    @order.phone          = options[:phone]
-    @order.country        = options[:country]
-    @order.value          = options[:value]
-    @order.number         = Order.next_order_number
-    @order.save!
-    return @order
-  end
-
-  # After authenticating with Amazon, we get the rest of the details
-  def self.postfill!(options = {})
-    @order = Order.find_by_uuid!(options[:payer])
-    @order.token = options[:token]
-    @order.save! if @order.token.present?
-  end
 
   def self.next_order_number
     Order.count > 0 ? Order.order("number DESC").limit(1).first.number.to_i + 1 : 1
   end
-
-  def generate_uuid!
-    begin
-      self.uuid = SecureRandom.hex(16)
-    end while Order.find_by_uuid(self.uuid).present?
-  end
-
 
   def self.revenue
     self.current.zero? ? 0 : Order.sum(:value)
@@ -78,9 +43,57 @@ class Order < ActiveRecord::Base
     Order.where("token != ? OR token != ?", "", nil).count
   end 
 
+  def as_json(options ={})
+    { 
+      id:                     self.uuid,
+      name:                   self.name,
+      email:                  self.email,
+      address_street:         self.address_one,
+      address_street_extra:   self.address_two,
+      address_street_number:  self.address_number,
+      address_neighbourhood:  self.address_neighbourhood,
+      address_city:           self.city,
+      address_state:          self.state,
+      address_country:        self.country,
+      address_cep:            self.zip,
+      address_phone:          self.phone
+   }.merge(options)
+  end
+
 
   def to_param
     self.uuid
   end
 
+
+
+  def generate_uuid!
+    begin
+      self.uuid = SecureRandom.hex(16)
+    end while Order.find_by_uuid(self.uuid).present?
+  end
+
+
+  def generate_payment_token!
+    # Set up the payer for MoIP payment
+    payer = MyMoip::Payer.new(self.as_json)
+
+    # Create the payment instruction for the payer
+    instruction = MyMoip::Instruction.new({
+      id: SecureRandom.hex(8),
+      payment_reason: "[Crowdfunding] #{self.email} - #{self.created_at}",
+      values: [self.value.to_f],
+      payer: payer
+    })
+      
+    # Initialize a new transparent request
+    transparent = MyMoip::TransparentRequest.new('crowdfunding')
+
+    # Make the call to the MoIP API
+    transparent.api_call(instruction)
+    
+
+    self.token = transparent.token
+    self.save!
+  end
 end

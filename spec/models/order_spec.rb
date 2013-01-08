@@ -42,59 +42,6 @@ describe Order do
 
   context "class methods" do
 
-    describe ".prefill!" do
-
-      before do
-        @project = Project.make!
-        @options = {
-          name: 'marin',
-          birthday: "1988/11/12",
-          email: 'juca@juca.com',
-          cpf: '2312312313',
-          project: @project,
-          phone:  '2197137471',
-          price: 10,
-          address_one: "Minha rua",
-          address_two: "Proximo àlgum lugar",
-          address_number: "100",
-          address_neighbourhood: "Laranjeiras",
-          city: 'rio',
-          state: 'rj',
-          zip: '22234230',
-          country: 'bra',
-          value: 10
-        }
-      end
-
-      subject { Order.prefill!(@options) }
-
-
-      it "sets the name" do
-        subject.name.should == @options[:name]
-      end
-
-      it "sets the project" do
-        subject.project.should == @options[:project]
-      end
-
-      it "sets the value" do
-        subject.value.should == @options[:value]
-      end
-
-      it "saves" do
-        Order.any_instance.should_receive :save!
-        Order.prefill!(@options)
-      end
-
-      it "uses the right order number" do
-        numbah = Order.next_order_number
-        Order.prefill!(@options).number.should == numbah
-      end
-
-    end
-
-
-
     describe ".next_order_number" do
 
       it "gives the next number" do

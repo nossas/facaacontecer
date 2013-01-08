@@ -21,5 +21,6 @@ module Selfstarter
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version           = '1.0'
     config.force_ssl = true
+
   end
 end

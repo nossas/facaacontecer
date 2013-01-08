@@ -13,8 +13,8 @@ Order.blueprint do
   city        { "Rio de Janeiro" }
   state       { "RJ" }
   country     { "BRA" }
-  zip         { "22245060" }
-  phone       { "2197137471" }
+  zip         { "78132-500" }
+  phone       { "(21) 97137471" }
   value       { 10 }
   status      { nil }
   token       { "TOKEN" }

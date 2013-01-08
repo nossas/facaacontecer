@@ -15,16 +15,20 @@
     font-size: .7em
     display: block
     font-weight: bold
+  form label.error
+    display: none !important
+    font-size: .5em
+    color: lighten(red, 5%)
+  form input.error
+    border: 1px solid red !important
+    background: white image-url('error.png') 97% center no-repeat
   form input[type='text']
     border-radius: 4px
-    border: none
+    border: 1px solid lightgray
     width: 99%
     outline: none
     padding: .2em
     color: darken(orange, 10%)
-  form .error
-    color: lighten(red, 5%)
-    font-size: .6em
   form .field_with_errors label
     margin-top: 6.5em
   form .field_with_errors input[type='text']
@@ -44,8 +48,6 @@
         color: black
         font-weight: bold
         font-size: 1.2em
-        transition: 0.02s all
-        -webkit-transition: 1s all
         &:hover, &.selected
           text-decoration: none
           background: orange

@@ -1,28 +1,43 @@
 Selfstarter = window.Selfstarter =  {
 
-  firstTime:  true,
   value:      null,
+  type:       'creditcard',
+  button:     $('.button'),
   form:       $('#order_form'), 
+  form_options: { mode: 'all', rails: true, skipEmpty: false },
+  ccard_form: $('#credit_form'),
   valueField: $('#order_form').find('input[name="order[value]"]'),
   email:      $('#order_email'),
-  button:     $('#self_button'),
   step1:      $('.step_1'),
   step2:      $('.step_2'),
   step3:      $('.step_3'),
   links:      $('ol.values li a'),
+  messages:   {
+    required:   "Este campo é obrigatório",
+    email:      "Por favor, insira um e-mail válido",
+    date:       "Por favor, insira uma data no formato 99/99/9999",
+    creditcard: "Por favor, insira um número de cartão válido"
+  },
 
   initialize: function() {
 
     this.bindEvents({
-      '#order_email textchange'       : 'validateEmail',
-      '#order_email hasText'          : 'validateEmail',
-      '#order_email change'           : 'unsetFirstTime',
       'ol.values li a click'          : 'showPaymentOptions',
-      'ol.payment_options li a click' : 'showForm'
+      'ol.payment_options li a click' : 'showForm',
+      'button#checkout click'         : 'finalizeCheckout'
     });
 
+    
+    // Set up error messages 
+    $.validator.messages = this.messages;
+
+    // Setup order_form validation
+    this.form.validate( { onkeyup: true } );
+    this.ccard_form.validate( { onkeyup: true } );
+
+    // Initialize Masks
     this.initializeMasks();
-    this.validateEmail();
+
   },
 
   initializeMasks: function(){
@@ -34,8 +49,53 @@ Selfstarter = window.Selfstarter =  {
 
   },
 
-  unsetFirstTime: function(){
-    this.firstTime = false
+
+  finalizeCheckout: function() {
+    if (this.form.valid()) {
+      if (this.type == 'boleto') {
+        // Start boleto payment
+        this.doPaymentWithBoleto();
+
+      } else if (this.type == 'credicard' ) {
+        if ( this.ccard_form.valid() ) {
+
+          // Start credit card payment
+          this.doPaymentWithCreditCard();
+        }
+      }
+    }
+  },
+
+
+  
+  doPaymentWithBoleto: function() {
+    this.button.append("Aguarde...");
+    var form    = this.form.toObject(this.form_options);
+    var result  = this.postOrderForm(form);
+    console.log(result);
+
+  },
+
+  doPaymentWithCreditCard: function() {
+     
+  },
+
+
+  postOrderForm: function(data) {
+    $.ajax({
+      url: this.form.attr('action'),
+      type: "POST",
+      dataType: "json",
+      async: "false",
+      data: data,
+      success: function(data) {
+        return data;
+      },
+      error: function(data) {
+        return false;
+      }
+
+    });
   },
 
   showForm: function(event,target) {
@@ -43,7 +103,15 @@ Selfstarter = window.Selfstarter =  {
     target.addClass('selected');
     this.step2.addClass('grayscale');
     this.step3.fadeIn();
-
+    this.button.fadeIn();
+    if (target.data('type') == 'creditcard') {
+      this.ccard_form.fadeIn(100) 
+      this.type = 'creditcard';
+    } else {
+      this.ccard_form.fadeOut(10);
+      this.type = 'boleto';
+    }
+      
   },
 
   showPaymentOptions: function(event, target){
@@ -52,27 +120,6 @@ Selfstarter = window.Selfstarter =  {
     this.valueField.val(target.data('value'));
     this.step1.addClass('grayscale');
     this.step2.fadeIn(); 
-  },
-
-
-  isValidEmail: function(email) {
-    return /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/.test(email)
-  },
-
-  validateEmail: function(){
-
-    if ( this.isValidEmail(this.email.val()) ) {
-      this.email.removeClass('highlight');
-      this.button.removeClass('disabled');
-    }
-    else {
-      if ( this.firstTime ) {
-        this.email.addClass('highlight');
-      }
-      if ( !this.button.hasClass('disabled') ) {
-        this.button.addClass("disabled");
-      }
-    }
   },
 
 

@@ -20,4 +20,4 @@ config/environments/*.local.yml
 .DS_Store
 *.sublime-workspace
 .rvmrc
-01-env_variables.rb
+01_env_variables.rb

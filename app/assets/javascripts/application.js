@@ -12,8 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery.mask
+//= require jquery.to_json
+//= require jquery.validation
 //= require jquery.money
-//= require jquery.textchange
+//= require jquery.mask
 //= require order 
 //= require_tree .
