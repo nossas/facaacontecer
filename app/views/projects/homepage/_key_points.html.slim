@@ -14,7 +14,7 @@
         strong.value R$ 10
         p.description
           | Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz e... 
-        = link_to "Apoiar", new_project_order_path(@project, value: 10), class: 'blue_button'
+        = link_to "Apoiar", new_project_supporter_path(@project, value: 10), class: 'blue_button'
       li
 
         = image_tag "placeholder.jpg"
@@ -22,21 +22,21 @@
         p.description
           | Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz e... 
 
-        = link_to "Apoiar", new_project_order_path(@project, value: 25), class: 'blue_button'
+        = link_to "Apoiar", new_project_supporter_path(@project, value: 25), class: 'blue_button'
       li
 
         = image_tag "placeholder.jpg"
         strong.value R$ 50
         p.description
           | Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz e... 
-        = link_to "Apoiar", new_project_order_path(@project, value: 50), class: 'blue_button'
+        = link_to "Apoiar", new_project_supporter_path(@project, value: 50), class: 'blue_button'
       li.last
 
         = image_tag "placeholder.jpg"
         strong.value R$ 100 ou mais
         p.description
           | Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz e... 
-        = link_to "Apoiar", new_project_order_path(@project, value: 100), class: 'blue_button'
+        = link_to "Apoiar", new_project_supporter_path(@project, value: 100), class: 'blue_button'
 
 
 

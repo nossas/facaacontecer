@@ -11,46 +11,53 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130104225519) do
+ActiveRecord::Schema.define(:version => 20130101194612) do
 
-  create_table "orders", :id => false, :force => true do |t|
+  create_table "orders", :force => true do |t|
+    t.integer  "user_id",                     :null => false
+    t.integer  "project_id",                  :null => false
+    t.decimal  "value",      :default => 0.0
     t.string   "token"
-    t.string   "transaction_id"
-    t.string   "address_one"
-    t.string   "address_two"
-    t.string   "city"
-    t.string   "state"
-    t.string   "zip"
-    t.string   "country"
     t.string   "status"
-    t.string   "number"
     t.string   "uuid"
-    t.string   "phone"
-    t.string   "name"
-    t.date     "expiration"
-    t.datetime "created_at",            :null => false
-    t.datetime "updated_at",            :null => false
-    t.integer  "project_id"
-    t.decimal  "value"
-    t.string   "email"
-    t.string   "cpf"
-    t.string   "address_neighbourhood"
-    t.integer  "address_number"
-    t.date     "birthday"
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
   end
 
-  add_index "orders", ["email"], :name => "index_orders_on_email"
   add_index "orders", ["project_id"], :name => "index_orders_on_project_id"
+  add_index "orders", ["token"], :name => "index_orders_on_token", :unique => true
+  add_index "orders", ["user_id"], :name => "index_orders_on_user_id"
+  add_index "orders", ["uuid"], :name => "index_orders_on_uuid"
 
   create_table "projects", :force => true do |t|
     t.string   "title"
     t.text     "description"
+    t.date     "expiration_date"
     t.decimal  "goal"
-    t.datetime "expiration_date"
     t.string   "image"
     t.string   "video"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
   end
+
+  create_table "users", :force => true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "cpf"
+    t.date     "birthday"
+    t.string   "address_street"
+    t.string   "address_street_extra"
+    t.string   "address_street_number"
+    t.string   "address_neighbourhood"
+    t.string   "address_city"
+    t.string   "address_state"
+    t.string   "address_country"
+    t.string   "address_cep"
+    t.string   "address_phone"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+  end
+
+  add_index "users", ["email"], :name => "index_users_on_email"
 
 end

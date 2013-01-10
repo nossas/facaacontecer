@@ -33,6 +33,7 @@ describe OrdersController do
         phone: "(21) 99999991",
         zip: "78132-500"
       }
+      @param = stub_model(Order, random_attributes: true, save: true)
     end
     context "Invalid response" do 
       before do
@@ -45,13 +46,16 @@ describe OrdersController do
 
 
       it "should return a json with errors if the response is invalid" do
-        response.body.should == "{\"order\":{\"city\":[\"n\\u00e3o pode ficar em branco\"]}}"
+        parsed_response = JSON.parse(response.body)['order']
+        parsed_response.should include("city")
+        parsed_response.should_not include("email")
       end
 
     end
  
     context "Valid response" do
       before do
+        Order.stub(:create!).with(@order).and_return(@param)
         post :create, project_id: @project.id, order: @order, format: :json
       end
 
@@ -60,14 +64,14 @@ describe OrdersController do
       end
 
       it "should return token if the order validation was OK and instruction was successful" do
-        Order.any_instance.stub(:generate_payment_token!).and_return("TOKEN")
-        response.body == @order.as_json( { token: "TOKEN" } )
+        Order.any_instance.stub(:token).and_return("token")
+        JSON.parse(response.body)['order']['token'].should == "token"     
       end
 
 
       it "should return nil if the order validation was OK but instruction was unsuccessful" do
-        Order.any_instance.stub(:generate_payment_token!).and_return(nil)
-        response.body == @order.as_json( { token: nil } )     
+        Order.any_instance.stub(:token).and_return(nil)
+        JSON.parse(response.body)['order']['token'].should == nil 
       end
     end
       

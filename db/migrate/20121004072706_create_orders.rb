@@ -1,26 +1,20 @@
 class CreateOrders < ActiveRecord::Migration
   def change
-    create_table :orders, :id => false do |t|
-      t.string  :token
-      t.string  :transaction_id
-      t.string  :address_one
-      t.string  :address_two
-      t.string  :city
-      t.string  :state
-      t.string  :zip
-      t.string  :country
-      t.string  :status
-      t.string  :number
-      t.string  :uuid
-      t.string  :user_id
-      t.decimal :price
-      t.decimal :shipping
-      t.string  :tracking_number
-      t.string  :phone
-      t.string  :name
-      t.date    :expiration
+    create_table :orders do |t|
+      t.integer :user_id,     null: false
+      t.integer :project_id,  null: false
+      t.decimal :value,   default: 0.0
+      t.string  :token,   default: nil
+      t.string  :status,  default: nil
+      t.string  :uuid,    default: nil
 
       t.timestamps
     end
+
+
+    add_index :orders, :token, unique: true
+    add_index :orders, :uuid
+    add_index :orders, :user_id
+    add_index :orders, :project_id
   end
 end
