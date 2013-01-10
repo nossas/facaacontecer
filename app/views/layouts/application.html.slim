@@ -2,10 +2,12 @@ doctype html
 html
   head
     title= @project ? @project.title : nil
+    meta name="google-site-verification" content="WyYXLP4FbqfmaMVDPyDtEeWiE2Hrw5LmsY4G-lkrERk"
+
     = stylesheet_link_tag :application
   body
     = render 'layouts/header'
     = yield
     = render 'layouts/footer'
-    = javascript_include_tag '//desenvolvedor.moip.com.br/sandbox/transparente/MoipWidget-v2.js'
     = javascript_include_tag :application
+    = javascript_include_tag '//desenvolvedor.moip.com.br/sandbox/transparente/MoipWidget-v2.js'
