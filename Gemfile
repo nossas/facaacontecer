@@ -1,10 +1,13 @@
 source 'https://rubygems.org'
+ruby '1.9.3'
+
 
 gem 'rails', '~> 3.2.8'
 gem 'inherited_resources'
 gem 'slim-rails'
 
 group :development do
+  gem 'better_errors'
   gem 'sqlite3'
   gem 'pry-rails'
 end
