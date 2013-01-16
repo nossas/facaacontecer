@@ -1,12 +1,13 @@
 Given /^there is a project "(.*?)" with (\d+) of goal and expires in (\d+) days$/ do |arg1, arg2, arg3|
-  @project = Project.make! title: arg1, description: 'description', goal: arg2.to_f, expiration_date: Date.today + (arg3.to_i)
+  @project = Project.make! title: arg1, description: 'description', goal: arg2.to_f, expiration_date: Time.now + (arg3.to_i.days)
 end
 
 
 Given /^there were (\d+) orders of \$(\d+) from other backers in this project$/ do |arg1, arg2|
   @orders = []
+  @users = User.make!
   arg1.to_i.times do 
-    @orders << Order.make!(value: arg2.to_f, project: @project)
+    @orders << Order.make!(value: arg2.to_f, project: @project, user: @user)
   end
 end
 
@@ -23,7 +24,7 @@ Then /^I should not see "(.*?)"$/ do |arg1|
 end
 
 When /^I click "(.*?)"$/ do |arg1|
-  click_on arg1
+  click_on(arg1)
 end
 
 

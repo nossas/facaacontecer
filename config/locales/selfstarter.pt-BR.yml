@@ -1,19 +1,20 @@
 pt-BR:
   helpers:
     label:
-      order:
+      user:
         name: "Nome completo"
         birthday: "Data de Nascimento"
         email: "Seu email"
         cpf:  "Seu CPF"
-        address_one: "Endereço"
-        address_two: "Complemento"
-        address_number: "Número"
+        address_street: "Endereço"
+        address_street_extra: "Complemento"
+        address_street_number: "Número"
         address_neighbourhood: "Bairro"
-        state: "Estado"
-        city: "Cidade"
-        zip: "CEP"
-        phone: "Celular (ou fixo, insira o DDD)"
+        address_state: "Estado"
+        address_city: "Cidade"
+        address_cep: "CEP"
+        address_phone: "Celular (ou fixo, insira o DDD)"
+      order:
         value: "Quero apoiar com..."
   activerecord:
     models:

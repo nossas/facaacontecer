@@ -1,24 +1,28 @@
 require 'machinist/active_record'
 
 
-Order.blueprint do
+User.blueprint do
   name        { "Juquinha da silva" }
   birthday    { "1988/11/12" }
   email       { "juquinha@zip.net" }
   cpf         { "12312312312" }
-  address_one { "Rua Belisario Tavora 500" }
-  address_two { "Laranjeiras" }
-  address_number { "100" }
+  address_street { "Rua Belisario Tavora 500" }
+  address_street_extra { "Laranjeiras" }
+  address_street_number { "100" }
   address_neighbourhood { "Laranjeiras" }
-  city        { "Rio de Janeiro" }
-  state       { "RJ" }
-  country     { "BRA" }
-  zip         { "78132-500" }
-  phone       { "(21) 97137471" }
+  address_city        { "Rio de Janeiro" }
+  address_state       { "RJ" }
+  address_country     { "BRA" }
+  address_cep         { "78132-500" }
+  address_phone       { "(21) 97137471" }
+end
+
+Order.blueprint do
   value       { 10 }
   status      { nil }
   token       { "TOKEN" }
   project     { Project.make! }
+  user        { User.make! }
 end
 
 
@@ -29,11 +33,3 @@ Project.blueprint do
   description     { "Minha descricao" }
   expiration_date { Time.now + 45.days }
 end
-
-# Add your blueprints here.
-#
-# e.g.
-#   Post.blueprint do
-#     title { "Post #{sn}" }
-#     body  { "Lorem ipsum..." }
-#   end
