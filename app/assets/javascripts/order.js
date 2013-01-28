@@ -1,30 +1,33 @@
 Selfstarter = window.Selfstarter =  {
 
-  value:      null,
-  type:       'creditcard',
-  button:     $('.button'),
-  form:       $('#order_form'), 
-  form_options: { mode: 'all', rails: true, skipEmpty: false },
-  ccard_form: $('#credit_form'),
-  valueField: $('#order_form').find('input[name="order[value]"]'),
-  email:      $('#order_email'),
+  
   step1:      $('.step_1'),
   step2:      $('.step_2'),
   step3:      $('.step_3'),
+  value:      null,
+  type:       'creditcard',
+  cepField:   $('#user_address_cep'),
+  valueField: $('#order_value'),
+  button:     $('.button'),
+  form:       $('#user_form'), 
+  ccard_form: $('#credit_form'),
+  email:      $('#user_email'),
   links:      $('ol.values li a'),
   messages:   {
     required:   "Este campo é obrigatório",
     email:      "Por favor, insira um e-mail válido",
     date:       "Por favor, insira uma data no formato 99/99/9999",
-    creditcard: "Por favor, insira um número de cartão válido"
+    creditcard: "Por favor, insira um número de cartão de crédito válido"
   },
+  form_options: { mode: 'all', rails: true, skipEmpty: false },
 
   initialize: function() {
 
     this.bindEvents({
       'ol.values li a click'          : 'showPaymentOptions',
       'ol.payment_options li a click' : 'showForm',
-      'button#checkout click'         : 'finalizeCheckout'
+      'button#checkout click'         : 'finalizeCheckout',
+      'input.cep blur'                : 'getAddressCepInformation',
     });
 
     
@@ -82,6 +85,7 @@ Selfstarter = window.Selfstarter =  {
 
 
   postOrderForm: function(data) {
+
     $.ajax({
       url: this.form.attr('action'),
       type: "POST",
@@ -96,6 +100,23 @@ Selfstarter = window.Selfstarter =  {
       }
 
     });
+  },
+
+
+  getAddressCepInformation: function(){
+    var self = this;
+
+    $.ajax({
+      url: "//brazilapi.herokuapp.com/api",
+      type: "GET",
+      dataType: 'json',
+      data: { cep: self.cepField.val() },
+      success: function(response){
+        console.log(response) 
+        self.populateAddressFields(response.body);
+      },
+    
+    })
   },
 
   showForm: function(event,target) {

@@ -1,2 +1,17 @@
-= render 'projects/homepage/show_dont_tell' 
-= render 'projects/homepage/key_points'
+.container
+  .row
+    .video= @project.video_embed 
+
+    .backing
+      ul
+        li.stats#backers  = @project.backers_count 
+        li.stats#reached  = @project.reached 
+        li.stats#days     = @project.days_remaining
+
+    .progress= @project.progress
+
+    .about
+      p= @project.short_description 
+      p= @project.call_to_action 
+
+

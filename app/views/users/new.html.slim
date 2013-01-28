@@ -1,108 +1,56 @@
-.gray_background
-  .wrapper.clearfix
-    #order.main_content
-      
-      .steps.step_1[class=(@user.errors.any? or params[:value] ? 'hidden' : '')]
-        h3 Apoie com um valor e você ganha um brinde especial logo após :)
-        ol.values
-          li= link_to "R$ 10", "#/", data: { value: 10 }
-          li= link_to "R$ 25", "#/", data: { value: 25 }
-          li= link_to "R$ 50", "#/", data: { value: 50 }
-          li= link_to "R$ 100", "#/", data: { value: 100 }
-          li= link_to "?", "#/", data: { value: 0 }
+.container
+  .row 
+    section.steps.step_1.payment_options
+      p
+        | Apoie com um valor e você ganha um brinde especial logo após :)
+      ol.values
+        li= link_to number_to_currency(10, precision: 0),   "#/",  data: { value: 10 }
+        li= link_to number_to_currency(25, precision: 0),   "#/",  data: { value: 25 }
+        li= link_to number_to_currency(50, precision: 0),   "#/",  data: { value: 50 }
+        li= link_to number_to_currency("__", precision: 0), "#/",  data: { value: 00 }
 
-   
-
-
-      .steps.step_2.hidden
-        h3 Escolha como pretende apoiar o projeto! 
-        ol.payment_options
-          li= link_to "Cartão de Crédito", '#/', data: { type: :creditcard}
-          li= link_to "Boleto", '#/', data: { type: :boleto }
+  .row 
+    
+    section.steps.step_2.form.hidden
+      .info
+        |* As informações que coletamos abaixo nunca serão revendidas ou utilizadas por terceiros. 
+        | Apenas entraremos em contato com você utilizando o e-mail que você fornecer. 
+      = render 'form'
 
 
 
+    section.steps.step_3.hidden
+      h3 Escolha como pretende apoiar o projeto! 
+      ol.payment_options
+        li= link_to "Cartão de Crédito",  '#/', data: { type: :creditcard }
+        li= link_to "Boleto",             '#/', data: { type: :boleto }
 
 
 
+    section.steps.step_4.hidden
 
+      h3 Dados do cartão
+      span Para sua segurança, estes dados não são armazenados pela ferramenta, apenas pelo MoIP.
 
-      .steps.step_3[class=(@user.errors.any? ? '' : 'hidden')]
-        p As informações que coletamos abaixo nunca serão revendidas ou utilizadas por terceiros. Apenas entraremos em contato com você utilizando o e-mail que você fornecer. 
+      = form_for :order, html: { id: :credit_form , class: :hidden }, url: nil do |f|
 
-        = form_for @user, url: new_project_supporter_path, html: { id: :order_form } do |f|
-          p
-            = f.label :name
-            = f.text_field :name, placeholder: 'Fulano da Silva', class: [:required], minlength: 8
-          p
-            = f.label :birthday
-            = f.text_field :birthday, placeholder: '12/11/1988', maxlength: 10, class: [:required, :date], minlength: 10
-          p
-            = f.label :cpf
-            = f.text_field :cpf, maxlength: 14, placeholder: '011.011.111-11', class: [:required, :cpf], minlength: 11
+        p
+          = f.label :name
+          = f.text_field :name, class: :required, minlength: 6
+        p
+          = f.label :card_number
+          = f.text_field :card_number, class: :required, minlength: 6
 
-          p.zip
-            = f.label :address_cep
-            = f.text_field :address_cep, placeholder: '22245-040', maxlength: 9, class: [:required, :cep], minlength: 9
+        p
+          = f.label :security_code, class: [:required, :number], maxlength: 4, minlength: 3
 
-          p
-            = f.label :address_street
-            = f.text_field :address_street, class: :required, minlength: 3
-          p
-            = f.label :address_street_extra
-            = f.text_field :address_street_extra, class: [:required]
-          p
-            = f.label :address_street_number
-            = f.text_field :address_street_number, maxlength: 6, class: :required
-
-          p
-            = f.label :address_neighbourhood
-            = f.text_field :address_neighbourhood, class: :required, minlength: 3
-
-          p
-            = f.label :address_city
-            = f.text_field :address_city, placeholder: 'Rio de Janeiro', class: :required, minlength: 3
-
-          p.state
-            = f.label :address_state
-            = f.text_field :address_state, placeholder: 'RJ', maxlength: 2, class: :required, minlength: 2
-
-
-          p.email
-            = f.label :email
-            = f.text_field :email, placeholder: 'email@provedor.com.br', class: [:required, :email]
-          p
-            = f.label :address_phone
-            = f.text_field :address_phone, placeholder: '(21) 97137471', class: [:required, :phone], minlength: 8
-
-          p
-            = f.hidden_field :address_country, value: 'BRA'
-          p.submit.hidden
-            = f.submit class: 'blue_button reserve', id: :self_button
-      .steps
-
-        h3 Dados do cartão
-        span Para sua segurança, estes dados não são armazenados pela ferramente, apenas pelo MoIP.
-
-        = form_for :order, html: { id: :credit_form , class: :hidden }, url: nil do |f|
-
-          p
-            = f.label :name
-            = f.text_field :name, class: :required, minlength: 6
-          p
-            = f.label :card_number
-            = f.text_field :card_number, class: :required, minlength: 6
-
-          p
-            = f.label :security_code, class: [:required, :number], maxlength: 4, minlength: 3
-
-          p.hidden
-            = f.label :value
-            = f.text_field :value, class: [:money, :required]
+        p.hidden
+          = f.label :value
+          = f.text_field :value, class: [:money, :required]
 
 
 
-      .button.hidden
-        = button_tag :Apoiar!, class: [:blue_button], id: :checkout
+    .button.hidden
+      = button_tag :Apoiar!, class: :btn, id: :checkout
 
 

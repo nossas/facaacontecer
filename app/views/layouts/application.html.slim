@@ -1,11 +1,11 @@
 doctype html
 html
   head
-    title= @project ? @project.title : nil
+    title Projeto
     meta name="google-site-verification" content="WyYXLP4FbqfmaMVDPyDtEeWiE2Hrw5LmsY4G-lkrERk"
 
     = stylesheet_link_tag :application
-  body
+  body[class=controller.controller_name.downcase]
     = render 'layouts/header'
     = yield
     = render 'layouts/footer'

@@ -1,0 +1,50 @@
+= form_for @user, url: new_project_supporter_path, html: { id: :user_form } do |f|
+  p
+    = f.label :name
+    = f.text_field :name, placeholder: 'Fulano da Silva', class: [:required], minlength: 8
+  p
+    = f.label :cpf
+    = f.text_field :cpf, maxlength: 14, placeholder: '011.011.111-11', class: [:required, :cpf], minlength: 11
+  p
+    = f.label :birthday
+    = f.text_field :birthday, placeholder: '12/11/1988', maxlength: 10, class: [:required, :date], minlength: 10
+  p.zip
+    = f.label :address_cep
+    = f.text_field :address_cep, placeholder: '22245-040', maxlength: 9, class: [:required, :cep], minlength: 9
+
+  p
+    = f.label :address_street
+    = f.text_field :address_street, class: :required, minlength: 3
+  p
+    = f.label :address_street_extra
+    = f.text_field :address_street_extra, class: [:required]
+  p
+    = f.label :address_street_number
+    = f.text_field :address_street_number, maxlength: 6, class: :required
+
+  p
+    = f.label :address_neighbourhood
+    = f.text_field :address_neighbourhood, class: :required, minlength: 3
+
+  p
+    = f.label :address_city
+    = f.text_field :address_city, placeholder: 'Rio de Janeiro', class: :required, minlength: 3
+
+  p.state
+    = f.label :address_state
+    = f.text_field :address_state, placeholder: 'RJ', maxlength: 2, class: :required, minlength: 2
+
+
+  p.email
+    = f.label :email
+    = f.text_field :email, placeholder: 'email@provedor.com.br', class: [:required, :email]
+  p
+    = f.label :address_phone
+    = f.text_field :address_phone, placeholder: '(21) 97137471', class: [:required, :phone], minlength: 8
+
+  p
+    = f.hidden_field :address_country, value: 'BRA'
+
+  p.submit.hidden
+    = f.submit :continuar, class: 'blue_button reserve', id: :self_button
+

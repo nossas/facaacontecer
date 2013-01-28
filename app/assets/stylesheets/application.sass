@@ -12,11 +12,131 @@
  */
 
 
-@import reset 
-@import variables
-@import primitives
-@import header
-@import footer
-@import homepage
-@import order
-@import share
+@import compass/reset 
+@import columnal/grid
+@import compass/css3
+@import icomoon
+@import "https://fonts.googleapis.com/css?family=Open+Sans"
+
+// Color settings
+$blue:        #5886F7
+$darkblue:    #037ab7
+$green:       #059046
+$lightgreen:  #AECE6A
+$orange:      #f7921e 
+$gray:        #666666
+$lightgray:   lighten($gray, 52%)
+$link:        $green
+
+// Defining Columnal Settings
+// Check http://www.columnal.com/ to know more.
+// Check https://github.com/diogob/compass-columnal-plugin for documentation
+$columnal-grid-width: 1140px !default
+$columnal-columns: 12 !default
+
++text
+
+// Defining the standard classes to handle the grid system
+.container
+  +grid-container
+.row
+  +grid-row
+
+
+// Defining default-style classes
+body
+  background: $lightgreen
+  color: white
+  font-family: "Open Sans", sans-serif
+  line-height: 1.4em
+  &.users
+    background: $lightgray
+    color: black
+
+a 
+  color: $link
+  text-decoration: none
+  &:hover
+    border: none
+
+label
+  display: block
+  &:hover
+    cursor: pointer
+
+input[type='text']
+  border-radius: 2px
+  padding: .6em 1em
+  border: none
+
+.btn
+  background: $blue
+  color: white
+  padding: 1em
+  border: none
+.error
+  color: red
+
+.hidden
+  display: none
+
+.info
+  background: lighten($blue, 40%)
+  color: $gray
+  font-size: .8em
+  padding: 1.5em
+
+.payment_options
+  background: white
+  p
+    padding: 2em 4em
+    text-align: center
+  ol.values
+    padding: 0 .8em
+    background: lighten($blue, 28%)
+    overflow: hidden
+  ol.values li
+    margin: 1em 0
+    display: inline-block
+    font-size: 1.6em
+    background: lighten($blue, 32%)
+    border-radius: .2em
+    box-shadow: 0 0 1px $blue
+    +grid(3)
+    &:hover
+      +background-image(linear-gradient(color-stops(lighten($blue, 5%), $darkblue)))
+    &:last-child
+      +last
+  ol.values a
+    color: white
+    display: block
+    padding: 1em 0
+    text-align: center
+    color: $gray 
+    font-weight: bold
+    &:hover
+      text-decoration: none
+      color: white
+
+
+.form
+  +grid(12)
+.form form
+  padding: 2em
+  margin: 2em 0
+  .error
+    font-size: .7em
+  label
+    display: block
+    font-size: .9em
+  p
+    display: inline-block
+    margin-right: 1.5em
+    margin-bottom: 3em
+  input[type='text']
+    outline: none
+    font-size: 1em
+    padding-top: .7em
+    padding-bottom: .7em
+    border-radius: 2px
+    box-shadow: inset 1px 1px 4px lighten($gray, 15%)
