@@ -12,6 +12,7 @@
 
 # Ignore all logfiles and tempfiles.
 /log/*.log
+/cookbooks
 /tmp
 
 config/settings.local.yml
