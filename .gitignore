@@ -21,4 +21,5 @@ config/environments/*.local.yml
 .DS_Store
 *.sublime-workspace
 .rvmrc
+.vagrant
 01_env_variables.rb

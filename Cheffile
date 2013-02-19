@@ -1,0 +1,24 @@
+#!/usr/bin/env ruby
+ 
+site 'http://community.opscode.com/api/v1'
+ 
+cookbook 'apt'
+cookbook 'build-essential'
+
+cookbook 'git',     github: 'fnichol/chef-git'
+cookbook 'nodejs',  github: 'hectcastro/chef-nodejs'
+
+
+# Manage ruby installations
+cookbook 'rvm', github: 'fnichol/chef-rvm'
+
+# Database
+cookbook 'postgresql'
+
+
+# Terminal utilities
+cookbook 'oh_my_zsh', github: 'shingara/oh-my-zsh-chef'
+
+
+
+
