@@ -1,23 +1,20 @@
 source 'https://rubygems.org'
 ruby '1.9.3'
 
-gem 'vagrant-librarian'
-
 
 gem 'rails', '~> 3.2.8'
 gem 'inherited_resources'
 gem 'slim-rails'
 gem 'active_decorator'
+gem 'pg'
 
 group :development do
   gem 'better_errors'
-  gem 'sqlite3'
   gem 'pry-rails'
 end
 
 group :production do
   gem 'thin'
-  gem 'pg'
 end
 
 # Gems used only for assets and not required
@@ -46,4 +43,4 @@ gem 'jquery-rails'
 
 
 # MyMoip Gem
-gem 'mymoip', git: 'git://github.com/Irio/mymoip.git'
+gem 'mymoip'

@@ -5,14 +5,14 @@ Vagrant::Config.run do |config|
 
 
   # The OS that will run our code
-  config.vm.box = "precise64"
-  config.vm.box_url = "http://files.vagrantup.com/precise64.box"
+  config.vm.box = "precise32"
+  config.vm.box_url = "http://files.vagrantup.com/precise32.box"
 
 
   # In case the Rails app runs on port 3000, make it available on the host
   config.vm.forward_port 3000, 3000
   config.vm.forward_port 5432, 5432
-  config.vm.forward_port 80, 8080
+  #config.vm.forward_port 80, 8080
 
   config.vm.provision :chef_solo do |chef|
     chef.cookbooks_path = "cookbooks"
@@ -36,7 +36,7 @@ Vagrant::Config.run do |config|
     # PostgreSQL Because we Love it
     chef.add_recipe "postgresql"
     chef.add_recipe "postgresql::client"
-    chef.add_recipe "postgresql::ruby"
+    chef.add_recipe "postgresql::libpq"
     chef.add_recipe "postgresql::server"
     chef.add_recipe "postgresql::contrib"
 
@@ -64,12 +64,21 @@ Vagrant::Config.run do |config|
 
       # Configuring postgreSQL
       postgresql: {
-        password: {
-          vagrant: "",
-          postgres: ""
-        }
+        listen_addresses: "*",
+        pg_hba: [
+            "host all all 0.0.0.0/0 md5",
+            "host all all ::1/0 md5",
+        ],
+        users: [
+          {
+            username: "postgres",
+            password: "password",
+            superuser: true,
+            createdb: true,
+            login: true
+          }
+        ]
       },
-
       # Making the terminal looks good with theming and assigning to the vagrant user
       oh_my_zsh: {
         users: [{ 
