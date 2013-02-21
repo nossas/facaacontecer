@@ -16,12 +16,19 @@ Vagrant::Config.run do |config|
 
   config.vm.provision :chef_solo do |chef|
     chef.cookbooks_path = "cookbooks"
-
+  
+    # Apt repository
     chef.add_recipe "apt"
+  
 
     # Include GCC and other utilities (compilation,etc)
     chef.add_recipe "build-essential"
     chef.add_recipe "git"
+
+
+    # Virtual server X Frame Buffer
+    chef.add_recipe "xvfb"
+    chef.add_recipe "firefox"
 
     # This recipe is necessary if you're working with Rails & needs a JS runtime
     chef.add_recipe "nodejs"
@@ -40,7 +47,7 @@ Vagrant::Config.run do |config|
     chef.add_recipe "postgresql::server"
     chef.add_recipe "postgresql::contrib"
 
-
+    
     #  Configuration: 
     #  The JSON below is where we configure or modify our recipes attributes
     #  Every recipe has an 'attributes' folder, and these are accessible using the hash format
@@ -54,6 +61,7 @@ Vagrant::Config.run do |config|
         global_gems: [
           { name: :thin }, 
           { name: :bundler },
+          { name: "selenium-webdriver" }
         ],
         # This is needed because of Vagrant & Chef Solo
         vagrant: {
@@ -63,6 +71,8 @@ Vagrant::Config.run do |config|
       },
 
       # Configuring postgreSQL
+      # WARNING: 
+      # If you're going to deploy using Chef, please Change all these configurations!
       postgresql: {
         listen_addresses: "*",
         pg_hba: [
@@ -96,7 +106,10 @@ Vagrant::Config.run do |config|
   #config.vm.provision :shell, inline: %q{service postgresql initdb && service postgresql start}
 
 
+  # Start the X-Server to run Cucumber tests
+  config.vm.provision :shell, inline: "sudo /etc/init.d/xvfb start"
+
   # Run the Rails project right on vagrant up 
-  config.vm.provision :shell, inline: %q{cd /vagrant && bundle install}
-  config.vm.provision :shell, inline: %q{cd /vagrant && thin start --ssl}
+  config.vm.provision :shell, inline: "cd /vagrant && bundle install"
+  config.vm.provision :shell, inline: "cd /vagrant && thin start --ssl -d"
 end
