@@ -16,7 +16,7 @@ Selfstarter = window.Selfstarter =  {
   messages:   {
     required:   "Este campo é obrigatório",
     email:      "Por favor, insira um e-mail válido",
-    date:       "Por favor, insira uma data no formato 99/99/9999",
+    date:       "Por favor, insira uma data no formato dd/mm/aaaa",
     creditcard: "Por favor, insira um número de cartão de crédito válido"
   },
   form_options: { mode: 'all', rails: true, skipEmpty: false },
@@ -102,6 +102,15 @@ Selfstarter = window.Selfstarter =  {
     });
   },
 
+  populateAddressFields: function(data) {
+    var data = data.cep.data;
+    $('#user_address_street').val(data.tp_logradouro + ' ' + data.logradouro);
+    //$('#user_address_street').val(data.tp_logradouro);
+    $('#user_address_neighbourhood').val(data.bairro);
+    $('#user_address_city').val(data.cidade);
+    $('#user_address_state').val(data.uf.toUpperCase());
+    
+  },
 
   getAddressCepInformation: function(){
     var self = this;
@@ -113,7 +122,7 @@ Selfstarter = window.Selfstarter =  {
       data: { cep: self.cepField.val() },
       success: function(response){
         console.log(response) 
-        self.populateAddressFields(response.body);
+        self.populateAddressFields(response[0]);
       },
     
     })
