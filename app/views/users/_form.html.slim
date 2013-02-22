@@ -1,50 +1,63 @@
-= form_for @user, url: new_project_supporter_path, html: { id: :user_form } do |f|
-  p
-    = f.label :name
-    = f.text_field :name, placeholder: 'Fulano da Silva', class: [:required], minlength: 8
-  p
-    = f.label :cpf
-    = f.text_field :cpf, maxlength: 14, placeholder: '011.011.111-11', class: [:required, :cpf], minlength: 11
-  p
-    = f.label :birthday
-    = f.text_field :birthday, placeholder: '12/11/1988', maxlength: 10, class: [:required, :date], minlength: 10
-  p.zip
-    = f.label :address_cep
-    = f.text_field :address_cep, placeholder: '22245-040', maxlength: 9, class: [:required, :cep], minlength: 9
+= form_for @user, url: new_project_supporter_path, html: { id: :user_form, data: { validate: :parsley } } do |f|
 
-  p
-    = f.label :address_street
-    = f.text_field :address_street, class: :required, minlength: 3
-  p
-    = f.label :address_street_extra
-    = f.text_field :address_street_extra, class: [:required]
-  p
-    = f.label :address_street_number
-    = f.text_field :address_street_number, maxlength: 6, class: :required
-
-  p
-    = f.label :address_neighbourhood
-    = f.text_field :address_neighbourhood, class: :required, minlength: 3
-
-  p
-    = f.label :address_city
-    = f.text_field :address_city, placeholder: 'Rio de Janeiro', class: :required, minlength: 3
-
-  p.state
-    = f.label :address_state
-    = f.text_field :address_state, placeholder: 'RJ', maxlength: 2, class: :required, minlength: 2
+  fieldset
+    legend Vamos começar? Vou precisar de alguns dados pessoais, saca só:
+    .wrap
+      p
+        = f.label :name
+        = f.text_field :name, data: { required: true, minlength: 10, trigger: :keyup }
+      p
+        = f.label :cpf
+        = f.text_field :cpf, class: [:cpf], data: { required: true, notblank: true, minlength: 10, maxlength: 14, trigger: :keyup }
+      p
+        = f.label :birthday
+        = f.text_field :birthday, class: [:date], data: { required: true, minlength: 8, maxlength: 10, trigger: :keyup }
 
 
-  p.email
-    = f.label :email
-    = f.text_field :email, placeholder: 'email@provedor.com.br', class: [:required, :email]
-  p
-    = f.label :address_phone
-    = f.text_field :address_phone, placeholder: '(21) 97137471', class: [:required, :phone], minlength: 8
+  fieldset
+    legend Pra você não ter que preencher muitos campos, me diz aí: qual teu cep?
+    .wrap.zip
+      p
+        = f.label :address_cep
+        = f.text_field :address_cep, class: [:cep], size: 25, data: { required: true, trigger: :keyup, minlength: 7, maxlength: 9 }
+  fieldset 
+    legend Olha só! Preenchemos o que encontramos, mas precisamos dos outros (estão em branco)
+    .wrap
+      p
+        = f.label :address_street
+        = f.text_field :address_street, data: { required: true, minlength: 5, trigger: :keyup }
+      p
+        = f.label :address_street_extra
+        = f.text_field :address_street_extra, data: { required: true, trigger: :keyup }
+      p
+        = f.label :address_street_number
+        = f.text_field :address_street_number, data: { required: true, max: 99999, trigger: :keyup }, maxlength: 6
+
+      p
+        = f.label :address_neighbourhood
+        = f.text_field :address_neighbourhood, data: { required: true, minlength: 4, trigger: :keyup }
+
+      p
+        = f.label :address_city
+        = f.text_field :address_city, data: { required: true, minlength: 3, trigger: "keyup change focusin" }
+
+      p.state
+        = f.label :address_state
+        = f.text_field :address_state, data: { required: true, minlength: 2, trigger: :keyup }, maxlength: 2, placeholder: "RJ"
+
+  fieldset 
+    legend E se precisarmos entrar em contato com você? Qual o seu email e telefone?
+    .wrap
+      p.email
+        = f.label :email
+        = f.text_field :email, data: { required: true, type: :email, trigger: :keyup }
+      p
+        = f.label :address_phone
+        = f.text_field :address_phone, class: [:phone], data: { required: true, minlength: 9, trigger: :keyup }, size: 25
 
   p
-    = f.hidden_field :address_country, value: 'BRA'
+    = f.hidden_field :address_country, value: 'Brasil'
 
-  p.submit.hidden
-    = f.submit :continuar, class: 'blue_button reserve', id: :self_button
+  = f.submit "Salvar os meus dados e continuar!", class: 'btn', id: :self_button
+  span:small.next_step_tip No próximo passo pediremos os dados finais pra doação, é rapidinho!
 

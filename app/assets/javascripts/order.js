@@ -1,27 +1,48 @@
 Selfstarter = window.Selfstarter =  {
 
-  
+  // Moip Token for the API
+  moipToken: $('meta[property="moip:token"]').attr('content'),
+
+  // Initializing moip signatures
+  moipSubscriber: new MoipAssinaturas(this.moipToken),
+
+  // Window steps for the user
   step1:      $('.step_1'),
   step2:      $('.step_2'),
   step3:      $('.step_3'),
+
+  // The value selected by the user
   value:      null,
-  type:       'creditcard',
+ 
+  // Form fields 
   cepField:   $('#user_address_cep'),
   valueField: $('#order_value'),
   button:     $('.button'),
   form:       $('#user_form'), 
-  ccard_form: $('#credit_form'),
   email:      $('#user_email'),
+
+  // The credit card form
+  ccard_form: $('#credit_form'),
+
+  // Links
   links:      $('ol.values li a'),
+
+  // Messages for the jQuery validator
   messages:   {
     required:   "Este campo é obrigatório",
     email:      "Por favor, insira um e-mail válido",
     date:       "Por favor, insira uma data no formato dd/mm/aaaa",
     creditcard: "Por favor, insira um número de cartão de crédito válido"
   },
+
+  // Mapping the form to send to the server (just client data, not credit card)
   form_options: { mode: 'all', rails: true, skipEmpty: false },
 
+
+
+  // Initializing
   initialize: function() {
+    
 
     this.bindEvents({
       'ol.values li a click'          : 'showPaymentOptions',
@@ -31,13 +52,6 @@ Selfstarter = window.Selfstarter =  {
     });
 
     
-    // Set up error messages 
-    $.validator.messages = this.messages;
-
-    // Setup order_form validation
-    this.form.validate( { onkeyup: true } );
-    this.ccard_form.validate( { onkeyup: true } );
-
     // Initialize Masks
     this.initializeMasks();
 
@@ -55,57 +69,21 @@ Selfstarter = window.Selfstarter =  {
 
   finalizeCheckout: function() {
     if (this.form.valid()) {
-      if (this.type == 'boleto') {
-        // Start boleto payment
-        this.doPaymentWithBoleto();
 
-      } else if (this.type == 'credicard' ) {
-        if ( this.ccard_form.valid() ) {
-
-          // Start credit card payment
-          this.doPaymentWithCreditCard();
-        }
-      }
     }
+   
   },
 
-
-  
-  doPaymentWithBoleto: function() {
-    this.button.append("Aguarde...");
-    var form    = this.form.toObject(this.form_options);
-    var result  = this.postOrderForm(form);
-    console.log(result);
-
-  },
-
-  doPaymentWithCreditCard: function() {
-     
-  },
 
 
   postOrderForm: function(data) {
-
-    $.ajax({
-      url: this.form.attr('action'),
-      type: "POST",
-      dataType: "json",
-      async: "false",
-      data: data,
-      success: function(data) {
-        return data;
-      },
-      error: function(data) {
-        return false;
-      }
-
-    });
+    $.post(this.form.attr('action'), { data: data }, function(response){}, 'json');
   },
+
 
   populateAddressFields: function(data) {
     var data = data.cep.data;
     $('#user_address_street').val(data.tp_logradouro + ' ' + data.logradouro);
-    //$('#user_address_street').val(data.tp_logradouro);
     $('#user_address_neighbourhood').val(data.bairro);
     $('#user_address_city').val(data.cidade);
     $('#user_address_state').val(data.uf.toUpperCase());
@@ -114,17 +92,8 @@ Selfstarter = window.Selfstarter =  {
 
   getAddressCepInformation: function(){
     var self = this;
-
-    $.ajax({
-      url: "//brazilapi.herokuapp.com/api",
-      type: "GET",
-      dataType: 'json',
-      data: { cep: self.cepField.val() },
-      success: function(response){
-        console.log(response) 
-        self.populateAddressFields(response[0]);
-      },
-    
+    $.getJSON('//brazilapi.herokuapp.com/api?cep=' + self.cepField.val(), function(response){
+      self.populateAddressFields(response[0]);
     })
   },
 
@@ -134,13 +103,7 @@ Selfstarter = window.Selfstarter =  {
     this.step2.addClass('grayscale');
     this.step3.fadeIn();
     this.button.fadeIn();
-    if (target.data('type') == 'creditcard') {
-      this.ccard_form.fadeIn(100) 
-      this.type = 'creditcard';
-    } else {
-      this.ccard_form.fadeOut(10);
-      this.type = 'boleto';
-    }
+    this.ccard_form.fadeIn(100) 
       
   },
 

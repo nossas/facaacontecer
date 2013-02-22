@@ -13,8 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.to_json
-//= require jquery.validation
 //= require jquery.money
 //= require jquery.mask
+//= require parsley
 //= require order 
 //= require_tree .

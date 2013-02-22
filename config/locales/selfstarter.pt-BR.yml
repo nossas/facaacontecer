@@ -2,18 +2,18 @@ pt-BR:
   helpers:
     label:
       user:
-        name: "Nome completo"
-        birthday: "Data de Nascimento"
+        name: "Seu nome completo"
+        birthday: "Sua data de nascimento"
         email: "Seu email"
         cpf:  "Seu CPF"
         address_street: "Endereço"
-        address_street_extra: "Complemento"
+        address_street_extra: "O Complemento (apto, etc)"
         address_street_number: "Número"
         address_neighbourhood: "Bairro"
         address_state: "Estado"
         address_city: "Cidade"
-        address_cep: "CEP"
-        address_phone: "Celular (ou fixo, insira o DDD)"
+        address_cep: "Digite seu CEP aqui"
+        address_phone: "Celular (ou fixo - com DDD)"
       order:
         value: "Quero apoiar com..."
   activerecord:

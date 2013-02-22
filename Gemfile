@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 ruby '1.9.3'
 
 
-gem 'rails', '~> 3.2.8'
+gem 'rails', '~> 3.2.12'
 gem 'inherited_resources'
 gem 'slim-rails'
 gem 'active_decorator'
@@ -42,7 +42,3 @@ end
 
 # jQuery
 gem 'jquery-rails'
-
-
-# MyMoip Gem
-gem 'mymoip'

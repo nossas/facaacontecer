@@ -16,7 +16,7 @@
 @import columnal/grid
 @import compass/css3
 @import icomoon
-@import "https://fonts.googleapis.com/css?family=Open+Sans"
+@import "https://fonts.googleapis.com/css?family=Quattrocento+Sans:400,700"
 
 // Color settings
 $blue:        #5886F7
@@ -43,14 +43,27 @@ $columnal-columns: 12 !default
   +grid-row
 
 
+input.parsley-error, textarea.parsley-error
+  color: rgb(185, 74, 72)
+  background-color: rgb(242, 222, 222)
+  border: 1px solid rgb(238, 211, 215)
+
+input.parsley-success, textarea.parsley-success
+  color: rgb(70, 136, 71)
+  background-color: rgb(223, 240, 216)
+  border: 1px solid rgb(214, 233, 198)
+.parsley-error-list
+  
+
 // Defining default-style classes
 body
   background: $lightgreen
   color: white
-  font-family: "Open Sans", sans-serif
+  font-family: "Quattrocento Sans", sans-serif
+  font-size: 100%
   line-height: 1.4em
   &.users
-    background: $lightgray
+    background: lighten($lightgray, 8%)
     color: black
 
 a 
@@ -67,15 +80,25 @@ label
 input[type='text']
   border-radius: 2px
   padding: .6em 1em
-  border: none
+  border: 1px solid lighten(gray, 30%)
+
+\::-webkit-input-placeholder, \:-moz-placeholder, \::-moz-placeholder, \::ms-input-placeholder
+  color:    #999
+
 
 .btn
   background: $blue
   color: white
-  padding: 1em
+  font-size: 2em
+  text-align: center
+  padding: .8em 2em
   border: none
-.error
-  color: red
+  display: block
+  margin: 0 auto
+  &:hover
+    cursor: pointer
+    background: $green 
+
 
 .hidden
   display: none
@@ -122,21 +145,63 @@ input[type='text']
 .form
   +grid(12)
 .form form
-  padding: 2em
   margin: 2em 0
-  .error
-    font-size: .7em
+
+  .wrap
+    background: lighten(gray, 48%)
+    padding: .8em
+    width: 94%
+    margin: 0 auto
+    +transition(.2s)
+    &:active, &:hover
+      +box-shadow(0 1px 4px gray)
+    *:focus
+      +box-shadow(0 0 4px $blue)
+    &.zip 
+      p
+        width: 100%
+        margin: 0
+      label
+        text-align: center
+      #user_address_cep
+        text-align: center
+        width: 15%
+        margin: 0 auto
+        display: block
+  fieldset
+    margin: 4em 0
+  legend
+    font-size: 1.6em
+    font-weight: 700
+    display: block
+    margin: .2em auto
+    width: 100%
+    text-align: center
+    line-height: 2em
   label
     display: block
-    font-size: .9em
+    font-size: 1.1em
+    margin-bottom: .4em
+    margin-right: .2em
   p
     display: inline-block
-    margin-right: 1.5em
-    margin-bottom: 3em
+    margin: auto 2.8% 1.5em 2.8%
+    padding: .8em
+    width: 25%
   input[type='text']
     outline: none
-    font-size: 1em
-    padding-top: .7em
-    padding-bottom: .7em
-    border-radius: 2px
-    box-shadow: inset 1px 1px 4px lighten($gray, 15%)
+    font-size: 1.4em
+    padding: .6em
+    border-radius: 4px
+    width: 94%
+  #user_address_state
+    width: 12%
+    //box-shadow: inset 1px 1px 4px lighten($gray, 15%)
+
+  .next_step_tip
+    text-align: center
+    display: block
+    color: gray
+
+
+
