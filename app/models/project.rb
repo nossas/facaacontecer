@@ -4,10 +4,10 @@ class Project < ActiveRecord::Base
   attr_accessible :description, :expiration_date, :goal, :image, :title, :video
 
   # Orders here will be used when the user made the checkout action (sent its data to moip)
-  has_many :orders
+  has_many :subscriptions
 
   # Supporters are the people who supported the campaign with a valid payment token
-  has_many :supporters, through: :orders, source: :user, conditions: 'orders.token IS NOT NULL'
+  has_many :supporters, through: :subscriptions, source: :user, conditions: 'subscriptions.token IS NOT NULL'
 
   # Attributes that should be present when creating or updating a project
   validates :title, :description, :goal, :expiration_date, presence: true
@@ -21,7 +21,7 @@ class Project < ActiveRecord::Base
 
   # The revenue of the project so far
   def revenue
-    self.orders.raised.sum(:value)
+    self.subscriptions.raised.sum(:value)
   end
 
   # The percent of the project that it's done

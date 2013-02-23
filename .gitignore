@@ -24,3 +24,4 @@ config/environments/*.local.yml
 .rvmrc
 .vagrant
 01_env_variables.rb
+01moip_env.rb

@@ -45,7 +45,7 @@ $columnal-columns: 12 !default
 
 input.parsley-error, textarea.parsley-error
   color: rgb(185, 74, 72)
-  background-color: rgb(242, 222, 222)
+  background: rgb(242, 222, 222) image-url('error.png') right center no-repeat !important
   border: 1px solid rgb(238, 211, 215)
 
 input.parsley-success, textarea.parsley-success
@@ -98,7 +98,26 @@ input[type='text']
   &:hover
     cursor: pointer
     background: $green 
-
+.loading
+  background: image-url('loader.gif') no-repeat top center
+  &:hover
+    cursor: default
+    background: image-url('loader.gif') no-repeat top center
+.grayscale
+  *
+    color: lighten(gray, 15%)
+    //filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale")
+    //filter: gray
+    //-webkit-filter: grayscale(90%)
+  .btn
+    background: $lightgray
+    &:hover
+      cursor: default
+    
+.small
+  font-size: .8em
+  margin: .3em auto
+  padding: .2em
 
 .hidden
   display: none
@@ -126,8 +145,10 @@ input[type='text']
     border-radius: .2em
     box-shadow: 0 0 1px $blue
     +grid(3)
-    &:hover
+    &:hover, &.selected
       +background-image(linear-gradient(color-stops(lighten($blue, 5%), $darkblue)))
+      a
+        color: white
     &:last-child
       +last
   ol.values a
@@ -163,11 +184,18 @@ input[type='text']
         margin: 0
       label
         text-align: center
-      #user_address_cep
+      #user_zipcode, #subscription_value
         text-align: center
-        width: 15%
         margin: 0 auto
-        display: block
+        display: inline-block
+        width: 15% !important
+        margin-left: 41%
+      .loader
+        position: relative
+        top: 1.4em
+        left: .7em
+        
+        
   fieldset
     margin: 4em 0
   legend
@@ -183,9 +211,11 @@ input[type='text']
     font-size: 1.1em
     margin-bottom: .4em
     margin-right: .2em
+    &.support
+      font-size: 1.4em
   p
     display: inline-block
-    margin: auto 2.8% 1.5em 2.8%
+    margin: auto 2.8% 1.5em 2.4%
     padding: .8em
     width: 25%
   input[type='text']
@@ -194,7 +224,10 @@ input[type='text']
     padding: .6em
     border-radius: 4px
     width: 94%
-  #user_address_state
+  select
+    font-size: 1em
+    padding: .4em
+  #user_state
     width: 12%
     //box-shadow: inset 1px 1px 4px lighten($gray, 15%)
 

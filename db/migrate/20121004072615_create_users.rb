@@ -6,14 +6,14 @@ class CreateUsers < ActiveRecord::Migration
       t.string :cpf
       t.date   :birthday
       t.string :address_street
-      t.string :address_street_extra
-      t.string :address_street_number
-      t.string :address_neighbourhood
-      t.string :address_city
-      t.string :address_state
-      t.string :address_country
-      t.string :address_cep
-      t.string :address_phone
+      t.string :address_extra
+      t.string :address_number
+      t.string :address_district
+      t.string :city
+      t.string :state
+      t.string :country
+      t.string :zipcode
+      t.string :phone
  
       
       t.timestamps

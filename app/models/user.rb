@@ -1,21 +1,33 @@
 class User < ActiveRecord::Base
-  has_many :orders
+  has_many :subscriptions
 
-  validates_uniqueness_of :email
+  validates_uniqueness_of :email, :cpf
   validates_presence_of :name, 
     :email, 
     :cpf, 
     :birthday,
+    :zipcode,
     :address_street, 
-    :address_street_extra, 
+    :address_extra, 
     :address_number,
-    :address_neighbourhood, 
-    :address_city, 
-    :address_state,
-    :address_country, 
-    :addres_cep, 
-    :address_phone
+    :address_district, 
+    :city, 
+    :state,
+    :phone,
+    :country
 
-
+   attr_accessible :name, 
+    :email, 
+    :cpf, 
+    :birthday,
+    :zipcode,
+    :address_street, 
+    :address_extra, 
+    :address_number,
+    :address_district, 
+    :city, 
+    :state,
+    :phone,
+    :country
 
 end

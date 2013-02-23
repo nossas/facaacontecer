@@ -13,22 +13,6 @@
 
 ActiveRecord::Schema.define(:version => 20130101194612) do
 
-  create_table "orders", :force => true do |t|
-    t.integer  "user_id",                     :null => false
-    t.integer  "project_id",                  :null => false
-    t.decimal  "value",      :default => 0.0
-    t.string   "token"
-    t.string   "status"
-    t.string   "uuid"
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
-  end
-
-  add_index "orders", ["project_id"], :name => "index_orders_on_project_id"
-  add_index "orders", ["token"], :name => "index_orders_on_token", :unique => true
-  add_index "orders", ["user_id"], :name => "index_orders_on_user_id"
-  add_index "orders", ["uuid"], :name => "index_orders_on_uuid"
-
   create_table "projects", :force => true do |t|
     t.string   "title"
     t.text     "description"
@@ -40,22 +24,38 @@ ActiveRecord::Schema.define(:version => 20130101194612) do
     t.datetime "updated_at",      :null => false
   end
 
+  create_table "subscriptions", :force => true do |t|
+    t.integer  "user_id",                     :null => false
+    t.integer  "project_id",                  :null => false
+    t.decimal  "value",      :default => 0.0
+    t.string   "token"
+    t.string   "status"
+    t.string   "uuid"
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+  end
+
+  add_index "subscriptions", ["project_id"], :name => "index_subscriptions_on_project_id"
+  add_index "subscriptions", ["token"], :name => "index_subscriptions_on_token", :unique => true
+  add_index "subscriptions", ["user_id"], :name => "index_subscriptions_on_user_id"
+  add_index "subscriptions", ["uuid"], :name => "index_subscriptions_on_uuid"
+
   create_table "users", :force => true do |t|
     t.string   "name"
     t.string   "email"
     t.string   "cpf"
     t.date     "birthday"
     t.string   "address_street"
-    t.string   "address_street_extra"
-    t.string   "address_street_number"
-    t.string   "address_neighbourhood"
-    t.string   "address_city"
-    t.string   "address_state"
-    t.string   "address_country"
-    t.string   "address_cep"
-    t.string   "address_phone"
-    t.datetime "created_at",            :null => false
-    t.datetime "updated_at",            :null => false
+    t.string   "address_extra"
+    t.string   "address_number"
+    t.string   "address_district"
+    t.string   "city"
+    t.string   "state"
+    t.string   "country"
+    t.string   "zipcode"
+    t.string   "phone"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"

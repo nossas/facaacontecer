@@ -11,10 +11,11 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
+//= require parsley
 //= require jquery_ujs
 //= require jquery.to_json
 //= require jquery.money
 //= require jquery.mask
-//= require parsley
-//= require order 
+//= require moip.subscription
+//= require selfstarter 
 //= require_tree .

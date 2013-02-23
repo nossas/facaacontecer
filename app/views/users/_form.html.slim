@@ -1,4 +1,4 @@
-= form_for @user, url: new_project_supporter_path, html: { id: :user_form, data: { validate: :parsley } } do |f|
+= form_for @user, url: project_supporters_path, remote: true, format: :json, html: { id: :user_form, data: { validate: :parsley } } do |f|
 
   fieldset
     legend Vamos começar? Vou precisar de alguns dados pessoais, saca só:
@@ -18,32 +18,33 @@
     legend Pra você não ter que preencher muitos campos, me diz aí: qual teu cep?
     .wrap.zip
       p
-        = f.label :address_cep
-        = f.text_field :address_cep, class: [:cep], size: 25, data: { required: true, trigger: :keyup, minlength: 7, maxlength: 9 }
+        = f.label :zipcode
+        = f.text_field :zipcode, class: [:cep], size: 25, data: { required: true, trigger: :keyup, minlength: 7, maxlength: 9 }
+        = image_tag 'loader.gif', class: [:hidden, :loader], size: '24x24'
   fieldset 
-    legend Olha só! Preenchemos o que encontramos, mas precisamos dos outros (estão em branco)
+    legend Olha só! Preenchemos o que encontramos, mas precisamos dos outros
     .wrap
       p
         = f.label :address_street
         = f.text_field :address_street, data: { required: true, minlength: 5, trigger: :keyup }
       p
-        = f.label :address_street_extra
-        = f.text_field :address_street_extra, data: { required: true, trigger: :keyup }
+        = f.label :address_extra
+        = f.text_field :address_extra, data: { required: true, trigger: :keyup }
       p
-        = f.label :address_street_number
-        = f.text_field :address_street_number, data: { required: true, max: 99999, trigger: :keyup }, maxlength: 6
+        = f.label :address_number
+        = f.text_field :address_number, data: { required: true, max: 99999, trigger: :keyup }, maxlength: 6
 
       p
-        = f.label :address_neighbourhood
-        = f.text_field :address_neighbourhood, data: { required: true, minlength: 4, trigger: :keyup }
+        = f.label :address_district
+        = f.text_field :address_district, data: { required: true, minlength: 4, trigger: :keyup }
 
       p
-        = f.label :address_city
-        = f.text_field :address_city, data: { required: true, minlength: 3, trigger: "keyup change focusin" }
+        = f.label :city
+        = f.text_field :city, data: { required: true, minlength: 3, trigger: "keyup change focusin" }
 
       p.state
-        = f.label :address_state
-        = f.text_field :address_state, data: { required: true, minlength: 2, trigger: :keyup }, maxlength: 2, placeholder: "RJ"
+        = f.label :state
+        = f.text_field :state, data: { required: true, minlength: 2, trigger: :keyup }, maxlength: 2, placeholder: "RJ"
 
   fieldset 
     legend E se precisarmos entrar em contato com você? Qual o seu email e telefone?
@@ -52,12 +53,14 @@
         = f.label :email
         = f.text_field :email, data: { required: true, type: :email, trigger: :keyup }
       p
-        = f.label :address_phone
-        = f.text_field :address_phone, class: [:phone], data: { required: true, minlength: 9, trigger: :keyup }, size: 25
+        = f.label :phone
+        = f.text_field :phone, class: [:phone], data: { required: true, minlength: 9, trigger: :keyup }, size: 25
 
   p
-    = f.hidden_field :address_country, value: 'Brasil'
+    = f.hidden_field :country, value: 'BRA'
 
-  = f.submit "Salvar os meus dados e continuar!", class: 'btn', id: :self_button
+  = f.submit "Salvar os meus dados e continuar!", class: [:btn, :submit], id: :self_button
   span:small.next_step_tip No próximo passo pediremos os dados finais pra doação, é rapidinho!
 
+
+span.success.hidden Salvo! Estamos no finalzinho! :)

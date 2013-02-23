@@ -4,10 +4,10 @@
       p
         | Apoie com um valor e você ganha um brinde especial logo após :)
       ol.values
-        li= link_to number_to_currency(10, precision: 0),   "#/",  data: { value: 10 }
-        li= link_to number_to_currency(25, precision: 0),   "#/",  data: { value: 25 }
-        li= link_to number_to_currency(50, precision: 0),   "#/",  data: { value: 50 }
-        li= link_to number_to_currency("__", precision: 0), "#/",  data: { value: 00 }
+        li= link_to number_to_currency(10, precision: 0),   "#/",  data: { value: '10.00', plan: '01' }
+        li= link_to number_to_currency(25, precision: 0),   "#/",  data: { value: '25.00', plan: '02' }
+        li= link_to number_to_currency(50, precision: 0),   "#/",  data: { value: '50.00', plan: '03' }
+        li= link_to number_to_currency(100, precision: 0), "#/",  data: { value: '100.00', plan: '04' }
 
   .row 
     
@@ -17,32 +17,9 @@
         | Apenas entraremos em contato com você utilizando o e-mail que você fornecer. 
       = render 'form'
 
+    section.steps.step_3.form.hidden
+      = render 'subscriptions/form'
 
 
-    section.steps.step_4.hidden
-
-      h3 Dados do cartão
-      span Para sua segurança, estes dados não são armazenados pela ferramenta, apenas pelo MoIP.
-
-      = form_for :order, html: { id: :credit_form , class: :hidden }, url: nil do |f|
-
-        p
-          = f.label :name
-          = f.text_field :name, class: :required, minlength: 6
-        p
-          = f.label :card_number
-          = f.text_field :card_number, class: :required, minlength: 6
-
-        p
-          = f.label :security_code, class: [:required, :number], maxlength: 4, minlength: 3
-
-        p.hidden
-          = f.label :value
-          = f.text_field :value, class: [:money, :required]
-
-
-
-    .button.hidden
-      = button_tag :Apoiar!, class: :btn, id: :checkout
 
 
