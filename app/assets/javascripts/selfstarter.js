@@ -136,7 +136,16 @@ Selfstarter = window.Selfstarter =  {
   // After getting the CEP, populate the addresses fields
   populateAddressFields: function(data) {
     this.loader.fadeOut();
+    
+
+
     var data = data.cep.data;
+
+    // Return nothing if the query didn't find anything
+    if (data == undefined) return false;
+
+
+    // If yes, we did find CEP info, fill in the form
     $('#user_address_street').val(data.tp_logradouro + ' ' + data.logradouro);
     $('#user_address_district').val(data.bairro);
     $('#user_city').val(data.cidade);
