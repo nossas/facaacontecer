@@ -38,6 +38,7 @@ group :test do
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
   gem 'shoulda'
+  gem 'jasmine'
 end
 
 # jQuery
