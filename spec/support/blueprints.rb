@@ -20,7 +20,7 @@ end
 Subscription.blueprint do
   value       { 10 }
   status      { nil }
-  token       { "TOKEN" }
+  code        { "TOKEN" }
   project     { Project.make! }
   subscriber  { User.make! }
 end
