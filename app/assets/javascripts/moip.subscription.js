@@ -1,9 +1,10 @@
 MoipSubscription = {
   
   customer: null,
+
   billing: null,
-  // Moip Token for the API
-  moipToken: $('meta[property="moip:token"]').attr('content'),
+  customer: null, 
+  error_message: $('#subscription_error_message'),
 
   /**
    *  Function to split the chars /().- and spaces.
@@ -105,32 +106,47 @@ MoipSubscription = {
    * arguments: Object customer
    *            String plan_code
    */
-  createCustomerSubscription: function(customer, plan_code) {
+  createCustomerSubscription: function(customer, plan_code, token) {
+
+    var self      = this;
+
     var customer  = this.buildCustomer(customer);
-    var moip      = new MoipAssinaturas(this.moipToken);
-  
-    console.log(customer);
+    var moip      = new MoipAssinaturas(token);
+
+    // Cleaning error messages
+    this.error_message.html('');
+
     // Creating a subscription for a new user the new user
     moip.subscribe(
       new Subscription()
-        .with_code(new Date().getTime())
-        .with_new_customer(customer)
-        .with_plan_code(plan_code)
-    
-    // The return function of the new subscribing action    
+
+      // Generate code based on time
+      .with_code(new Date().getTime())
+
+      // The customer
+      .with_new_customer(customer)
+
+      // The plan ID
+      .with_plan_code(plan_code)
+
+      // The return function of the new subscribing action    
     ).callback(function(response){
+
 
       // Oh-oh, something went wrong
       if (response.has_errors()) {
-        var errors = $('#card_error').fadeIn();
-        for ( i = 0; i < response.errors.length(); i++) {
+        
+        // Remove the loading icon
+        Selfstarter.cardButton.removeClass('loading');
+
+        // Show all errors above the submit button
+        for ( i = 0; i < response.errors.length; i++) {
           var error = response.errors[i].description;
-          errors.append(erro);
+          self.error_message.append($('<li>').text(error));
         }
       } 
       // If no errors were found
       else {
-        this.showSuccessfulSubscriptionMessage();
       }
     });
 
