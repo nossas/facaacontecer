@@ -23,5 +23,4 @@ config/environments/*.local.yml
 *.sublime-workspace
 .rvmrc
 .vagrant
-01_env_variables.rb
-01moip_env.rb
+01_envvariables.rb
