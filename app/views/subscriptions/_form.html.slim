@@ -1,4 +1,4 @@
-= form_for :subscription, html: { id: :subscription_form, data: { validate: :parsley } }, url: '' do |f|
+= form_for :subscription, html: { id: :subscription_form, data: { validate: :parsley, token: @token } }, url: '' do |f|
   
   fieldset
     legend Quase lá!
@@ -12,13 +12,16 @@
 
       p
         = f.label :expiration_date
-        = f.date_select :expiration_date, start_year: Date.current.year, end_year: 2026, discard_day: true, data: { required: true }
+        = f.date_select :expiration_date, start_year: Date.current.year, use_month_numbers: true, end_year: 2026, discard_day: true, data: { required: true }
     #value.wrap.zip
       p
         = f.label :plan, class: :support
-        = f.select :plan, [[10, '01'], [25, '02'], [50, '03'], [100, '04']], data: { required: true, min: 9 }
-  
-  = f.submit "Apoiar!", class: [:btn]
+        = f.select :plan, [[10, '01'], [25, '02'], [50, '03'], [100, '04']], data: { required: true, min: 9 }, class: :value
+  .subscriptions_fields
+    = f.hidden_field :value 
+    = f.hidden_field :code
+
+  #subscription_error_message
+  = f.submit "Apoiar!", class: [:btn, :card_submit]
 
 
-#card_error
