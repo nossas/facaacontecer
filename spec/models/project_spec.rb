@@ -2,7 +2,8 @@ require 'spec_helper'
 
 describe Project do
   context "associations" do
-    it { should have_many(:orders) }
+    it { should have_many(:subscriptions) }
+    it { should have_many(:subscribers) }
   end
 
   context "validations" do

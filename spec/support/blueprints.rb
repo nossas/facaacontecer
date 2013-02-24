@@ -7,14 +7,14 @@ User.blueprint do
   email       { "juquinha@zip.net" }
   cpf         { "12312312312" }
   address_street { "Rua Belisario Tavora 500" }
-  address_street_extra { "Laranjeiras" }
-  address_street_number { "100" }
-  address_neighbourhood { "Laranjeiras" }
-  address_city        { "Rio de Janeiro" }
-  address_state       { "RJ" }
-  address_country     { "BRA" }
-  address_cep         { "78132-500" }
-  address_phone       { "(21) 97137471" }
+  address_extra { "Laranjeiras" }
+  address_number { "100" }
+  address_district { "Laranjeiras" }
+  city       { "Rio de Janeiro" }
+  state       { "RJ" }
+  country     { "BRA" }
+  zipcode { "78132-500" }
+  phone       { "(21) 97137471" }
 end
 
 Subscription.blueprint do
@@ -22,7 +22,7 @@ Subscription.blueprint do
   status      { nil }
   token       { "TOKEN" }
   project     { Project.make! }
-  user        { User.make! }
+  subscriber  { User.make! }
 end
 
 

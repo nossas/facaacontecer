@@ -3,12 +3,12 @@ describe Subscription do
 
   context "association" do
     it { should belong_to :project }
-    it { should belong_to :user }
+    it { should belong_to :subscriber }
   end
 
   context "validations" do
     [
-      :value, :project, :user
+      :value, :project, :subscriber, :code
     ].each do |attribute|
       it { should validate_presence_of attribute }
     end
@@ -17,7 +17,7 @@ describe Subscription do
 
   context "attributes" do
     [
-      :value, :token
+      :code, :value
     ].each do |property|
       it { should allow_mass_assignment_of property }
     end
