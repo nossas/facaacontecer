@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
-  has_many :subscriptions
+  has_many :subscriptions, foreign_key: :subscriber_id
+  belongs_to :project
 
   validates_uniqueness_of :email, :cpf
   validates_presence_of :name, 
@@ -16,7 +17,7 @@ class User < ActiveRecord::Base
     :phone,
     :country
 
-   attr_accessible :name, 
+  attr_accessible :name, 
     :email, 
     :cpf, 
     :birthday,
@@ -29,5 +30,14 @@ class User < ActiveRecord::Base
     :state,
     :phone,
     :country
+
+
+
+  def as_json(options={})
+    {
+      id:         self.id,
+      created_at: self.created_at,
+    }.merge(options)
+  end
 
 end

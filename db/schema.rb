@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130101194612) do
+ActiveRecord::Schema.define(:version => 20130223180809) do
 
   create_table "projects", :force => true do |t|
     t.string   "title"
@@ -25,20 +25,18 @@ ActiveRecord::Schema.define(:version => 20130101194612) do
   end
 
   create_table "subscriptions", :force => true do |t|
-    t.integer  "user_id",                     :null => false
-    t.integer  "project_id",                  :null => false
-    t.decimal  "value",      :default => 0.0
-    t.string   "token"
+    t.integer  "project_id",                     :null => false
+    t.decimal  "value",         :default => 0.0
     t.string   "status"
-    t.string   "uuid"
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.string   "code"
+    t.integer  "subscriber_id"
   end
 
+  add_index "subscriptions", ["code"], :name => "index_subscriptions_on_code"
   add_index "subscriptions", ["project_id"], :name => "index_subscriptions_on_project_id"
-  add_index "subscriptions", ["token"], :name => "index_subscriptions_on_token", :unique => true
-  add_index "subscriptions", ["user_id"], :name => "index_subscriptions_on_user_id"
-  add_index "subscriptions", ["uuid"], :name => "index_subscriptions_on_uuid"
+  add_index "subscriptions", ["subscriber_id"], :name => "index_subscriptions_on_subscriber_id"
 
   create_table "users", :force => true do |t|
     t.string   "name"

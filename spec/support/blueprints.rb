@@ -17,7 +17,7 @@ User.blueprint do
   address_phone       { "(21) 97137471" }
 end
 
-Order.blueprint do
+Subscription.blueprint do
   value       { 10 }
   status      { nil }
   token       { "TOKEN" }

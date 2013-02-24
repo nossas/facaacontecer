@@ -1,32 +1,17 @@
 class Subscription < ActiveRecord::Base
  
   # Attributes accessible on create! or update! 
-  attr_accessible :value, :token
-  
-  
-  # We are creating Universally Unique Ids for each order
-  before_validation :generate_uuid!, on: :create
+  attr_accessible :subscriber_id, :code, :value, :project_id
 
 
-  # Relationship with Projects and the correspondent user for each order
+  # Relationship with Projects and the correspondent user for each subscription 
   belongs_to :project
-  belongs_to :user
+  belongs_to :subscriber, class_name: 'User'
 
   # This attributes should be present when creating an order
-  validates_presence_of :value, :project, :user
+  validates_presence_of :value, :project_id, :subscriber_id, :code
 
   # Scope for completed payments
-  scope :raised, where('token IS NOT NULL')
-
-  # We don't people to reassign uuids
-  attr_readonly :uuid
-  
-
-
-  private
-    # Generating unique UUID using the 1.9.3 Standard lib
-    def generate_uuid!
-      self.uuid = SecureRandom.uuid 
-    end
+  scope :raised, where(status: :subscribed)
 
 end
