@@ -5,27 +5,36 @@ MoipSubscription = {
   // Moip Token for the API
   moipToken: $('meta[property="moip:token"]').attr('content'),
 
+  /**
+   *  Function to split the chars /().- and spaces.
+   *  Because we receive inputs with these characters and the result, which is
+   *  an array, can be used with key-value.
+   */
+  removeNonNumerical: function(input){
+    return input.toString().split(/\/|\.|\s|\-|\(|\)|\,/).filter(function(e) { return e });
+  },
 
   /**
    * Function to construct a new user with billing info and address
    * Takes a customer Object as argument
    *
    */
-  buildCustomer: function(customer) {
-   
-    this.billing  = customer.subscription
-    this.customer = customer.user
-    var customer = this.customer;
+  buildCustomer: function(input) {
 
+    this.billing  = input.subscription
+    var customer  = input.user;
+
+
+    customer.cpf        = this.removeNonNumerical(customer.cpf).join('');
 
     // We receive dates in the format 00/00/0000
     // So we split the '/' to separate day, month and year
-    customer.birthday  = customer.birthday.split('/');
+    customer.birthday   = this.removeNonNumerical(customer.birthday);
 
     // As were receiving phones in the format (00) 00000000?0 (this last 0 is optional)
     // We have to split spaces and the '()' chars
     // I've used the filter function to remove empty strings from the resultant array
-    customer.phone     = customer.phone.split(/\(|\)|\s/).filter(function(e){return e});
+    customer.phone      = this.removeNonNumerical(customer.phone);
 
     var params = {
       code:             new Date().getTime(),
@@ -54,7 +63,7 @@ MoipSubscription = {
     // As we are receiving zip code in the format 00000-000
     // We have to split the '-' and join the numbers
 
-    customer.zipcode  = customer.zipcode.split(/\-/).join('');
+    customer.zipcode  = this.removeNonNumerical(customer.zipcode).join('');
     var params = {
       street:       customer.address_street,
       number:       customer.address_number,
@@ -76,13 +85,15 @@ MoipSubscription = {
    *
    */
   buildBillingInfo: function(billing){
-  
+
     var card = billing;
     var params = {
       fullname:           card.fullname,
       credit_card_number: card.card_number,
       expiration_month:   card['expiration_date(2i)'],
-      expiration_year:    card['expiration_date(1i)'],
+
+      // Return only the two final numbers (2012 would be just '12')
+      expiration_year:    card['expiration_date(1i)'].substr(-2),
     }
 
     return new BillingInfo(params);
