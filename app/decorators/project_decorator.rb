@@ -2,7 +2,7 @@
 module ProjectDecorator
   
   def backers_count
-    t('backers_html', count: supporters.size) 
+    t('backers_html', count: subscribers.count) 
   end
 
 
@@ -40,6 +40,6 @@ module ProjectDecorator
 
 
   def call_to_action
-    link_to t('home.call_to_action'), new_project_supporter_path(self), class: 'blue_button reserve'
+    link_to t('home.call_to_action'), new_project_subscriber_path(self), class: 'blue_button reserve'
   end
 end
