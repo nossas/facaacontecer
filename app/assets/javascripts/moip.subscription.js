@@ -1,6 +1,4 @@
 MoipSubscription = {
-  
-  customer: null,
 
   billing: null,
   customer: null, 
@@ -98,9 +96,9 @@ MoipSubscription = {
     }
 
     return new BillingInfo(params);
-    
+
   },
-  
+
   /** 
    * Function to create new subscription
    * arguments: Object customer
@@ -147,13 +145,16 @@ MoipSubscription = {
       } 
       // If no errors were found
       else {
+
+        // The codes 1, 2 and 3 are good ones, so show
+        Selfstarter.saveSubscription(
+          customer.code, 
+          parseInt(response.amount.toString().slice(0,-2))
+        );
+
       }
     });
 
   },
-
-  showSuccessfulSubscriptionMessage: function(){
-    alert('Assinatura foi criada!');
-  }
 
 };

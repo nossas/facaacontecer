@@ -9,6 +9,7 @@ Selfstarter = window.Selfstarter =  {
   // The Subscriber
   subscriber: null, 
 
+
   // The value selected by the user
   plan:      null,
  
@@ -19,20 +20,15 @@ Selfstarter = window.Selfstarter =  {
   // Form fields 
   cepField:   $('#user_zipcode'),
   planField:  $('#subscription_plan'),
+
+  // Buttons
   button:     $('input.submit'),
-  email:      $('#user_email'),
+  cardButton: $('input.card_submit'),
 
-
-  // Links
+  
+  // The values that the user selects 
   links:      $('ol.values li a'),
 
-  // Messages for the jQuery validator
-  messages:   {
-    required:   "Este campo é obrigatório",
-    email:      "Por favor, insira um e-mail válido",
-    date:       "Por favor, insira uma data no formato dd/mm/aaaa",
-    creditcard: "Por favor, insira um número de cartão de crédito válido"
-  },
 
   // Mapping the form to send to the server (just client data, not credit card)
   toObjectOptions: { mode: 'all', rails: true, skipEmpty: false },
@@ -54,7 +50,7 @@ Selfstarter = window.Selfstarter =  {
       'input.cep blur'                : 'getZipcodeInfo',
       '#user_form ajax:beforeSend'    : 'startLoader',
       '#user_form ajax:success'       : 'userDataSent',
-      '#subscription_form submit'     : 'subscribeToPlan'
+      'input.card_submit click'      : 'subscribeToPlan'
 
     });
 
@@ -82,20 +78,36 @@ Selfstarter = window.Selfstarter =  {
     // I prefer 'subscriber'
     var billing_info = this.cardForm.toObject(this.toObjectOptions)[0];
     var customer     = this.mergeObjects(this.subscriber, billing_info);
+    
+    this.plan = this.planField.val();
 
-    MoipSubscription.createCustomerSubscription(customer, this.plan);
+    // Show the loading
+    this.cardButton.addClass('loading');
+
+
+    // Creating the subscription
+    MoipSubscription.createCustomerSubscription(
+      customer, this.plan, this.cardForm.data('token'));
   },
    
+  // Saving the subscription
+  saveSubscription: function(code, value){
+    $('#subscription_code', this.cardForm).val(code);
+    $('#subscription_value', this.cardForm).val(value);
+    $('.wrap', this.cardForm).detach();
+
+    var self = this;
+    setTimeout(function(){
+      self.cardForm.submit();
+    }, 3000);
+  },
 
   // Show a loading gif when needed
   startLoader: function(event){
     this.button.addClass('loading');
   },
 
-
   // User already sent data? OK! Let's show the billing form
-  userDataSent: function(){
-    this.subscriber = this.userForm.toObject(this.toObjectOptions)[0];
   userDataSent: function(evt, target, data){
 
     this.cardForm.attr('action', data.subscription_url);
