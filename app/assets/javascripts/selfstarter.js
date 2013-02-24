@@ -96,7 +96,11 @@ Selfstarter = window.Selfstarter =  {
   // User already sent data? OK! Let's show the billing form
   userDataSent: function(){
     this.subscriber = this.userForm.toObject(this.toObjectOptions)[0];
+  userDataSent: function(evt, target, data){
 
+    this.cardForm.attr('action', data.subscription_url);
+    this.subscriber = this.userForm.toObject(this.toObjectOptions)[0];
+    
     var self        = this;
     
     // We are making things less faster for UX purposes
@@ -104,7 +108,7 @@ Selfstarter = window.Selfstarter =  {
       self.button.detach();
       self.submitTipMessage.detach();
       self.successMessage.fadeIn();
-      //self.step2.fadeOut('fast').detach();
+      self.step2.fadeOut('fast').detach();
       self.step3.fadeIn();
       self.step3.children('#plan').show();
       self.enableCreditFormFields();
@@ -165,10 +169,9 @@ Selfstarter = window.Selfstarter =  {
 
   // Show the user Form
   showForm: function(event,target) {
-    target.parents('ol').find('li').removeClass('selected');
+    target.parent().siblings('li').removeClass('selected');
     target.parent().addClass('selected');
     this.step2.fadeIn();
-    this.button.fadeIn();
     this.planField.val(target.data('plan'));
     this.plan = target.data('plan');
       
@@ -192,7 +195,7 @@ Selfstarter = window.Selfstarter =  {
         var bindEvent   = options.pop();
         var target      = $(options.join(' '));
         var fn          = Selfstarter[events[evt]];
-        target.on(bindEvent, function(event) { fn.apply(Selfstarter,[event, jQuery(event.target)]) }) 
+        target.on(bindEvent, function(event, data) { fn.apply(Selfstarter,[event, jQuery(event.target), data]) }) 
       })(evt);
     }
 
