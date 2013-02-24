@@ -62,7 +62,7 @@ body
   font-family: "Quattrocento Sans", sans-serif
   font-size: 100%
   line-height: 1.4em
-  &.users
+  &.subscribers
     background: lighten($lightgray, 8%)
     color: black
 
@@ -227,6 +227,13 @@ input[type='text']
   select
     font-size: 1em
     padding: .4em
+  select#subscription_plan
+    display: block
+    width: 15%
+    margin: 0 auto
+    border: none !important
+    +border-radius(6px)
+    font-size: 2em
   #user_state
     width: 12%
     //box-shadow: inset 1px 1px 4px lighten($gray, 15%)
