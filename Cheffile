@@ -9,7 +9,7 @@ cookbook 'build-essential'
 cookbook 'git',       github: 'fnichol/chef-git'
 cookbook 'nodejs',    github: 'hectcastro/chef-nodejs'
 cookbook 'xvfb',      github: 'chef-cookbooks/chef-xvfb'
-cookbook 'firefox',   github: 'chef-cookbooks/chef-firefox'
+cookbook 'firefox',   github: 'substantial/cookbook-firefox'
 
 # Manage ruby installations
 cookbook 'rvm', github: 'fnichol/chef-rvm'
