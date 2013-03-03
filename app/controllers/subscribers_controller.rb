@@ -7,7 +7,6 @@ class SubscribersController < ApplicationController
   respond_to :json, only: :create
   
 
-  before_filter only: [:new] { @token = MOIP_TOKEN }
 
 
   def create

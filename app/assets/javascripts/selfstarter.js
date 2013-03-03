@@ -2,10 +2,9 @@ Selfstarter = window.Selfstarter =  {
 
 
   // Window steps for the user
-  step1:      $('.step_1'),
-  step2:      $('.step_2'),
-  step3:      $('.step_3'),
-
+  step1:      $('div.step1'),
+  step2:      $('div.step2'),
+  
   // The Subscriber
   subscriber: null, 
 
@@ -18,11 +17,12 @@ Selfstarter = window.Selfstarter =  {
   cardForm: $('#subscription_form'),
 
   // Form fields 
+  inputs:     $('form input'),
   cepField:   $('#user_zipcode'),
   planField:  $('#subscription_plan'),
 
   // Buttons
-  button:     $('input.submit'),
+  button:     $('button.step_two'),
   cardButton: $('input.card_submit'),
 
   
@@ -38,7 +38,7 @@ Selfstarter = window.Selfstarter =  {
 
 
   // Messages
-  successMessage: $('span.success'),
+  successMessage:   $('span.success'),
   submitTipMessage: $('.next_step_tip'),
 
   // Initializing
@@ -46,19 +46,26 @@ Selfstarter = window.Selfstarter =  {
     
 
     this.bindEvents({
-      'ol.values li a click'          : 'showForm',
       'input.cep blur'                : 'getZipcodeInfo',
       '#user_form ajax:beforeSend'    : 'startLoader',
       '#user_form ajax:success'       : 'userDataSent',
-      'input.card_submit click'      : 'subscribeToPlan'
+      '#user_form ajax:error'         : 'userDataNotSent',
+      'input.card_submit click'       : 'subscribeToPlan',
+      '.values li click'              : 'chooseValue',
+
+
+      // Steps validation
+
+      'button.step_one click'  : 'validateSiblingInput',
+      'button.step_two click'  : 'validateSiblingInput'
 
     });
 
-    
+     
     // Initialize Masks
     this.initializeMasks();
     this.disableCreditFormFields();
-
+    this.inputs.placeholder();
   },
 
   initializeMasks: function(){
@@ -68,6 +75,48 @@ Selfstarter = window.Selfstarter =  {
     $('.phone').mask('(99) 99999999?9');
     $('.money').maskMoney();
 
+  },
+
+  chooseValue: function(evt, target) {
+    var el = $(evt.target);
+    $('ol.values li').removeClass('selected');
+    el.addClass('selected');
+    
+    if (el.data('value') == '0') {
+      $('#plan').fadeIn()
+    } else {
+      $('select#subscription_plan').val(el.data('value'));
+    }
+
+  },
+
+  validateSiblingInput: function(event, target) {
+    event.preventDefault();
+
+    if (target.hasClass('step_one')){
+      var classes = ['input.email', 'input.name', 'input.cpf', 'input.date', 'input.phone'];
+    } else if (target.hasClass('step_two')) {
+      var classes = ['input.addr_city', 'input.cep', 'input.addr_state', 'input.addr_street', 'input.addr_extra', 'input.addr_dist', 'input.addr_number'];
+    }
+    var ok = 0; 
+
+    $.each(classes, function(k, v){
+      if ($(v).parsley('validate'))
+        ok += 1;
+    });
+
+
+    if (ok == classes.length && target.hasClass('step_one')) {
+      $('fieldset.one').fadeOut(0);
+      $('fieldset.two').fadeIn();
+      $('li.step1 span:first-child').removeClass('selected');
+      $('li.step2 span:first-child').addClass('selected');
+    } else if (ok == classes.length && target.hasClass('step_two')){
+      $('li.step2 span:first-child').removeClass('selected');
+      $('li.step3 span:first-child').addClass('selected');
+      this.userForm.submit();
+    }
+    
   },
 
   subscribeToPlan: function(event, target) {
@@ -107,6 +156,21 @@ Selfstarter = window.Selfstarter =  {
     this.button.addClass('loading');
   },
 
+  // Something went wrong
+  userDataNotSent: function(evt, target, data) {
+    this.button.removeClass('loading');
+    $('fieldset.two').fadeOut(0);
+    $('fieldset.one').fadeIn();
+    $('ol.steps li span').removeClass('selected');
+    $('li.step1 span:first-child').addClass('selected');
+    var errors = JSON.parse(data.responseText).errors;
+    for (error in errors) {
+      $('.subscription .errors').append(error.toUpperCase() + " " + errors[error] + "<br/>");
+    }
+    
+    setTimeout(function(){ $('.subscription .errors').fadeOut() }, 5000)
+  },
+
   // User already sent data? OK! Let's show the billing form
   userDataSent: function(evt, target, data){
 
@@ -120,9 +184,9 @@ Selfstarter = window.Selfstarter =  {
       self.button.detach();
       self.submitTipMessage.detach();
       self.successMessage.fadeIn();
-      self.step2.fadeOut('fast').detach();
-      self.step3.fadeIn();
-      self.step3.children('#plan').show();
+      self.step1.fadeOut('fast').detach();
+      self.step2.fadeIn();
+      self.step2.children('#plan').show();
       self.enableCreditFormFields();
     }, 1000);
   },

@@ -2,16 +2,22 @@
   .row
     .video= @project.video_embed 
 
-    .backing
-      ul
-        li.stats#backers  = @project.backers_count 
-        li.stats#reached  = @project.reached 
-        li.stats#days     = @project.days_remaining
+    .subscription
+      ol.steps
+        li.step1
+          span.selected 1
+          span Dados
+        li.step2
+          span 2
+          span Endereço
+        li.step3
+          span 3
+          span Doação
+      .errors
+      .step1
+        = render 'subscribers/form'
+      .step2.hidden
+        = render 'subscriptions/form'
 
-    .progress= @project.progress
-
-    .about
-      p= @project.short_description 
-      p= @project.call_to_action 
 
 

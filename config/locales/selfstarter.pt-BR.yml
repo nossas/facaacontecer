@@ -1,24 +1,26 @@
 pt-BR:
   helpers:
-    label:
+    label: &label
       user:
-        name: "Seu nome completo"
-        birthday: "Sua data de nascimento"
-        email: "Seu email"
-        cpf:  "Seu CPF"
-        address_street: "Endereço"
-        address_extra: "O Complemento (apto, casa, etc)"
-        address_number: "Número"
-        address_district: "Bairro"
-        state: "Estado"
-        city: "Cidade"
-        zipcode: "Digite seu CEP aqui"
-        phone: "Celular (ou fixo - com DDD)"
+        name: "Qual o seu nome completo?"
+        birthday: "Quando você nasceu?"
+        email: "Qual seu email?"
+        cpf:  "E o seu CPF?"
+        address_street: "Qual seu endereço completo?"
+        address_extra: "Casa? Apartamento?"
+        address_number: "Qual o número"
+        address_district: "Qual bairro?"
+        state: "UF?"
+        city: "E a cidade?"
+        zipcode: "Pra te ajudar, qual o seu CEP?"
+        phone: "Qual o seu telefone?"
       subscription:
         plan: "Quero apoiar com..."
         fullname: "Nome que está escrito no seu cartão"
         card_number: "Número do seu cartão (só os números)"
-        expiration_date: "Quando expira?"
+        expiration_date: "Qual a data de expiração?"
+  placeholder:
+    <<: *label
   activerecord:
     models:
       order: "Apoio"

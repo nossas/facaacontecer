@@ -1,19 +1,26 @@
 = form_for :subscription, html: { id: :subscription_form, data: { validate: :parsley, token: @token } }, url: '' do |f|
   
   fieldset
-    legend Quase lá!
     .wrap
       p
         = f.label :fullname
-        = f.text_field :fullname, data: { required: true, minlength: 8 }
+        = f.text_field :fullname, data: { required: true, minlength: 8 }, placeholder: t('placeholder.subscription.fullname')
       p
         = f.label :card_number
-        = f.text_field :card_number, data: { required: true, number: true, minlength: 16, maxlength: 17 }, maxlength: 18
+        = f.text_field :card_number, data: { required: true, number: true, minlength: 16, maxlength: 17 }, maxlength: 18, placeholder: t('placeholder.subscription.card_number')
 
       p
-        = f.label :expiration_date
-        = f.date_select :expiration_date, start_year: Date.current.year, use_month_numbers: true, end_year: 2026, discard_day: true, data: { required: true }
-    #value.wrap.zip
+        = f.label :expiration_date, class: [:show]
+        = f.date_select :expiration_date, start_year: Date.current.year, use_month_numbers: true, end_year: 2026, discard_day: true, data: { required: true }, placeholder: t('placeholder.subscription.expiration_date')
+    .wrap
+      p Quero apoiar com
+    #value
+      ol.values
+        li[data-value='01'] R$ 10
+        li.selected[data-value='02'] R$ 25
+        li[data-value='03'] R$ 50
+        li[data-value='0'] Outro?
+    #plan.wrap.zip.hidden
       p
         = f.label :plan, class: :support
         = f.select :plan, [[10, '01'], [25, '02'], [50, '03'], [100, '04']], data: { required: true, min: 9 }, class: :value
@@ -22,6 +29,6 @@
     = f.hidden_field :code
 
   #subscription_error_message
-  = f.submit "Apoiar!", class: [:btn, :card_submit]
+  = f.submit :Apoiar, class: [:btn, :card_submit]
 
 

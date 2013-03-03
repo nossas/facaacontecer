@@ -24,6 +24,7 @@ $darkblue:    #037ab7
 $green:       #059046
 $lightgreen:  #AECE6A
 $orange:      #f7921e 
+$vermillion:  #FF4E00
 $gray:        #666666
 $lightgray:   lighten($gray, 52%)
 $link:        $green
@@ -42,6 +43,8 @@ $columnal-columns: 12 !default
 .row
   +grid-row
 
+.show
+  display: inline-block !important
 
 input.parsley-error, textarea.parsley-error
   color: rgb(185, 74, 72)
@@ -57,11 +60,12 @@ input.parsley-success, textarea.parsley-success
 
 // Defining default-style classes
 body
-  background: $lightgreen
+  background: $lightgreen image-url('bg.jpg')
   color: white
   font-family: "Quattrocento Sans", sans-serif
   font-size: 100%
   line-height: 1.4em
+
   &.subscribers
     background: lighten($lightgray, 8%)
     color: black
@@ -87,19 +91,23 @@ input[type='text']
 
 
 .btn
-  background: $blue
+  +background(linear-gradient(lighten($blue,5%), darken($blue, 15%)))
+  +border-radius(6px)
+  width: 95%
+  font-weight: bold
   color: white
-  font-size: 2em
+  font-size: 1.6em
   text-align: center
   padding: .8em 2em
   border: none
   display: block
-  margin: 0 auto
+  margin: 2em 0 1em 0
   &:hover
     cursor: pointer
-    background: $green 
+    background: $blue
 .loading
   background: image-url('loader.gif') no-repeat top center
+  text-indent: -9999px
   &:hover
     cursor: default
     background: image-url('loader.gif') no-repeat top center
@@ -128,56 +136,107 @@ input[type='text']
   font-size: .8em
   padding: 1.5em
 
-.payment_options
-  background: white
-  p
-    padding: 2em 4em
-    text-align: center
-  ol.values
-    padding: 0 .8em
-    background: lighten($blue, 28%)
-    overflow: hidden
-  ol.values li
-    margin: 1em 0
-    display: inline-block
-    font-size: 1.6em
-    background: lighten($blue, 32%)
-    border-radius: .2em
-    box-shadow: 0 0 1px $blue
-    +grid(3)
-    &:hover, &.selected
-      +background-image(linear-gradient(color-stops(lighten($blue, 5%), $darkblue)))
-      a
-        color: white
-    &:last-child
-      +last
-  ol.values a
-    color: white
-    display: block
-    padding: 1em 0
-    text-align: center
-    color: $gray 
-    font-weight: bold
-    &:hover
-      text-decoration: none
-      color: white
 
 
-.form
-  +grid(12)
-.form form
-  margin: 2em 0
 
-  .wrap
+body.projects
+  .video
+    +grid(7)
+    iframe
+      width: 100% !important
+  .subscription
+    +grid(5)
+    +last
+
     background: lighten(gray, 48%)
-    padding: .8em
-    width: 94%
-    margin: 0 auto
     +transition(.2s)
     &:active, &:hover
       +box-shadow(0 1px 4px gray)
-    *:focus
-      +box-shadow(0 0 4px $blue)
+  ol.steps
+    li
+      display: inline-block
+    li span:nth-child(1n+0)
+      display: block
+      text-align: center
+      color: lightgray
+      text-shadow: 1px 0 1px lightgray
+    li span:first-child
+      +border-radius(100px)
+      display: inline-block
+      background: none
+      color: lighten(lightgray, 10%)
+      text-shadow: 0 1px 1px #666
+      font-size: 1.8em
+      padding: .5em .8em
+      font-weight: 700
+      margin: 1em 1em 0.2em 1em
+      +box-shadow(inset 0px -1px 4px 1px darken(white, 10%))
+      &.selected
+        background: $vermillion
+  .subscription form
+    background: lighten($lightgray, 5%)
+    color: gray
+    input
+      padding: .8em .6em
+      width: 90%
+      font-size: 1em
+      border: lighten(gray, 45%)
+      +box-shadow(inset 0 1px .1em lighten(gray, 10%))
+      +border-radius(.2em)
+    input.date, input.cpf, input.addr_extra, input.addr_number, input.addr_city
+      width: 40%
+      display: inline-block
+    input.date, input.addr_number, input.addr_state
+      margin-left: 4%
+    input.city
+      width: 50%
+
+    label
+      display: none
+    p
+      margin: 1em 0
+  .errors
+    color: red
+    text-align: center
+  ol.values
+    li
+      display: inline-block
+      background: $orange
+      padding: .6em .6em
+      color: white
+      font-weight: bold
+      font-size: 1.2em
+      +border-radius(4px)
+      +background-image(linear-gradient($orange, darken($orange, 5%)))
+      &:hover
+        opacity: .9
+        cursor: pointer
+      &.selected
+        border: 2px solid darken($orange, 20%)
+        background: lighten($orange, 10%)
+  .wrap
+    padding: 1.5em
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Subscribers page
+form
+  .wrap
     &.zip 
       p
         width: 100%
@@ -188,16 +247,11 @@ input[type='text']
         text-align: center
         margin: 0 auto
         display: inline-block
-        width: 15% !important
-        margin-left: 41%
       .loader
-        position: relative
-        top: 1.4em
-        left: .7em
+        float: right
+        position: absolute
+        margin-top: .6em 
         
-        
-  fieldset
-    margin: 4em 0
   legend
     font-size: 1.6em
     font-weight: 700
@@ -206,32 +260,16 @@ input[type='text']
     width: 100%
     text-align: center
     line-height: 2em
-  label
-    display: block
-    font-size: 1.1em
-    margin-bottom: .4em
-    margin-right: .2em
-    &.support
-      font-size: 1.4em
-  p
-    display: inline-block
-    margin: auto 2.8% 1.5em 2.4%
-    padding: .8em
-    width: 25%
-  input[type='text']
-    outline: none
-    font-size: 1.4em
-    padding: .6em
-    border-radius: 4px
-    width: 94%
+
   select
     font-size: 1em
     padding: .4em
   select#subscription_plan
     display: block
-    width: 15%
+    width: 35%
     margin: 0 auto
     border: none !important
+    background: white
     +border-radius(6px)
     font-size: 2em
   #user_state
