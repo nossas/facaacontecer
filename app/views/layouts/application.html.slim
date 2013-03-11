@@ -6,7 +6,6 @@ html
 
     = stylesheet_link_tag :application
   body[class=controller.controller_name.downcase]
-    = render 'layouts/header'
     = yield
     = render 'layouts/footer'
     = javascript_include_tag MOIP_JS_URL 

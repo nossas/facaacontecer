@@ -43,7 +43,6 @@ Selfstarter = window.Selfstarter =  {
 
   // Initializing
   initialize: function() {
-    
 
     this.bindEvents({
       'input.cep blur'                : 'getZipcodeInfo',
@@ -67,7 +66,7 @@ Selfstarter = window.Selfstarter =  {
     this.disableCreditFormFields();
     this.inputs.placeholder();
   },
-
+  
   initializeMasks: function(){
     $('.cpf').mask('999.999.999-99');
     $('.date').mask('99/99/9999');

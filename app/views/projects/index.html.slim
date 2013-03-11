@@ -1,23 +1,57 @@
 .container
-  .row
-    .video= @project.video_embed 
+  input#control-1.control[checked='checked' name='step' type='radio']
+  = link_to "o desafio", "#panel-1"
+  
+  input#control-2.control[type='radio' name='step']
+  = link_to "nossa história", "#panel-2"
+ 
+  input#control-3.control[type='radio' name='step']
+  = link_to "nossas vitórias", "#panel-3"
+  
+  input#control-4.control[type='radio' name='step']
+  = link_to "nossas plataformas", "#panel-4"
+  
+  input#control-5.control[type='radio' name='step']
+  = link_to "O desafio", "#panel-5"
+  .scroll
+    #panel-1.panel.lightgreen
+      .row
+        .about.page
+          .video= @project.video_embed 
 
-    .subscription
-      ol.steps
-        li.step1
-          span.selected 1
-          span Dados
-        li.step2
-          span 2
-          span Endereço
-        li.step3
-          span 3
-          span Doação
-      .errors
-      .step1
-        = render 'subscribers/form'
-      .step2.hidden
-        = render 'subscriptions/form'
+          .subscription
+            ol.steps
+              li.step1
+                span.selected 1
+                span Dados
+              li.step2
+                span 2
+                span Endereço
+              li.step3
+                span 3
+                span Doação
+            .errors
+            .step1
+              = render 'subscribers/form'
+            .step2.hidden
+              = render 'subscriptions/form'
+    #panel-2.panel.gray
+      .row
+        .our_history.page
+          h2 Nossa história
+          p.text
+            | Your bones don't break, mine do. That's clear. Your cells react to bacteria and viruses differently than mine. You don't get sick, I do. That's also clear. But for some reason, you and I react the exact same way to water. We swallow it too fast, we choke. We get some in our lungs, we drown. However unreal it may seem, we are connected, you and I. We're on the same curve, just on opposite ends.
+    #panel-3.panel.lightgreen
+      .row
+        .our_victories.page
+          h2 Nossas vitórias
+          p.text
+            | Your bones don't break, mine do. That's clear. Your cells react to bacteria and viruses differently than mine. You don't get sick, I do. That's also clear. But for some reason, you and I react the exact same way to water. We swallow it too fast, we choke. We get some in our lungs, we drown. However unreal it may seem, we are connected, you and I. We're on the same curve, just on opposite ends.
 
-
+    #panel-4.panel.gray
+      .row
+        .our_platforms
+          h2 Nossas plataformas
+          p.text
+            | Your bones don't break, mine do. That's clear. Your cells react to bacteria and viruses differently than mine. You don't get sick, I do. That's also clear. But for some reason, you and I react the exact same way to water. We swallow it too fast, we choke. We get some in our lungs, we drown. However unreal it may seem, we are connected, you and I. We're on the same curve, just on opposite ends.
 
