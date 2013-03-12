@@ -91,6 +91,34 @@ body
 .gray
   background: $gray
 
+@mixin keyframes($name)
+  @-webkit-keyframes $name
+    @content
+  @-moz-keyframes $name
+    @content
+  @-ms-keyframes $name
+    @content
+  @keyframes $name
+    @content
+
+
+@keyframes moveDown
+  0%
+    opacity: 0
+    +transform(translateY(-40px))
+
+  100%
+    opacity: 1
+    +transform(translateY(0px))
+@keyframes moveUp
+  0%
+    opacity: 0
+    +transform(translateY(100px))
+  100%
+    opacity: 1
+    +transform(translateY(0px))
+    
+
 .control, .control + a 
   position: fixed 
   left: -3.5%
@@ -103,6 +131,7 @@ body
   cursor: pointer
   background: darken($lightgray, 20%)
   color: white
+
 .control
   height: 60px
   opacity: 0
@@ -128,6 +157,23 @@ body
   top: 41%
 #control-5, #control-5 + a
   top: 48%
+
+
+#control-2:checked ~ .scroll #panel-2 h2,
+#control-3:checked ~ .scroll #panel-3 h2,
+#control-4:checked ~ .scroll #panel-4 h2,
+#control-5:checked ~ .scroll #panel-5 h2,
+#control-6:checked ~ .scroll #panel-6 h2
+  animation: moveDown 0.6s ease-in-out 0.2s backwards
+
+
+#control-2:checked ~ .scroll #panel-2 .text,
+#control-3:checked ~ .scroll #panel-3 .text,
+#control-4:checked ~ .scroll #panel-4 .text,
+#control-5:checked ~ .scroll #panel-5 .text,
+#control-6:checked ~ .scroll #panel-6 .text
+  animation: moveUp 0.6s ease-in-out 0.2s backwards
+
 
 
 
