@@ -164,9 +164,9 @@ Selfstarter = window.Selfstarter =  {
     $('li.step1 span:first-child').addClass('selected');
     var errors = JSON.parse(data.responseText).errors;
     for (error in errors) {
-      $('.subscription .errors').append(error.toUpperCase() + " " + errors[error] + "<br/>");
+      $('.subscription .errors').empty().append(error.toUpperCase() + " " + errors[error] + "<br/>");
     }
-    
+    $('.subscription .errors').fadeIn(); 
     setTimeout(function(){ $('.subscription .errors').fadeOut() }, 5000)
   },
 
