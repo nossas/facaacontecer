@@ -64,7 +64,6 @@ body
   font-family: "Quattrocento Sans", sans-serif
   font-size: 100%
   line-height: 1.4em
-  overflow: hidden
 
 
   &.subscribers
@@ -74,9 +73,10 @@ body
 .container
   height: 100% !important
   width: 100% !important
-  position: absolute
   padding: 0
   min-width: 800px !important
+  height: 950px !important
+  min-height: 950px !important
 .panel, .scroll
   height: 100%
   width: 100%
@@ -179,22 +179,22 @@ body
 
 
 #control-1:checked ~ .scroll
-  +transform(translateY(1%))
+  +transform(translateY(0%))
 
 #control-2:checked ~ .scroll
-  +transform(translateY(-100%))
+  +transform(translateY(-950px))
 
 #control-3:checked ~ .scroll
-  +transform(translateY(-200%))
+  +transform(translateY(-1900px))
 
 #control-4:checked ~ .scroll
-  +transform(translateY(-300%))
+  +transform(translateY(-2850px))
 
 #control-5:checked ~ .scroll
-  +transform(translateY(-400%))
+  +transform(translateY(-3800px))
 
 #control-6:checked ~ .scroll
-  +transform(translateY(-500%))
+  +transform(translateY(-4750px))
 
 
 
@@ -241,9 +241,9 @@ input[type='text']
 
 .panel
   h2
-    font-size: 5em
+    font-size: 4em
     text-align: right
-  .text
+  .text, li.project h3
     width: 80%
     margin-right: 0
     margin-left: auto
@@ -253,7 +253,10 @@ input[type='text']
   color: $gray
   background: image-url('panel-crowd.jpg')
 #panel-3
-  background: image-url('panel-education.jpeg')
+  background: #000 
+
+
+
 body.projects
   .video
     +grid(7)
@@ -333,56 +336,31 @@ body.projects
     padding: 1.5em
 
 
-
-
-
-
-// Subscribers page
-form
-  .wrap
-    &.zip 
-      p
-        width: 100%
-        margin: 0
-      label
-        text-align: center
-      #user_zipcode, #subscription_value
-        text-align: center
-        margin: 0 auto
-        display: inline-block
-      .loader
-        float: right
-        position: absolute
-        margin-top: .6em 
-        
-  legend
-    font-size: 1.6em
-    font-weight: 700
-    display: block
-    margin: .2em auto
-    width: 100%
-    text-align: center
-    line-height: 2em
-
-  select
+li.project
+  +grid(12)
+  .image
+    float: left
+  h3
+    line-height: .6em
+    font-size: 2.2em !important
+    margin: 0 
+  .text
     font-size: 1em
-    padding: .4em
-  select#subscription_plan
-    display: block
-    width: 35%
-    margin: 0 auto
-    border: none !important
-    background: white
-    +border-radius(6px)
-    font-size: 2em
-  #user_state
-    width: 12%
-    //box-shadow: inset 1px 1px 4px lighten($gray, 15%)
-
-  .next_step_tip
-    text-align: center
-    display: block
-    color: gray
-
-
-
+    margin-bottom: .4em
+  .signatures
+    background: $orange
+    padding: .2em .6em
+    font-weight: bold
+    margin: -5% 2.5%
+    width: 20%
+    line-height: 1em
+    &::after
+      content: " "
+      width: 0
+      height: 0
+      margin-top: .1em
+      border: solid transparent
+      border-left: 20px solid $orange 
+      border-top: 10px solid transparent 
+      border-bottom: 13px solid transparent 
+      position: absolute

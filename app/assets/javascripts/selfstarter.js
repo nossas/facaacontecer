@@ -221,7 +221,7 @@ Selfstarter = window.Selfstarter =  {
     var data = data.cep.data;
 
     // Return nothing if the query didn't find anything
-    if (data == undefined) return false;
+    if (data == undefined || data.logradouro == undefined) return false;
 
 
     // If yes, we did find CEP info, fill in the form

@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   has_many :subscriptions, foreign_key: :subscriber_id
   belongs_to :project
-
+  validates_format_of :birthday, with: ->(user) { Date.parse(user.birthday) }
   validates_uniqueness_of :email, :cpf
   validates_presence_of :name, 
     :email, 
