@@ -1,23 +1,19 @@
 .container
-  input#control-1.control[checked='checked' name='step' type='radio']
-  = link_to "o desafio", "#panel-1"
-  
-  input#control-2.control[type='radio' name='step']
-  = link_to "nossa história", "#panel-2"
- 
-  input#control-3.control[type='radio' name='step']
-  = link_to "nossas vitórias", "#panel-3"
-  
-  input#control-4.control[type='radio' name='step']
-  = link_to "nossas plataformas", "#panel-4"
-  
-  input#control-5.control[type='radio' name='step']
-  = link_to "O desafio", "#panel-5"
+  .navigation.hidden
+    = link_to "o desafio", "#panel-1"
+    = link_to "nossa história", "#panel-2"
+    = link_to "nossas vitórias", "#panel-3"
+    = link_to "nossas plataformas", "#panel-4"
+    = link_to "O desafio", "#panel-5"
   .scroll
-    #panel-1.panel.lightgreen
+    #panel-1.panel
       .row
         .about.page
-          .video= @project.video_embed 
+          .video_and_header
+            = @project.video_embed 
+            .title
+              h1
+                | Somos mobilizadores, somos independentes, somos o Meu Rio.
 
           .subscription
             ol.steps

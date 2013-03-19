@@ -1,17 +1,3 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the top of the
- * compiled file, but it's generally better to create a new file per style scope.
- *
- *= require_self
- */
-
-
 @import compass/reset 
 @import columnal/grid
 @import compass/css3
@@ -29,12 +15,15 @@ $gray:        #666666
 $lightgray:   lighten($gray, 52%)
 $link:        $green
 
+
 // Defining Columnal Settings
 // Check http://www.columnal.com/ to know more.
 // Check https://github.com/diogob/compass-columnal-plugin for documentation
 $columnal-grid-width: 1140px !default
 $columnal-columns: 12 !default
 
+
+// Mixin to make text look nice
 +text
 
 // Defining the standard classes to handle the grid system
@@ -46,17 +35,21 @@ $columnal-columns: 12 !default
 .show
   display: inline-block !important
 
-input.parsley-error, textarea.parsley-error
-  color: rgb(185, 74, 72)
-  background: rgb(242, 222, 222) image-url('error.png') right center no-repeat !important
-  border: 1px solid rgb(238, 211, 215)
+.container
+  padding:    0
+  height:     100%  !important
+  width:      100%  !important
+  min-width:  800px !important
+  height:     930px !important
+  min-height: 930px !important
 
-input.parsley-success, textarea.parsley-success
-  color: rgb(70, 136, 71)
-  background-color: rgb(223, 240, 216)
-  border: 1px solid rgb(214, 233, 198)
-.parsley-error-list
-  display: none !important
+.panel, .scroll
+  height: 100%
+  width: 100%
+
+.scroll
+  top: 0
+  left: 0
 
 // Defining default-style classes
 body
@@ -64,141 +57,10 @@ body
   font-family: "Quattrocento Sans", sans-serif
   font-size: 100%
   line-height: 1.4em
+  color: black
+  background: url('http://i.imgur.com/JLXgN4u.jpg') repeat-x center top
 
-
-  &.subscribers
-    background: lighten($lightgray, 8%)
-    color: black
-
-.container
-  height: 100% !important
-  width: 100% !important
-  padding: 0
-  min-width: 800px !important
-  height: 950px !important
-  min-height: 950px !important
-
-.panel, .scroll
-  height: 100%
-  width: 100%
-.scroll
-  top: 0
-  left: 0
-  +transition(all 0.6s ease-in-out)
-  -webkit-transform: translate3d(0, 0, 0)
-  -webkit-backface-visibility: hidden
-.lightgreen
-  background: $lightgreen image-url('bg.jpg')
-.gray
-  background: $gray
-
-@mixin keyframes($name)
-  @-webkit-keyframes $name
-    @content
-  @-moz-keyframes $name
-    @content
-  @-ms-keyframes $name
-    @content
-  @keyframes $name
-    @content
-
-
-@keyframes moveDown
-  0%
-    opacity: 0
-    +transform(translateY(-40px))
-
-  100%
-    opacity: 1
-    +transform(translateY(0px))
-@keyframes moveUp
-  0%
-    opacity: 0
-    +transform(translateY(100px))
-  100%
-    opacity: 1
-    +transform(translateY(0px))
-    
-
-.control, .control + a 
-  position: fixed 
-  left: -3.5%
-  top: 20%
-  z-index: 100
-  width: 160px
-  height: 35px
-  padding: .6em .2em
-  line-height: 2em
-  cursor: pointer
-  background: darken($lightgray, 20%)
-  color: white
-
-.control
-  height: 60px
-  opacity: 0
-  & + a
-    text-indent: 5px
-    text-decoration: none
-    +transition(0.2s)
-   
-
-  &:checked + a, &:hover + a
-    width: 140px
-    left: 0%
-    background: $orange 
-    color: white
-.control + a
-  z-index: 99
-
-#control-2, #control-2 + a
-  top: 27%
-#control-3, #control-3 + a
-  top: 34%
-#control-4, #control-4 + a
-  top: 41%
-#control-5, #control-5 + a
-  top: 48%
-
-
-#control-2:checked ~ .scroll #panel-2 h2,
-#control-3:checked ~ .scroll #panel-3 h2,
-#control-4:checked ~ .scroll #panel-4 h2,
-#control-5:checked ~ .scroll #panel-5 h2,
-#control-6:checked ~ .scroll #panel-6 h2
-  animation: moveDown 0.6s ease-in-out 0.2s backwards
-
-
-#control-2:checked ~ .scroll #panel-2 .text,
-#control-3:checked ~ .scroll #panel-3 .text,
-#control-4:checked ~ .scroll #panel-4 .text,
-#control-5:checked ~ .scroll #panel-5 .text,
-#control-6:checked ~ .scroll #panel-6 .text
-  animation: moveUp 0.6s ease-in-out 0.2s backwards
-
-
-
-
-
-#control-1:checked ~ .scroll
-  +transform(translateY(0%))
-
-#control-2:checked ~ .scroll
-  +transform(translateY(-950px))
-
-#control-3:checked ~ .scroll
-  +transform(translateY(-1900px))
-
-#control-4:checked ~ .scroll
-  +transform(translateY(-2850px))
-
-#control-5:checked ~ .scroll
-  +transform(translateY(-3800px))
-
-#control-6:checked ~ .scroll
-  +transform(translateY(-4750px))
-
-
-
+// Input patterns + placeholder style
 input[type='text']
   border-radius: 2px
   padding: .6em 1em
@@ -207,7 +69,7 @@ input[type='text']
 \::-webkit-input-placeholder, \:-moz-placeholder, \::-moz-placeholder, \::ms-input-placeholder
   color:    #999
 
-
+// Button style
 .btn
   +background(linear-gradient(lighten($blue,5%), darken($blue, 15%)))
   +border-radius(6px)
@@ -223,16 +85,24 @@ input[type='text']
   &:hover
     cursor: pointer
     background: $blue
+
+// The loading spinner that appears when someone clicks on "continue"
 .loading
   background: image-url('loader.gif') no-repeat top center
   text-indent: -9999px
   &:hover
     cursor: default
     background: image-url('loader.gif') no-repeat top center
-    
-.hidden
-  display: none
 
+
+// Classes to force show or hide of an element
+.hidden
+  display: none !important
+
+.show 
+  display: inline-block !important
+
+// I don't know
 .info
   background: lighten($blue, 40%)
   color: $gray
@@ -258,11 +128,41 @@ input[type='text']
 
 
 
+
+
+
+
+// Header style
+
+header
+  padding-bottom: 1.5em
+
+
+
+.video_and_header
+  +grid(7)
+  iframe
+    width: 100% !important
+  .title
+    +grid-subcolumn(7, 5)
+    +grid-prefix(3)
+    +last
+  h1
+    font-weight: 100
+    color: darken(gray, 20%)
+    text-align: right
+    font-size: 2.5em
+    margin-right: 0 !important
+    padding-right: 0 !important
+
+
+
+
+
+
+
+
 body.projects
-  .video
-    +grid(7)
-    iframe
-      width: 100% !important
   .subscription
     +grid(5)
     +last
@@ -303,7 +203,7 @@ body.projects
       +box-shadow(inset 0 1px .1em lighten(gray, 10%))
       +border-radius(.2em)
     input.date, input.cpf, input.addr_extra, input.addr_number, input.addr_city
-      width: 43%
+      width: 41%
       display: inline-block
     input.date, input.addr_number, input.addr_state
       margin-left: 5%
@@ -368,3 +268,21 @@ li.project
       border-top: 10px solid transparent 
       border-bottom: 13px solid transparent 
       position: absolute
+
+
+
+// When something fails on form submiting, these
+// are the styles of inputs with error 
+input.parsley-error, textarea.parsley-error
+  color: rgb(185, 74, 72)
+  background: rgb(242, 222, 222) image-url('error.png') right center no-repeat !important
+  border: 1px solid rgb(238, 211, 215)
+
+input.parsley-success, textarea.parsley-success
+  color: rgb(70, 136, 71)
+  background-color: rgb(223, 240, 216)
+  border: 1px solid rgb(214, 233, 198)
+
+.parsley-error-list
+  display: none !important
+
