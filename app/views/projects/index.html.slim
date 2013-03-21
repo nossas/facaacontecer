@@ -51,7 +51,7 @@
               |Hoje, somos mais de 70.000 membros espalhados por todo o Rio de Janeiro. Para continuar assim, dependemos dos cariocas de alma e coração que querem um Rio mais justo e democrático. Não precisamos de muito. Mas precisamos de <strong>MUITOS</strong>. 
               br
               |Muita gente que pode contribuir com pouco para ajudar a financiar esse projeto de todos nós. Assista ao vídeo, conheça as nossas recompensas e faça o Meu Rio acontecer!  
-    #panel-3.panel.lightgreen
+    #panel-3.panel.gray
       .row
         .our_victories.page
           h2 Algumas de nossas vitórias
@@ -80,7 +80,7 @@
               span.signatures 17.873
               span.text Assinaturas
 
-    #panel-4.panel.gray
+    #panel-4.panel.lightgreen
       .row
         .our_platforms
           h2 Nossas plataformas de mobilização 
@@ -103,3 +103,16 @@
             h3 O bagulho fica sério! 
             p
               | Além de todas as recompensas anteriores, vamos produzir uma celebração inesquecível para todas as pessoas que fazem o Meu Rio acontecer! 
+    
+    #panel-7.panel.gray
+      .row
+        .our_contributors
+          h2 Nossos primeiros apoiadores
+          .text 
+
+
+          h2 Nossos novos apoiadores
+          .text
+            ul
+              - Subscription.where(status: nil).each do |subscription|
+                li= subscription.subscriber.name

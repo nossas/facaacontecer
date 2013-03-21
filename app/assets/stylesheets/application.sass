@@ -47,6 +47,9 @@ $columnal-columns: 12 !default
   height:     930px !important
   min-height: 930px !important
 
+.row
+  min-width: 960px
+
 .panel, .scroll
   height: 930px
   width: 100%
@@ -182,7 +185,6 @@ input[type='text']
   h2
     width: 70%
     margin-bottom: 1em
-  background-color: $lightgreen
   height: 700px
 
 #panel-5
@@ -190,14 +192,13 @@ input[type='text']
     width: 55%
     margin-bottom: 1em
   height: 800px
-  background-color: darken(gray, 20%)
-  background-image: image-url('pattern2.png')
+
 
 #panel-6
   h2
     width: 50%
     margin-top: .6em
-  height: 600px
+  height: 700px
   background: $lightgreen image-url('crowd.png') repeat-x center bottom 
   +background-size(95%)
   .text
@@ -215,6 +216,17 @@ input[type='text']
       padding: 1em
       padding-top: 0
 
+#panel-7
+  h2
+    width: 60%
+    margin: .8em auto 1em auto
+  color: white
+
+.gray
+  background-color: darken(gray, 20%)
+  background-image: image-url('pattern2.png')
+.lightgreen
+  background-color: $lightgreen
 
 
 li.project
@@ -298,12 +310,19 @@ header
   .head img
     width: 100%
 
+
+// THe 3 steps above the form
+@media all and (max-width: 1020px)
+  ol.steps 
+    li
+      margin: 0 2.5% !important
+
 ol.steps
   margin: 0 auto
   li
     display: inline-block
     width: auto
-    margin-left: 6.5%
+    margin: 0 3%
   li.placeholder
     width: 10%
   li span 
