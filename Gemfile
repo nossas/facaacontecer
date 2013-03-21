@@ -7,6 +7,9 @@ gem 'inherited_resources'
 gem 'slim-rails'
 gem 'active_decorator'
 
+# An old gem to validate cpf
+gem "cpf_validator"
+
 group :development do
   gem 'better_errors'
   gem 'sqlite3'

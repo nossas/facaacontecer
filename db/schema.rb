@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130223180809) do
+ActiveRecord::Schema.define(:version => 20130321074658) do
 
   create_table "projects", :force => true do |t|
     t.string   "title"
@@ -32,6 +32,8 @@ ActiveRecord::Schema.define(:version => 20130223180809) do
     t.datetime "updated_at",                     :null => false
     t.string   "code"
     t.integer  "subscriber_id"
+    t.boolean  "anonymous"
+    t.boolean  "gift"
   end
 
   add_index "subscriptions", ["code"], :name => "index_subscriptions_on_code"

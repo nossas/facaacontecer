@@ -107,7 +107,7 @@ input[type='text']
     top: 2px
 
 // The loading spinner that appears when someone clicks on "continue"
-.loading
+.loading, .loading:hover
   background: image-url('loader.gif') no-repeat top center
   text-indent: -9999px
   border: none
@@ -302,12 +302,13 @@ ol.steps
   input.date, input.cpf, input.addr_extra, input.addr_number, input.addr_city
     width: 42%
     display: inline-block
-  input.date, input.addr_number, input.addr_state
+  input.date, input.addr_number, select#user_state
     margin-left: 6.60%
   input.city
     width: 50%
-  input.addr_state
-    width: 10%
+  select#user_state
+    padding: .4em
+    font-size: 1.2em
   label
     display: none
   p
@@ -339,7 +340,7 @@ ol.values
       border: 1px solid $vermillion
       background: lighten($vermillion, 15%)
       +box-shadow(0 0 .2em $orange)
-.wrap
+.wrap, .wrapped
   padding: 1em
 
 
@@ -351,7 +352,16 @@ ol.values
   font-weight: bold
   padding: .6em
 
-
+#options 
+  .wrapped
+    background: $lightgray
+    padding-top: .2em 
+    padding-bottom: .2em 
+  input
+    display: inline
+    width: auto
+  label
+    display: inline
 
 // When something fails on form submiting, these
 // are the styles of inputs with error 

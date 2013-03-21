@@ -49,7 +49,7 @@ Selfstarter = window.Selfstarter =  {
       '#user_form ajax:beforeSend'    : 'startLoader',
       '#user_form ajax:success'       : 'userDataSent',
       '#user_form ajax:error'         : 'userDataNotSent',
-      'input.card_submit click'       : 'subscribeToPlan',
+      'button.card_submit click'       : 'subscribeToPlan',
       '.values li click'              : 'chooseValue',
 
 
@@ -95,7 +95,7 @@ Selfstarter = window.Selfstarter =  {
     if (target.hasClass('step_one')){
       var classes = ['input.email', 'input.name', 'input.cpf', 'input.date', 'input.phone'];
     } else if (target.hasClass('step_two')) {
-      var classes = ['input.addr_city', 'input.cep', 'input.addr_state', 'input.addr_street', 'input.addr_extra', 'input.addr_dist', 'input.addr_number'];
+      var classes = ['input.addr_city', 'input.cep', 'input.addr_street', 'input.addr_extra', 'input.addr_dist', 'input.addr_number'];
     }
     var ok = 0; 
 

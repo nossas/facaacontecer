@@ -1,7 +1,7 @@
 class Subscription < ActiveRecord::Base
  
   # Attributes accessible on create! or update! 
-  attr_accessible :code, :value
+  attr_accessible :code, :value, :gift, :anonymous
 
 
   # Relationship with Projects and the correspondent user for each subscription 

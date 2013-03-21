@@ -12,6 +12,7 @@
       p
         = f.label :expiration_date, class: [:show]
         = f.date_select :expiration_date, start_year: Date.current.year, use_month_numbers: true, end_year: 2026, discard_day: true, data: { required: true }, placeholder: t('placeholder.subscription.expiration_date')
+
     #value
       ol.values
         li[data-value='01'] R$ 10
@@ -19,13 +20,22 @@
         li[data-value='03'] R$ 50
         li[data-value='0'] Outro?
     #plan.zip.hidden
-      p
-        = f.label :plan, class: :support
-        = f.select :plan, [[10, '01'], [25, '02'], [50, '03'], [100, '04']], data: { required: true, min: 9 }, class: :value
+      .wrap
+        p
+          = f.label :plan, class: :support
+          = f.select :plan, [[10, '01'], [25, '02'], [50, '03'], [100, '04']], data: { required: true, min: 9 }, class: :value
     .subscriptions_fields
       = f.hidden_field :value 
       = f.hidden_field :code
 
+    #options
+      .wrap
+        p
+          = f.check_box :anonymous
+          = f.label :anonymous
+        p
+          = f.check_box :gift
+          = f.label :gift
     #subscription_error_message
     = f.button :Contribuir!, class: [:btn, :card_submit]
 

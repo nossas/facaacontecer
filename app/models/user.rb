@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   has_many :subscriptions, foreign_key: :subscriber_id
   belongs_to :project
   validates_uniqueness_of :email, :cpf
+  validates :cpf, cpf: true
   validates_presence_of :name, 
     :email, 
     :cpf, 
