@@ -2,10 +2,10 @@
 @import columnal/grid
 @import compass/css3
 @import icomoon
-@import "https://fonts.googleapis.com/css?family=Quattrocento+Sans:400,700"
+@import "https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,700,900"
 
 // Color settings
-$blue:        #5886F7
+$blue:        #3398d4
 $darkblue:    #037ab7
 $green:       #059046
 $lightgreen:  #AECE6A
@@ -19,7 +19,7 @@ $link:        $green
 // Defining Columnal Settings
 // Check http://www.columnal.com/ to know more.
 // Check https://github.com/diogob/compass-columnal-plugin for documentation
-$columnal-grid-width: 1140px !default
+$columnal-grid-width: 1100px !default
 $columnal-columns: 12 !default
 
 
@@ -53,46 +53,63 @@ $columnal-columns: 12 !default
 
 // Defining default-style classes
 body
-  color: white
-  font-family: "Quattrocento Sans", sans-serif
-  font-size: 100%
-  line-height: 1.4em
-  color: black
-  background: url('http://i.imgur.com/JLXgN4u.jpg') repeat-x center top
+  color:        white
+  font-size:    100%
+  line-height:  1.4em
+  color:        black
+  background:   url('http://i.imgur.com/HRaDAQF.jpg') repeat-x center top
+  font-family:  "Source Sans Pro", sans-serif
 
 // Input patterns + placeholder style
 input[type='text']
   border-radius: 2px
   padding: .6em 1em
-  border: 1px solid lighten(gray, 30%)
+  border: 1px solid lighten(gray, 40%)
 
 \::-webkit-input-placeholder, \:-moz-placeholder, \::-moz-placeholder, \::ms-input-placeholder
   color:    #999
 
 // Button style
 .btn
-  +background(linear-gradient(lighten($blue,5%), darken($blue, 15%)))
-  +border-radius(6px)
-  width: 95%
+  font-family: "Arial Black"
   font-weight: bold
   color: white
   font-size: 1.6em
   text-align: center
-  padding: .8em 2em
+  padding: .4em 2em
   border: none
   display: block
-  margin: 2em 0 1em 0
+  margin: 1.5em auto
+  margin-bottom: 0
+  width: 100%
+  text-transform: uppercase
+  border: 1px solid darken($blue, 10%)
+  text-shadow: 0 -1px 0 #666
+  position: relative
+  +background(linear-gradient($blue, darken($blue, 15%)))
+  +box-shadow(0 1px 0 #666)
+  +border-radius(10px)
+  &:after
+    content: "  " 
+    width: 32px
+    height: 33px
+    display: inline-block
+    margin-top: -6px
+    background: image-url('arrow.png') no-repeat 0 8px 
   &:hover
     cursor: pointer
-    background: $blue
+    +background(linear-gradient($blue, darken($blue, 25%)))
+  &:active
+    top: 2px
 
 // The loading spinner that appears when someone clicks on "continue"
 .loading
   background: image-url('loader.gif') no-repeat top center
   text-indent: -9999px
+  border: none
+  +box-shadow(none)
   &:hover
     cursor: default
-    background: image-url('loader.gif') no-repeat top center
 
 
 // Classes to force show or hide of an element
@@ -144,16 +161,17 @@ header
   iframe
     width: 100% !important
   .title
-    +grid-subcolumn(7, 5)
-    +grid-prefix(3)
+    +grid-subcolumn(7, 6)
+    +grid-prefix(2)
     +last
   h1
-    font-weight: 100
+    font-weight: 300 !important
     color: darken(gray, 20%)
     text-align: right
-    font-size: 2.5em
+    font-size: 3em
+    margin-top: .4em
     margin-right: 0 !important
-    padding-right: 0 !important
+    padding-right: .4em !important
 
 
 
@@ -162,81 +180,91 @@ header
 
 
 
-body.projects
-  .subscription
-    +grid(5)
-    +last
+.subscription
+  +grid(5)
+  +last 
+  +transition(.2s)
+  background: lighten(gray, 48%)
+  &:active, &:hover
+    +box-shadow(0 2px .4em gray)
 
-    background: lighten(gray, 48%)
-    +transition(.2s)
-    &:active, &:hover
-      +box-shadow(0 1px 4px gray)
-  ol.steps
-    li
-      display: inline-block
-    li span:nth-child(1n+0)
-      display: block
-      text-align: center
-      color: lightgray
-      text-shadow: 1px 0 1px lightgray
-    li span:first-child
-      +border-radius(100px)
-      display: inline-block
-      background: none
-      color: lighten(lightgray, 10%)
-      text-shadow: 0 1px 1px #666
-      font-size: 1.8em
-      padding: .5em .8em
-      font-weight: 700
-      margin: 1em 1em 0.2em 1em
-      +box-shadow(inset 0px -1px 4px 1px darken(white, 10%))
-      &.selected
-        background: $vermillion
-  .subscription form
-    background: lighten($lightgray, 5%)
-    color: gray
-    input
-      padding: .8em .6em
-      width: 96%
-      font-size: 1em
-      border: lighten(gray, 45%)
-      +box-shadow(inset 0 1px .1em lighten(gray, 10%))
-      +border-radius(.2em)
-    input.date, input.cpf, input.addr_extra, input.addr_number, input.addr_city
-      width: 41%
-      display: inline-block
-    input.date, input.addr_number, input.addr_state
-      margin-left: 5%
-    input.city
-      width: 50%
-    input.addr_state
-      width: 10%
+  .head img
+    width: 100%
 
-    label
-      display: none
-    p
-      margin: 1em 0
-  .errors
-    color: red
+ol.steps
+  margin: 0 auto
+  li
+    display: inline-block
+    width: auto
+    margin-left: 6.5%
+  li.placeholder
+    width: 10%
+  li span 
+    margin: 0 auto
     text-align: center
-  ol.values
-    li
-      display: inline-block
-      background: $orange
-      padding: .6em .6em
-      color: white
-      font-weight: bold
-      font-size: 1.2em
-      +border-radius(4px)
-      +background-image(linear-gradient($orange, darken($orange, 5%)))
-      &:hover
-        opacity: .9
-        cursor: pointer
-      &.selected
-        border: 2px solid darken($orange, 20%)
-        background: lighten($orange, 10%)
-  .wrap
-    padding: 1.5em
+  li span:nth-child(1n+0)
+    display: block
+    color: lightgray
+  li span:first-child
+    +border-radius(150px)
+    display: block
+    width: 15px
+    margin: 0 auto
+    background: none
+    color: lighten(lightgray, 10%)
+    text-shadow: 0 0 1px #666
+    font-size: 1.8em
+    padding: .4em .6em
+    font-weight: 700
+    +box-shadow(inset 0px 1px 4px darken($lightgray, 20%), 0 1px 2px white)
+    &.selected
+      +box-shadow(inset 0px 1px 4px darken($orange, 20%), 0 1px 2px white)
+      background: $vermillion
+.subscription form
+  color: gray
+  input
+    padding: .8em .6em
+    width: 96%
+    font-size: 1em
+    border: lighten(gray, 45%)
+    +box-shadow(inset 0 1px .1em lighten(gray, 10%))
+    +border-radius(.2em)
+  input.date, input.cpf, input.addr_extra, input.addr_number, input.addr_city
+    width: 42%
+    display: inline-block
+  input.date, input.addr_number, input.addr_state
+    margin-left: 6.60%
+  input.city
+    width: 50%
+  input.addr_state
+    width: 10%
+
+  label
+    display: none
+  p
+    margin: 1em 0
+.errors
+  color: red
+  text-align: center
+
+ol.values
+  li
+    display: inline-block
+    background: $orange
+    padding: .6em .6em
+    color: white
+    font-weight: bold
+    font-size: 1.2em
+    +border-radius(4px)
+    +background-image(linear-gradient($orange, darken($orange, 5%)))
+    &:hover
+      opacity: .9
+      cursor: pointer
+    &.selected
+      border: 2px solid darken($orange, 20%)
+      background: lighten($orange, 10%)
+.wrap
+  padding: 1em
 
 
 li.project

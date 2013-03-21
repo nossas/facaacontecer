@@ -107,7 +107,7 @@ Selfstarter = window.Selfstarter =  {
 
     if (ok == classes.length && target.hasClass('step_one')) {
       $('fieldset.one').fadeOut(0);
-      $('fieldset.two').fadeIn();
+      $('fieldset.two').fadeIn().removeClass('hidden');
       $('li.step1 span:first-child').removeClass('selected');
       $('li.step2 span:first-child').addClass('selected');
     } else if (ok == classes.length && target.hasClass('step_two')){
@@ -184,7 +184,7 @@ Selfstarter = window.Selfstarter =  {
       self.submitTipMessage.detach();
       self.successMessage.fadeIn();
       self.step1.fadeOut('fast').detach();
-      self.step2.fadeIn();
+      self.step2.fadeIn().removeClass('hidden');
       self.step2.children('#plan').show();
       self.enableCreditFormFields();
     }, 1000);
