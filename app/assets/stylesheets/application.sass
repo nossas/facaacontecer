@@ -2,7 +2,7 @@
 @import columnal/grid
 @import compass/css3
 @import icomoon
-@import "https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,700,900"
+@import "https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,700"
 
 // Color settings
 $blue:        #3398d4
@@ -35,6 +35,10 @@ $columnal-columns: 12 !default
 .show
   display: inline-block !important
 
+.hidden
+  display: none
+
+
 .container
   padding:    0
   height:     100%  !important
@@ -44,7 +48,7 @@ $columnal-columns: 12 !default
   min-height: 930px !important
 
 .panel, .scroll
-  height: 100%
+  height: 930px
   width: 100%
 
 .scroll
@@ -57,8 +61,8 @@ body
   font-size:    100%
   line-height:  1.4em
   color:        black
-  background:   url('http://i.imgur.com/HRaDAQF.jpg') repeat-x center top
   font-family:  "Source Sans Pro", sans-serif
+  background: image-url('pattern.png')
 
 // Input patterns + placeholder style
 input[type='text']
@@ -112,36 +116,100 @@ input[type='text']
     cursor: default
 
 
-// Classes to force show or hide of an element
-.hidden
-  display: none !important
-
-.show 
-  display: inline-block !important
-
-// I don't know
-.info
-  background: lighten($blue, 40%)
-  color: $gray
-  font-size: .8em
-  padding: 1.5em
-
-
 .panel
   h2
-    font-size: 4em
+    font-size: 3em
     text-align: center 
+    font-weight: 200
+    background: $orange
+    color: white
+    width: 35%
+    padding: .2em 0
+    margin: 2em auto
+    margin-bottom: -.6em
+    z-index: 99
+    position: relative
   .text, li.project h3
     width: 80%
     margin-right: auto
     margin-left: auto
     font-size: 1.2em
     line-height: 1.8em
+#panel-1
+  background:   url('http://i.imgur.com/HRaDAQF.jpg') repeat-x center top
+
 #panel-2
   color: $gray
-  background: image-url('panel-crowd.jpg')
+  background-color: $lightgreen 
+  .text
+    background: image-url('panel-2_text.png') no-repeat center top
+    +background-size(100%)
+    min-height: 650px
+    height: 650px
+  p
+    width: 54%
+    margin: 0 auto
+    padding: 4em 0
+    color: $green
+    text-align: center
+    font-size: 1.2em
+
+@media all and (max-width: 1149px)
+  #panel-2
+    .text p
+      font-size: .8em
+
+
+#panel-2, #panel-3, #panel-4
+  background-image: image-url('pattern.png') 
+
 #panel-3
-  background: #000 
+  h2
+    width: 60%
+    margin-bottom: 1em
+  background-color: darken(gray, 20%)
+  color: white
+
+#panel-4
+  h2
+    width: 70%
+    margin-bottom: 1em
+  background-color: $lightgreen
+
+
+li.project
+  +grid(12)
+  .image
+    float: left
+    padding: .8em
+    padding-right: 1em
+  h3
+    line-height: .6em
+    font-weight: 300
+    font-size: 2.6em !important
+    margin: 0 
+  .text
+    font-size: 1.1em
+    line-height: 1.4em
+    margin-bottom: 1em
+  .signatures
+    background: $orange
+    padding: .2em .6em
+    font-weight: bold
+    margin-right: 2.5%
+    width: 20%
+    line-height: 1em
+    font-size: 1.4em
+    &::after
+      content: " "
+      width: 0
+      height: 0
+      margin-top: .1em
+      border: solid transparent
+      border-left: 20px solid $orange 
+      border-top: 10px solid transparent 
+      border-bottom: 13px solid transparent 
+      position: absolute
 
 
 
@@ -150,12 +218,11 @@ input[type='text']
 
 
 // Header style
-
 header
   padding-bottom: 1.5em
+  
 
-
-
+// Video + Header style
 .video_and_header
   +grid(7)
   iframe
@@ -179,7 +246,7 @@ header
 
 
 
-
+// The form style
 .subscription
   +grid(5)
   +last 
@@ -220,6 +287,9 @@ ol.steps
     &.selected
       +box-shadow(inset 0px 1px 4px darken($orange, 20%), 0 1px 2px white)
       background: $vermillion
+
+
+// The real form
 .subscription form
   color: gray
   input
@@ -238,7 +308,6 @@ ol.steps
     width: 50%
   input.addr_state
     width: 10%
-
   label
     display: none
   p
@@ -246,56 +315,41 @@ ol.steps
 .errors
   color: red
   text-align: center
-
+.card_submit
+  width: 90%
 ol.values
   li
+    margin: 0 1%
     display: inline-block
-    background: $orange
     padding: .6em .6em
     color: white
     font-weight: bold
     font-size: 1.2em
-    +border-radius(4px)
-    +background-image(linear-gradient($orange, darken($orange, 5%)))
+    text-transform: uppercase
+    font-family: "Arial Black"
+    text-shadow: 0 1px 0 #333
+    border: 1px solid $orange
+    +border-radius(6px)
+    +background-image(linear-gradient(lighten($orange,5%), $vermillion))
+    +transition(.2s)
     &:hover
       opacity: .9
       cursor: pointer
     &.selected
-      border: 2px solid darken($orange, 20%)
-      background: lighten($orange, 10%)
+      border: 1px solid $vermillion
+      background: lighten($vermillion, 15%)
+      +box-shadow(0 0 .2em $orange)
 .wrap
   padding: 1em
 
 
-li.project
-  +grid(12)
-  .image
-    float: left
-    padding: .6em
-  h3
-    line-height: .6em
-    font-size: 2.2em !important
-    margin: 0 
-  .text
-    font-size: 1em
-    margin-bottom: .4em
-  .signatures
-    background: $orange
-    padding: .2em .6em
-    font-weight: bold
-    margin-right: 2.5%
-    width: 20%
-    line-height: 1em
-    &::after
-      content: " "
-      width: 0
-      height: 0
-      margin-top: .1em
-      border: solid transparent
-      border-left: 20px solid $orange 
-      border-top: 10px solid transparent 
-      border-bottom: 13px solid transparent 
-      position: absolute
+#subscription_plan
+  display: block
+  width: 20%
+  margin: 0 auto
+  font-size: 1.5em
+  font-weight: bold
+  padding: .6em
 
 
 
