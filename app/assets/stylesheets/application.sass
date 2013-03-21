@@ -99,7 +99,7 @@ input[type='text']
     height: 33px
     display: inline-block
     margin-top: -6px
-    background: image-url('arrow.png') no-repeat 0 8px 
+    background: image-url('arrow.png') no-repeat center 12px 
   &:hover
     cursor: pointer
     +background(linear-gradient($blue, darken($blue, 25%)))
@@ -122,7 +122,7 @@ input[type='text']
 
 .panel
   h2
-    font-size: 3em
+    font-size: 2.6em
     text-align: center 
     font-weight: 200
     background: $orange
@@ -167,18 +167,54 @@ input[type='text']
 #panel-2, #panel-3, #panel-4
   background-image: image-url('pattern.png') 
 
-#panel-3
+#panel-3, #panel-5
+
+  height: 1000px
   h2
     width: 60%
     margin-bottom: 1em
+    margin-top: 1.2em
   background-color: darken(gray, 20%)
+  background-image: image-url('pattern2.png')
   color: white
 
-#panel-4
+#panel-4, #panel-6
   h2
     width: 70%
     margin-bottom: 1em
   background-color: $lightgreen
+  height: 700px
+
+#panel-5
+  h2
+    width: 55%
+    margin-bottom: 1em
+  height: 800px
+  background-color: darken(gray, 20%)
+  background-image: image-url('pattern2.png')
+
+#panel-6
+  h2
+    width: 50%
+    margin-top: .6em
+  height: 600px
+  background: $lightgreen image-url('crowd.png') repeat-x center bottom 
+  +background-size(95%)
+  .text
+    width: 45%
+    font-weight: 200
+    background: white
+    +background(linear-gradient(white 60%, lighten(lightgray, 5%)))
+    text-align: center
+    color: $green
+    h3
+      margin-top: .8em
+      font-weight: 400
+      padding: .8em 0 0 0
+    p
+      padding: 1em
+      padding-top: 0
+
 
 
 li.project
@@ -190,7 +226,7 @@ li.project
   h3
     line-height: .6em
     font-weight: 300
-    font-size: 2.6em !important
+    font-size: 2.4em !important
     margin: 0 
   .text
     font-size: 1.1em
@@ -309,7 +345,11 @@ ol.steps
     width: 42%
     display: inline-block
   input.date, input.addr_number, select#user_state
-    margin-left: 6.60%
+    margin-left: auto
+    margin-right: 0 !important
+    right: 0
+    position: relative
+    float: right
   input.city
     width: 50%
   select#user_state
