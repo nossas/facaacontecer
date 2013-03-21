@@ -114,6 +114,10 @@ input[type='text']
   +box-shadow(none)
   &:hover
     cursor: default
+.loader
+  float: right 
+  margin-top: -2em
+
 
 
 .panel
@@ -299,6 +303,8 @@ ol.steps
     border: lighten(gray, 45%)
     +box-shadow(inset 0 1px .1em lighten(gray, 10%))
     +border-radius(.2em)
+  input.cep
+    text-align: center
   input.date, input.cpf, input.addr_extra, input.addr_number, input.addr_city
     width: 42%
     display: inline-block
