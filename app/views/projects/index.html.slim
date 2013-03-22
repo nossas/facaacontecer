@@ -109,10 +109,13 @@
         .our_contributors
           h2 Nossos primeiros apoiadores
           .text 
+            ul.subscribers
+              - initial_colaborators.each do |sub|
+                li= sub
 
-
+        .our_colaborators
           h2 Nossos novos apoiadores
           .text
-            ul
+            ul.subscribers
               - Subscription.where(status: nil).each do |subscription|
                 li= subscription.subscriber.name

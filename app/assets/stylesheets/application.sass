@@ -217,11 +217,23 @@ input[type='text']
       padding-top: 0
 
 #panel-7
+  height: auto
   h2
     width: 60%
     margin: .8em auto 1em auto
+    clear: both
   color: white
-
+  .text
+    +grid(10)
+    +grid-prefix(2)
+    +last
+  ul.subscribers
+    overflow: hidden
+  ul.subscribers li
+    +grid-subcolumn(12,3)
+    font-size: .7em
+    &:last-child
+      +last
 .gray
   background-color: darken(gray, 20%)
   background-image: image-url('pattern2.png')
