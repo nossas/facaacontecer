@@ -1,8 +1,9 @@
 class User < ActiveRecord::Base
-  has_many :subscriptions, foreign_key: :subscriber_id
+  has_many :subscriptions, foreign_key: :subscriber_id, dependent: :destroy
   belongs_to :project
-  validates_uniqueness_of :email, :cpf
   validates :cpf, cpf: true
+  validates_date :birthday, before: -> { 14.years.ago }
+  validates_uniqueness_of :email, :cpf
   validates_presence_of :name, 
     :email, 
     :cpf, 

@@ -10,6 +10,9 @@ gem 'active_decorator'
 # An old gem to validate cpf
 gem "cpf_validator"
 
+# Validate dates
+gem 'validates_timeliness', '~> 3.0'
+
 group :development do
   gem 'better_errors'
   gem 'sqlite3'
