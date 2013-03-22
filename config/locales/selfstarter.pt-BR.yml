@@ -25,9 +25,13 @@ pt-BR:
     <<: *label
   activerecord:
     models:
-      order: "Apoio"
+      subscription: "Apoio"
     attributes:
-      order:
+      user:
+        birthday: "Data de nascimento"
+        address_street: "Rua"
+        
+      subscription:
         name: 'Nome'
         email: 'E-mail'
   home:

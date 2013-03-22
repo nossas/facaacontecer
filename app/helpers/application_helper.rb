@@ -81,7 +81,7 @@ module ApplicationHelper
       'José Antônio e Souza',
       'Julia Esteves Abreu',
       'Juliana de Souza Pedrosa',
-      'JULIO CESAR DE SOUZA',
+      'Julio Cesar de Souza',
       'Kristina Michahelles',
       'Laura Uplinger',
       'Leila Jacyntho Dutra',
