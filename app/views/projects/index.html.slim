@@ -59,7 +59,7 @@
           h2 Algumas de nossas vitórias
           ol
             li.project
-              .image= image_tag "victory-1.jpg"
+              .image= image_tag "victory-2.jpg"
               h3 Friedenreich de Pé
               p.text
                 |Quase vinte mil cariocas se levantaram para impedir que uma das melhores escolas do Rio fosse demolida para a construção de uma quadra de aquecimento. Assinando uma petição eletrônica ou vigiando 24 horas por dia a nossa escola, vencemos juntos. Mostramos que o Rio é nosso! 
@@ -67,7 +67,7 @@
               span.text Assinaturas
 
             li.project
-              .image= image_tag "victory-2.jpg"
+              .image= image_tag "victory-3.jpg"
               h3.name Legislação ambiental pra quem?
               p.text
                 |Ao lado do GAEMA (divisão do Ministério Público responsável por Meio Ambiente) e com o apoio de 7.000 pessoas que assinaram a petição em poucas horas, e de figuras públicas como Marina Silva, tiramos de pauta o projeto de lei do Governo que eliminaria as proteções mais importantes ao meio ambiente da legislação do Rio.  
@@ -75,7 +75,7 @@
               span.text Assinaturas
 
             li.project
-              .image= image_tag "victory-3.jpg"
+              .image= image_tag "victory-1.jpg"
               h3 Ficha Limpa Estadual
               p.text
                 |Resgatamos um projeto de lei e uma proposta de emenda constitucional que estavam engavetados há meses na Alerj. Graças à participação dos membros do Meu Rio dentro e fora da Assembleia, conseguimos a aprovação da Lei da Ficha Limpa Estadual por unanimidade! 
@@ -119,5 +119,5 @@
           h2 Nossos novos apoiadores
           .text
             ul.subscribers
-              - Subscription.where(status: nil).each do |subscription|
+              - Subscription.raised.each do |subscription|
                 li= subscription.subscriber.name

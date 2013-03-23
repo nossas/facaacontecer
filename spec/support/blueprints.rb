@@ -5,7 +5,7 @@ User.blueprint do
   name        { "Juquinha da silva" }
   birthday    { "1988/11/12" }
   email       { "juquinha@zip.net" }
-  cpf         { "12312312312" }
+  cpf         { "11144477735" }
   address_street { "Rua Belisario Tavora 500" }
   address_extra { "Laranjeiras" }
   address_number { "100" }
@@ -19,10 +19,11 @@ end
 
 Subscription.blueprint do
   value       { 10 }
-  status      { nil }
   code        { "TOKEN" }
   project     { Project.make! }
   subscriber  { User.make! }
+  anonymous   { false }
+  gift        { true }
 end
 
 
