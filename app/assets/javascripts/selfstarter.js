@@ -144,10 +144,7 @@ Selfstarter = window.Selfstarter =  {
     $('#subscription_value', this.cardForm).val(value);
     $('.wrap', this.cardForm).detach();
 
-    var self = this;
-    setTimeout(function(){
-      self.cardForm.submit();
-    }, 3000);
+    this.cardForm.submit();
   },
 
   // Show a loading gif when needed
