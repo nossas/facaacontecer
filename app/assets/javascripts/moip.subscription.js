@@ -111,15 +111,18 @@ MoipSubscription = {
     var customer  = this.buildCustomer(customer);
     var moip      = new MoipAssinaturas(token);
 
+    // Subscription Code ( needed for event subscription.created )
+    var code      = new Date().getTime();
+
     // Cleaning error messages
     this.error_message.html('');
 
-    // Creating a subscription for a new user the new user
+    // Creating a subscription for a new user
     moip.subscribe(
       new Subscription()
 
-      // Generate code based on time
-      .with_code(new Date().getTime())
+      // Generated code based on time
+      .with_code(code)
 
       // The customer
       .with_new_customer(customer)
@@ -138,17 +141,20 @@ MoipSubscription = {
         Selfstarter.cardButton.removeClass('loading');
 
         // Show all errors above the submit button
-        for ( i = 0; i < response.errors.length; i++) {
+        for ( var i = 0, len = response.errors.length; i < len; i++) {
           var error = response.errors[i].description;
-          self.error_message.append($('<li>').text(error));
+          self.error_message.append($('<li/>').text(error));
         }
       } 
       // If no errors were found
       else {
 
-        // The codes 1, 2 and 3 are good ones, so show
+        // The codes 1, 2 and 3 are good ones, so we can 
+        // move to the nest step: save the subscription into our db
         Selfstarter.saveSubscription(
-          customer.code, 
+          code, 
+          // We receive 00,00 values. This removes the two ,00 
+          // from the end
           parseInt(response.amount.toString().slice(0,-2))
         );
 

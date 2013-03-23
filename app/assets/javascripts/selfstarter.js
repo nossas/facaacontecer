@@ -23,7 +23,7 @@ Selfstarter = window.Selfstarter =  {
 
   // Buttons
   button:     $('button.step_two'),
-  cardButton: $('input.card_submit'),
+  cardButton: $('button.card_submit'),
 
   
   // The values that the user selects 
@@ -49,7 +49,7 @@ Selfstarter = window.Selfstarter =  {
       '#user_form ajax:beforeSend'    : 'startLoader',
       '#user_form ajax:success'       : 'userDataSent',
       '#user_form ajax:error'         : 'userDataNotSent',
-      'button.card_submit click'       : 'subscribeToPlan',
+      'button.card_submit click'      : 'subscribeToPlan',
       '.values li click'              : 'chooseValue',
 
 
