@@ -1,6 +1,10 @@
 class WebhooksController < ApplicationController
+  protect_from_forgery except: :subscription 
+  
+  
   inherit_resources
   respond_to :json
+
 
   before_filter only: [:subscription] do
     unless authorization?
@@ -24,6 +28,8 @@ class WebhooksController < ApplicationController
 
   protected
     def authorization?
+      logger.info(request.env)
+
       if request.env['Authorization']
         return request.env['Authorization'] == ENV['MOIP_AUTHORIZATION']
       end
