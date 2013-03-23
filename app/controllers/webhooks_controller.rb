@@ -28,10 +28,8 @@ class WebhooksController < ApplicationController
 
   protected
     def authorization?
-      logger.info(request.env)
-
-      if request.env['Authorization']
-        return request.env['Authorization'] == ENV['MOIP_AUTHORIZATION']
+      if request.env['HTTP_AUTHORIZATION']
+        return request.env['HTTP_AUTHORIZATION'] == ENV['MOIP_AUTHORIZATION']
       end
       return false
     end
