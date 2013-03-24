@@ -119,5 +119,5 @@
           h2 Nossos novos apoiadores
           .text
             ul.subscribers
-              - @project.subscribers.each do |subscriber|
-                li= subscriber.name
+              - @project.subscribers.pluck(:name).each do |name|
+                li= name

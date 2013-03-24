@@ -14,13 +14,4 @@ class Subscription < ActiveRecord::Base
 
   # Scope for completed payments
   scope :raised, where(status: :active)
-
-
-
-  def self.find_and_update_status(options)
-    self.find_by_code(options[:resource][:code].to_s) do |s|
-      s.status = options[:resource][:status].downcase
-      s.save!
-    end
-  end
 end

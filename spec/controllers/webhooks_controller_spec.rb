@@ -23,18 +23,7 @@ describe WebhooksController do
         expect(response.status).to eq(401)
       end
     end
-  
 
-    context "When a subscription.created or a subscription.updated event is received" do
-      it "should update the status of a subscription" do
-        
-        subscription = Subscription.make!(code: 'random')
-        controller.stub(:authorization?).and_return(true)
-
-        post :subscription, { event: 'subscription.created', resource: { code: "random", status: 'ACTIVE'} }, format: :json
-        expect(response.body).to eq('{"status":"active"}')
-      end
-    end
 
   end
 

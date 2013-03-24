@@ -7,6 +7,13 @@ gem 'inherited_resources'
 gem 'slim-rails'
 gem 'active_decorator'
 
+# This gem allow us to mantain only one dyno
+# for jobs we want to run. So we don't to expend any money
+# to run delayed jobs
+gem 'sucker_punch'
+
+# We will also use httparty with our workers
+gem 'httparty'
 
 # An old gem to validate cpf
 gem "cpf_validator"
@@ -46,6 +53,7 @@ end
 
 group :development, :test do
   gem 'rspec-rails'
+  gem 'mailcatcher'
 end
 
 group :test do
