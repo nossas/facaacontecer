@@ -119,5 +119,5 @@
           h2 Nossos novos apoiadores
           .text
             ul.subscribers
-              - Subscription.raised.each do |subscription|
-                li= subscription.subscriber.name
+              - @project.subscribers.each do |subscriber|
+                li= subscriber.name

@@ -15,7 +15,7 @@ class WebhooksController < ApplicationController
 
 
   def subscription
-    if params[:event] == "subscription.created" or params[:event] == "subscription.updated"
+    if params[:event] == "invoice.created" or params[:event] == "subscription.updated"
       s = Subscription.find_and_update_status(params)
       return render json: { status: s.status }
     end

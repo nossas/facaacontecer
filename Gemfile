@@ -7,6 +7,7 @@ gem 'inherited_resources'
 gem 'slim-rails'
 gem 'active_decorator'
 
+
 # An old gem to validate cpf
 gem "cpf_validator"
 
@@ -20,8 +21,9 @@ group :development do
 end
 
 group :production do
-  gem 'thin'
   gem 'pg'
+  gem 'unicorn'
+  gem 'newrelic_rpm'
   gem 'heroku-deflater'
 end
 
