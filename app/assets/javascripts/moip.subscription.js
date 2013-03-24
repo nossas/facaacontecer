@@ -136,7 +136,7 @@ MoipSubscription = {
 
       // Oh-oh, something went wrong
       if (response.has_errors()) {
-        
+        console.log(response);
         // Remove the loading icon
         Selfstarter.cardButton.removeClass('loading');
 
@@ -148,7 +148,6 @@ MoipSubscription = {
       } 
       // If no errors were found
       else {
-
         // The codes 1, 2 and 3 are good ones, so we can 
         // move to the nest step: save the subscription into our db
         Selfstarter.saveSubscription(

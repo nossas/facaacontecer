@@ -54,7 +54,6 @@ Selfstarter = window.Selfstarter =  {
 
 
       // Steps validation
-
       'button.step_one click'  : 'validateSiblingInput',
       'button.step_two click'  : 'validateSiblingInput'
 
@@ -76,6 +75,9 @@ Selfstarter = window.Selfstarter =  {
 
   },
 
+
+  // Function to change the hidden select named value
+  // Everytime the user clicks, he trigger this function
   chooseValue: function(evt, target) {
     var el = $(evt.target);
     $('ol.values li').removeClass('selected');
@@ -89,6 +91,12 @@ Selfstarter = window.Selfstarter =  {
 
   },
 
+
+
+  //TODO: refactor this
+  // Basically this function validates every single field
+  // from the User Form. Mostly because parsley doesn't trigger
+  // in parts.
   validateSiblingInput: function(event, target) {
     event.preventDefault();
 
@@ -117,7 +125,9 @@ Selfstarter = window.Selfstarter =  {
     }
     
   },
-
+    
+  // When the user clicks on SUBMIT, we prevent
+  // and create the subscription using the moip.subscription.js
   subscribeToPlan: function(event, target) {
     // We'll not submit the known way
     event.preventDefault();
@@ -125,7 +135,7 @@ Selfstarter = window.Selfstarter =  {
     // Ugly name, I know
     // I prefer 'subscriber'
     var billing_info = this.cardForm.toObject(this.toObjectOptions)[0];
-    var customer     = this.mergeObjects(this.subscriber, billing_info);
+    var customer     = $.fn.extend(this.subscriber, billing_info);
     
     this.plan = this.planField.val();
 
@@ -139,12 +149,22 @@ Selfstarter = window.Selfstarter =  {
   },
    
   // Saving the subscription
+  // This function is triggered inside MoiSubscription object
+  // and it just submit the form without some useless fields
+  // like credit card number (we don't save this)
+  // and others.
   saveSubscription: function(code, value){
     $('#subscription_code', this.cardForm).val(code);
     $('#subscription_value', this.cardForm).val(value);
     $('.wrap', this.cardForm).detach();
 
-    this.cardForm.submit();
+    var self = this;
+
+    // A small timeout to prevent multiple forms being throwed 
+    // at the same time.
+    setTimeout(function(){
+      self.cardForm.submit();
+    }, 3000);
   },
 
   // Show a loading gif when needed
@@ -153,6 +173,11 @@ Selfstarter = window.Selfstarter =  {
   },
 
   // Something went wrong
+  // When the user form fails to be submited
+  // this function show all errors and send the
+  // user back to the first screen.
+  // TODO: make a more inteligent JS, that
+  // knows on which screen the user missed.
   userDataNotSent: function(evt, target, data) {
     this.button.removeClass('loading');
     $('fieldset.two').fadeOut(0);
@@ -168,6 +193,9 @@ Selfstarter = window.Selfstarter =  {
   },
 
   // User already sent data? OK! Let's show the billing form
+  // After submiting and saving the user, we can now show
+  // the Subscription form (and change attributes to match our
+  // desires
   userDataSent: function(evt, target, data){
 
     this.cardForm.attr('action', data.subscription_url);
@@ -187,16 +215,6 @@ Selfstarter = window.Selfstarter =  {
     }, 1000);
   },
 
-
-  // A function to merge objects (obj1 + obj2 = obj3)
-  mergeObjects: function(obj1, obj2) {
-    var obj3 = {};
-    for (var attrname in obj1) { obj3[attrname] = obj1[attrname]; }
-    for (var attrname in obj2) { obj3[attrname] = obj2[attrname]; }
-    return obj3;
-   },
-
-
    // Prevent the user to do things before we can build an user
   disableCreditFormFields: function(){
    $('input, select', this.cardForm).attr('disabled', 'disabled'); 
@@ -213,8 +231,6 @@ Selfstarter = window.Selfstarter =  {
   populateAddressFields: function(data) {
     this.loader.fadeOut();
     
-
-
     var data = data.cep.data;
 
     // Return nothing if the query didn't find anything
@@ -229,7 +245,7 @@ Selfstarter = window.Selfstarter =  {
     
   },
 
-  // Make a request to a SSL api that return CEP info
+  // Make a request to a SSL api that returns CEP info
   getZipcodeInfo: function(){
     this.loader.fadeIn();
     var self = this;
