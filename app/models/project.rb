@@ -7,7 +7,7 @@ class Project < ActiveRecord::Base
   has_many :subscriptions
 
   # Supporters are the people who supported the campaign with a valid payment token
-  has_many :subscribers, through: :subscriptions, conditions: 'status = "active"'
+  has_many :subscribers, through: :subscriptions, conditions: "status = 'active'"
 
   # Attributes that should be present when creating or updating a project
   validates :title, :description, :goal, :expiration_date, presence: true
