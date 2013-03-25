@@ -1,4 +1,8 @@
-# Selfstarter
+#Selfstarter
+
+- [![Build Status](https://travis-ci.org/meurio/selfstarter.png?branch=master)](https://travis-ci.org/meurio/selfstarter)
+- [![Code Climate](https://codeclimate.com/github/meurio/selfstarter.png)](https://codeclimate.com/github/meurio/selfstarter)
+
 Selfstarter makes it easy to roll your own crowdfunding site. To get started, fork this repository and change around ```config/settings.yml``` to suit your needs.
 
 [See it in action](http://selfstarter.us)
