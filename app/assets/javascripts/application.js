@@ -11,6 +11,7 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
+//= require select2
 //= require parsley
 //= require jquery_ujs
 //= require jquery.to_json

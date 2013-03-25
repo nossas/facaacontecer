@@ -10,7 +10,7 @@ pt-BR:
         address_extra: "Casa? Apartamento?"
         address_number: "Qual o número"
         address_district: "Qual bairro?"
-        state: "UF?"
+        state: "Estado?"
         city: "E a cidade?"
         zipcode: "Pra te ajudar, qual o seu CEP?"
         phone: "Qual o seu telefone?"

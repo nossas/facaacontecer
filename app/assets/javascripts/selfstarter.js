@@ -72,6 +72,9 @@ Selfstarter = window.Selfstarter =  {
     $('.cep').mask('99999-999');
     $('.phone').mask('(99) 99999999?9');
     $('.money').maskMoney();
+    $('select').select2({
+      width: "20%",
+    });
 
   },
 
@@ -242,6 +245,7 @@ Selfstarter = window.Selfstarter =  {
     $('#user_address_district').val(data.bairro);
     $('#user_city').val(data.cidade);
     $('#user_state').val(data.uf.toUpperCase());
+    $('select#user_state').select2();
     
   },
 

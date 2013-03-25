@@ -48,8 +48,8 @@
         = f.label :city
         = f.text_field :city, class: [:addr_city], data: { required: true, minlength: 3, trigger: "keyup change focusin" }, placeholder: t('placeholder.user.city')
 
-        = f.label :state
-        = f.select :state, options_for_select(states_for_select), class: [:addr_state], html: { data: { required: true } }
+        = f.label :state, class: [:show, :usr_state]
+        = f.select :state, options_for_select(states_for_select), {}, class: [:addr_state, :select2], data: { required: true, placeholder: "Estado" }
 
         = f.hidden_field :country, value: 'BRA'
       p

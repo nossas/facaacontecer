@@ -6,6 +6,7 @@ gem 'rails', '~> 3.2.13'
 gem 'inherited_resources'
 gem 'slim-rails'
 gem 'active_decorator'
+gem 'coveralls', require: false
 
 # This gem allow us to mantain only one dyno
 # for jobs we want to run. So we don't to expend any money
@@ -42,6 +43,7 @@ group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
+  gem "select2-rails"
 
   # Using asset_sync to send our CSS/HTML/images to Amazon
   # If you don't use heroku or Amazon, please comment the line
@@ -64,6 +66,7 @@ group :test do
   gem 'shoulda'
   gem 'jasmine'
   gem 'cpf_cnpj'
+  
 end
 
 # jQuery

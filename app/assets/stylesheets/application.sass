@@ -2,6 +2,7 @@
 @import columnal/grid
 @import compass/css3
 @import icomoon
+@import select2
 @import "https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,700"
 
 // Color settings
@@ -376,7 +377,7 @@ ol.steps
   input.date, input.cpf, input.addr_extra, input.addr_number, input.addr_city
     width: 42%
     display: inline-block
-  input.date, input.addr_number, select#user_state
+  input.date, input.addr_number
     margin-left: auto
     margin-right: 0 !important
     right: 0
@@ -385,8 +386,11 @@ ol.steps
   input.city
     width: 50%
   select#user_state
-    padding: .4em
     font-size: 1.2em
+  label.usr_state
+    padding-left: 15%
+    padding-top: .6em
+
   label
     display: none
   p
@@ -396,6 +400,9 @@ ol.steps
   text-align: center
 .card_submit
   width: 90%
+label.expire_date
+  padding-top: .5em
+  color: #666
 ol.values
   li
     margin: 0 1%
@@ -479,3 +486,13 @@ input.parsley-success, textarea.parsley-success
 .call_to_action
   +grid(5)
   +last
+
+
+// Select2
+.select2-results
+  li
+    margin-left: 0
+#s2id_user_state
+  margin-top: .2em
+.select2-container, a.select2-choice
+  padding: .4em
