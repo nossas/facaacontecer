@@ -67,6 +67,7 @@ GEM
       compass (>= 0.10.0)
     compass-rails (1.0.3)
       compass (>= 0.12.2, < 0.14)
+    cpf_cnpj (0.1.0)
     cpf_validator (0.2.0)
       activemodel (>= 3.0)
     cucumber (1.2.3)
@@ -285,6 +286,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   compass-columnal-plugin
   compass-rails
+  cpf_cnpj
   cpf_validator
   cucumber-rails
   database_cleaner

@@ -63,6 +63,7 @@ group :test do
   gem 'database_cleaner'
   gem 'shoulda'
   gem 'jasmine'
+  gem 'cpf_cnpj'
 end
 
 # jQuery
