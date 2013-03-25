@@ -1,11 +1,11 @@
 require 'machinist/active_record'
-
+require 'cpf_cnpj'
 
 User.blueprint do
   name        { "Juquinha da silva" }
   birthday    { "1988/11/12" }
-  email       { "juquinha@zip.net" }
-  cpf         { "11144477735" }
+  email       { "juquinha#{sn}@zip.net" }
+  cpf         { CPF.generate }
   address_street { "Rua Belisario Tavora 500" }
   address_extra { "Laranjeiras" }
   address_number { "100" }

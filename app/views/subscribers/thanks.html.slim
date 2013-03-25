@@ -1,4 +1,37 @@
-h1 Muito Obrigado
-h4 Você acredita em um futuro melhor, uma cidade melhor e você não imagina o quanto isso é importante
-
+= content_for :title, "Obrigado de coração!"
+.container
+  .scroll
+    #panel-1.panel
+      header
+        .row
+          = image_tag "header.png"
+      section.thanks
+        .row
+          .message
+            h1 Obrigado por fazer acontecer!
+            .text
+              p
+                |Isso é muito importante para o Meu Rio e nós agradecemos muito a confiança depositada nessa ideia. Graças a você poderemos continuar independentes e mobilizar cada vez mais pessoas.
+              p
+                |Quer continuar fazendo o Meu Rio acontecer? Compartilhe! E se precisar de mais um incentivo, lá vai: criamos um link único de compartilhamento, um link só seu, e se 5 pessoas financiarem o Meu Rio clicando no seu link você leva uma camisa do Meu Rio! Bonitona!
+              /p
+                |E se conseguir 10 pessoas você pode escolher entre a camisa bonitona e a camisa bonitassa!
+                //(o benefício aí vira a escolha e não o produto em si)
+              p
+                |Faça Acontecer! Compartilhe!
+              /p
+                |Por cariocas mais independentes,
+                br
+                |Meu Rio.
+            .share
+              .facebook
+                = link_to image_tag('facebook_button.png'), "http://www.facebook.com/sharer.php?s=100&p[title]=YOUR_TITLE&p[summary]=Obrigado por apoiar o MeuRio!&p[url]=#{invite_url(code: @subscriber.invite.code)}&p[images][0]=//s3.amazonaws.com/meu-rio-production/crowdfunding/assets/victory-3-cdef16a48da42884edf2e001290ea9af.jpg"
+                span Compartilhe no facebook!
+            .share
+              .unique
+                label
+                  | Copie e cole o link abaixo no facebook, email ou twitter!
+                  = text_field :link, :unique, value: invite_url(code: @subscriber.invite.code)
+          .call_to_action
+            = image_tag "share_infographic.png"
 
