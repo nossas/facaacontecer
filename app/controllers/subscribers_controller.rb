@@ -7,7 +7,7 @@ class SubscribersController < InheritedResources::Base
   
   # If the subscription process was complete, we set a session key to show the thanks page
   # Just because we don't other people to see if they aren't subscribers yet.
-  before_filter only: [:thanks] { redirect_to root_path unless session[:subscriber_ok] }
+  before_filter only: [:thanks] { redirect_to root_path if !session[:subscriber_ok] and !Rails.env.development? }
   before_filter only: [:thanks] { @subscriber = User.find_by_id(params[:id]) }
 
 

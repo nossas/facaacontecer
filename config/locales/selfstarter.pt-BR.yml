@@ -61,5 +61,6 @@ pt-BR:
     other: "<strong>%{count}</strong> <span>apoiadores</span>"
   goal:
     reached_of_html: "<strong>%{current}</strong> <span>de %{goal}</span>"
-    days_remaining_html: "<strong>%{days} dias</strong><span>restantes</span>"
+    days_remaining_html: "<strong>%{days}</strong><span>dias para o fim do desafio</span>"
+    people_so_far_html: "<strong>%{days}</strong><span>pessoas fazendo o Meu Rio acontecer</span>"
     progress_text: "<strong>%{percent}%</strong> alcançados"

@@ -14,18 +14,26 @@ module ProjectDecorator
   end
 
   def days_remaining
+    total = 45
     days = expiration_date ? end_date : raw("&infin;")
+    now = ((total - days) * 100)/total.to_f
+    content_tag(
+      :div, content_tag(:div, nil, id: :p_progress, style: "width: #{now}%"),
+      id: :p_progress_bg, class: :small
+    ) +
     t('goal.days_remaining_html', days: days)
   end
 
-
   def progress
-    if revenue < goal
-      content_tag(
-        :div, content_tag(:div, nil, id: :progress, style: "width: #{percent}"), 
-        id: :progress_bg, class: :small
-      )
-    end
+    current = self.subscribers.size
+    goal    = 1000.00
+    now = (current * 100)/goal
+
+    content_tag(
+      :div, content_tag(:div, nil, id: :progress, style: "width: #{now}%"), 
+      id: :progress_bg, class: :small
+    ) +
+    t('goal.people_so_far_html', days: current)
   end
 
 

@@ -8,7 +8,10 @@
       section.thanks
         .row
           .message
-            h1 Obrigado por fazer acontecer!
+            h1 
+              |#{@subscriber.first_name},
+              br
+              |Obrigado por fazer acontecer!
             .text
               p
                 |Isso é muito importante para o Meu Rio e nós agradecemos muito a confiança depositada nessa ideia. Graças a você poderemos continuar independentes e mobilizar cada vez mais pessoas.
@@ -24,16 +27,18 @@
                 br
                 |Meu Rio.
             .share
-              .facebook
-                
-
-                = link_to image_tag('facebook_button.png'), "http://www.facebook.com/sharer.php?s=100&p[title]=Clique aqui para virar um financiador do Meu Rio!&p[summary]=Acabei de fazer minha parte e com uma pequena contribuição podemos continuar essa história e mobilizar cada vez mais pessoas!&p[url]=#{invite_url(code: @subscriber.invite.code)}&p[images][0]=//s3.amazonaws.com/meu-rio-production/crowdfunding/assets/victory-3-cdef16a48da42884edf2e001290ea9af.jpg"
-                span Compartilhe no facebook!
-            .share
               .unique
                 label
                   | Copie e cole o link abaixo no facebook, email ou twitter!
                   = text_field :link, :unique, value: invite_url(code: @subscriber.invite.code)
+            .share
+              .facebook
+                
+
+                = link_to image_tag('facebook_button.png'), "http://www.facebook.com/sharer.php?s=100&p[title]=Clique aqui para virar um financiador do Meu Rio!&p[summary]=Acabei de fazer minha parte e com uma pequena contribuição podemos continuar essa história e mobilizar cada vez mais pessoas!&p[url]=#{invite_url(code: @subscriber.invite.code)}&p[images][0]=//s3.amazonaws.com/meu-rio-production/crowdfunding/assets/victory-3-cdef16a48da42884edf2e001290ea9af.jpg", target: '_blank'
+
+                span Compartilhe no facebook!
+
           .call_to_action
             = image_tag "share_infographic.png"
 

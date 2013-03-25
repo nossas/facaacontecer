@@ -286,6 +286,7 @@ li.project
 // Header style
 header
   padding-bottom: 1.5em
+  text-align: center
   
 
 // Video + Header style
@@ -294,20 +295,60 @@ header
   iframe
     width: 100% !important
   .title
-    +grid-subcolumn(7, 6)
-    +grid-prefix(2)
-    +last
+    margin-top: 1em
   h1
     font-weight: 300 !important
     color: darken(gray, 20%)
-    text-align: right
-    font-size: 3em
-    margin-top: .4em
+    text-align: center 
+    font-size: 2.6em
+    margin-top: -.2em
     margin-right: 0 !important
     padding-right: .4em !important
 
+// Progress bars
+.days, .people
+  width: 47.5%
+  display: inline-block
+.days
+  margin-right: 5%
+  margin-left: 0%
+.people
+  +last
+.progress
+  margin: 1em 0
+  margin-bottom: .2em
+  overflow: hidden
+  strong
+    font-size: 2.5em
+    padding-right: .2em
+  span
+    font-size: .9em
+    vertical-align: center
+    position: relative
+    top: -.8em
+    color: darken(gray,15%)
+.progress .days strong
+  color: $orange
+.progress .people strong
+  color: $green
+#progress_bg, #p_progress_bg
+  display: inline-block
+  background: lighten(gray, 10%)
+  width: 100%
+  height: 25px
+  margin-bottom: .2em
 
+#progress_bg, #p_progress_bg, #p_progress, #progress
+  +border-radius(8px)
 
+#p_progress, #progress
+  height: 100% !important
+#p_progress
+  background: $orange
+  +background-image(linear-gradient(lighten($orange, 10%), $orange))
+#progress
+  background: $green
+  +background-image(linear-gradient(lighten($green, 10%), $green))  
 
 
 
@@ -474,15 +515,34 @@ input.parsley-success, textarea.parsley-success
   .text
     padding: 0
     width: 100%
-    font-weight: 200
+    font-weight: 300
   .share  
     background: lighten(lightgray, 12%)
-    padding: .8em .6em
-    margin: .4em 0
+    padding: .8em 1em
+    margin: .8em 0
     +border-radius(6px)
+    label
+      font-size: 1.2em
+      display: block
+      color: gray
     input
       display: block
       font-size: 1.4em
+      width: 92%
+      margin-top: .4em
+  .facebook
+    a
+      display: inline-block
+      margin-top: 1em
+    span
+      display: inline-block
+      position: relative
+      font-size: 1.6em
+      line-height: 1.2em
+      top: -1em
+      left: 1em
+      width: 160px
+      color: gray
 .call_to_action
   +grid(5)
   +last
@@ -496,3 +556,8 @@ input.parsley-success, textarea.parsley-success
   margin-top: .2em
 .select2-container, a.select2-choice
   padding: .4em
+
+
+
+
+
