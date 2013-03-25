@@ -11,7 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130321074658) do
+ActiveRecord::Schema.define(:version => 20130325000209) do
+
+  create_table "invites", :force => true do |t|
+    t.string   "code"
+    t.integer  "user_id"
+    t.integer  "parent_user_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "invites", ["code", "user_id"], :name => "index_invites_on_code_and_user_id", :unique => true
+  add_index "invites", ["user_id", "parent_user_id"], :name => "index_invites_on_user_id_and_parent_user_id"
 
   create_table "projects", :force => true do |t|
     t.string   "title"

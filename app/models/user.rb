@@ -1,6 +1,10 @@
 class User < ActiveRecord::Base
   has_many :subscriptions, foreign_key: :subscriber_id, dependent: :destroy
-  belongs_to :project
+  has_one :invite
+  has_many :invitees, class_name: :Invite, foreign_key: :parent_user_id
+
+  delegate :project, to: :subscription, allow_nil: true
+
   validates :cpf, cpf: true
   validates_date :birthday, before: -> { 14.years.ago }
   validates_uniqueness_of :email, :cpf
@@ -32,6 +36,8 @@ class User < ActiveRecord::Base
     :phone,
     :country
 
+  after_create :generate_invite_code
+
 
 
   def as_json(options={})
@@ -41,4 +47,10 @@ class User < ActiveRecord::Base
     }.merge(options)
   end
 
+
+  private
+    def generate_invite_code
+      invite = self.build_invite(code: SecureRandom.hex(6))
+      invite.save!
+    end
 end

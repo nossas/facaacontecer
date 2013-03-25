@@ -6,10 +6,7 @@ Selfstarter::Application.routes.draw do
     end
   end
 
-
-  # Moip Webhooks/Notifications
-  post 'webhooks/subscriptions', to: 'webhooks#subscription', as: :subscription_webhook
-
-  get '/nosso-muito-obrigado-de-coracao', to: "subscribers#thanks", as: :thank_you
+  get '/invite/:code',  to: "projects#index",     as: :invite
+  get '/obrigado-de-coracao/:id', to: "subscribers#thanks", as: :thank_you
   root :to => 'projects#index'
 end
