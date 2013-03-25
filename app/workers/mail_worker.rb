@@ -3,5 +3,6 @@ class MailWorker
 
 
   def perform(sub)
+    SubscriptionMailer.successful_create_message(sub).deliver
   end
 end
