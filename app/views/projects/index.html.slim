@@ -1,14 +1,9 @@
 = content_for :title, @project.title
 
-.container
-  .navigation.hidden
-    = link_to "o desafio", "#panel-1"
-    = link_to "nossa história", "#panel-2"
-    = link_to "nossas vitórias", "#panel-3"
-    = link_to "nossas plataformas", "#panel-4"
-    = link_to "O desafio", "#panel-5"
+
+.container#panel-1
   .scroll
-    #panel-1.panel
+    .panel
       header
         .row
           = image_tag "header.png"
@@ -46,7 +41,9 @@
               = render 'subscribers/form'
             .step2.hidden
               = render 'subscriptions/form'
-    #panel-2.panel.gray
+.container#panel-2.lightgreen
+  .scroll
+    .panel
       .row
         .our_history.page
           h2 Sobre o Meu Rio 
@@ -60,7 +57,10 @@
               |Hoje, somos mais de 70.000 membros espalhados por todo o Rio de Janeiro. Para continuar assim, dependemos dos cariocas de alma e coração que querem um Rio mais justo e democrático. Não precisamos de muito. Mas precisamos de <strong>MUITOS</strong>. 
               br
               |Muita gente que pode contribuir com pouco para ajudar a financiar esse projeto de todos nós. Assista ao vídeo, conheça as nossas recompensas e faça o Meu Rio acontecer!  
-    #panel-3.panel.gray
+
+.container#panel-3.gray
+  .scroll
+    .panel
       .row
         .our_victories.page
           h2 Algumas de nossas vitórias
@@ -88,23 +88,27 @@
                 |Resgatamos um projeto de lei e uma proposta de emenda constitucional que estavam engavetados há meses na Alerj. Graças à participação dos membros do Meu Rio dentro e fora da Assembleia, conseguimos a aprovação da Lei da Ficha Limpa Estadual por unanimidade! 
               span.signatures 17.873
               span.text Assinaturas
-
-    #panel-4.panel.lightgreen
+.container#panel-4.lightgreen
+  .scroll
+    .panel
       .row
         .our_platforms
           h2 Nossas plataformas de mobilização 
           .text
             = link_to image_tag("platforms.png"), 'http://www.meurio.org.br/paginas/sobre_nos'
   
-
-    #panel-5.panel.gray
+.container#panel-5.gray
+  .scroll
+    .panel
       .row
         .more_contributors
           h2 Quantos mais financiadores, mais mobilização e maior a retribuição!
           .text
             = image_tag "rewards.png"
-    
-    #panel-6.panel.lightgreen
+
+.container#panel-6.lightgreen
+  .scroll
+    .panel
       .row
         .the_crowd
           h2 1.000 apoiadores ou mais
@@ -112,9 +116,17 @@
             h3 O bagulho fica sério! 
             p
               | Além de todas as recompensas anteriores, vamos produzir uma celebração inesquecível para todas as pessoas que fazem o Meu Rio acontecer! 
-    
-    #panel-7.panel.gray
+
+.container#panel-7.gray
+  .scroll
+    .panel
       .row
+        .our_colaborators
+          h2 Nossos novos apoiadores
+          .text
+            ul.subscribers
+              - @project.subscribers.pluck(:name).each do |name|
+                li= name
         .our_contributors
           h2 Nossos primeiros apoiadores
           .text 
@@ -122,9 +134,4 @@
               - initial_colaborators.each do |sub|
                 li= sub
 
-        .our_colaborators
-          h2 Nossos novos apoiadores
-          .text
-            ul.subscribers
-              - @project.subscribers.pluck(:name).each do |name|
-                li= name
+

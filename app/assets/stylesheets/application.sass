@@ -20,7 +20,7 @@ $link:        $green
 // Defining Columnal Settings
 // Check http://www.columnal.com/ to know more.
 // Check https://github.com/diogob/compass-columnal-plugin for documentation
-$columnal-grid-width: 1100px !default
+$columnal-grid-width: 1000px !default
 $columnal-columns: 12 !default
 
 
@@ -41,28 +41,21 @@ $columnal-columns: 12 !default
 
 
 .container
-  padding:    0
-  height:     100%  !important
-  width:      100%  !important
   min-width:  800px !important
-  height:     930px !important
-  min-height: 930px !important
+  height: 820px
 
 .row
   min-width: 960px
 
-.panel, .scroll
-  height: 930px
+.panel
   width: 100%
 
-.scroll
-  top: 0
-  left: 0
+
 
 // Defining default-style classes
 body
   color:        white
-  font-size:    100%
+  font-size:    .9em
   line-height:  1.4em
   color:        black
   font-family:  "Source Sans Pro", sans-serif
@@ -172,9 +165,10 @@ input[type='text']
 #panel-2, #panel-3, #panel-4
   background-image: image-url('pattern.png') 
 
-#panel-3, #panel-5
+#panel-3
+  height: 900px
 
-  height: 1000px
+#panel-3, #panel-5
   h2
     width: 60%
     margin-bottom: 1em
@@ -188,11 +182,11 @@ input[type='text']
     width: 70%
     margin-bottom: 1em
   height: 700px
-
+#panel-4
+  height: 600px
 #panel-5
   h2
     width: 55%
-    margin-bottom: 1em
   height: 800px
 
 
@@ -200,7 +194,7 @@ input[type='text']
   h2
     width: 50%
     margin-top: .6em
-  height: 700px
+  height: 600px
   background: $lightgreen image-url('crowd.png') repeat-x center bottom 
   +background-size(95%)
   .text
@@ -217,6 +211,8 @@ input[type='text']
     p
       padding: 1em
       padding-top: 0
+  .panel
+    background-image: image-url('pattern.png')
 
 #panel-7
   height: auto
@@ -238,7 +234,6 @@ input[type='text']
       +last
 .gray
   background-color: darken(gray, 20%)
-  background-image: image-url('pattern2.png')
 .lightgreen
   background-color: $lightgreen
 
@@ -286,7 +281,6 @@ li.project
 // Header style
 header
   padding-bottom: 1.5em
-  text-align: center
   
 
 // Video + Header style
