@@ -16,9 +16,9 @@ pt-BR:
         phone: "Qual o seu telefone?"
       subscription:
         plan: "Quero apoiar com..."
-        fullname: "Nome que está escrito no seu cartão"
-        card_number: "Número do seu cartão (só os números)"
-        expiration_date: "Qual a data de expiração (mês/ano)?"
+        fullname: "Nome que está escrito no seu cartão de crédito"
+        card_number: "Número do seu cartão de crédito (só os números)"
+        expiration_date: "Qual a data de expiração? (mês/ano)"
         anonymous: "Minha doação é anônima"
         gift: "Quero receber os presentes"
   placeholder:

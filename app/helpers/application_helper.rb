@@ -1,6 +1,20 @@
 # coding: utf-8
 module ApplicationHelper
 
+  def available_plans
+    # Value, Code in Moip
+    [
+      [9, '009'],
+      [15,'015'],
+      [20,'020'],
+      [50,'050'],
+      [80,'080'],
+      [100,'100'],
+      [150,'150'],
+      [250,'250']
+    ]
+  end
+
   def states_for_select
     [
       'AC',

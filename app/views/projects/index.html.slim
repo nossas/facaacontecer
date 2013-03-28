@@ -6,7 +6,11 @@
     .panel
       header
         .row
-          = image_tag "header.png"
+          .image
+            = image_tag "header.png"
+          .share
+            .fb-like[data-href=root_url data-send="false" data-layout="box_count" data-width="140" data-show-faces="false" data-lang="pt_BR" data-ref="home_top_right"]
+            = link_to "https://twitter.com/share", "Tweetar", class: "twitter-share-button", data: { url: root_url, via: "meurio", count: :vertical, related: "meurio", hashtags: "facaacontecer" }
       .row
         .about.page
           .video_and_header
@@ -37,9 +41,9 @@
                 span 3
                 span Contribuição 
             .errors
-            .step1
+            .step1.hidden
               = render 'subscribers/form'
-            .step2.hidden
+            .step2
               = render 'subscriptions/form'
 .container#panel-2.lightgreen
   .scroll
@@ -52,7 +56,7 @@
               |O
               strong 
                 |&nbsp;Meu Rio&nbsp;
-              | é uma mobilizadora independente. Isso quer dizer que não temos rabo preso com nenhum governo, político, partido ou empresa. 
+              | é independente. Isso quer dizer que não temos rabo preso com nenhum governo, político, partido ou empresa pública. 
               br
               |Hoje, somos mais de 70.000 membros espalhados por todo o Rio de Janeiro. Para continuar assim, dependemos dos cariocas de alma e coração que querem um Rio mais justo e democrático. Não precisamos de muito. Mas precisamos de <strong>MUITOS</strong>. 
               br
@@ -102,7 +106,7 @@
     .panel
       .row
         .more_contributors
-          h2 Quantos mais financiadores, mais mobilização e maior a retribuição!
+          h2 Mobilização é assim: não importa quanto você contribui, importa quanta gente faz o mesmo. Nossas recompensas também são! 
           .text
             = image_tag "rewards.png"
 
@@ -113,10 +117,8 @@
         .the_crowd
           h2 1.000 apoiadores ou mais
           .text
-            h3 O bagulho fica sério! 
-            p
-              | Além de todas as recompensas anteriores, vamos produzir uma celebração inesquecível para todas as pessoas que fazem o Meu Rio acontecer! 
-
+            p= image_tag 'panel-crowd-text.png'
+            p &nbsp;
 .container#panel-7.gray
   .scroll
     .panel

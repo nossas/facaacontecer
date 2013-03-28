@@ -15,28 +15,37 @@
 
     #value
       ol.values
-        li[data-value='01'] R$ 10
-        li.selected[data-value='02'] R$ 25
-        li[data-value='03'] R$ 50
+        li[data-value='009'] R$ 9
+        li.selected[data-value='015'] R$ 15
+        li[data-value='050'] R$ 50
         li[data-value='0'] Outro?
     #plan.zip.hidden
-      .wrap
-        p
-          = f.label :plan, class: :support
-          = f.select :plan, [[10, '01'], [25, '02'], [50, '03'], [100, '04']], data: { required: true, min: 9, placeholder: "Valor" }, class: :value
+      .wrap.plan_list.grey
+        h4 Escolha outro valor  
+        = f.label :plan, class: :support
+        = f.select :plan, options_for_select(available_plans), data: { required: true, min: 9, placeholder: "Valor" }, class: :value, selected: '02'
+        
+
     .subscriptions_fields
       = f.hidden_field :value 
       = f.hidden_field :code
 
     #options
-      .wrap
+      .wrap.grey
+        
+        .accept
+          = image_tag 'checkmark.png'
+          span Contribuirei uma vez por mês com este valor, debitado de meu cartão de crédito. 
         p
           = f.check_box :anonymous
           = f.label :anonymous
         p
-          = f.check_box :gift
+          = f.check_box :gift, checked: true
           = f.label :gift
+        
     #subscription_error_message
     = f.button :Contribuir!, class: [:btn, :card_submit]
+    .wrap.alert
+      small O envio dos seus dados é seguro. Não guardamos dados do cartão.
 
 

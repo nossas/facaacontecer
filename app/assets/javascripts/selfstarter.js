@@ -76,6 +76,11 @@ Selfstarter = window.Selfstarter =  {
       width: "20%",
     });
 
+
+    this.initializeSocialPlugin("//connect.facebook.net/en_US/all.js#xfbml=1", 'facebok-jssdk');
+    this.initializeSocialPlugin("//platform.twitter.com/widgets.js", 'twitter-wjs');
+    this.initializeSocialPlugin("//apis.google.com/js/plusone.js", 'g-plusone');
+
   },
 
 
@@ -258,8 +263,18 @@ Selfstarter = window.Selfstarter =  {
     })
   },
 
+  initializeSocialPlugin: function(src, sdk){
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = src ;
+      js.async = true;
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', sdk));
+  },
 
- 
+
 
   // Binding multiple events in an Object hash, avoiding repetition
   // Syntax:
