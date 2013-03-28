@@ -51,7 +51,9 @@ Selfstarter = window.Selfstarter =  {
       '#user_form ajax:error'         : 'userDataNotSent',
       'button.card_submit click'      : 'subscribeToPlan',
       '.values li click'              : 'chooseValue',
-
+      
+      // External references
+      '.external_link click'   : 'openPopUp',
 
       // Steps validation
       'button.step_one click'  : 'validateSiblingInput',
@@ -79,10 +81,19 @@ Selfstarter = window.Selfstarter =  {
 
     this.initializeSocialPlugin("//connect.facebook.net/en_US/all.js#xfbml=1", 'facebok-jssdk');
     this.initializeSocialPlugin("//platform.twitter.com/widgets.js", 'twitter-wjs');
-    this.initializeSocialPlugin("//apis.google.com/js/plusone.js", 'g-plusone');
+    //this.initializeSocialPlugin("//apis.google.com/js/plusone.js", 'g-plusone');
 
   },
 
+
+  openPopUp: function(event,target) {
+    event.preventDefault();
+    var link = $(event.target).parent('a');
+    var url = link.attr('href');
+    console.log(url);
+    window.open(url, '', 'width=600,height=300');
+
+  },
 
   // Function to change the hidden select named value
   // Everytime the user clicks, he trigger this function
