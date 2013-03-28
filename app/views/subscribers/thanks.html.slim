@@ -1,7 +1,7 @@
 = content_for :title, "Obrigado de coração!"
-.container
+.container#panel-1.thanks
   .scroll
-    #panel-1.panel
+    .panel
       header
         .row
           = image_tag "header.png"
@@ -11,34 +11,32 @@
             h1 
               |#{@subscriber.first_name},
               br
-              |Obrigado por fazer acontecer!
+              |Graças a você poderemos continuar
+              br
+              |independentes e mobilizar cada vez
+              br
+              |mais pessoas
             .text
               p
-                |Isso é muito importante para o Meu Rio e nós agradecemos muito a confiança depositada nessa ideia. Graças a você poderemos continuar independentes e mobilizar cada vez mais pessoas.
-              p
-                |Quer continuar fazendo o Meu Rio acontecer? Compartilhe! E se precisar de mais um incentivo, lá vai: criamos um link único de compartilhamento, um link só seu, e se 5 pessoas financiarem o Meu Rio clicando no seu link você leva uma camisa do Meu Rio! Bonitona!
-              /p
-                |E se conseguir 10 pessoas você pode escolher entre a camisa bonitona e a camisa bonitassa!
-                //(o benefício aí vira a escolha e não o produto em si)
-              p
-                |Faça Acontecer! Compartilhe!
-              /p
-                |Por cariocas mais independentes,
-                br
-                |Meu Rio.
-            .share
-              .unique
-                label
-                  | Copie e cole o link abaixo no facebook, email ou twitter!
-                  = text_field :link, :unique, value: invite_url(code: @subscriber.invite.code)
-            .share
-              .facebook
-                
+                |E como notícia boa merece ser espalhada, criamos um link exclusivo para você!
 
-                = link_to image_tag('facebook_button.png'), "http://www.facebook.com/sharer.php?s=100&p[title]=Clique aqui para virar um financiador do Meu Rio!&p[summary]=Acabei de fazer minha parte e com uma pequena contribuição podemos continuar essa história e mobilizar cada vez mais pessoas!&p[url]=#{invite_url(code: @subscriber.invite.code)}&p[images][0]=//s3.amazonaws.com/meu-rio-production/crowdfunding/assets/victory-3-cdef16a48da42884edf2e001290ea9af.jpg", target: '_blank'
+              p
+                |A ideia é simples e legal. Compartilhe o seu link com seus amigos. Se cinco amigos contribuirem por este link, você ganha uma camiseta bonitona. Se outros cinco fizerem o mesmo, você escolhe entre a camiseta e uma caderneta exclusiva feita a mão pela designer Anissa Daliry.
+              p
+                |Ah, e não esqueça de ver seu e-mail. Mandamos para você a confirmação da sua contribuição e informações sobre as recompensas criativas que você já ganhou e ainda pode ganhar.
 
-                span Compartilhe no facebook!
 
           .call_to_action
             = image_tag "share_infographic.png"
+
+
+          .share
+            .unique
+              label
+                | Copie e cole o link abaixo:
+                = text_field :link, :unique, value: invite_url(code: @subscriber.invite.code)
+            .facebook
+              
+              span Compartilhe no facebook:
+              = link_to image_tag('facebook_button.png'), "http://www.facebook.com/sharer.php?s=100&p[title]=Acabo de contribuir para a independência do Meu Rio.&p[summary]=Clique aqui e conheça as recompensas criativas que você e eu ganhamos por apoiar essa ideia e fazê-la acontecer.&p[url]=#{invite_url(code: @subscriber.invite.code)}&p[images][0]=#{image_path('og_image.png')}", class: 'external_link'
 

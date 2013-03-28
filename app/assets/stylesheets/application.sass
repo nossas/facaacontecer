@@ -55,7 +55,7 @@ $columnal-columns: 12 !default
 
 // Defining default-style classes
 html
-  zoom: 90%
+  zoom: 85% !important
 body
   color:        white
   font-size:    .9em
@@ -516,6 +516,7 @@ input.parsley-success, textarea.parsley-success
 
 // The thank you page
 .message
+  color: #333
   +grid(7)
   h1
     font-size: 2.5em
@@ -523,38 +524,45 @@ input.parsley-success, textarea.parsley-success
   .text
     padding: 0
     width: 100%
-    font-weight: 300
-  .share  
-    background: lighten(lightgray, 12%)
-    padding: .8em 1em
-    margin: .8em 0
-    +border-radius(6px)
-    label
-      font-size: 1.2em
-      display: block
-      color: gray
-    input
-      display: block
-      font-size: 1.4em
-      width: 92%
-      margin-top: .4em
+    font-weight: 400
+.thanks
+  min-height: 900px !important
+.thanks .share
+  +grid(12)
+  +background(linear-gradient(lighten(lightgray, 15%), lighten(lightgray, 5%)))
+  +box-shadow(0 1px 4px gray)
+  +last
+  +border-radius(6px)
+  padding: .8em 1em
+  margin: .8em 0
   .facebook
-    a
-      display: inline-block
-      margin-top: 1em
-    span
-      display: inline-block
-      position: relative
-      font-size: 1.6em
-      line-height: 1.2em
-      top: -1em
-      left: 1em
-      width: 160px
-      color: gray
+    +grid-subcolumn(12,5)
+    +last
+  .unique
+    +grid-subcolumn(12,7)
+
+  label, .facebook span
+    font-size: 1.2em
+    display: block
+    color: #666 
+  input
+    display: block
+    font-size: 1em
+    width: 92%
+    margin-top: .6em
+    +border-radius(6px)
+    +box-shadow(inset 0 1px 4px gray)
+  .facebook a
+    +transition(zoom .2s)
+    display: inline-block
+    margin-top: 1em
+    opacity: .8
+    &:hover
+      opacity: 1
+
 .call_to_action
   +grid(5)
   +last
-
 
 // Select2
 .select2-results
