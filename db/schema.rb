@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130325000209) do
+ActiveRecord::Schema.define(:version => 20130328215348) do
 
   create_table "invites", :force => true do |t|
     t.string   "code"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(:version => 20130325000209) do
     t.string   "video"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+    t.integer  "days"
   end
 
   create_table "subscriptions", :force => true do |t|

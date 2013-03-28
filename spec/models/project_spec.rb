@@ -29,6 +29,12 @@ describe Project do
       @project = stub_model(Project, save: true)
     end
 
+
+    describe ".days" do
+      project = Project.make!(expiration_date: (Date.current + 45.days))
+      project.days.should == 45
+    end
+
     describe ".percent" do
       it "should calculates the percent based on #goal and #current" do
         @project.stub(:revenue).and_return(2.5)

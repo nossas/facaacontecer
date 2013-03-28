@@ -10,11 +10,17 @@ User.blueprint do
   address_extra { "Laranjeiras" }
   address_number { "100" }
   address_district { "Laranjeiras" }
-  city       { "Rio de Janeiro" }
+  city        { "Rio de Janeiro" }
   state       { "RJ" }
   country     { "BRA" }
-  zipcode { "78132-500" }
+  zipcode     { "78132-500" }
   phone       { "(21) 97137471" }
+end
+
+
+Invite.blueprint do
+  user { User.make! }
+  code { sn }
 end
 
 Subscription.blueprint do
@@ -32,5 +38,5 @@ Project.blueprint do
   video { "http://www.youtube.com/embed/Ej5rGGTHy54" }
   goal  { 25000 }
   description     { "Minha descricao" }
-  expiration_date { Time.now + 45.days }
+  expiration_date { Date.current + 45.days }
 end

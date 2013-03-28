@@ -7,15 +7,20 @@ class Project < ActiveRecord::Base
   has_many :subscriptions
 
   # Supporters are the people who supported the campaign with a valid payment token
-  has_many :subscribers, through: :subscriptions, conditions: "status = 'active'", uniq: true
+  has_many :subscribers, through: :subscriptions, conditions: "status = 'active' and anonymous = 'false'", uniq: true
 
   # Attributes that should be present when creating or updating a project
   validates :title, :description, :goal, :expiration_date, presence: true
 
+  before_save :set_total_days
 
+
+  def set_total_days
+    self.days = (self.expiration_date - Date.current).to_i
+  end
 
   # The time the project expires
-  def end_date
+  def end_date 
     (self.expiration_date - Date.current).to_i
   end
 
