@@ -1,4 +1,9 @@
 pt-BR:
+  seo:
+    title: "Meu Rio: Faça Acontecer!"
+    description: "O Meu Rio não tem rabo preso com nenhum governo, político, partido ou empresa pública, e mais de 70 mil cariocas acreditam nessa ideia. Para que isso continue assim, visite http://facaacontecer.meurio.org.br"
+    og_description: "O Meu Rio não tem rabo preso com nenhum governo, político, partido ou empresa pública, e mais de 70 mil cariocas acreditam nessa ideia. Para que isso continue assim, visite http://facaacontecer.meurio.org.br"
+    keywords: 'meu rio, doação, contribua, financie, independente'
   helpers:
     label: &label
       user:
@@ -20,7 +25,7 @@ pt-BR:
         card_number: "Número do seu cartão de crédito (só os números)"
         expiration_date: "Qual a data de expiração? (mês/ano)"
         anonymous: "Minha doação é anônima"
-        gift: "Quero receber os presentes"
+        gift: "Quero receber as recompensas"
   placeholder:
     <<: *label
   activerecord:
