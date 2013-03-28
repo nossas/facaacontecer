@@ -14,6 +14,7 @@ module ProjectDecorator
   end
 
   def days_remaining
+    days = days.to_i
     remaining = expiration_date ? end_date : raw("&infin;")
     now = ((days - remaining) * 100)/days.to_f
     content_tag(
