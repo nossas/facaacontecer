@@ -16,7 +16,7 @@ class Project < ActiveRecord::Base
 
   # The time the project expires
   def end_date
-    (self.expiration_date - Time.now.day).day
+    (self.expiration_date - Date.current).to_i
   end
 
   # The revenue of the project so far
