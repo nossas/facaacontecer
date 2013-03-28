@@ -73,8 +73,8 @@ Selfstarter::Application.configure do
 
 
   # Email sending
-  ActionMailer::Base.delivery_method = :smtp   
-  ActionMailer::Base.smtp_settings = {
+  config.action_mailer.delivery_method = :smtp   
+  config.action_mailer.smtp_settings = {
     :address        => 'smtp.sendgrid.net',
     :port           => '587',
     :authentication => :plain,
@@ -82,5 +82,9 @@ Selfstarter::Application.configure do
     :password       => ENV['SENDGRID_PASSWORD'],
     :domain         => 'heroku.com',
     :enable_starttls_auto => true
+  }
+  
+  config.action_mailer.default_url_options = {
+    :host => "apoie.meurio.org.br"
   }
 end
