@@ -2,6 +2,17 @@ doctype html
 html
   head
     title= yield :title
+    meta name="description"         content=t('seo.description')
+    meta name="keywords"            content=t('seo.keywords')
+    meta property="og:title"        content=t('seo.title')
+    meta property="og:description"  content=t('seo.description')
+    meta property="og:site_name"    content=t('seo.title')
+    meta property="og:image"        content=image_path('og_image.png')
+    meta property="og:url"          content="http://facaacontecer.meurio.org.br"
+    meta property="fb:admins"       content="100001105729764,100000428222603"
+    meta property="fb:app_id"       content="177910022269006"
+    meta property="fb:page_id"      content="241897672509479"
+
     = stylesheet_link_tag :application
     javascript:
 
@@ -23,4 +34,5 @@ html
     = render 'layouts/footer'
     #fb-root
   = javascript_include_tag MOIP_JS_URL 
+  = javascript_include_tag '//cdn.optimizely.com/js/205453662.js', async: true
   = javascript_include_tag :application
