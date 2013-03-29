@@ -1,7 +1,7 @@
 = form_for :subscription, html: { id: :subscription_form, data: { validate: :parsley, token: @token } }, url: '' do |f|
   
   fieldset
-    .wrap
+    .wrap.detach
       p
         = f.label :fullname
         = f.text_field :fullname, data: { required: true, minlength: 8 }, placeholder: t('placeholder.subscription.fullname')
@@ -13,13 +13,13 @@
         = f.label :expiration_date, class: [:show, :expire_date]
         = f.date_select :expiration_date, start_year: Date.current.year, use_month_numbers: true, end_year: 2026, discard_day: true, data: { required: true }, placeholder: t('placeholder.subscription.expiration_date')
 
-    #value
+    #value.detach
       ol.values
         li[data-value='009'] R$ 9
         li.selected[data-value='015'] R$ 15
         li[data-value='050'] R$ 50
         li[data-value='0'] Outro?
-    #plan.zip.hidden
+    #plan.zip.hidden.detach
       .wrap.plan_list.grey
         h4 Escolha outro valor  
         = f.label :plan, class: :support
@@ -30,7 +30,7 @@
       = f.hidden_field :value 
       = f.hidden_field :code
 
-    #options
+    #options.hide
       .wrap.grey
         
         .accept
@@ -43,9 +43,14 @@
           = f.check_box :gift, checked: true
           = f.label :gift
         
-    #subscription_error_message
+    #subscription_error_message.alert
+    #moip-indicator.hidden
+      p &nbsp;
+      = image_tag 'moip-indicator.png'
     = f.button :Contribuir!, class: [:btn, :card_submit]
-    .wrap.alert
+    .wrap.alert.msgs
       small O envio dos seus dados é seguro. Não guardamos dados do cartão.
+      small= link_to 'Termos de uso', ''
+
 
 

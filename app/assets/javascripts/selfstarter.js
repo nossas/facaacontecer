@@ -175,15 +175,16 @@ Selfstarter = window.Selfstarter =  {
   saveSubscription: function(code, value){
     $('#subscription_code', this.cardForm).val(code);
     $('#subscription_value', this.cardForm).val(value);
-    $('.wrap', this.cardForm).detach();
-
+    $('.detach', this.cardForm).detach();
+    $('.hide', this.cardForm).hide();
+    $('#moip-indicator').fadeIn();
     var self = this;
 
-    // A small timeout to prevent multiple forms being throwed 
+    // A small timeout to prevent multiple forms being submited 
     // at the same time.
     setTimeout(function(){
       self.cardForm.submit();
-    }, 3000);
+    }, 5000);
   },
 
   // Show a loading gif when needed
