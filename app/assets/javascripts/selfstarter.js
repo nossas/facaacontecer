@@ -101,13 +101,14 @@ Selfstarter = window.Selfstarter =  {
     var el = $(evt.target);
     $('ol.values li').removeClass('selected');
     el.addClass('selected');
+
     
     if (el.data('value') == '0') {
       $('#plan').fadeIn()
     } else {
       $('select#subscription_plan').val(el.data('value'));
     }
-
+    $('select#subscription_plan').select2();
   },
 
 

@@ -16,7 +16,9 @@ class Project < ActiveRecord::Base
 
 
   def set_total_days
-    self.days = (self.expiration_date - Date.current).to_i
+    if self.expiration_date_changed?
+      self.days = (self.expiration_date - Date.current).to_i
+    end
   end
 
   # The time the project expires
