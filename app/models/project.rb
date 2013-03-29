@@ -7,7 +7,7 @@ class Project < ActiveRecord::Base
   has_many :subscriptions
 
   # Supporters are the people who supported the campaign with a valid payment token
-  has_many :subscribers, through: :subscriptions, conditions: "status = 'active' and anonymous = 'false'", uniq: true
+  has_many :subscribers, through: :subscriptions, conditions: "subscriptions.status = 'active'", uniq: true
 
   # Attributes that should be present when creating or updating a project
   validates :title, :description, :goal, :expiration_date, presence: true
@@ -37,6 +37,15 @@ class Project < ActiveRecord::Base
   # The project raised 100%?
   def funded?
     self.percent >= 100
+  end 
+
+
+  # Querying different kinds of subscribers
+  def non_anonymous_subscribers
+    self.subscriptions.joins(:subscriber).where(anonymous: false)
   end
 
+  def anonymous_subscribers
+    self.subscriptions.joins(:subscriber).where(anonymous: true)
+  end
 end
