@@ -9,6 +9,8 @@ class SubscriptionMailer < ActionMailer::Base
 
   def successful_create_message(subscriber)
     @subscriber = subscriber
+    @code       = subscriber.subscriptions.first.code
+    @invite     = subscriber.invite.code
     mail(to: subscriber.email)
   end
 

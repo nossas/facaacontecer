@@ -9,7 +9,7 @@ html
     p
       |Graças a você poderemos continuar independentes e mobilizar cada vez mais pessoas.
     p
-      |Para agradecer não só a sua contribuição, mas também porque foi uma das primeiras 250 pessoas a contribuir, vamos enviar a você de presente um poster criado pelo designer Igor Campos.
+      |Para agradecer não só a sua contribuição, mas também porque foi uma das primeiras 250 pessoas a contribuir, vamos enviar a você de presente um poster criado pelo designer #{link_to "Igor Campos", "http://www.behance.net/igorcampos"}.
 
     p
       |Mas as recompensas não terminam aqui. Quanto mais pessoas contribuirem, mais o Meu Rio acontece. Lembre-se, não precisamos de muito. 
@@ -17,12 +17,12 @@ html
         |Precisamos de muitos 
       |que contribuam com um pouquinho.
     p
-      |E como notícia boa merece ser espalhada, criamos um link exclusivo para você: #{link_to invite_url(@subscriber.invite.code), invite_url(@subscriber.invite.code)}.
+      |E como notícia boa merece ser espalhada, criamos um link exclusivo para você: #{link_to invite_url(@invite, protocol: "https"), invite_url(@invite, protocol: "https")}.
     p
       |A ideia é simples e legal. Compartilhe este link com seus amigos. Se cinco deles contribuirem clicando no seu link, você ganha uma camiseta bonitona. Se outros cinco fizerem o mesmo, você escolhe entre a camiseta e uma caderneta exclusiva feita a mão pela designer Anissa Daliry.
       br
       br
-      |Compartilhe o seu link exclusivo: #{link_to invite_url(@subscriber.invite.code), invite_url(@subscriber.invite.code)} 
+      |Compartilhe o seu link exclusivo: #{link_to invite_url(@invite, protocol: 'https'), invite_url(@invite, protocol: 'https')} 
     p
       br
       |Ah, e não esqueça de ver seu e-mail. Mandamos para você a confirmação da sua contribuição e informações sobre as recompensas criativas que você já ganhou e ainda pode ganhar.
@@ -37,4 +37,7 @@ html
       br
       small[style='color: #666'] 
         |Para deixar de apoiar o Meu Rio e cancelar sua colaboração mensal, envie um email para #{mail_to "financiador@meurio.org.br"}.
+      br
+      small[style='color: #666'] 
+        |Ao entrar em contato conosco, informe a sua ID de assinatura: #{@code}.
 
