@@ -47,6 +47,7 @@ $columnal-columns: 12 !default
 
 .row
   min-width: 960px
+  width: 960px
 
 .panel
   width: 100%
@@ -55,7 +56,7 @@ $columnal-columns: 12 !default
 
 // Defining default-style classes
 html
-  zoom: 85% !important
+  zoom: 95% !important
 body
   color:        white
   font-size:    .9em
@@ -68,7 +69,7 @@ body
 input[type='text']
   border-radius: 2px
   padding: .6em 1em
-  border: 1px solid lighten(gray, 40%)
+  border: 1px solid lighten(gray, 35%)
 
 \::-webkit-input-placeholder, \:-moz-placeholder, \::-moz-placeholder, \::ms-input-placeholder
   color:    #999
@@ -168,7 +169,7 @@ input[type='text']
       font-size: 1em
 
 
-#panel-2, #panel-3, #panel-4
+#panel-2, #panel-3, #panel-4, #panel-6
   background-image: image-url('pattern.png') 
 
 #panel-3
@@ -202,7 +203,6 @@ input[type='text']
 
 
 #panel-6
-  background-image: image-url('pattern.png')
   height: 650px
   min-height: 650px
   h2
@@ -411,8 +411,8 @@ ol.steps
     padding: .8em .6em
     width: 96%
     font-size: 1em
-    border: lighten(gray, 45%)
-    +box-shadow(inset 0 1px .1em lighten(gray, 10%))
+    border: 1px solid lighten(gray, 43%)
+    +box-shadow(inset 0 1px .2em lighten(gray, 10%))
     +border-radius(.2em)
   input.cep
     text-align: center
@@ -466,8 +466,6 @@ ol.values
     &.selected
       background: darken($vermillion, 20%)
       border: none 
-    &:first-child
-      margin-left: 4%
 .wrap, .wrapped
   padding: 1em
 .grey
@@ -518,18 +516,20 @@ input.parsley-success, textarea.parsley-success
 // The thank you page
 .message
   color: #333
-  +grid(7)
+  +grid(8)
   h1
-    font-size: 2.5em
+    font-size: 2.2em
     margin-top: 0
+    font-weight: 600
   .text
     padding: 0
     width: 100%
     font-weight: 400
+    line-height: 1.6em
 .thanks
   min-height: 900px !important
 .thanks .share
-  +grid(12)
+  +grid(11)
   +background(linear-gradient(lighten(lightgray, 15%), lighten(lightgray, 5%)))
   +box-shadow(0 1px 4px gray)
   +last
@@ -562,7 +562,7 @@ input.parsley-success, textarea.parsley-success
       opacity: 1
 
 .call_to_action
-  +grid(5)
+  +grid(4)
   +last
 
 // Select2
@@ -572,33 +572,39 @@ input.parsley-success, textarea.parsley-success
 #s2id_user_state
   margin-top: .2em
 .select2-container, a.select2-choice
-  padding: .4em
 
 
 // Social plugins
 .fb_ltr, .twitter-share-button
-  margin-top: -.9em
-  margin-left: .4em
+  margin-top: .4em
   right: 1em
   width: 65px !important
   height: 70px !important
 .fb_ltr
+  top: -1.15em
   left: 1em
+  position: relative
 
 .twitter-share-button
-  margin-top: .8em
-  margin-left: 2em
-
-#___plusone_0 iframe
-  margin-top: -.9em
-  height: 70px !important
-  width: 70px !important
+  width: 60px
+.tw-tweet, .twitter-share-button
+  display: inline-block
   
 .alert
   text-align: center
   color: $green
   font-size: .8em
+  small 
+    display: block
+  small a
+    color: lighten(gray, 10%)
+
 .accept
   img
     float: left
     margin-top: .2em
+#moip-indicator
+  text-align: center
+  img
+    width: 30%
+    height: auto
