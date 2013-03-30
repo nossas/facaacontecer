@@ -44,10 +44,10 @@ class Project < ActiveRecord::Base
 
   # Querying different kinds of subscribers
   def non_anonymous_subscribers
-    self.subscriptions.joins(:subscriber).where(anonymous: false)
+    self.subscriptions.group(:subscriber_id).joins(:subscriber).where(anonymous: false)
   end
 
   def anonymous_subscribers
-    self.subscriptions.joins(:subscriber).where(anonymous: true)
+    self.subscriptions.group(:subscriber_id).joins(:subscriber).where(anonymous: true)
   end
 end
