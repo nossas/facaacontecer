@@ -7,11 +7,11 @@ class SubscriptionMailer < ActionMailer::Base
 
   default_url_options[:host] = 'apoie.meurio.org.br'
 
-  def successful_create_message(subscriber)
-    @subscriber = subscriber
-    @code       = subscriber.subscriptions.first.code
-    @invite     = subscriber.invite.code
-    mail(to: subscriber.email)
+  def successful_create_message(subscription)
+    @subscriber = subscription.subscriber
+    @code       = subscription.code
+    @invite     = @subscriber.invite.code if @subscriber.invite
+    mail(to: @subscriber.email)
   end
 
 end

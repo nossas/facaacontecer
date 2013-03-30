@@ -2,7 +2,7 @@ class MailWorker
   include SuckerPunch::Worker
 
 
-  def perform(sub)
-    SubscriptionMailer.successful_create_message(sub).deliver
+  def perform(subscription)
+    SubscriptionMailer.successful_create_message(subscription).deliver
   end
 end

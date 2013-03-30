@@ -16,6 +16,6 @@ timeout 30
 # for a single worker on Heroku ;)
 after_fork do |server, worker|
   SuckerPunch.config do
-    queue name: :mail, worker: MailWorker, size: 5
+    queue name: :mail, worker: MailWorker, workers: 2
   end
 end
