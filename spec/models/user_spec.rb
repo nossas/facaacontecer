@@ -35,6 +35,12 @@ describe User do
       user.should_not be_valid
       user.errors.should have_key(:name)
     end
+    
+    it "should return no error if name has more than one word" do
+      user = User.make(name: "Luiz Claudio", cpf: '417.524.931-17')
+      user.should be_valid
+      user.errors.should_not have_key(:name)
+    end
   end
 
 end
