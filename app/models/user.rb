@@ -2,7 +2,7 @@
 class User < ActiveRecord::Base
   has_many :subscriptions, foreign_key: :subscriber_id, dependent: :destroy
   has_many :invitees, class_name: :Invite, foreign_key: :parent_user_id
-  has_one :invite
+  has_one :invite, dependent: :destroy
 
   delegate :project, to: :subscription, allow_nil: true
 

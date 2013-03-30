@@ -4,7 +4,7 @@ class Project < ActiveRecord::Base
   attr_accessible :description, :expiration_date, :goal, :image, :title, :video
 
   # Orders here will be used when the user made the checkout action (sent its data to moip)
-  has_many :subscriptions
+  has_many :subscriptions, dependent: :destroy
 
   # Supporters are the people who supported the campaign with a valid payment token
   has_many :subscribers, through: :subscriptions, 
