@@ -28,4 +28,13 @@ describe User do
     end
   end
 
+
+  context "#name" do
+    it "should return error if name has only one word" do
+      user = User.make(name: "Luiz", cpf: '417.524.931-17')
+      user.should_not be_valid
+      user.errors.should have_key(:name)
+    end
+  end
+
 end

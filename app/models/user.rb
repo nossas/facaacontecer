@@ -1,13 +1,18 @@
+#coding: utf-8
 class User < ActiveRecord::Base
   has_many :subscriptions, foreign_key: :subscriber_id, dependent: :destroy
-  has_one :invite
   has_many :invitees, class_name: :Invite, foreign_key: :parent_user_id
+  has_one :invite
 
   delegate :project, to: :subscription, allow_nil: true
 
-  validates :cpf, cpf: true
   validates_date :birthday, before: -> { 14.years.ago }
+  validates :cpf, cpf: true
   validates_uniqueness_of :email, :cpf
+  validates_length_of :name, in: 2...10, tokenizer: lambda { |str| str.scan(/\w+/) },
+    too_long: 'é muito longo. Precisa ter no máximo %{count} palavras',
+    too_short: 'é muito curto. Precisa ter no mínimo nome e sobrenome.'
+
   validates_presence_of :name, 
     :email, 
     :cpf, 
@@ -50,7 +55,9 @@ class User < ActiveRecord::Base
 
   private
     def generate_invite_code
-      invite = self.build_invite(code: SecureRandom.hex(6))
-      invite.save!
+      unless self.invite
+        invite = self.build_invite(code: SecureRandom.hex(6))
+        invite.save!
+      end
     end
 end
