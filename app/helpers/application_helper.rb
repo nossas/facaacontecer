@@ -77,7 +77,6 @@ module ApplicationHelper
       'Eloisa Vidal Rosas',
       'Eurydice Botelho Moschkovich',
       'Fabiano de Souza Pereira',
-      'Farol da Barra Participações Ltda.',
       'Felipe Areas ',
       'Fernanda Whately',
       'Fernando Pinheiro da Silva',
