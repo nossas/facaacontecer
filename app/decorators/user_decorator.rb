@@ -3,7 +3,7 @@
 module UserDecorator
 
   def first_name
-    name.scan(/\w+/).first.capitalize!
+    name.capitalize!.scan(/\w+/).first
   end
 end
 
