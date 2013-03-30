@@ -27,7 +27,8 @@ html
         ga.src = 'https://ssl.google-analytics.com/ga.js';
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
-
+    /[if IE]
+      script[src="http://html5shiv.googlecode.com/svn/trunk/html5.js"]
       
   body[class=controller.controller_name.downcase]
     = render 'layouts/header'
