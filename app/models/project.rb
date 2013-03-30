@@ -7,19 +7,28 @@ class Project < ActiveRecord::Base
   has_many :subscriptions
 
   # Supporters are the people who supported the campaign with a valid payment token
-  has_many :subscribers, through: :subscriptions, conditions: "subscriptions.status = 'active'", uniq: true
+  has_many :subscribers, through: :subscriptions, 
+    conditions: { subscriptions: { status: :active } }, uniq: true
+
+  # Fetches only anonymous subscribers
+  has_many :anonymous_subscribers, through: :subscriptions, 
+    conditions: { subscriptions: { status: :active, anonymous: true } }, 
+    uniq: true, source: :subscriber
+
+
+  # Fetches only non-anonymous subscribers
+  has_many :non_anonymous_subscribers, through: :subscriptions, 
+    conditions: { subscriptions: { status: :active, anonymous: [false, nil] } }, 
+    uniq: true, source: :subscriber
+
 
   # Attributes that should be present when creating or updating a project
   validates :title, :description, :goal, :expiration_date, presence: true
 
+
+  # Saves the days to the expiration date
   before_save :set_total_days
 
-
-  def set_total_days
-    if self.expiration_date_changed?
-      self.days = (self.expiration_date - Date.current).to_i
-    end
-  end
 
   # The time the project expires
   def end_date 
@@ -41,13 +50,10 @@ class Project < ActiveRecord::Base
     self.percent >= 100
   end 
 
-
-  # Querying different kinds of subscribers
-  def non_anonymous_subscribers
-    self.subscriptions.joins(:subscriber).where(anonymous: false)
-  end
-
-  def anonymous_subscribers
-    self.subscriptions.joins(:subscriber).where(anonymous: true)
-  end
+  private
+    def set_total_days
+      if self.expiration_date_changed?
+        self.days = (self.expiration_date - Date.current).to_i
+      end
+    end
 end

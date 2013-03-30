@@ -128,7 +128,7 @@
           h2 Nossos novos apoiadores
           .text
             ul.subscribers
-              - @project.non_anonymous_subscribers.pluck('DISTINCT (name)').each do |name|
+              - @project.non_anonymous_subscribers.pluck(:name).each do |name|
                 li= name
         .our_contributors
           h2 Nossos primeiros apoiadores
