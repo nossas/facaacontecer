@@ -1,6 +1,13 @@
 require 'machinist/active_record'
 require 'cpf_cnpj'
 
+
+Invite.blueprint do
+  user_id { User.make!.id }
+  code { sn }
+end
+
+
 User.blueprint do
   name        { "Juquinha da silva" }
   birthday    { "1988/11/12" }
@@ -15,12 +22,6 @@ User.blueprint do
   country     { "BRA" }
   zipcode     { "78132-500" }
   phone       { "(21) 97137471" }
-end
-
-
-Invite.blueprint do
-  user { User.make! }
-  code { sn }
 end
 
 Subscription.blueprint do
@@ -40,3 +41,6 @@ Project.blueprint do
   description     { "Minha descricao" }
   expiration_date { Date.current + 45.days }
 end
+
+
+
