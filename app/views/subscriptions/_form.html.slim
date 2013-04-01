@@ -9,11 +9,14 @@
         = f.label :card_number
         = f.text_field :card_number, data: { required: true, number: true, minlength: 16, maxlength: 17 }, maxlength: 18, placeholder: t('placeholder.subscription.card_number')
 
-      p
+      p[style='text-align: center']
         = f.label :expiration_date, class: [:show, :expire_date]
+        br
         = f.date_select :expiration_date, start_year: Date.current.year, use_month_numbers: true, end_year: 2026, discard_day: true, data: { required: true }, placeholder: t('placeholder.subscription.expiration_date')
 
     #value.detach
+      p[style='text-align: center']
+        strong= f.label :value, class: :show
       ol.values
         li[data-value='009'] R$ 9
         li.selected[data-value='015'] R$ 15

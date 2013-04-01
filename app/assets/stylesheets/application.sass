@@ -452,7 +452,7 @@ ol.values
     font-size: 1.2em
     text-transform: uppercase
     font-family: "Arial Black"
-    text-shadow: 0 1px 0 #333
+    text-shadow: 0 -1px 0 black
     border: 1px solid $orange
     +border-radius(6px)
     +background-image(linear-gradient(lighten($orange,5%), $vermillion))
@@ -461,8 +461,13 @@ ol.values
       opacity: .9
       cursor: pointer
     &.selected
-      background: darken($vermillion, 20%)
-      border: none 
+      color: black
+      background: lighten($orange, 40%)
+      border-bottom: 2px solid black 
+      &::before
+        content: " ___"
+        color: lighten($orange,40%) 
+        background: image-url('checkmark.png') no-repeat center .3em 
 .wrap, .wrapped
   padding: 1em
 .grey
