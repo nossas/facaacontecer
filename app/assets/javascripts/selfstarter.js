@@ -88,7 +88,7 @@ Selfstarter = window.Selfstarter =  {
 
   openFaq: function(event, target){
     event.preventDefault();
-    $(event.target).colorbox({ iframe: true, width:"70%", height:"60%"})
+    $(event.target).colorbox({ iframe: true, width:"60%", height:"80%"})
   },
 
   openPopUp: function(event,target) {
