@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   validates_date :birthday, before: -> { 14.years.ago }
   validates :cpf, cpf: true
   validates_uniqueness_of :email, :cpf
-  validates_length_of :name, in: 2...10, tokenizer: lambda { |str| str.scan(/\w+/) },
+  validates_length_of :name, in: 2...10, tokenizer: lambda { |str| str.scan(/[[:word:]]+/u) },
     too_long: 'é muito longo. Precisa ter no máximo %{count} palavras',
     too_short: 'é muito curto. Precisa ter no mínimo nome e sobrenome.'
 
