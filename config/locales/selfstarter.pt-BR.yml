@@ -13,7 +13,7 @@ pt-BR:
         cpf:  "E o seu CPF?"
         address_street: "Qual seu endereço completo?"
         address_extra: "Complemento?"
-        address_number: "Número da casa/apt?"
+        address_number: "Número?"
         address_district: "Qual bairro?"
         state: "Estado?"
         city: "E a cidade?"
