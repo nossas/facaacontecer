@@ -36,10 +36,9 @@
         = f.label :address_number
         = f.text_field :address_number, class: [:addr_number], data: { required: true, trigger: :keyup }, maxlength: 6, placeholder: t('placeholder.user.address_number')
 
-
-
         = f.label :address_extra
-        = f.text_field :address_extra, value: 'S/ Complemento', class: [:addr_extra], data: { required: true, trigger: :keyup }, placeholder: t('placeholder.user.address_extra')
+        = f.text_field :address_extra, value: 'Complemento', class: [:addr_extra], data: { required: true, trigger: :keyup }, placeholder: t('placeholder.user.address_extra')
+
       p
         = f.label :address_district
         = f.text_field :address_district, class: [:addr_dist], data: { required: true, minlength: 4, trigger: :keyup }, placeholder: t('placeholder.user.address_district')
