@@ -51,7 +51,7 @@ Selfstarter = window.Selfstarter =  {
       '#user_form ajax:error'         : 'userDataNotSent',
       'button.card_submit click'      : 'subscribeToPlan',
       '.values li click'              : 'chooseValue',
-      
+      'a#faq click'                   : 'openFaq',      
       // External references
       '.external_link click'   : 'openPopUp',
 
@@ -85,6 +85,11 @@ Selfstarter = window.Selfstarter =  {
 
   },
 
+
+  openFaq: function(event, target){
+    event.preventDefault();
+    $(event.target).colorbox({ iframe: true, width:"70%", height:"60%"})
+  },
 
   openPopUp: function(event,target) {
     event.preventDefault();

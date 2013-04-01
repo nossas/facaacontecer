@@ -17,6 +17,7 @@
 //= require jquery.to_json
 //= require jquery.money
 //= require jquery.mask
+//= require jquery.colorbox
 //= require jquery.placeholder
 //= require moip.subscription
 //= require selfstarter 
