@@ -53,7 +53,7 @@ Selfstarter = window.Selfstarter =  {
       '.values li click'              : 'chooseValue',
       'a#faq click'                   : 'openFaq',      
       // External references
-      '.external_link click'   : 'openPopUp',
+      'a.external click'              : 'openPopUp',
 
       // Steps validation
       'button.step_one click'  : 'validateSiblingInput',
@@ -93,9 +93,14 @@ Selfstarter = window.Selfstarter =  {
 
   openPopUp: function(event,target) {
     event.preventDefault();
-    var link = $(event.target).parent('a');
-    var url = link.attr('href');
-    console.log(url);
+    var obj = $(event.target);
+    var url = null;
+
+    url = obj.attr('href');
+    if (url == undefined) {
+      url = obj.parent('a').attr('href');
+    }
+
     window.open(url, '', 'width=600,height=300');
 
   },

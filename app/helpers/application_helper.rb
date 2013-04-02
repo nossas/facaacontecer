@@ -144,4 +144,18 @@ module ApplicationHelper
     ]
   end
 
+  
+  def facebook_share_invite_url
+    "http://www.facebook.com/sharer.php?s=100&p[title]=Acabo de contribuir para a independência do Meu Rio.&p[summary]=Clique aqui e conheça as recompensas criativas que você e eu ganhamos por apoiar essa ideia e fazê-la acontecer.&p[url]=#{invite_url(code: @subscriber.invite.code)}&p[images][0]=#{image_path('og_image.jpg')}"
+  end
+
+
+  def facebook_share_common_url
+    "https://www.facebook.com/sharer.php?s=100&p[title]=#{t('seo.title')}&p[summary]=#{t('seo.description')}&p[url]=#{root_url}&p[images][0]=#{image_path('og_image.jpg')}"
+  end
+
+
+  def twitter_share_common_url
+    "https://twitter.com/share?url=#{root_url}&text=#{t('seo.twitter_description')}"
+  end
 end

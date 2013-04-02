@@ -17,8 +17,8 @@
         .about.page
           .video_and_header
             .share_overlay
-              = link_to "Facebook", '', class: :facebook
-              = link_to "Twitter", '', class: :twitter
+              = link_to "Facebook", facebook_share_common_url, class: [:facebook, :external]
+              = link_to "Twitter", twitter_share_common_url, class: [:twitter, :external]
             = @project.video_embed 
 
 
