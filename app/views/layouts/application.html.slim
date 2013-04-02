@@ -8,13 +8,14 @@ html
     meta property="og:title"        content=t('seo.title')
     meta property="og:description"  content=t('seo.description')
     meta property="og:site_name"    content=t('seo.title')
-    meta property="og:image"        content="http://i.imgur.com/5ciefIs.png"
+    meta property="og:image"        content=image_path('og_image.jpg')
     meta property="og:url"          content="http://facaacontecer.meurio.org.br"
     meta property="fb:admins"       content="100001105729764,100000428222603"
     meta property="fb:app_id"       content="177910022269006"
     meta property="fb:page_id"      content="241897672509479"
 
     = stylesheet_link_tag :application
+    = favicon_link_tag 'favicon.png'
     javascript:
 
       var _gaq = _gaq || [];
