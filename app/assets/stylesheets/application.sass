@@ -618,3 +618,29 @@ input.parsley-success, textarea.parsley-success
 
 .faq
   text-align: right
+
+.video_and_header:hover .share_overlay
+  display: block
+
+.share_overlay
+  +transition(all .3s)
+  display: none
+  position: absolute
+  margin-top: 8em
+  margin-left: -.7em
+  a
+    display: block
+    &.facebook, &.twitter
+      text-indent: -9999px
+      background: image-url('overlay_facebook.png') no-repeat center top
+      width: 100px
+      height: 35px
+      &:hover
+        background: image-url('overlay_facebook_on.png') no-repeat center top
+    &.twitter
+      background: image-url('overlay_twitter.png') no-repeat center top
+      &:hover
+        background: image-url('overlay_twitter_on.png') no-repeat center top
+.row_overlay
+  overflow: visible 
+
