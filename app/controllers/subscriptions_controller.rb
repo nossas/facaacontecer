@@ -3,7 +3,12 @@ class SubscriptionsController < ApplicationController
   actions :create
  
   after_filter  only: [:create] {  session[:subscriber_ok] = true }
-  after_filter  only: [:create] {  SuckerPunch::Queue[:mail].async.perform(@subscription) }
+  after_filter  only: [:create] do
+    SubscriptionMailer.successful_create_message(@subscription)
+    if @subscription.subscriber.invite.host.present?
+      SubscriptionMailer.inviter_friend_subscribed(@subscription)
+    end
+  end
 
 
   def create
