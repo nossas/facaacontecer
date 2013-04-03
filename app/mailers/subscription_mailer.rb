@@ -8,8 +8,8 @@ class SubscriptionMailer < ActionMailer::Base
 
   default_url_options[:host] = 'apoie.meurio.org.br'
 
-  def successful_create_message(id)
-    @subscription = Subscription.find(id)
+  def successful_create_message(subscription_id)
+    @subscription = Subscription.find(subscription_id)
     @subscriber = @subscription.subscriber
     @code       = @subscription.code
     @invite     = @subscriber.invite.code if @subscriber.invite.present?
@@ -18,9 +18,8 @@ class SubscriptionMailer < ActionMailer::Base
   end
 
 
-  def inviter_friend_subscribed(id)
-    @subscription = Subscription.find(id)
-    @subscriber = @subscription.subscriber
+  def inviter_friend_subscribed(subscriber_id)
+    @subscriber = User.find(subscriber_id)
     @count      = @subscriber.invitees.count
     @invite     = @subscriber.invite.code if @subscriber.invite.present?
     @host       = @subscriber.invite.host if @subscriber.invite.host.present?

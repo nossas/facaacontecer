@@ -6,7 +6,7 @@ class SubscriptionsController < ApplicationController
   after_filter  only: [:create] do
     SubscriptionMailer.successful_create_message(@subscription.id)
     if @subscription.subscriber.invite.host.present?
-      SubscriptionMailer.inviter_friend_subscribed(@subscription.id)
+      SubscriptionMailer.inviter_friend_subscribed(@subscription.subscriber.id)
     end
   end
 
