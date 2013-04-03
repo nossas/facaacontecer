@@ -46,9 +46,9 @@
                 span Contribuição
             .clear
             .errors
-            .step1
+            .step1.hidden
               = render 'subscribers/form'
-            .step2.hidden
+            .step2
               = render 'subscriptions/form'
           .faq
             .something= link_to "Perguntas frequentes sobre a campanha", 'http://faqly.herokuapp.com/faqs/1/questions/Meu%20Rio', id: :faq

@@ -15,7 +15,7 @@
         = f.date_select :expiration_date, start_year: Date.current.year, use_month_numbers: true, end_year: 2026, discard_day: true, data: { required: true }, placeholder: t('placeholder.subscription.expiration_date')
 
     #value.detach
-      p[style='text-align: center']
+      p[style='text-align: center; width: 80%; margin: 1em auto']
         strong= f.label :value, class: :show
       ol.values
         li[data-value='009'] R$ 9
@@ -36,9 +36,6 @@
     #options.hide
       .wrap.grey
         
-        .accept
-          = image_tag 'checkmark.png'
-          span Contribuirei uma vez por mês com este valor, debitado de meu cartão de crédito. 
         p
           = f.check_box :anonymous
           = f.label :anonymous
