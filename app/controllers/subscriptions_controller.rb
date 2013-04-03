@@ -4,9 +4,9 @@ class SubscriptionsController < ApplicationController
  
   after_filter  only: [:create] {  session[:subscriber_ok] = true }
   after_filter  only: [:create] do
-    SubscriptionMailer.successful_create_message(@subscription)
+    SubscriptionMailer.successful_create_message(@subscription.id)
     if @subscription.subscriber.invite.host.present?
-      SubscriptionMailer.inviter_friend_subscribed(@subscription)
+      SubscriptionMailer.inviter_friend_subscribed(@subscription.id)
     end
   end
 

@@ -10,12 +10,3 @@ preload_app true
 # Immediately restart any workers that
 # haven't responded within 30 seconds
 timeout 30
-
-
-# Our background workers. We don't need to pay
-# for a single worker on Heroku ;)
-after_fork do |server, worker|
-  SuckerPunch.config do
-    queue name: :mail, worker: MailWorker, workers: 3
-  end
-end
