@@ -617,7 +617,19 @@ input.parsley-success, textarea.parsley-success
   color: red !important
 
 .faq
-  text-align: right
+  +grid(5)
+  +grid-prefix(7)
+  +last
+  text-align: center
+  margin-top: .8em
+  a
+    color: darken(lightgray, 25%)
+    border-bottom: 1px solid darken(lightgray, 20%)
+    font-size: .9em
+    &:hover
+      text-decoration: none
+      color: $orange
+      border-bottom: 1px solid $orange
 
 .video_and_header:hover .share_overlay
   display: block
