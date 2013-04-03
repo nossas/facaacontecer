@@ -9,14 +9,14 @@
           .image
             = image_tag "header.png"
           .share
-            .tw-tweet= link_to "https://twitter.com/share", "Tweetar", class: "twitter-share-button", data: { url: root_url, via: "meurio", count: :vertical, related: "meurio", hashtags: "facaacontecer" }
-            .fb-like[data-href=root_url data-send="false" data-layout="box_count" data-width="140" data-show-faces="false" data-lang="pt_BR" data-ref="home_top_right"]
+            = link_to "Tweetar", twitter_share_common_url, class: [:twitter, :external]
+            = link_to "Compartilhar", facebook_share_common_url, class: [:facebook, :external]
       .row.row_overlay
         .about.page
           .video_and_header
             .share_overlay
-              = link_to "Facebook", facebook_share_common_url, class: [:facebook, :external]
-              = link_to "Twitter", twitter_share_common_url, class: [:twitter, :external]
+              = link_to "Compartilhar", facebook_share_common_url, class: [:facebook, :external]
+              = link_to "Tweetar", twitter_share_common_url, class: [:twitter, :external]
             = @project.video_embed 
 
 
