@@ -3,16 +3,27 @@ ENV["RAILS_ENV"] ||= 'test'
 require 'coveralls'
 Coveralls.wear!('rails')
 
+
+
 require File.expand_path("../../config/environment", __FILE__)
-require 'rspec/rails'
-require 'rspec/autorun'
+
+
+SuckerPunch.config do
+  queue name: :mail, worker: MailWorker, workers: 2
+end
+
 require 'sucker_punch/testing'
 require 'sucker_punch/testing/inline'
+require 'rspec/rails'
+require 'rspec/autorun'
+
 
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
+
+
 
 
 RSpec.configure do |config|
@@ -45,15 +56,16 @@ RSpec.configure do |config|
   config.order = "random"
 
 
-  config.before(:suite) do
+  config.before(:suite, worker: true) do
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.before(:each) do
     DatabaseCleaner.start
   end
 
-  config.after(:suite) do
+  config.after(:each) do
     DatabaseCleaner.clean
   end
-
-
 end

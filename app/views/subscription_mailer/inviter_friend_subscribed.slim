@@ -1,0 +1,31 @@
+doctype html
+html
+  head
+    title
+  body style="font-family: Arial; color: black; max-width: 680px; line-height: 1.5em"
+    p
+      strong
+        |Olá #{@subscriber.first_name}, 
+    p
+      | Parabéns!!!
+    p
+      |#{pluralize(@count, 'amigo já doou', 'amigos já doaram')} através do seu link exclusivo!
+
+    p
+      | Se cinco amigos clicarem neste link e fizerem uma contribuição para o Meu Rio, você ganha uma camiseta bonitona.
+    p
+      |Se outros cinco amigos fizerem o mesmo, além de uma camiseta bonitona, você ganha uma caderneta exclusiva feita a mão pela designer Anissa Daliry.
+    p
+      br
+      br
+      |Obrigado por ajudar e continue divulgando seu link exclusivo  #{link_to invite_url(@invite, protocol: 'https'), invite_url(@invite, protocol: 'https')} e continue fazendo o Meu Rio acontecer!
+    p
+      |Muito Obrigado!
+    p
+      strong
+        |Em nome da Equipe Meu Rio.
+    p
+      br
+      br
+      small[style='color: #666'] 
+        |Para deixar de apoiar o Meu Rio e cancelar sua colaboração mensal, envie um email para #{mail_to "financiador@meurio.org.br"}.

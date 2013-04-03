@@ -3,7 +3,8 @@ require 'cpf_cnpj'
 
 
 Invite.blueprint do
-  user_id { User.make!.id }
+  user_id { User.make!(cpf: CPF.generate).id }
+  parent_user_id { User.make!(cpf: CPF.generate).id }
   code { sn }
 end
 
@@ -28,7 +29,7 @@ Subscription.blueprint do
   value       { 10 }
   code        { "TOKEN" }
   project     { Project.make! }
-  subscriber  { User.make! }
+  subscriber  { User.make!(cpf: CPF.generate) }
   anonymous   { false }
   gift        { true }
 end

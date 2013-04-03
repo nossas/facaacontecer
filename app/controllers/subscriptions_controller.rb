@@ -3,7 +3,7 @@ class SubscriptionsController < ApplicationController
   actions :create
  
   after_filter  only: [:create] {  session[:subscriber_ok] = true }
-  after_filter  only: [:create] {  SuckerPunch::Queue[:mail].async.perform(@subscription) }
+  after_filter  only: [:create] {  SuckerPunch::Queue[:mail].async.perform(@subscription.id) }
 
 
   def create
