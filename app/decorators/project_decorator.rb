@@ -37,7 +37,7 @@ module ProjectDecorator
 
 
   def video_embed
-    content_tag(:iframe, nil, type: 'text/html', width: 512, height: 325, src: video)
+    content_tag(:iframe, nil, type: 'text/html', frameborder: 0, width: 512, height: 305, src: video)
   end
 
 
