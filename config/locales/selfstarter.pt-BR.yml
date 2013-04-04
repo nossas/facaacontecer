@@ -24,7 +24,7 @@ pt-BR:
         plan: "Quero apoiar com..."
         fullname: "Nome que está escrito no seu cartão de crédito"
         card_number: "Número do seu cartão de crédito (só os números)"
-        expiration_date: "Data de expiração do cartão (mês/ano):"
+        expiration_date: "Data de validade do cartão (mês/ano):"
         value: "Quero contribuir mensalmente com este valor, debitado do meu cartão de crédito:"
         anonymous: "Minha doação é anônima"
         gift: "Quero receber as recompensas"
