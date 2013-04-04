@@ -4,7 +4,7 @@ pt-BR:
     description: "O Meu Rio não tem rabo preso com nenhum governo, político, partido ou empresa pública, e 80 mil cariocas acreditam nessa ideia. Para que isso continue assim, visite http://facaacontecer.meurio.org.br"
     og_description: "O Meu Rio não tem rabo preso com nenhum governo, político, partido ou empresa pública, e 80 mil cariocas acreditam nessa ideia. Para que isso continue assim, visite http://facaacontecer.meurio.org.br"
     keywords: 'meu rio, doação, contribua, financie, independente'
-    twitter_description: 'O @Meu_Rio não tem rabo preso e mais de 70 mil cariocas acreditam nessa ideia. Para que isso continue assim, visite http://facaacontecer.meurio.org.br'
+    twitter_description: 'O @Meu_Rio não tem rabo preso e 80 mil cariocas acreditam nessa ideia. Veja: '
   helpers:
     label: &label
       user:
@@ -68,6 +68,6 @@ pt-BR:
     other: "<strong>%{count}</strong> <span>apoiadores</span>"
   goal:
     reached_of_html: "<strong>%{current}</strong> <span>de %{goal}</span>"
-    days_remaining_html: "<strong>%{days}</strong><span>dias para o fim do desafio</span>"
+    days_remaining_html: "<strong>%{days}</strong><span>dias para o fim da campanha</span>"
     people_so_far_html: "<strong>%{days}</strong><span>pessoas fazendo o Meu Rio acontecer</span>"
     progress_text: "<strong>%{percent}%</strong> alcançados"

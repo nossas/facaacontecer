@@ -7,7 +7,7 @@ html
       strong
         |Olá #{@host.first_name}, 
     p
-      | Parabéns!!!
+      | Parabéns!
     p
       |#{pluralize(@count, 'amigo já doou', 'amigos já doaram')} através do seu link exclusivo!
 
@@ -16,7 +16,6 @@ html
     p
       |Se outros cinco amigos fizerem o mesmo, além de uma camiseta bonitona, você ganha uma caderneta exclusiva feita a mão pela designer Anissa Daliry.
     p
-      br
       br
       |Obrigado por ajudar e continue divulgando seu link exclusivo  #{link_to invite_url(@invite, protocol: 'https'), invite_url(@invite, protocol: 'https')} e continue fazendo o Meu Rio acontecer!
     p
