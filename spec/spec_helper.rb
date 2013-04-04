@@ -6,14 +6,6 @@ Coveralls.wear!('rails')
 
 
 require File.expand_path("../../config/environment", __FILE__)
-
-
-SuckerPunch.config do
-  queue name: :mail, worker: MailWorker, workers: 2
-end
-
-require 'sucker_punch/testing'
-require 'sucker_punch/testing/inline'
 require 'rspec/rails'
 require 'rspec/autorun'
 
@@ -56,7 +48,7 @@ RSpec.configure do |config|
   config.order = "random"
 
 
-  config.before(:suite, worker: true) do
+  config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.clean_with(:truncation)
   end
