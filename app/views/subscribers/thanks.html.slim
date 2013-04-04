@@ -1,27 +1,23 @@
 = content_for :title, "Obrigado de coração!"
 .container#panel-1.thanks
   .scroll
-    .panel
+    .panel.head
       header
         .row
           = image_tag "header.png"
-      section.thanks
+      section.thanks_section
         .row
           .message
             h1 
               |#{@subscriber.first_name},
               br
-              |Graças a você poderemos continuar
-              br
-              |independentes e mobilizar cada vez
-              br
-              |mais pessoas
+              |Obrigado por fazer acontecer!
             .text
               p
                 |E como notícia boa merece ser espalhada, criamos um link exclusivo para você. Se outras pessoas contribuírem para o Meu Rio através deste link, você poderá ganhar prêmios exclusivos. Funciona assim: 
 
               p
-                |1) Compartilhe o seu link (abaixo) com seus amigos.
+                |1) Compartilhe o seu link com seus amigos.
                 br
                 |2) Se cinco amigos clicarem neste link e fizerem uma contribuição para o Meu Rio, você ganha uma camiseta bonitona. 
                 br
@@ -35,18 +31,19 @@
                 br
                   |Muito obrigado, 
                   br
-                  |Equipe Meu Rio
+                  strong Equipe Meu Rio
           .call_to_action
-            = image_tag "share_infographic.png"
+
+            .share
+              .unique
+                label
+                  | Copie e cole o link abaixo:
+                  = text_field :link, :unique, value: invite_url(code: @subscriber.invite.code)
+              .facebook
+                
+                span Compartilhe no facebook:
+                = link_to image_tag('facebook_button.png'), facebook_share_invite_url, class: :external 
+            .image= image_tag "share_infographic.png"
 
 
-          .share
-            .unique
-              label
-                | Copie e cole o link abaixo:
-                = text_field :link, :unique, value: invite_url(code: @subscriber.invite.code)
-            .facebook
-              
-              span Compartilhe no facebook:
-              = link_to image_tag('facebook_button.png'), facebook_share_invite_url, class: :external 
 

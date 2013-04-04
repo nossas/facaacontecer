@@ -327,10 +327,10 @@ header
   margin-bottom: .2em
   overflow: hidden
   strong
-    font-size: 2.5em
+    font-size: 2.2em
     padding-right: .2em
   span
-    font-size: .9em
+    font-size: .85em
     vertical-align: center
     position: relative
     top: -.8em
@@ -537,7 +537,7 @@ input.parsley-success, textarea.parsley-success
 // The thank you page
 .message
   color: #333
-  +grid(8)
+  +grid(7)
   h1
     font-size: 2.2em
     margin-top: 0
@@ -549,42 +549,39 @@ input.parsley-success, textarea.parsley-success
     line-height: 1.6em
 .thanks
   min-height: 900px !important
-.thanks .share
-  +grid(11)
-  +background(linear-gradient(lighten(lightgray, 15%), lighten(lightgray, 5%)))
-  +box-shadow(0 1px 4px gray)
-  +last
-  +border-radius(6px)
-  padding: .8em 1em
-  margin: .8em 0
-  .facebook
-    +grid-subcolumn(12,5)
-    +last
-  .unique
-    +grid-subcolumn(12,7)
-
+  .thanks_section
+    margin-top: 1.4em
+  .facebook, .unique
+    padding: 2em 1.5em 0 1.5em
+  .image
+    margin-top: .8em
+    text-align: center
   label, .facebook span
-    font-size: 1.2em
+    font-size: 1.3em
     display: block
+    margin-bottom: -.3em
     color: #666 
+    font-weight: 200
   input
     display: block
-    font-size: 1em
-    width: 92%
+    font-size: .9em
+    width: 89%
     margin-top: .6em
-    +border-radius(6px)
-    +box-shadow(inset 0 1px 4px gray)
+    border: none
+    +border-radius(4px)
+    +box-shadow(inset 0 -1px 2px #333)
   .facebook a
     +transition(zoom .2s)
     display: inline-block
     margin-top: 1em
-    opacity: .8
     &:hover
-      opacity: 1
+      opacity: .8
 
 .call_to_action
-  +grid(4)
+  +background(linear-gradient(lighten(lightgray, 13%), lighten(lightgray, 15%)))
+  +grid(5)
   +last
+
 
 // Select2
 .select2-results

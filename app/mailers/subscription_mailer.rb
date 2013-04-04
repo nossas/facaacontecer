@@ -19,8 +19,7 @@ class SubscriptionMailer < ActionMailer::Base
 
 
   def inviter_friend_subscribed(subscription)
-    @subscriber = subscription.subscriber
-    @host       = @subscriber.invite.host
+    @host       = subscription.subscriber.invite.host
     @count      = @host.invitees.count
     @invite     = @host.invite.code
 
