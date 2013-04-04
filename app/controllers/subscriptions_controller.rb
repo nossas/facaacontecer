@@ -2,11 +2,11 @@ class SubscriptionsController < ApplicationController
   inherit_resources
   actions :create
  
-  after_filter  only: [:create] {  session[:subscriber_ok] = true }
+  after_filter  only: [:create] { session[:subscriber_ok] = true }
   after_filter  only: [:create] do
-    SubscriptionMailer.successful_create_message(@subscription.id)
+    SubscriptionMailer.successful_create_message(@subscription).deliver
     if @subscription.subscriber.invite.host.present?
-      SubscriptionMailer.inviter_friend_subscribed(@subscription.subscriber.id)
+      SubscriptionMailer.inviter_friend_subscribed(@subscription).deliver
     end
   end
 
