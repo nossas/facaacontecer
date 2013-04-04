@@ -54,6 +54,7 @@ Selfstarter = window.Selfstarter =  {
       'a#faq click'                   : 'openFaq',      
       // External references
       'a.external click'              : 'openPopUp',
+      'input#user_email blur'         : 'removeTrailingSpaces',
 
       // Steps validation
       'button.step_one click'  : 'validateSiblingInput',
@@ -90,6 +91,12 @@ Selfstarter = window.Selfstarter =  {
   openFaq: function(event, target){
     event.preventDefault();
     $(event.target).colorbox({ iframe: true, width:"80%", height:"80%"})
+  },
+
+  removeTrailingSpaces: function(event, target){
+    var obj = $(event.target);
+    obj.val($.trim(obj.val()));
+
   },
 
   openPopUp: function(event,target) {

@@ -6,17 +6,17 @@
         = f.text_field :name, class: [:name], data: { required: true, minlength: 10, trigger: :keyup }, placeholder: t('placeholder.user.name')
       p
         = f.label :cpf
-        = f.text_field :cpf, class: [:cpf], data: { required: true, notblank: true, minlength: 10, maxlength: 14, trigger: :keyup }, placeholder: t('placeholder.user.cpf')
+        = f.text_field :cpf, class: [:cpf], data: { required: true, notblank: true, minlength: 10, maxlength: 14, trigger: :keyup }, autocomplete: :off, placeholder: t('placeholder.user.cpf')
 
         = f.label :birthday
         = f.text_field :birthday, class: [:date], data: { required: true, minlength: 8, maxlength: 10, trigger: :keyup }, placeholder: t('placeholder.user.birthday')
 
       p.email
         = f.label :email
-        = f.text_field :email, class: [:email], data: { required: true, type: :email, trigger: :keyup }, placeholder: t('placeholder.user.email')
+        = f.text_field :email, class: [:email], data: { required: true, type: :email, trigger: :keyup }, autocomplete: :off, placeholder: t('placeholder.user.email')
       p
         = f.label :phone
-        = f.text_field :phone, class: [:phone], data: { required: true, minlength: 9, trigger: :keyup }, size: 25, placeholder: t('placeholder.user.phone')
+        = f.text_field :phone, class: [:phone], data: { required: true, minlength: 9, trigger: :keyup }, autocomplete: :off, size: 25, placeholder: t('placeholder.user.phone')
       p
         = f.button :Continuar, class: [:btn, :step_one], type: :button
 

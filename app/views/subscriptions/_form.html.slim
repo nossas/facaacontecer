@@ -4,10 +4,10 @@
     .wrap.detach
       p
         = f.label :fullname
-        = f.text_field :fullname, data: { required: true, minlength: 8 }, placeholder: t('placeholder.subscription.fullname')
+        = f.text_field :fullname, data: { required: true, minlength: 8 }, placeholder: t('placeholder.subscription.fullname'), autocomplete: :off
       p
         = f.label :card_number
-        = f.text_field :card_number, data: { required: true, number: true, minlength: 16, maxlength: 17 }, maxlength: 18, placeholder: t('placeholder.subscription.card_number')
+        = f.text_field :card_number, data: { required: true, number: true, minlength: 16, maxlength: 17 }, maxlength: 18, placeholder: t('placeholder.subscription.card_number'), autocomplete: :off
 
       p[style='text-align: center; margin-top: -.4em']
         = f.label :expiration_date, class: [:show, :expire_date, :block]
