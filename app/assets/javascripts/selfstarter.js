@@ -297,6 +297,13 @@ Selfstarter = window.Selfstarter =  {
     }(document, 'script', sdk));
   },
 
+  initializeMouseflow: function(){
+    (function() {
+       var mf = document.createElement("script"); mf.type = "text/javascript"; mf.async = true;
+       mf.src = "//cdn.mouseflow.com/projects/7293d4b6-4b7b-4ff2-b026-f5329abe2674.js";
+       document.getElementsByTagName("head")[0].appendChild(mf);
+    })();
+  },
 
 
   // Binding multiple events in an Object hash, avoiding repetition
