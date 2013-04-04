@@ -324,7 +324,7 @@ Selfstarter = window.Selfstarter =  {
         var bindEvent   = options.pop();
         var target      = $(options.join(' '));
         var fn          = Selfstarter[events[evt]];
-        target.on(bindEvent, function(event, data) { fn.apply(Selfstarter,[event, jQuery(event.target), data]) }) 
+        $(document).on(bindEvent, target.selector, function(event, data) { fn.apply(Selfstarter,[event, jQuery(event.target), data]) }) 
       })(evt);
     }
 
