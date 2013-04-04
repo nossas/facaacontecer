@@ -1,6 +1,6 @@
 # coding: utf-8
 class SubscriptionMailer < ActionMailer::Base
-  default from:     "Leonardo do Meu Rio <leonardo@meurio.org.br>",
+  default from:     "Alessandra do Meu Rio <alessandra@meurio.org.br>",
           bcc:      'financiador@meurio.org.br',
           reply_to: 'financiador@meurio.org.br',
           subject:  "Obrigado por financiar o Meu Rio!",
