@@ -48,7 +48,7 @@ class User < ActiveRecord::Base
   after_create :generate_invite_code
 
   def first_name
-    self.name.scan(/[[:word:]]+/u).first.capitalize!
+    self.name.scan(/[[:word:]]+/u).first
   end
 
   def as_json(options={})

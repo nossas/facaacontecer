@@ -20,9 +20,9 @@ class SubscriptionMailer < ActionMailer::Base
 
   def inviter_friend_subscribed(subscription)
     @subscriber = subscription.subscriber
-    @count      = @subscriber.invitees.count
-    @invite     = @subscriber.invite.code if @subscriber.invite.present?
-    @host       = @subscriber.invite.host if @subscriber.invite.host.present?
+    @host       = @subscriber.invite.host
+    @count      = @host.invitees.count
+    @invite     = @host.invite.code
 
     mail(to: @host.email, subject: 'Um amigo já colaborou através do seu link!')
   end
