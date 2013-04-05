@@ -26,7 +26,7 @@
       .wrap.plan_list.grey
         h4 Escolha outro valor  
         = f.label :plan, class: :support
-        = f.select :plan, options_for_select(available_plans), data: { required: true, min: 9, placeholder: "Valor" }, class: :value, selected: '02'
+        = f.select :plan, options_for_select(available_plans, '015'), data: { required: true, min: 9, placeholder: "Valor" }, class: :value
         
 
     .subscriptions_fields
