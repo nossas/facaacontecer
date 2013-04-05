@@ -80,8 +80,8 @@ Selfstarter = window.Selfstarter =  {
     });
 
 
-    this.initializeSocialPlugin("//connect.facebook.net/en_US/all.js#xfbml=1", 'facebok-jssdk');
-    this.initializeSocialPlugin("//platform.twitter.com/widgets.js", 'twitter-wjs');
+    //this.initializeSocialPlugin("//connect.facebook.net/en_US/all.js#xfbml=1", 'facebok-jssdk');
+    //this.initializeSocialPlugin("//platform.twitter.com/widgets.js", 'twitter-wjs');
     //this.initializeSocialPlugin("//apis.google.com/js/plusone.js", 'g-plusone');
     this.initializeMouseflow();
 
