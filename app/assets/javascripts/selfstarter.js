@@ -95,7 +95,7 @@ Selfstarter = window.Selfstarter =  {
 
   removeTrailingSpaces: function(event, target){
     var obj = $(event.target);
-    obj.val($.trim(obj.val()));
+    obj.val($.trim(  obj.val().toLowerCase()  ));
 
   },
 
