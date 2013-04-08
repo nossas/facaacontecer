@@ -12,9 +12,19 @@
 - Is heavilly dependent on Moip Assinaturas. Go check at: http://site.moip.com.br/assinaturas/
 - It's in English. Universal language, you know.
 
+## What do you need to run?
+
+- Ruby 1.9.3+ I'll migrate it to ruby 2.0 soon, so don't expect 1.9.3 support in future releases.
+- Rails 3.2.13 or greater. Note that a Rails 4.0 update is planned, so things will break for sure. And don't expect support for 3.2.13 in the future.
+- Always keep your code updated, because I'll only move forward.
+- SQLite for development, for now. But in the future, the schema will be plain and good SQL for postgres.
+- Linux. You'll have a headache using windows. Trust me.
+
+
 ## Initial Roadmap
 
 ### Highest
+- Improve tests. We have a slow coverage now (only 76%).
 - Cucumber specs, to check the form
 - Jasmine specs, to check javascripts
 - An admin to create Project or Projects.
@@ -24,7 +34,10 @@
 - An admin/dashboard to check current progress, social engagement and clicks.
 - Improve form, because hidden labels can lead to misinterpretation.
 
-## Todos
+## Thanks
+- The guys and inspiration from [Selfstarter](https://selfstarter.us).
+- The inspiration from [Catarse](http://catarse.me)
 
-- Cleanup duplicated code. Always
-- Improve tests. We have a slow coverage now (only 76%).
+## License
+
+Check LICENSE file.
