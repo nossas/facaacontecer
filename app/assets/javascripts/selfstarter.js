@@ -61,11 +61,17 @@ Selfstarter = window.Selfstarter =  {
       'button.step_two click'  : 'validateSiblingInput'
     });
 
+    //Initialize Social
+    //this.initializeSocialPlugin("//connect.facebook.net/en_US/all.js#xfbml=1", 'facebok-jssdk');
+    //this.initializeSocialPlugin("//platform.twitter.com/widgets.js", 'twitter-wjs');
+    //this.initializeSocialPlugin("//apis.google.com/js/plusone.js", 'g-plusone');
      
     // Initialize Masks
     this.initializeMasks();
     this.disableCreditFormFields();
     this.inputs.placeholder();
+    this.initializeMouseflow();
+    this.initializeMixPanel();
   },
   
   initializeMasks: function(){
@@ -74,17 +80,13 @@ Selfstarter = window.Selfstarter =  {
     $('.cep').mask('99999-999');
     $('.phone').mask('(99) 99999999?9');
     $('.money').maskMoney();
+    this.initializeSelects();
+  },
+
+  initializeSelects: function(){
     $('select').select2({
       width: "20%",
     });
-
-
-    //this.initializeSocialPlugin("//connect.facebook.net/en_US/all.js#xfbml=1", 'facebok-jssdk');
-    //this.initializeSocialPlugin("//platform.twitter.com/widgets.js", 'twitter-wjs');
-    //this.initializeSocialPlugin("//apis.google.com/js/plusone.js", 'g-plusone');
-    //this.initializeMouseflow();
-    this.initializeMixPanel();
-
   },
 
 
