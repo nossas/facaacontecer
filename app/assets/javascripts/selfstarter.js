@@ -256,10 +256,10 @@ Selfstarter = window.Selfstarter =  {
       test = window['optimizely'].data.experiments[0] 
     }
 
-    mixpanel.identify(this.subscriber.email);
+    mixpanel.identify(this.subscriber.user.email);
     mixpanel.people.set({ 
-      "$email": this.subscriber.email, 
-      "$name": this.subscriber.name, 
+      "$email": this.subscriber.user.email, 
+      "$name": this.subscriber.user.name, 
       'Test Exposed' : test,
     })
     mixpanel.track('Registered as user');
