@@ -3,8 +3,7 @@ class SubscriptionMailer < ActionMailer::Base
   default from:     "Alessandra do Meu Rio <alessandra@meurio.org.br>",
           bcc:      'financiador@meurio.org.br',
           reply_to: 'financiador@meurio.org.br',
-          subject:  "Obrigada por financiar o Meu Rio!",
-          date:     Date.current
+          subject:  "Obrigada por financiar o Meu Rio!"
 
   default_url_options[:host] = 'apoie.meurio.org.br'
 
