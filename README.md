@@ -8,7 +8,7 @@
 ## This project
 
 - Couldn't be possible without the guys from [Selfstarter](https://github.com/lockitron/selfstarter). 
-- The origin was preserved (include the name of the app, git commits), but with huge adaptations for the Brazilian reality.
+- The origin was preserved (including the name of the app, git commits), but with huge adaptations for the Brazilian reality.
 - Is heavilly dependent on Moip Assinaturas. Go check at: http://site.moip.com.br/assinaturas/
 - It's in English. Universal language, you know.
 
