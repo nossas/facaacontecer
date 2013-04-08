@@ -250,17 +250,10 @@ Selfstarter = window.Selfstarter =  {
     // the user is exposed to
     //console.log(this.subscriber);
     
-    var test  = null;
-      
-    if (window['optimizely']) {
-      test = window['optimizely'].data.experiments[0] 
-    }
-
     mixpanel.identify(this.subscriber.user.email);
     mixpanel.people.set({ 
       "$email": this.subscriber.user.email, 
       "$name": this.subscriber.user.name, 
-      '$test' : test,
     })
     mixpanel.track('Registered as user');
 
