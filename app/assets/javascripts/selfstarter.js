@@ -260,7 +260,7 @@ Selfstarter = window.Selfstarter =  {
     mixpanel.people.set({ 
       "$email": this.subscriber.user.email, 
       "$name": this.subscriber.user.name, 
-      'Test Exposed' : test,
+      '$test' : test,
     })
     mixpanel.track('Registered as user');
 
