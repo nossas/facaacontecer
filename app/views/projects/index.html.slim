@@ -50,7 +50,10 @@
             .step2.hidden
               = render 'subscriptions/form'
           .faq
-            .something= link_to "Perguntas frequentes sobre a campanha", 'http://faqly.herokuapp.com/faqs/1/questions/Meu%20Rio', id: :faq
+            .something
+              = link_to "Perguntas frequentes sobre a campanha", 'http://faqly.herokuapp.com/faqs/1/questions/Meu%20Rio', id: :faq
+              br
+              = mail_to 'financiador@meurio.org.br'
 
 .container#panel-2.lightgreen
   .scroll
