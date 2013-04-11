@@ -25,7 +25,7 @@ pt-BR:
         fullname: "Nome que está escrito no seu cartão de crédito"
         card_number: "Número do seu cartão de crédito (só os números)"
         expiration_date: "Data de validade do cartão (mês/ano):"
-        value: "Você contribui todo mês com o valor abaixo, debitado de seu cartão de crédito. Você pode cancelar a contribuição a qualquer momento por email e sem burocracia."
+        value: "Você contribui todo mês com o valor abaixo, debitado de seu cartão de crédito. Você sempre pode cancelar sua contribuição por email e sem burocracia."
         anonymous: "Minha doação é anônima"
         gift: "Quero receber as recompensas"
   placeholder:

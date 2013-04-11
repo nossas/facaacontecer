@@ -15,7 +15,7 @@
         = f.date_select :expiration_date, start_year: Date.current.year, use_month_numbers: true, end_year: 2026, discard_day: true, data: { required: true }, placeholder: t('placeholder.subscription.expiration_date')
 
     #value.detach
-      p[style='text-align: center; width: 80%; margin: 1em auto; margin-top: -.1em']
+      p[style='text-align: center; width: 95%; margin: 1em auto; margin-top: -.1em']
         = f.label :value, class: :show
       ol.values
         li[data-value='009'] R$ 9
