@@ -9,7 +9,7 @@ class SubscriptionMailer < ActionMailer::Base
   
   def successful_create_message(subscription)
     defaults_for_subscription(subscription)
-    return successful_create_message_for_249_to_500(subscription) if @project > 249 or @project < 499
+    return successful_create_message_for_249_to_500(subscription) if @project > 249 or @project < 500
 
     mail(to: @subscriber.email)
   end
@@ -17,7 +17,7 @@ class SubscriptionMailer < ActionMailer::Base
 
   def successful_create_message_for_bank_slip(subscription)
     defaults_for_subscription(subscription)
-    return successful_create_message_for_249_to_500(subscription) if @project > 249 or @project < 499
+    return successful_create_message_for_249_to_500(subscription) if @project > 249 or @project < 500 
 
     mail(to: @subscriber.email)
   end
@@ -26,7 +26,7 @@ class SubscriptionMailer < ActionMailer::Base
 
   def successful_create_message_for_249_to_500(subscription)
     defaults_for_subscription(subscription)
-    mail(to: @subscriber.email)    
+    mail(to: @subscriber.email)
   end
 
 
@@ -38,9 +38,9 @@ class SubscriptionMailer < ActionMailer::Base
 
   def inviter_friend_subscribed(subscription)
     defaults_for_invites(subscription)
-    return successful_invited_5_people(subscription) if @count == 5
+    return successful_invited_5_people(subscription).deliver if @count == 5
 
-    mail(to: @host.email, subject: 'Um amigo já colaborou através do seu link!')
+    mail(to: @host.email, subject: 'Um amigo já colaborou através do seu link!').deliver
   end
 
 
