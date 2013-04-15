@@ -8,16 +8,12 @@ Feature: Support the project
   Scenario: I choose boleto to back this project
     Given there is a project "Apoie meu projeto" with 25000 of goal and expires in 45 days
     And I'm in the home page
-    And I click "Apoie agora!"
-    Then I should see "Apoie com um valor e você ganha um brinde especial logo após :)"
-    Then I click "R$ 10"
-    Then I should see "Escolha como pretende apoiar o projeto!"
-    Then I should see "Boleto"
-    Then I should see "Cartão de Crédito"
-    When I click "Boleto"
-    And I fill in "Nome completo" with "Luiz Fonseca"
-    And I fill in "Data de Nascimento" with "12/11/1988"
-    And I fill in "Seu CPF" with "011.111.111-70"
+    And I fill in "Qual o seu nome completo?" with "Luiz Fonseca"
+    And I fill in "Quando você nasceu?" with "12/11/1988"
+    And I fill in "E o seu CPF?" with "011.111.111-70"
+    And I fill in "Qual seu email?" with "email@email.com.br"
+    And I click "Continuar"
+
     And I fill in "Endereço" with "Rua X Casa 08"
     And I fill in "Complemento" with "Nenhum"
     And I fill in "CEP" with "22245-050"
@@ -25,7 +21,6 @@ Feature: Support the project
     And I fill in "Número" with "544"
     And I fill in "Cidade" with "Rio de Janeiro"
     And I fill in "Bairro" with "Laranjeiras"
-    And I fill in "Seu email" with "email@email.com.br"
     And I fill in "Celular (ou fixo, insira o DDD)" with "(21) 97137471"
     And I click "Apoiar"
     Then I should see "Aguarde..." 

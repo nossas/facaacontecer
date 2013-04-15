@@ -22,7 +22,7 @@
         li.selected[data-value='017'] R$ 17
         li[data-value='050'] R$ 50
         li[data-value='0'] Outro?
-    #plan.zip.hidden.detach
+    #plan.zip.hidden.detach.plans
       .wrap.plan_list.grey
         h4 Escolha outro valor  
         = f.label :plan, class: :support
@@ -44,7 +44,7 @@
           = f.label :gift
         
     #subscription_error_message.alert
-    #moip-indicator.hidden
+    .moip-indicator.hidden
       p &nbsp;
       = image_tag 'moip-indicator.png'
     = f.button :Contribuir!, class: [:btn, :card_submit]

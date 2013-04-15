@@ -7,14 +7,14 @@ Selfstarter = window.Selfstarter =  {
   
   // The Subscriber
   subscriber: null, 
-
-
+  
   // The value selected by the user
-  plan:      null,
+  plan:       null,
  
   // Forms
   userForm: $('#user_form'),
   cardForm: $('#subscription_form'),
+  boletoForm: $('#boleto_subscription_form'),
 
   // Form fields 
   inputs:     $('form input'),
@@ -24,6 +24,7 @@ Selfstarter = window.Selfstarter =  {
   // Buttons
   button:     $('button.step_two'),
   cardButton: $('button.card_submit'),
+  boletoButton: $('button.boleto_submit'),
 
   
   // The values that the user selects 
@@ -50,7 +51,9 @@ Selfstarter = window.Selfstarter =  {
       '#user_form ajax:success'       : 'userDataSent',
       '#user_form ajax:error'         : 'userDataNotSent',
       'button.card_submit click'      : 'subscribeToPlan',
+      'button.boleto_submit click'    : 'subscribeToBoleto',
       '.values li click'              : 'chooseValue',
+      '.payment_options li click'     : 'choosePaymentOption',
       'a#faq click'                   : 'openFaq',      
       // External references
       'a.external click'              : 'openPopUp',
@@ -72,6 +75,7 @@ Selfstarter = window.Selfstarter =  {
     this.inputs.placeholder();
     this.initializeMouseflow();
     this.initializeMixPanel();
+    this.initializePieChart();
   },
   
   initializeMasks: function(){
@@ -100,6 +104,8 @@ Selfstarter = window.Selfstarter =  {
 
   },
 
+
+
   openPopUp: function(event,target) {
     event.preventDefault();
     var obj = $(event.target);
@@ -114,19 +120,42 @@ Selfstarter = window.Selfstarter =  {
 
   },
 
+
+  changeSelectedElement: function(element) {
+    element.parents('ol').children('li').removeClass('selected');
+    element.addClass('selected');
+  },
+
+  // Function to switch between boleto and credit card payment options
+  // Every time the user clicks, trigger this function
+  choosePaymentOption: function(evt, target) {
+    var el = $(evt.target);
+    this.changeSelectedElement(el);
+    if (el.hasClass('bankslip')) {
+      this.cardForm.fadeOut(0);
+      this.boletoForm.fadeIn(100);
+    } else {
+      this.boletoForm.fadeOut(0);
+      this.cardForm.fadeIn(100);
+    }
+  
+  },
+
+
+
   // Function to change the hidden select named value
   // Everytime the user clicks, he trigger this function
   chooseValue: function(evt, target) {
     var el = $(evt.target);
-    $('ol.values li').removeClass('selected');
-    el.addClass('selected');
+    this.changeSelectedElement(el);
 
     
     if (el.data('value') == '0') {
-      $('#plan').fadeIn()
+      el.parents('fieldset').find('.plans').fadeIn();
     } else {
-      $('select#subscription_plan').val(el.data('value'));
+      el.parents('fieldset').find('select#subscription_plan').val(el.data('value'));
     }
+
     $('select#subscription_plan').select2();
   },
 
@@ -164,6 +193,16 @@ Selfstarter = window.Selfstarter =  {
     }
     
   },
+
+
+  subscribeToBoleto: function(event, target) {
+    var value = $('select#subscription_plan', this.boletoForm).val();
+    event.preventDefault();
+    this.boletoButton.addClass('loading');
+    this.cardForm.detach();
+    this.saveSubscription('', value, this.boletoForm );
+
+  },
     
   // When the user clicks on SUBMIT, we prevent
   // and create the subscription using the moip.subscription.js
@@ -192,18 +231,18 @@ Selfstarter = window.Selfstarter =  {
   // and it just submit the form without some useless fields
   // like credit card number (we don't save this)
   // and others.
-  saveSubscription: function(code, value){
-    $('#subscription_code', this.cardForm).val(code);
-    $('#subscription_value', this.cardForm).val(value);
-    $('.detach', this.cardForm).detach();
-    $('.hide', this.cardForm).hide();
-    $('#moip-indicator').fadeIn();
+  saveSubscription: function(code, value, form){
+    $('#subscription_code', form).val(code);
+    $('#subscription_value', form).val(value);
+    $('.detach', form).detach();
+    $('.hide', form).hide();
+    $('.moip-indicator', form).fadeIn();
     var self = this;
 
     // A small timeout to prevent multiple forms being submited 
     // at the same time.
     setTimeout(function(){
-      self.cardForm.submit();
+      form.submit();
     }, 5000);
   },
 
@@ -235,10 +274,11 @@ Selfstarter = window.Selfstarter =  {
   // User already sent data? OK! Let's show the billing form
   // After submiting and saving the user, we can now show
   // the Subscription form (and change attributes to match our
-  // desires
+  // desires)
   userDataSent: function(evt, target, data){
 
     this.cardForm.attr('action', data.subscription_url);
+    this.boletoForm.attr('action', data.boleto_subscription_url);
     this.subscriber = this.userForm.toObject(this.toObjectOptions)[0];
     
     var self        = this;
@@ -256,7 +296,7 @@ Selfstarter = window.Selfstarter =  {
     })
     mixpanel.track('Registered as user');
 
-    // We are making things less faster for UX purposes
+    // We are making things less faster for UX 
     setTimeout(function(){
       self.button.detach();
       self.submitTipMessage.detach();
@@ -271,11 +311,13 @@ Selfstarter = window.Selfstarter =  {
    // Prevent the user to do things before we can build an user
   disableCreditFormFields: function(){
    $('input, select', this.cardForm).attr('disabled', 'disabled'); 
+   $('input, select', this.boletoForm).attr('disabled', 'disabled'); 
   },
 
   // Enable if the user form is ok
   enableCreditFormFields: function(){
    $('input, select', this.cardForm).removeAttr('disabled'); 
+   $('input, select', this.boletoForm).removeAttr('disabled'); 
   },
 
  

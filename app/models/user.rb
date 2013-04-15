@@ -58,6 +58,26 @@ class User < ActiveRecord::Base
     }.merge(options)
   end
 
+  def as_payer
+    payer = MyMoip::Payer.new(
+      id:             self.id,
+      name:           self.name,
+      email:          self.email,
+      address_city:     self.city,
+      address_state:    self.state,
+      address_country:  self.country,
+      address_cep:      self.zipcode,
+      address_phone:    self.phone,
+      address_street:         self.address_street,
+      address_street_number:  self.address_number,
+      address_street_extra:   self.address_extra,
+      address_neighbourhood:  self.address_district
+    )
+    
+    return payer
+
+  end
+
 
   private
     def generate_invite_code

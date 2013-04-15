@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130328215348) do
+ActiveRecord::Schema.define(:version => 20130414202619) do
 
   create_table "invites", :force => true do |t|
     t.string   "code"
@@ -37,15 +37,16 @@ ActiveRecord::Schema.define(:version => 20130328215348) do
   end
 
   create_table "subscriptions", :force => true do |t|
-    t.integer  "project_id",                     :null => false
-    t.decimal  "value",         :default => 0.0
+    t.integer  "project_id",                               :null => false
+    t.decimal  "value",          :default => 0.0
     t.string   "status"
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
     t.string   "code"
     t.integer  "subscriber_id"
     t.boolean  "anonymous"
     t.boolean  "gift"
+    t.string   "payment_option", :default => "creditcard", :null => false
   end
 
   add_index "subscriptions", ["code"], :name => "index_subscriptions_on_code"

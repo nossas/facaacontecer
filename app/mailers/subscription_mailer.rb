@@ -9,7 +9,7 @@ class SubscriptionMailer < ActionMailer::Base
   
   def successful_create_message(subscription)
     defaults_for_subscription(subscription)
-    return successful_create_message_for_249_to_500(subscription) if Project.first.subscribers.size > 249
+    return successful_create_message_for_249_to_500(subscription) if @project > 249 || @project < 499
 
     mail(to: @subscriber.email)
   end
@@ -17,7 +17,7 @@ class SubscriptionMailer < ActionMailer::Base
 
   def successful_create_message_for_bank_slip(subscription)
     defaults_for_subscription(subscription)
-    return successful_create_message_for_249_to_500(subscription) if Project.first.subscribers.size > 249
+    return successful_create_message_for_249_to_500(subscription) if @project > 249 || @project < 499
 
     mail(to: @subscriber.email)
   end
@@ -59,6 +59,7 @@ class SubscriptionMailer < ActionMailer::Base
   end
 
   def defaults_for_subscription(subscription)
+    @project      = Project.first.subscribers.size
     @subscription = subscription
     @subscriber   = @subscription.subscriber
     @code         = @subscription.code

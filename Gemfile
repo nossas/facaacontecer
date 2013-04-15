@@ -8,6 +8,10 @@ gem 'slim-rails'
 gem 'active_decorator'
 gem 'coveralls', require: false
 
+# Using mymoip gem to handle recurring BOLETO option
+# for donation.
+gem 'mymoip'
+
 # This gem allow us to mantain only one dyno
 # for jobs we want to run. So we don't to expend any money
 # to run delayed jobs

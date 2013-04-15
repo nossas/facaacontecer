@@ -1,3 +1,4 @@
+# coding: utf-8
 class Subscription < ActiveRecord::Base
  
 
@@ -14,4 +15,20 @@ class Subscription < ActiveRecord::Base
 
   # Scope for completed payments
   scope :raised, where(status: :active)
+
+
+  def prepared_instruction
+    instruction = MyMoip::InstructionRecurring.new(
+        id: SecureRandom.hex(8),
+        payment_reason: "Contribuição mensal para Meu Rio. Eu faço acontecer!",
+        values: [self.value],
+        payer: self.subscriber.as_payer,
+        periodicity: 12
+      )
+    instruction
+  end
+
+  def bankslip
+    MyMoip::BoletoPayment.new(expiration_days: 8, expiration_date: Time.now + 10.days)
+  end
 end

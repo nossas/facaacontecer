@@ -1,5 +1,5 @@
 Given /^there is a project "(.*?)" with (\d+) of goal and expires in (\d+) days$/ do |arg1, arg2, arg3|
-  @project = Project.make! title: arg1, description: 'description', goal: arg2.to_f, expiration_date: Time.now + (arg3.to_i.days)
+  @project = Project.make! title: arg1, description: 'description', goal: arg2.to_f, expiration_date: Date.current + (arg3.to_i.days)
 end
 
 

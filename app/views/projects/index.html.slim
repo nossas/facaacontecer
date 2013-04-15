@@ -48,7 +48,11 @@
             .step1
               = render 'subscribers/form'
             .step2.hidden
+              ol.payment_options
+                li.creditcard.selected Cartão de crédito
+                li.bankslip Boleto Mensal 
               = render 'subscriptions/form'
+              = render 'subscriptions/form_boleto'
           .faq
             .something
               = link_to "Perguntas frequentes sobre a campanha", 'http://faqly.herokuapp.com/faqs/1/questions/Meu%20Rio', id: :faq

@@ -16,6 +16,20 @@ module ApplicationHelper
     ]
   end
 
+
+  def available_values
+    [
+      [12,'12.00'],
+      [19,'19.00'],
+      [35,'35.00'],
+      [56,'56.00'],
+      [80,'80.00'],
+      [100,'100.00'],
+      [150,'150.00'],
+      [250,'250.00']
+    ]    
+  end
+
   def states_for_select
     [
       'AC',

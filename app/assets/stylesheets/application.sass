@@ -146,7 +146,7 @@ input[type='text']
   background:   url('bg.jpg') repeat center top
   min-height: 870px
   height: auto 
-  padding-bottom: 2.5em
+  padding-bottom: 6.5em
 
 #panel-2
   color: $gray
@@ -155,7 +155,6 @@ input[type='text']
     background: image-url('panel-2_text.png') no-repeat center top
     +background-size(100%)
     min-height: 650px
-    height: 650px
   p
     width: 54%
     margin: 0 auto
@@ -460,12 +459,24 @@ ol.steps
 .errors
   color: red
   text-align: center
-.card_submit
+.card_submit, .boleto_submit
   width: 90%
 label.expire_date
   padding-top: .5em
   color: #666
-ol.values
+
+
+ol.payment_options
+  margin: .8em 0
+  li
+    font-size: .9em !important
+  li a
+    color: white
+  li.selected a
+    color: black
+    
+
+ol.values, ol.payment_options
   li
     margin: 0 .8%
     display: inline-block
@@ -588,6 +599,26 @@ input.parsley-success, textarea.parsley-success
   +grid(5)
   +last
 
+.bankslip
+  .message
+    +grid(6)
+  .call_to_action
+    +grid(6)
+    .text
+      padding: .6em 1.5em
+      margin-top: .8em
+      width: 90%
+    .text p
+      padding: 0
+      font-size: 1.1em !important
+    .unique, .facebook
+      padding-top: .2em
+      text-align: center
+      input
+        width: 92%
+    .facebook
+      margin-top: 2em
+
 
 // Select2
 .select2-results
@@ -627,7 +658,7 @@ input.parsley-success, textarea.parsley-success
   img
     float: left
     margin-top: .2em
-#moip-indicator
+.moip-indicator
   text-align: center
   img
     width: 30%
