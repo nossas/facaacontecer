@@ -1,0 +1,39 @@
+doctype html
+html
+  head
+    title
+  body style="font-family: Arial; color: black; max-width: 680px; line-height: 1.5em"
+    p
+      strong
+        |#{@subscriber.first_name}, 
+    p
+      |A campanha Faça Acontecer está sendo um sucesso e a prova disso é que alcançamos nossos primeiros 250 novos financiadores. Você é um deles.
+    p
+      |Para agradecer a participação, como informamos antes, além do certificado de financiador, nome estampado na página "Sobre Nós" do Meu Rio e o pôster exclusivo assinado pelo designer Igor Campos, você acaba de ganahr uma inscrição gratuita para um dos workshops de mobilização que iremos realizar (enviaremos mais informações após o fim da campanha). E, como você sabem, se chegarmos em 500 apoiadores, você também receberá a inscrição gratuita para outro workshop sobre tecnologia aplicada a mobilização.
+    p
+      | E o mais bacana: se a gente bater a meta de 1.000 apoiadores, poderemos manter o trabalho do Meu Rio por mais um ano. Para comemorar, prometemos dar uma festa daquelas para todos os que, como você, fazem o Meu Rio acontecer! Legal, né?
+
+   
+    p
+      |Quer ajudar a conquistar novos apoiadores e ganhar mais recompensas? 
+      br
+      br
+      |Para isso, criamos um link de compartilhamento exclusivo para você: #{link_to invite_url(@invite, protocol: "https"), invite_url(@invite, protocol: "https")}.
+    p
+      |A ideia é simples e legal. Compartilhe este link com seus amigos. Se cinco deles contribuirem clicando no seu link, você ganha uma camiseta bonitona. Se outros cinco fizerem o mesmo, além de uma camiseta bonitona, você ganha uma caderneta exclusiva feita a mão pela designer Anissa Daliry.
+      br
+      br
+      |Compartilhe o seu link exclusivo por Facebook ou por email: #{link_to invite_url(@invite, protocol: 'https'), invite_url(@invite, protocol: 'https')} 
+    p
+      |Muito Obrigado!
+    p
+      | Em nome da Equipe Meu Rio.
+    p
+      br
+      br
+      small[style='color: #666'] 
+        |Para deixar de apoiar o Meu Rio e cancelar sua colaboração mensal, envie um email para #{mail_to "financiador@meurio.org.br"}.
+      br
+      small[style='color: #666'] 
+        |Ao entrar em contato conosco, informe a sua ID de assinatura: #{@code}.
+

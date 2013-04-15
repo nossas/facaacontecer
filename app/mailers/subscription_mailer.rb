@@ -30,6 +30,12 @@ class SubscriptionMailer < ActionMailer::Base
   end
 
 
+  def autofire_for_0_249(subscription)
+    defaults_for_subscription(subscription)
+    mail(to: @subscriber.email)     
+  end
+
+
   def inviter_friend_subscribed(subscription)
     defaults_for_invites(subscription)
     return successful_invited_5_people(subscription) if @count == 5
