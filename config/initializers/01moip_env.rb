@@ -2,7 +2,7 @@
 MOIP_TOKEN  = ENV['MOIP_TOKEN'] 
 
 if Rails.env.production?
-  MOIP_INSTRUCTION_URL = "https://moip.com.br/Instrucao.do?token="  
+  MOIP_INSTRUCTION_URL = "https://www.moip.com.br/Instrucao.do?token="  
   MOIP_URL    = 'https://moip.com.br/assinaturas/v1'
   MOIP_JS_URL = '//api.moip.com.br/moip-assinaturas.min.js'
 else
