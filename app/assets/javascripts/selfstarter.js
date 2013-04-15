@@ -79,7 +79,6 @@ Selfstarter = window.Selfstarter =  {
     $('.date').mask('99/99/9999');
     $('.cep').mask('99999-999');
     $('.phone').mask('(99) 99999999?9');
-    $('.money').maskMoney();
     this.initializeSelects();
   },
 
