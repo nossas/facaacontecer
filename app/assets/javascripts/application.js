@@ -15,7 +15,6 @@
 //= require parsley
 //= require jquery_ujs
 //= require jquery.to_json
-//= require jquery.money
 //= require jquery.mask
 //= require jquery.colorbox
 //= require jquery.placeholder
