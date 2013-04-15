@@ -2,7 +2,7 @@ module MyMoip
   class TransparentRecurringRequest < MyMoip::Request
 
     HTTP_METHOD   = :post
-    PATH          = "/ws/alpha/EnviarInstrucao/Recorrente"
+    PATH          = "/ws/alpha/EnviarInstrucao/Unica"
     REQUIRES_AUTH = true
 
     def api_call(data, opts = {})
@@ -17,19 +17,19 @@ module MyMoip
     end
 
     def success?
-      @response && @response["EnviarInstrucaoRecorrenteResponse"]["Resposta"]["Status"] == "Sucesso"
+      @response && @response["EnviarInstrucaoUnicaResponse"]["Resposta"]["Status"] == "Sucesso"
     rescue NoMethodError => e
       false
     end
 
     def token
-      @response["EnviarInstrucaoRecorrenteResponse"]["Resposta"]["Token"] || nil
+      @response["EnviarInstrucaoUnicaResponse"]["Resposta"]["Token"] || nil
     rescue NoMethodError => e
       nil
     end
 
     def id
-      @response["EnviarInstrucaoRecorrenteResponse"]["Resposta"]["ID"]
+      @response["EnviarInstrucaoUnicaResponse"]["Resposta"]["ID"]
     rescue NoMethodError => e
       nil
     end

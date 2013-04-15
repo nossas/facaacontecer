@@ -34,7 +34,7 @@ module MyMoip
       root = Builder::XmlMarkup.new(target: xml)
 
       root.EnviarInstrucao do |n1|
-        n1.InstrucaoRecorrente(TipoValidacao: "Transparente") do |n2|
+        n1.InstrucaoUnica(TipoValidacao: "Transparente") do |n2|
           n2.Razao(@payment_reason)
           n2.Valores do |n3|
             @values.each { |v| n3.Valor("%.2f" % v, moeda: "BRL") }
