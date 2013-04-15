@@ -6,23 +6,58 @@ class SubscriptionMailer < ActionMailer::Base
           subject:  "Obrigada por financiar o Meu Rio!"
 
   default_url_options[:host] = 'apoie.meurio.org.br'
-
+  
   def successful_create_message(subscription)
-    @subscription = subscription
-    @subscriber   = @subscription.subscriber
-    @code         = @subscription.code
-    @invite       = @subscriber.invite.code if @subscriber.invite.present?
+    defaults_for_subscription(subscription)
+    return successful_create_message_for_249_to_500(subscription) if Project.first.subscribers.size > 249
 
     mail(to: @subscriber.email)
   end
 
 
+  def successful_create_message_for_bank_slip(subscription)
+    defaults_for_subscription(subscription)
+    return successful_create_message_for_249_to_500(subscription) if Project.first.subscribers.size > 249
+
+    mail(to: @subscriber.email)
+  end
+
+
+
+  def successful_create_message_for_249_to_500(subscription)
+    defaults_for_subscription(subscription)
+    mail(to: @subscriber.email)    
+  end
+
+
   def inviter_friend_subscribed(subscription)
-    @host       = subscription.subscriber.invite.host
-    @count      = @host.invitees.count
-    @invite     = @host.invite.code
+    defaults_for_invites(subscription)
+    return successful_invited_5_people(subscription) if @count == 5
 
     mail(to: @host.email, subject: 'Um amigo já colaborou através do seu link!')
   end
 
+
+  def successful_invited_5_people(subscription)
+    defaults_for_invites(subscription)
+
+    mail(to: @host.email, subject: 'Cinco amigos já colaboraram através do seu link!')
+  end
+
+
+
+  def defaults_for_invites(subscription)
+    @host       = subscription.subscriber.invite.host
+    @count      = @host.invitees.count
+    @invite     = @host.invite.code
+  end
+
+  def defaults_for_subscription(subscription)
+    @subscription = subscription
+    @subscriber   = @subscription.subscriber
+    @code         = @subscription.code
+    @invite       = @subscriber.invite.code if @subscriber.invite.present?
+    
+  end
 end
+

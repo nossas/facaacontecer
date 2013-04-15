@@ -10,7 +10,7 @@ html
     meta property="og:site_name"    content=t('seo.title')
     meta property="og:image"        content="http://i.imgur.com/0ShcFbK.jpg"
     meta property="og:type"         content="website"
-    meta property="og:url"          content="http://facaacontecer.meurio.org.br"
+    meta property="og:url"          content="https://apoie.meurio.org.br"
     meta property="fb:admins"       content="100001105729764,100000428222603"
     meta property="fb:app_id"       content="177910022269006"
     meta property="fb:page_id"      content="241897672509479"
@@ -29,6 +29,20 @@ html
         ga.src = 'https://ssl.google-analytics.com/ga.js';
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
+
+      // Tracking client-side errors using Google Analytics
+      window.onerror = function(message, url, line) {
+        if (typeof(_gaq) === "object") {
+            _gaq.push([
+                "_trackEvent",
+                "JS Exception Error",
+                message,
+                (url + " (" + line + ")"),
+                0, true
+                ]);
+        }
+        return true;
+      };
     /[if IE]
       script[src="https://html5shiv.googlecode.com/svn/trunk/html5.js"]
       
