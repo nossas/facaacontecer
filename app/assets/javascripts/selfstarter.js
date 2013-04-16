@@ -75,7 +75,6 @@ Selfstarter = window.Selfstarter =  {
     this.inputs.placeholder();
     this.initializeMouseflow();
     this.initializeMixPanel();
-    this.initializePieChart();
   },
   
   initializeMasks: function(){
