@@ -29,7 +29,7 @@ class SubscriptionsController < ApplicationController
   def create_with_bank_slip
     if send_payment_request && @subscription.save!
       session[:token] = @transparent_request.token
-      return redirect_to bankslip_thank_you_path(@subscription.subscriber)
+      return redirect_to thank_you_path(@subscription.subscriber)
     end
 
     return render json: { body: @subscription.errors, status: :unprocessable_entity }

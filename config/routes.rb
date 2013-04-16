@@ -12,7 +12,6 @@ Selfstarter::Application.routes.draw do
 
   get '/invite/:code',  to: "projects#index",     as: :invite
   get '/obrigado-de-coracao/:id', to: "subscribers#thanks", as: :thank_you
-  get '/obrigado-de-coracao/boleto/:id', to: 'subscribers#bankslip_thanks', as: :bankslip_thank_you
 
   root :to => 'projects#index'
 end
