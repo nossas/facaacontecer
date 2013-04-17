@@ -16,9 +16,11 @@ class SubscriptionsController < ApplicationController
   end
 
 
-  after_filter  only: [:create, :create_with_bank_slip] { SubscriptionMailer.successful_create_message_for_249_to_500(@subscription).deliver }
-  after_filter  only: [:create, :create_with_bank_slip] {  send_invite_email } 
-  after_filter  only: [:create, :create_with_bank_slip] { session[:subscriber_ok] = true }
+  after_filter  only: [:create, :create_with_bank_slip] do 
+    session[:subscriber_ok] = true
+    SubscriptionMailer.successful_create_message_for_249_to_500(@subscription).deliver
+    send_invite_email
+  end
 
   def create
     create! { thank_you_path(@subscription.subscriber) } 
