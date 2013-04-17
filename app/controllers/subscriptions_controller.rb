@@ -16,9 +16,8 @@ class SubscriptionsController < ApplicationController
   end
 
 
-  after_filter  only: [:create] { SubscriptionMailer.successful_create_message_for_249_to_500(@subscription).deliver }
-  after_filter  only: [:create_with_bank_slip] { SubscriptionMailer.successful_create_message_for_249_to_500(@subscription).deliver }
-  after_filter  only: [:create, :create_with_bank_slip] { SubscriptionMailer.inviter_friend_subscribed(@subscription) if @subscription.subscriber.invite.host.present? } 
+  after_filter  only: [:create, :create_with_bank_slip] { SubscriptionMailer.successful_create_message_for_249_to_500(@subscription).deliver }
+  after_filter  only: [:create, :create_with_bank_slip] {  send_invite_email } 
   after_filter  only: [:create, :create_with_bank_slip] { session[:subscriber_ok] = true }
 
   def create
@@ -47,4 +46,15 @@ class SubscriptionsController < ApplicationController
       @payment.success?
     end
 
+
+    def send_invite_email
+      @host = @subscription.subscriber.invite.host
+      return nil unless @host.present?
+
+      if @host.invitees.size == 5
+        SubscriptionMailer.successful_invited_5_people(@subscription).deliver
+      else
+        SubscriptionMailer.inviter_friend_subscribed(@subscription).deliver         
+      end
+    end
 end

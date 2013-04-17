@@ -37,9 +37,9 @@ class SubscriptionMailer < ActionMailer::Base
 
 
   def inviter_friend_subscribed(subscription)
-    defaults_for_invites(subscription)
     return successful_invited_5_people(subscription).deliver if @count == 5
 
+    defaults_for_invites(subscription)
     mail(to: @host.email, subject: 'Um amigo já colaborou através do seu link!').deliver
   end
 
