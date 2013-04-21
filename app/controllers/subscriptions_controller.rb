@@ -54,7 +54,7 @@ class SubscriptionsController < ApplicationController
       return nil unless @host.present?
 
       if @host.invitees.size == 5
-        SubscriptionMailer.successful_invited_5_people(@subscription).deliver
+        SubscriptionMailer.successful_invited_5_friends(@subscription).deliver
       else
         SubscriptionMailer.inviter_friend_subscribed(@subscription).deliver         
       end

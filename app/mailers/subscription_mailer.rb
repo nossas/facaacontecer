@@ -34,11 +34,11 @@ class SubscriptionMailer < ActionMailer::Base
 
   def inviter_friend_subscribed(subscription)
     defaults_for_invites(subscription)
-    mail(to: @host.email, subject: 'Um amigo já colaborou através do seu link!').deliver
+    mail(to: @host.email, subject: 'Um amigo já colaborou através do seu link!')
   end
 
 
-  def successful_invited_5_people(subscription)
+  def successful_invited_5_friends(subscription)
     defaults_for_invites(subscription)
 
     mail(to: @host.email, subject: 'Cinco amigos já colaboraram através do seu link!')
