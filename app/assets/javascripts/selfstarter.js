@@ -73,8 +73,8 @@ Selfstarter = window.Selfstarter =  {
     this.initializeMasks();
     this.disableCreditFormFields();
     this.inputs.placeholder();
-    this.initializeMouseflow();
-    this.initializeMixPanel();
+    //this.initializeMixPanel();
+    //this.initializeMouseflow();
   },
   
   initializeMasks: function(){

@@ -5,8 +5,8 @@ html
     meta name="viewport"            content="width=960, initial-scale=1, maximum-scale=1"
     meta name="description"         content=t('seo.description')
     meta name="keywords"            content=t('seo.keywords')
-    meta property="og:title"        content=t('seo.title')
-    meta property="og:description"  content=t('seo.description')
+    meta property="og:title"        content=t('seo.og_title')
+    meta property="og:description"  content=t('seo.og_description')
     meta property="og:site_name"    content=t('seo.title')
     meta property="og:image"        content="http://i.imgur.com/0ShcFbK.jpg"
     meta property="og:type"         content="website"
@@ -54,4 +54,4 @@ html
     #fb-root
   = javascript_include_tag MOIP_JS_URL 
   = javascript_include_tag :application
-  = javascript_include_tag '//cdn.optimizely.com/js/205453662.js'
+  = #javascript_include_tag '//cdn.optimizely.com/js/205453662.js'
