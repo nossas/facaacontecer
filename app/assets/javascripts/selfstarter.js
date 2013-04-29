@@ -288,12 +288,12 @@ Selfstarter = window.Selfstarter =  {
     // the user is exposed to
     //console.log(this.subscriber);
     
-    mixpanel.identify(this.subscriber.user.email);
-    mixpanel.people.set({ 
-      "$email": this.subscriber.user.email, 
-      "$name": this.subscriber.user.name, 
-    })
-    mixpanel.track('Registered as user');
+/*    mixpanel.identify(this.subscriber.user.email);*/
+    //mixpanel.people.set({ 
+      //"$email": this.subscriber.user.email, 
+      //"$name": this.subscriber.user.name, 
+    //})
+    /*mixpanel.track('Registered as user');*/
 
     // We are making things less faster for UX 
     setTimeout(function(){
