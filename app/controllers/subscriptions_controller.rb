@@ -18,7 +18,7 @@ class SubscriptionsController < ApplicationController
 
   after_filter  only: [:create, :create_with_bank_slip] do 
     session[:subscriber_ok] = true
-    SubscriptionMailer.successful_create_message_for_249_to_500(@subscription).deliver
+    
     send_invite_email
   end
 
@@ -46,6 +46,15 @@ class SubscriptionsController < ApplicationController
       @payment = MyMoip::PaymentRequest.new(@subscription.code)
       @payment.api_call(@subscription.bankslip, token: @transparent_request.token)
       @payment.success?
+    end
+
+
+    def send_successful_message
+      if @subscription.project.subscribers.size > 500
+        return SubscriptionMailer.successful_create_message_for_500_to_1000(@subscription).deliver
+      end
+
+      return SubscriptionMailer.successful_create_message_for_249_to_500(@subscription).deliver
     end
 
 

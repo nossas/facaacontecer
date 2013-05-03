@@ -1,0 +1,39 @@
+doctype html
+html
+  head
+    title
+  body style="font-family: Arial; color: black; max-width: 680px; line-height: 1.5em"
+    p
+      strong
+        |#{@subscriber.first_name}, 
+    p
+      |Graças a você poderemos continuar independentes e mobilizar cada vez mais pessoas.
+    p
+      |Para agradecer a sua contribuição, você receberá um certificado de financiador, terá seu nome estampado na página "Sobre Nós" do Meu Rio e ganhará uma inscrição gratuita em um dos workshops de mobilização que o Meu Rio irá realizar (enviaremos mais informações depois do fim da campanha). 
+    p
+      | E o mais bacana: se a gente bater a meta de 1.000 apoiadores, poderemos manter o trabalho do Meu Rio por mais um ano. Para comemorar, prometemos dar uma festa daquelas para todos os que, como você, fazem o Meu Rio acontecer! Legal, né?
+
+   
+    p
+      |Quer ajudar a conquistar novos apoiadores e ganhar mais recompensas? 
+      br
+      br
+      |Para isso, criamos um link de compartilhamento exclusivo para você: #{link_to invite_url(@invite, protocol: "https"), invite_url(@invite, protocol: "https")}.
+    p
+      |A ideia é simples e legal. Compartilhe este link com seus amigos. Se cinco deles contribuirem clicando no seu link, você ganha uma camiseta bonitona. Se outros cinco fizerem o mesmo, além de uma camiseta bonitona, você ganha uma caderneta exclusiva feita a mão pela designer Anissa Daliry.
+      br
+      br
+      |Compartilhe o seu link exclusivo por Facebook ou por email: #{link_to invite_url(@invite, protocol: 'https'), invite_url(@invite, protocol: 'https')} 
+    p
+      |Muito Obrigado!
+    p
+      | Em nome da Equipe Meu Rio.
+    p
+      br
+      br
+      small[style='color: #666'] 
+        |Para deixar de apoiar o Meu Rio e cancelar sua colaboração mensal, envie um email para #{mail_to "financiador@meurio.org.br"}.
+      br
+      small[style='color: #666'] 
+        |Ao entrar em contato conosco, informe a sua ID de assinatura: #{@code}.
+

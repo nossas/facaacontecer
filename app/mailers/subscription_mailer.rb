@@ -19,18 +19,25 @@ class SubscriptionMailer < ActionMailer::Base
   end
 
 
-
   def successful_create_message_for_249_to_500(subscription)
     defaults_for_subscription(subscription)
     mail(to: @subscriber.email)
   end
 
+  def successful_create_message_for_500_to_1000(subscription)
+    defaults_for_subscription(subscription)
+    mail(to: @subscriber.email)
+  end
 
   def autofire_for_0_249(subscription)
     defaults_for_subscription(subscription)
     mail(to: @subscriber.email)     
   end
 
+  def autofire_for_249_500(subscription)
+    defaults_for_subscription
+    mail(to: @subscriber.email)
+  end
 
   def inviter_friend_subscribed(subscription)
     defaults_for_invites(subscription)
