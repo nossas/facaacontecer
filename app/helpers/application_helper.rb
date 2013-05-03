@@ -166,7 +166,7 @@ module ApplicationHelper
 
 
   def facebook_share_common_url
-    "https://www.facebook.com/sharer.php?s=100&p[title]=#{t('seo.title')}&p[summary]=#{t('seo.description')}&p[url]=#{root_url}&p[images][0]=#{image_path('og_image.jpg')}"
+    "https://www.facebook.com/sharer.php?s=100&p[title]=#{t('seo.og_title')}&p[summary]=#{t('seo.og_description')}&p[url]=#{root_url}&p[images][0]=#{image_path('fb_image.jpg')}"
   end
 
 
