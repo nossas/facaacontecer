@@ -18,7 +18,7 @@ class SubscriptionsController < ApplicationController
 
   after_filter  only: [:create, :create_with_bank_slip] do 
     session[:subscriber_ok] = true
-    
+    send_successful_message
     send_invite_email
   end
 
