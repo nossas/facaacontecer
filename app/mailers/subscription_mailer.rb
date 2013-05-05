@@ -35,7 +35,7 @@ class SubscriptionMailer < ActionMailer::Base
   end
 
   def autofire_for_249_500(subscription)
-    defaults_for_subscription
+    defaults_for_subscription(subscription)
     mail(to: @subscriber.email)
   end
 
