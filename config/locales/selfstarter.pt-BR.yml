@@ -70,6 +70,9 @@ pt-BR:
     other: "<strong>%{count}</strong> <span>apoiadores</span>"
   goal:
     reached_of_html: "<strong>%{current}</strong> <span>de %{goal}</span>"
-    days_remaining_html: "<strong>%{days}</strong><span>dias para o fim da campanha</span>"
-    people_so_far_html: "<strong>%{days}</strong><span>pessoas fazendo o Meu Rio acontecer</span>"
+    days_remaining_html:
+      one: "<strong>%{count} dia </strong><span>para o fim da campanha</span>"
+      other: "<strong>%{count} dias </strong><span>para o fim da campanha</span>"
+    last_day_remaining_html: "<strong>último dia </strong><span>para o fim da campanha</span>"
+    people_so_far_html: "<strong>%{days} pessoas </strong><span>fazendo o Meu Rio acontecer</span>"
     progress_text: "<strong>%{percent}%</strong> alcançados"

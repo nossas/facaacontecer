@@ -14,13 +14,15 @@ module ProjectDecorator
   end
 
   def days_remaining
-    total_days = days.to_i
+    total_days = days 
     now = ((total_days - end_date) * 100)/total_days
+    date = end_date == 1 ? t('goal.last_day_remaining_html') : t('goal.days_remaining_html', count: end_date)
+
     content_tag(
       :div, content_tag(:div, nil, id: :p_progress, style: "width: #{now}%"),
       id: :p_progress_bg, class: :small
-    ) +
-    t('goal.days_remaining_html', days: end_date)
+    ) + date
+    
   end
 
   def progress

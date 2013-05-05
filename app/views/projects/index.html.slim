@@ -22,12 +22,13 @@
             .title
               h1
                 | Somos mobilizadores, somos independentes, somos o Meu Rio.
-            .progress
-              .days
-                = @project.days_remaining
 
-              .people
-                = @project.progress
+            - unless @project.end_date.zero?
+              .progress
+                .days
+                  = @project.days_remaining
+                .people
+                  = @project.progress
 
           .subscription
             .head= image_tag "top_form_header.png"
