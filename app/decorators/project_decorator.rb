@@ -14,7 +14,7 @@ module ProjectDecorator
   end
 
   def days_remaining
-    total_days = days 
+    total_days = days + 1 
     now = ((total_days - end_date) * 100)/total_days
     date = end_date == 1 ? t('goal.last_day_remaining_html') : t('goal.days_remaining_html', count: end_date)
 

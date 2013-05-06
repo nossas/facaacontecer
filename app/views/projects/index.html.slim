@@ -23,10 +23,14 @@
               h1
                 | Somos mobilizadores, somos independentes, somos o Meu Rio.
 
-            - unless @project.end_date.zero?
+            - unless @project.expiration_date <= Date.current
               .progress
                 .days
                   = @project.days_remaining
+                .people
+                  = @project.progress
+            - else
+              .progress.successful
                 .people
                   = @project.progress
 
