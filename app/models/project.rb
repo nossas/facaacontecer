@@ -50,6 +50,10 @@ class Project < ActiveRecord::Base
     self.percent >= 100
   end 
 
+  def expired?
+    self.end_date <= 0
+  end
+
   private
     def set_total_days
       if self.expiration_date_changed?

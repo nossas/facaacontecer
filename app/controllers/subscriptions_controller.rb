@@ -50,6 +50,8 @@ class SubscriptionsController < ApplicationController
 
 
     def send_successful_message
+      return SubscriptionMailer.after_campaign_ending(@subscription).deliver if @subscription.project.expired?
+
       if @subscription.project.subscribers.size > 500
         return SubscriptionMailer.successful_create_message_for_500_to_1000(@subscription).deliver
       end

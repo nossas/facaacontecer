@@ -39,6 +39,11 @@ class SubscriptionMailer < ActionMailer::Base
     mail(to: @subscriber.email)
   end
 
+  def after_campaign_ending(subscription)
+    defaults_for_subscription(subscription)
+    mail(to: @subscriber.email)
+  end
+
   def inviter_friend_subscribed(subscription)
     defaults_for_invites(subscription)
     mail(to: @host.email, subject: 'Um amigo já colaborou através do seu link!')
