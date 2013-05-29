@@ -6,7 +6,7 @@ module MyMoip
                   :instruction_1, :instruction_2, :instruction_3
 
     def initialize(attrs)
-      self.expiration_days      = attrs[:expiration_days]
+      self.expiration_days      = attrs[:expiration_days] || ''
       self.expiration_date      = attrs[:expiration_date]
       self.instruction_1        = attrs[:instruction_1] || ''
       self.instruction_2        = attrs[:instruction_2] || ''

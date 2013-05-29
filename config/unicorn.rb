@@ -9,4 +9,8 @@ preload_app true
 
 # Immediately restart any workers that
 # haven't responded within 30 seconds
-timeout 30
+timeout 3600
+
+
+port = ENV['PORT'].to_i
+listen port, :tcp_nopush => false

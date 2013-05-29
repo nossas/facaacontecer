@@ -44,7 +44,7 @@ class SubscriptionsController < ApplicationController
       @transparent_request.api_call(@subscription.prepared_instruction)
 
       @payment = MyMoip::PaymentRequest.new(@subscription.code)
-      @payment.api_call(@subscription.bankslip, token: @transparent_request.token)
+      @payment.api_call(@subscription.bankslip(expiration: Time.now + 10.days), token: @transparent_request.token)
       @payment.success?
     end
 

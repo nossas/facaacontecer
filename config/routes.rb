@@ -9,9 +9,14 @@ Selfstarter::Application.routes.draw do
       end
     end
   end
-
+  
   get '/invite/:code',  to: "projects#index",     as: :invite
   get '/obrigado-de-coracao/:id', to: "subscribers#thanks", as: :thank_you
+  
+  
+
+  get '/boletos',  to: "webhooks#bankslips"
+
 
   root :to => 'projects#index'
 end
