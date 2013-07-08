@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '1.9.3'
+ruby '2.0.0'
 
 
 gem 'rails', '~> 3.2.13'
@@ -48,6 +48,9 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
   gem "select2-rails"
+
+
+  gem 'zurb-foundation'
 
   # Using asset_sync to send our CSS/HTML/images to Amazon
   # If you don't use heroku or Amazon, please comment the line

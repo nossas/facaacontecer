@@ -9,6 +9,10 @@ Selfstarter::Application.routes.draw do
       end
     end
   end
+
+  namespace :admin do
+    resources :subscribers, only: [:index]
+  end
   
   get '/invite/:code',  to: "projects#index",     as: :invite
   get '/obrigado-de-coracao/:id', to: "subscribers#thanks", as: :thank_you

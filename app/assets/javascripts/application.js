@@ -14,6 +14,7 @@
 //= require select2
 //= require parsley
 //= require jquery_ujs
+//= require foundation
 //= require jquery.to_json
 //= require jquery.mask
 //= require jquery.colorbox
@@ -21,3 +22,39 @@
 //= require moip.subscription
 //= require selfstarter 
 //= require_tree .
+
+$(function(){ $(document).foundation(); });
+var ts = $.tablesorter,
+    sorting = false,
+    searching = false;
+
+$('table')
+    .on('sortBegin filterEnd', function (e, filters) {
+        if (!(sorting || searching)) {
+            var table = this,
+                c = table.config,
+                filters = ts.getFilters(table),
+                $sibs = c.$table.siblings('.tablesorter');
+            if (!sorting) {
+                sorting = true;
+                $sibs.trigger('sorton', [c.sortList, function () {
+                    setTimeout(function () {
+                        sorting = false;
+                    }, 500);
+                }]);
+            }
+            if (!searching) {
+                $sibs.each(function () {
+                    ts.setFilters(this, filters, true);
+                });
+                setTimeout(function () {
+                    searching = false;
+                }, 500);
+            }
+        }
+    })
+    .tablesorter({
+        theme: 'blue',
+        widthFixed: true,
+        widgets: ['filter']
+    });

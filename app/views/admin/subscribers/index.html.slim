@@ -1,0 +1,30 @@
+.row
+  .large-16.columns
+    h1 Subscribers
+  .large-16.columns
+    br
+    table.tablesorter
+      thead
+        tr
+          th Id
+          th Nome
+          th E-mail
+          th[width='100'] Idade
+          th Bairro
+          th Ativo?
+          th[width='200'] Desde
+          th Subscriptions
+
+      tbody
+        - @subscribers.each do |s|
+          tr
+            td= "##{s.id}"
+            td= s.first_name  
+            td= s.email
+            td= "#{Time.now.year - s.birthday.strftime('%Y').to_i }" 
+            td= s.address_district
+            td= s.subscriptions.last.status == 'active' if s.subscriptions.any?
+            td= s.subscriptions.first.created_at.strftime('%d-%m-%Y %H:%M') if s.subscriptions.any?
+            td
+              - s.subscriptions.each do |b|
+                = b.created_at
