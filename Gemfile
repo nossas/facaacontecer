@@ -51,13 +51,6 @@ group :assets do
 
 
   gem 'zurb-foundation'
-
-  # Using asset_sync to send our CSS/HTML/images to Amazon
-  # If you don't use heroku or Amazon, please comment the line
-  # below
-  # This also depends on running the command for your app:
-  # heroku labs:enable user-env-compile
-  gem 'asset_sync'
 end
 
 group :development, :test do
