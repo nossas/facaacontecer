@@ -6,6 +6,7 @@
         th E-mail
         th Status 
         th Forma
+        th[width='100'] Link 
         th Enviado em
     tbody
       - PaymentInstruction.find_each do |p|
@@ -14,4 +15,5 @@
           td= p.subscription.subscriber.email
           td= p.status
           td= p.subscription.payment_option
+          td= p.url
           td= p.created_at
