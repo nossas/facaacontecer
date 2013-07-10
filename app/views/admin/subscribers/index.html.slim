@@ -16,23 +16,36 @@
           th Id
           th Nome
           th E-mail
-          th Idade
-          th Bairro
-          th Paga com
+          th Forma 
           th Valor
           th Ativo?
+          th= DateTime.now.months_ago(2).strftime('%B')
+          th= DateTime.now.months_ago(1).strftime('%B')
+          th= DateTime.now.strftime('%B')
+
 
       tbody
-        - @subscribers.each do |s|
+        - Project.first.subscribers.each do |s|
           tr
             td= "##{s.id}"
             td= s.first_name  
             td= s.email
-            td= "#{Time.now.year - s.birthday.strftime('%Y').to_i }" 
-            td= s.address_district
             td= s.subscriptions.last.payment_option if s.subscriptions.any?
             th= s.subscriptions.last.value.to_i if s.subscriptions.any?
             - status = s.subscriptions.any? && s.subscriptions.last.status == 'active' 
             - if s.subscriptions.any?
               td= link_to ( status == true ? 'Inativar' : 'Ativar'), 
               subscription_path(s.subscriptions.last, subscription: { status: (status == true ? 'inactive' : 'active') }), method: :put 
+            - if s.subscriptions.any? && s.subscriptions.last.payment_instructions.any?
+              - previous_2  =   s.subscriptions.last.payment_instructions.by_month(DateTime.now.months_ago(2).month)
+              - previous    =   s.subscriptions.last.payment_instructions.by_month(DateTime.now.months_ago(1).month)
+              - current     =   s.subscriptions.last.payment_instructions.by_month(DateTime.now.month)
+
+              th= previous_2.present? ? previous_2.first.paid_at.strftime('%d/%m/%Y') : '---'
+              th= previous.present? ? previous.first.paid_at.strftime('%d/%m/%Y') : '---'
+              th= current.present? ? current.first.paid_at.strftime('%d/%m/%Y') : '---'
+            - else
+              th ---
+              th ---
+              th ---
+

@@ -26,6 +26,7 @@ Selfstarter::Application.routes.draw do
   
 
   get '/boletos',  to: "webhooks#bankslips"
+  post '/boletos/status', to: 'webhooks#status'
 
 
   root :to => 'projects#index'

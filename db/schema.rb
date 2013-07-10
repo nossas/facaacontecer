@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130414202619) do
+ActiveRecord::Schema.define(:version => 20130710175525) do
 
   create_table "invites", :force => true do |t|
     t.string   "code"
@@ -23,6 +23,19 @@ ActiveRecord::Schema.define(:version => 20130414202619) do
 
   add_index "invites", ["code", "user_id"], :name => "index_invites_on_code_and_user_id", :unique => true
   add_index "invites", ["user_id", "parent_user_id"], :name => "index_invites_on_user_id_and_parent_user_id"
+
+  create_table "payment_instructions", :force => true do |t|
+    t.string   "code"
+    t.integer  "subscription_id"
+    t.string   "status"
+    t.datetime "expires_at"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.datetime "paid_at"
+    t.string   "url"
+  end
+
+  add_index "payment_instructions", ["subscription_id"], :name => "index_payment_instructions_on_subscription_id"
 
   create_table "projects", :force => true do |t|
     t.string   "title"

@@ -10,6 +10,9 @@ class Subscription < ActiveRecord::Base
   belongs_to :project
   belongs_to :subscriber, class_name: 'User'
 
+  # Now we're recording payment instructions
+  has_many :payment_instructions
+
   # This attributes should be present when creating an order
   validates_presence_of :value, :project, :subscriber, :code
 
