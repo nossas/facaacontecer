@@ -15,6 +15,8 @@ class WebhooksController < ApplicationController
     instruction = PaymentInstruction.find_by_code(params[:id_transacao])
     instruction.status = codes[params[:status_pagamento].to_i]
     instruction.save!
+
+    render nil, status: 200
   end
 
 
