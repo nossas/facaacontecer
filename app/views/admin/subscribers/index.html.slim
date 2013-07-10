@@ -25,7 +25,7 @@
 
 
       tbody
-        - User.all.each do |s|
+        - User.find_each(batch_size: 200) do |s|
           tr
             td= "##{s.id}"
             td= s.first_name  
