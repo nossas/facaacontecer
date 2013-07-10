@@ -1,52 +1,49 @@
-.row
-  .large-16.columns
-    h1 Subscribers
-    h5 
-      | #{Subscription.raised.bankslips.size} subscribers com boleto
-    h5
-      | #{Subscription.raised.creditcard.size} subscribers com cartão
-    h5
-      | #{Subscription.raised.size} subscriptions ativas
-.row
+.large-16.columns
+  h1 Subscribers
+  h5 
+    | #{Subscription.raised.bankslips.size} subscribers com boleto
+  h5
+    | #{Subscription.raised.creditcard.size} subscribers com cartão
+  h5
+    | #{Subscription.raised.size} subscriptions ativas
+.large-16.columns
+  table.tablesorter
+    thead
+      tr
+        th Id
+        th Nome
+        th E-mail
+        th Forma 
+        th Valor
+        th Ativo?
+        th= DateTime.now.months_ago(2).strftime('%B')
+        th= DateTime.now.months_ago(1).strftime('%B')
+        th= DateTime.now.strftime('%B')
 
-  .large-13.columns
-    table.tablesorter
-      thead
+
+    tbody
+      - User.find_each(batch_size: 200) do |s|
         tr
-          th Id
-          th Nome
-          th E-mail
-          th Forma 
-          th Valor
-          th Ativo?
-          th= DateTime.now.months_ago(2).strftime('%B')
-          th= DateTime.now.months_ago(1).strftime('%B')
-          th= DateTime.now.strftime('%B')
+          td= "##{s.id}"
+          td= s.first_name  
+          td= best_in_place s, :email, type: :input, ok_button: 'Ok', cancel_button: 'Cancel', path: subscriber_path(s)
+          td= best_in_place(s.subscriptions.last, :payment_option, type: :select, collection: [['creditcard', 'creditcard'],['boleto', 'boleto']]) if s.subscriptions.any?
+          
+          th= best_in_place(s.subscriptions.last, :value, type: :input, ok_button: 'Ok', cancel_button: 'Cancel') if s.subscriptions.any?
+          - status = s.subscriptions.any? && s.subscriptions.last.status == 'active' 
+          - if s.subscriptions.any? 
+            td= link_to ( status == true ? 'Inativar' : 'Ativar'), 
+            subscription_path(s.subscriptions.last, subscription: { status: (status == true ? 'inactive' : 'active') }), method: :put 
+          - if s.subscriptions.any? && s.subscriptions.last.payment_instructions.any?
+            - previous_2  =   s.subscriptions.last.payment_instructions.by_month(DateTime.now.months_ago(2).month)
+            - previous    =   s.subscriptions.last.payment_instructions.by_month(DateTime.now.months_ago(1).month)
+            - current     =   s.subscriptions.last.payment_instructions.by_month(DateTime.now.month)
 
-
-      tbody
-        - User.find_each(batch_size: 200) do |s|
-          tr
-            td= "##{s.id}"
-            td= s.first_name  
-            td= best_in_place s, :email, type: :input, ok_button: 'Ok', cancel_button: 'Cancel', path: subscriber_path(s)
-            td= best_in_place(s.subscriptions.last, :payment_option, type: :select, collection: [['creditcard', 'creditcard'],['boleto', 'boleto']]) if s.subscriptions.any?
-            
-            th= best_in_place(s.subscriptions.last, :value, type: :input, ok_button: 'Ok', cancel_button: 'Cancel') if s.subscriptions.any?
-            - status = s.subscriptions.any? && s.subscriptions.last.status == 'active' 
-            - if s.subscriptions.any? 
-              td= link_to ( status == true ? 'Inativar' : 'Ativar'), 
-              subscription_path(s.subscriptions.last, subscription: { status: (status == true ? 'inactive' : 'active') }), method: :put 
-            - if s.subscriptions.any? && s.subscriptions.last.payment_instructions.any?
-              - previous_2  =   s.subscriptions.last.payment_instructions.by_month(DateTime.now.months_ago(2).month)
-              - previous    =   s.subscriptions.last.payment_instructions.by_month(DateTime.now.months_ago(1).month)
-              - current     =   s.subscriptions.last.payment_instructions.by_month(DateTime.now.month)
-
-              th= previous_2.present? ? previous_2.first.paid_at.strftime('%d/%m/%Y') : '---'
-              th= previous.present? ? previous.first.paid_at.strftime('%d/%m/%Y') : '---'
-              th= current.present? ? current.first.paid_at.strftime('%d/%m/%Y') : '---'
-            - else
-              th ---
-              th ---
-              th ---
+            th= previous_2.present? ? previous_2.first.paid_at.strftime('%d/%m/%Y') : '---'
+            th= previous.present? ? previous.first.paid_at.strftime('%d/%m/%Y') : '---'
+            th= current.present? ? current.first.paid_at.strftime('%d/%m/%Y') : '---'
+          - else
+            th ---
+            th ---
+            th ---
 

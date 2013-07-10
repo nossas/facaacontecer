@@ -1,2 +1,17 @@
-- PaymentInstruction.all.each do |p|
-  = p.subscription.user.email
+.large-16
+  table.tablesorter
+    thead
+      tr
+        th Codigo
+        th E-mail
+        th Status 
+        th Forma
+        th Enviado em
+    tbody
+      - PaymentInstruction.find_each do |p|
+        tr
+          td= p.code
+          td= p.subscription.subscriber.email
+          td= p.status
+          td= p.subscription.payment_option
+          td= p.created_at
