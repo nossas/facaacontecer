@@ -28,6 +28,10 @@ class SubscriptionsController < ApplicationController
     create! { thank_you_path(@subscription.subscriber) } 
   end
 
+  def update
+    update! { admin_subscribers_path }
+  end
+
 
   def create_with_bank_slip
     if send_payment_request && @subscription.save!
