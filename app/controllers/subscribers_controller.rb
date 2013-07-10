@@ -1,9 +1,12 @@
 class SubscribersController < InheritedResources::Base
   defaults resource_class: User
-  actions :new, :create
+  actions :new, :create, :update
+
+
 
   respond_to :html, only: :new
-  respond_to :json, only: :create
+  respond_to :json, only: [:create, :update]
+
   
   # If the subscription process was complete, we set a session key to show the thanks page
   # Just because we don't other people to see if they aren't subscribers yet.

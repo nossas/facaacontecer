@@ -25,15 +25,16 @@
 
 
       tbody
-        - Project.first.subscribers.each do |s|
+        - User.all.each do |s|
           tr
             td= "##{s.id}"
             td= s.first_name  
-            td= s.email
-            td= s.subscriptions.last.payment_option if s.subscriptions.any?
-            th= s.subscriptions.last.value.to_i if s.subscriptions.any?
+            td= best_in_place s, :email, type: :input, ok_button: 'Ok', cancel_button: 'Cancel', path: subscriber_path(s)
+            td= best_in_place(s.subscriptions.last, :payment_option, type: :select, collection: [['creditcard', 'creditcard'],['boleto', 'boleto']]) if s.subscriptions.any?
+            
+            th= best_in_place(s.subscriptions.last, :value, type: :input, ok_button: 'Ok', cancel_button: 'Cancel') if s.subscriptions.any?
             - status = s.subscriptions.any? && s.subscriptions.last.status == 'active' 
-            - if s.subscriptions.any?
+            - if s.subscriptions.any? 
               td= link_to ( status == true ? 'Inativar' : 'Ativar'), 
               subscription_path(s.subscriptions.last, subscription: { status: (status == true ? 'inactive' : 'active') }), method: :put 
             - if s.subscriptions.any? && s.subscriptions.last.payment_instructions.any?

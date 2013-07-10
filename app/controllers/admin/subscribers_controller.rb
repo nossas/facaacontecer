@@ -6,4 +6,5 @@ class Admin::SubscribersController < ApplicationController
 
 
   def bank_slips; end
+  def payment_instructions; end
 end

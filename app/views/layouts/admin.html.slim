@@ -3,6 +3,7 @@ html
   head
     title Title
     = stylesheet_link_tag :admin
+    = csrf_meta_tags
   body
     .row
       = render partial: 'layouts/admin_sidebar'

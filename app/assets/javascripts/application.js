@@ -20,6 +20,7 @@
 //= require jquery.colorbox
 //= require jquery.placeholder
 //= require moip.subscription
+//= require best_in_place
 //= require selfstarter 
 //= require_tree .
 
@@ -58,3 +59,8 @@ $('table')
         widthFixed: true,
         widgets: ['filter']
     });
+
+$(document).ready(function() {
+  /* Activating Best In Place */
+  jQuery(".best_in_place").best_in_place();
+});

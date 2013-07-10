@@ -11,11 +11,13 @@ Selfstarter::Application.routes.draw do
   end
 
   resources :subscriptions, only: [:update]
+  resources :subscribers, only: [:update]
 
   namespace :admin do
     resources :subscribers do 
       collection do
         get :bank_slips
+        get :payment_instructions
       end
     end
   end

@@ -8,6 +8,9 @@ gem 'slim-rails'
 gem 'active_decorator'
 gem 'coveralls', require: false
 
+# Allow the editing of fields in the admin
+gem 'best_in_place'
+
 # Using mymoip gem to handle recurring BOLETO option
 # for donation.
 gem 'mymoip'

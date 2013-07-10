@@ -10,10 +10,12 @@ class WebhooksController < ApplicationController
 
 
   def status
+    # From 1 to 8. 0 is empty code
     codes = ['', 'authorized', 'started', 'printed', 'done', 'canceled', 'waiting', 'reversed', 'refunded']
 
     instruction = PaymentInstruction.find_by_code(params[:id_transacao])
     instruction.status = codes[params[:status_pagamento].to_i]
+    instruction.paid_at = params[:status_pagamento].to_i == 1 or params[:status_pagamento].to_i == 4 ? Time.now : nil
     instruction.save!
 
     render nil, status: 200
@@ -23,7 +25,7 @@ class WebhooksController < ApplicationController
 
   def bankslips
 
-    @subscriptions = Project.find_by_id(params[:project]).subscriptions.where(payment_option: :boleto)
+    @subscriptions = Project.find_by_id(params[:project]).subscriptions.where(payment_option: :boleto, status: :active)
     @date          = params[:date]
     
 

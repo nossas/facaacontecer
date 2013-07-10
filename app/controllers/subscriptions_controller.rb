@@ -3,6 +3,8 @@ class SubscriptionsController < ApplicationController
   inherit_resources
   actions :create, :create_with_bank_slip, :update
 
+  respond_to :json, only: [:update]
+
   before_filter only: [:create, :create_with_bank_slip] do
     @subscription             = Subscription.new(params[:subscription])
     @subscription.project     = Project.find(params[:project_id])
