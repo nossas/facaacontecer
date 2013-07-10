@@ -1,19 +1,26 @@
 .row
   .large-16.columns
     h1 Subscribers
-  .large-16.columns
-    br
+    h5 
+      | #{Subscription.raised.bankslips.size} subscribers com boleto
+    h5
+      | #{Subscription.raised.creditcard.size} subscribers com cartão
+    h5
+      | #{Subscription.raised.size} subscriptions ativas
+.row
+
+  .large-13.columns
     table.tablesorter
       thead
         tr
           th Id
           th Nome
           th E-mail
-          th[width='100'] Idade
+          th Idade
           th Bairro
+          th Paga com
+          th Valor
           th Ativo?
-          th[width='200'] Desde
-          th Subscriptions
 
       tbody
         - @subscribers.each do |s|
@@ -23,8 +30,9 @@
             td= s.email
             td= "#{Time.now.year - s.birthday.strftime('%Y').to_i }" 
             td= s.address_district
-            td= s.subscriptions.last.status == 'active' if s.subscriptions.any?
-            td= s.subscriptions.first.created_at.strftime('%d-%m-%Y %H:%M') if s.subscriptions.any?
-            td
-              - s.subscriptions.each do |b|
-                = b.created_at
+            td= s.subscriptions.last.payment_option if s.subscriptions.any?
+            th= s.subscriptions.last.value.to_i if s.subscriptions.any?
+            - status = s.subscriptions.any? && s.subscriptions.last.status == 'active' 
+            - if s.subscriptions.any?
+              td= link_to ( status == true ? 'Inativar' : 'Ativar'), 
+              subscription_path(s.subscriptions.last, subscription: { status: (status == true ? 'inactive' : 'active') }), method: :put 

@@ -3,7 +3,7 @@ class Subscription < ActiveRecord::Base
  
 
   # Attributes accessible on create! or update! 
-  attr_accessible :code, :value, :gift, :anonymous
+  attr_accessible :code, :value, :gift, :anonymous, :status
 
 
   # Relationship with Projects and the correspondent user for each subscription 
@@ -14,7 +14,9 @@ class Subscription < ActiveRecord::Base
   validates_presence_of :value, :project, :subscriber, :code
 
   # Scope for completed payments
-  scope :raised, where(status: :active)
+  scope :raised,      where(status: :active).select('distinct subscriber_id')
+  scope :bankslips,   where(payment_option: :boleto)
+  scope :creditcard,  where(payment_option: :creditcard)
 
 
   def prepared_instruction

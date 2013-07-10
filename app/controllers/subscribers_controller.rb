@@ -1,6 +1,6 @@
 class SubscribersController < InheritedResources::Base
   defaults resource_class: User
-  actions :new, :create 
+  actions :new, :create
 
   respond_to :html, only: :new
   respond_to :json, only: :create

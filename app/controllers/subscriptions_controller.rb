@@ -1,7 +1,7 @@
 # coding: utf-8
 class SubscriptionsController < ApplicationController
   inherit_resources
-  actions :create, :create_with_bank_slip
+  actions :create, :create_with_bank_slip, :update
 
   before_filter only: [:create, :create_with_bank_slip] do
     @subscription             = Subscription.new(params[:subscription])

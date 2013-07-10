@@ -10,8 +10,14 @@ Selfstarter::Application.routes.draw do
     end
   end
 
+  resources :subscriptions, only: [:update]
+
   namespace :admin do
-    resources :subscribers, only: [:index]
+    resources :subscribers do 
+      collection do
+        get :bank_slips
+      end
+    end
   end
   
   get '/invite/:code',  to: "projects#index",     as: :invite
