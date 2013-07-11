@@ -63,7 +63,7 @@ class Subscription < ActiveRecord::Base
     @payment = MyMoip::PaymentRequest.new(self.code)
     @payment.api_call(self.bankslip(expiration: date), token: @transparent_request.token)
    
-    create_payment_instruction(self.id, @transparent_request.token, sequence) if @payment.success?
+    create_payment_instruction(instruction.id, @transparent_request.token, sequence) if @payment.success?
     @payment.success?
   end
 
