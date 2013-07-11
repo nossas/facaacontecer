@@ -24,6 +24,7 @@ gem 'mymoip'
 # for jobs we want to run. So we don't to expend any money
 # to run delayed jobs
 gem 'delayed_job_active_record'
+gem 'daemons'
 
 # We will also use httparty with our workers
 gem 'httparty'

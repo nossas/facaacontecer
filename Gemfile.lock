@@ -296,6 +296,7 @@ DEPENDENCIES
   cpf_cnpj
   cpf_validator
   cucumber-rails
+  daemons
   database_cleaner
   delayed_job_active_record
   heroku-deflater
