@@ -38,7 +38,7 @@ class Subscription < ActiveRecord::Base
   end
 
 
-  def create_payment_instruction(code, token = nil, sequence = nil)
+  def create_payment_instruction(code, token, sequence)
 
     payment = PaymentInstruction.new do |p|
       p.status        = nil
@@ -54,7 +54,7 @@ class Subscription < ActiveRecord::Base
   end
 
 
-  def send_payment_request(date, sequence = nil)
+  def send_payment_request(date, sequence)
     instruction = self.prepared_instruction 
 
     @transparent_request = MyMoip::TransparentRequest.new(self.code)
