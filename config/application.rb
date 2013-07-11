@@ -13,6 +13,7 @@ module Selfstarter
     config.time_zone            = 'Brasilia'
     config.encoding             = "utf-8"
     config.i18n.default_locale  = "pt-BR"
+    config.i18n.locale = "pt-BR"
     config.filter_parameters    += [:password]
     config.active_record.whitelist_attributes = true
     # Enable the asset pipeline

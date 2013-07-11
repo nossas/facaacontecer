@@ -3,8 +3,7 @@ class WebhooksController < ApplicationController
 
   respond_to :csv
 
-  before_filter only: [:bankslips] do
-    redirect_to root_path unless params[:token] && ENV['ADMIN_UNIQUE_TOKEN'] == params[:token] && params[:project] && params[:date]
+  before_filter only: [:bankslips] do 
     redirect_to root_path unless params[:date].to_date.future? 
   end
 
