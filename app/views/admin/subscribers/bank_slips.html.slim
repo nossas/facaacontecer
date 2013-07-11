@@ -1,2 +1,2 @@
 h1 Envio de boletos
-= link_to "Enviar boletos (data de vencimento: #{(Time.now + 10.days).to_date})", boletos_path(project: Project.first.id), confirm: "Tem certeza?", class: :button
+= link_to "Enviar boletos (data de vencimento: #{(Time.now + 10.days).to_date})", boletos_path(project: Project.first.id, date: (Date.today + 10.days)), confirm: "Tem certeza?", class: :button
