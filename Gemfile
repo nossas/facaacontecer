@@ -5,8 +5,13 @@ ruby '2.0.0'
 gem 'rails', '~> 3.2.13'
 gem 'inherited_resources'
 gem 'slim-rails'
+
 gem 'active_decorator'
+
 gem 'coveralls', require: false
+
+gem 'pg'
+
 
 # Allow the editing of fields in the admin
 gem 'best_in_place'
@@ -18,7 +23,7 @@ gem 'mymoip'
 # This gem allow us to mantain only one dyno
 # for jobs we want to run. So we don't to expend any money
 # to run delayed jobs
-#gem 'sucker_punch'
+gem 'delayed_job_active_record'
 
 # We will also use httparty with our workers
 gem 'httparty'
@@ -31,12 +36,10 @@ gem 'validates_timeliness', '~> 3.0'
 
 group :development do
   gem 'better_errors'
-  gem 'sqlite3'
   gem 'pry-rails'
 end
 
 group :production do
-  gem 'pg'
   gem 'unicorn'
   gem 'newrelic_rpm'
   gem 'heroku-deflater'

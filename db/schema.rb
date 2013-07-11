@@ -11,7 +11,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130710175525) do
+ActiveRecord::Schema.define(:version => 20130711145156) do
+
+  create_table "delayed_jobs", :force => true do |t|
+    t.integer  "priority",   :default => 0
+    t.integer  "attempts",   :default => 0
+    t.text     "handler"
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.string   "queue"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
+  add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
   create_table "invites", :force => true do |t|
     t.string   "code"
@@ -24,6 +40,22 @@ ActiveRecord::Schema.define(:version => 20130710175525) do
   add_index "invites", ["code", "user_id"], :name => "index_invites_on_code_and_user_id", :unique => true
   add_index "invites", ["user_id", "parent_user_id"], :name => "index_invites_on_user_id_and_parent_user_id"
 
+  create_table "orders", :force => true do |t|
+    t.integer  "user_id",                     :null => false
+    t.integer  "project_id",                  :null => false
+    t.decimal  "value",      :default => 0.0
+    t.string   "token"
+    t.string   "status"
+    t.string   "uuid"
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+  end
+
+  add_index "orders", ["project_id"], :name => "index_orders_on_project_id"
+  add_index "orders", ["token"], :name => "index_orders_on_token", :unique => true
+  add_index "orders", ["user_id"], :name => "index_orders_on_user_id"
+  add_index "orders", ["uuid"], :name => "index_orders_on_uuid"
+
   create_table "payment_instructions", :force => true do |t|
     t.string   "code"
     t.integer  "subscription_id"
@@ -33,6 +65,7 @@ ActiveRecord::Schema.define(:version => 20130710175525) do
     t.datetime "updated_at",      :null => false
     t.datetime "paid_at"
     t.string   "url"
+    t.string   "sequence"
   end
 
   add_index "payment_instructions", ["subscription_id"], :name => "index_payment_instructions_on_subscription_id"

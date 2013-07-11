@@ -1,5 +1,5 @@
 class CreatePaymentInstructions < ActiveRecord::Migration
-  def up 
+  def change 
     create_table :payment_instructions do |t|
       t.string      :code
       t.references  :subscription
@@ -11,7 +11,4 @@ class CreatePaymentInstructions < ActiveRecord::Migration
     add_index :payment_instructions, :subscription_id
   end
 
-  def down
-    drop_table :payment_instructions
-  end
 end

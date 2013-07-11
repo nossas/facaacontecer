@@ -36,4 +36,37 @@ class Subscription < ActiveRecord::Base
     return unless options[:expiration]
     MyMoip::BoletoPayment.new(expiration_date: options[:expiration], expiration_days: 14)
   end
+
+
+  def create_payment_instruction(code, token = nil, sequence = nil)
+
+    payment = PaymentInstruction.new do |p|
+      p.status        = nil
+      p.subscription  = self 
+      p.expires_at    = nil
+      p.code          = code
+      p.expires_at    = Time.now + 10.days
+      p.url           = MOIP_INSTRUCTION_URL + token
+      p.sequence      = sequence
+    end
+
+    payment.save!
+  end
+
+
+  def send_payment_request(date, sequence = nil)
+    instruction = self.prepared_instruction 
+
+    @transparent_request = MyMoip::TransparentRequest.new(self.code)
+    @transparent_request.api_call(instruction)
+
+    @payment = MyMoip::PaymentRequest.new(self.code)
+    @payment.api_call(self.bankslip(expiration: date), token: @transparent_request.token)
+   
+    create_payment_instruction(self.id, @transparent_request.token, sequence) if @payment.success?
+    @payment.success?
+  end
+
+
+
 end
