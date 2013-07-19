@@ -3,7 +3,6 @@ class SubscribersController < InheritedResources::Base
   actions :new, :create, :update
 
 
-
   respond_to :html, only: :new
   respond_to :json, only: [:create, :update]
 

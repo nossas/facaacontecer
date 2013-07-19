@@ -14,6 +14,7 @@ Selfstarter::Application.routes.draw do
   resources :subscribers, only: [:update]
 
   namespace :admin do
+    resources :sessions, only: [:index, :create]
     resources :subscribers do 
       collection do
         get :bank_slips

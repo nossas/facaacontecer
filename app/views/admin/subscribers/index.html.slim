@@ -22,7 +22,7 @@
 
 
     tbody
-      - User.find_each(batch_size: 200) do |s|
+      - User.includes(:subscriptions).find_each(batch_size: 100) do |s|
         tr
           td= "##{s.id}"
           td= s.first_name  

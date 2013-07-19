@@ -1,0 +1,6 @@
+.large-8.columns.large-centered
+  fieldset
+    legend Para administrar, digite a senha de admin
+    = form_for admin_sessions_path do |f|
+      = f.password_field :admin_key
+      = f.submit :Conectar
