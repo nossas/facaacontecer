@@ -16,7 +16,7 @@ class WebhooksController < ApplicationController
     instruction.paid_at = params[:status_pagamento].to_i == 1 or params[:status_pagamento].to_i == 4 ? Time.now : nil
     instruction.save!
 
-    render :nothing, status: 200
+    render nothing: true, status: 200, content_type: 'text/html'
   end
 
 
