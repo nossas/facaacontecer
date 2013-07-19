@@ -13,7 +13,7 @@ class WebhooksController < ApplicationController
 
     instruction = PaymentInstruction.find_by_code(params[:id_transacao])
     instruction.status = codes[params[:status_pagamento].to_i]
-    instruction.paid_at = params[:status_pagamento].to_i == 1 or params[:status_pagamento].to_i == 4 ? Time.now : nil
+    instruction.paid_at = Time.now if params[:status_pagamento].to_i == 1 or params[:status_pagamento].to_i == 4
     instruction.save!
 
     render nothing: true, status: 200, content_type: 'text/html'
