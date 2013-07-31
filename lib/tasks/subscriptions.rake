@@ -23,7 +23,7 @@ namespace :subscriptions do
         instruction.sequence     = "0"
         instruction.status = @codes[i['status']['code'].to_i]
         date = i['creation_date']
-        if i['status']['code'].to_i == 3
+        if i['status']['code'].to_i == 3 or i['status']['code'].to_i == 4
           instruction.paid_at = "#{date['day']}/#{date['month']}/#{date['year']} #{date['hour']}:#{date['minute']}:#{date['second']}".to_time
         end
 

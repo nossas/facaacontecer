@@ -8,7 +8,7 @@ class WebhooksController < ApplicationController
 
   before_filter only: [:subscription_status, :status] do
     # From 1 to 8. 0 is empty code
-    @codes = ['', 'authorized', 'started', 'printed', 'done', 'canceled', 'waiting', 'reversed', 'refunded']
+    @codes = ['', 'authorized', 'started', 'done', 'done', 'canceled', 'waiting', 'reversed', 'refunded']
 
   end
 
@@ -34,7 +34,7 @@ class WebhooksController < ApplicationController
       @payment = PaymentInstruction.find_by_code(params[:resource][:id])
       if @payment.present?
         @payment.status   = @codes[params[:resource][:status][:code].to_i]
-        @payment.paid_at  = Time.now if params[:resource][:status][:code].to_i == 4
+        @payment.paid_at  = Time.now if params[:resource][:status][:code].to_i == 4 or params[:resource][:status][:code].to_i == 4
         @payment.save!
       else
         return redirect_to root_path
