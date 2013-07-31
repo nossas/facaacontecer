@@ -9,7 +9,7 @@ preload_app true
 
 # Immediately restart any workers that
 # haven't responded within 30 seconds
-timeout 3600
+timeout 12800
 
 
 port = ENV['PORT'].to_i

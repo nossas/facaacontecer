@@ -22,7 +22,7 @@
 
 
     tbody
-      - Subscription.includes(:subscriber).find_each(batch_size: 150) do |p|
+      - Subscription.includes(:subscriber).find_each(batch_size: 100) do |p|
         - s = p.subscriber
         tr
           td= "##{s.id}"
