@@ -44,4 +44,12 @@ Project.blueprint do
 end
 
 
+PaymentInstruction.blueprint do
+  code { "6" }
+  subscription { Subscription.make! }
+  status { 'started' }
+  paid_at { nil }
+
+end
+
 
