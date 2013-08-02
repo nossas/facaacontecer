@@ -330,7 +330,7 @@ ts.addWidget({
 	id: "filter",
 	priority: 50,
 	options : {
-		filter_childRows     : false, // if true, filter includes child row content in the search
+		filter_childRows     : true, // if true, filter includes child row content in the search
 		filter_columnFilters : true,  // if true, a filter will be added to the top of each table column
 		filter_cssFilter     : 'tablesorter-filter', // css class name added to the filter row & each input in the row
 		filter_filteredRow   : 'filtered', // class added to filtered rows; needed by pager plugin
