@@ -15,5 +15,5 @@
           td= p.subscription.subscriber.email
           td= p.status
           td= p.subscription.payment_option
-          td= if p.subscription.payment_option == "boleto" then p.link_to p.url, p.url else "" end
+          td= link_to p.url, p.url
           td= p.created_at
