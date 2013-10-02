@@ -40,22 +40,6 @@ ActiveRecord::Schema.define(:version => 20130711145156) do
   add_index "invites", ["code", "user_id"], :name => "index_invites_on_code_and_user_id", :unique => true
   add_index "invites", ["user_id", "parent_user_id"], :name => "index_invites_on_user_id_and_parent_user_id"
 
-  create_table "orders", :force => true do |t|
-    t.integer  "user_id",                     :null => false
-    t.integer  "project_id",                  :null => false
-    t.decimal  "value",      :default => 0.0
-    t.string   "token"
-    t.string   "status"
-    t.string   "uuid"
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
-  end
-
-  add_index "orders", ["project_id"], :name => "index_orders_on_project_id"
-  add_index "orders", ["token"], :name => "index_orders_on_token", :unique => true
-  add_index "orders", ["user_id"], :name => "index_orders_on_user_id"
-  add_index "orders", ["uuid"], :name => "index_orders_on_uuid"
-
   create_table "payment_instructions", :force => true do |t|
     t.string   "code"
     t.integer  "subscription_id"
