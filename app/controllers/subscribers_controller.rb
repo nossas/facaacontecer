@@ -1,18 +1,17 @@
 class SubscribersController < InheritedResources::Base
   defaults resource_class: User
-  actions :new, :create, :update
+  actions :new, :create, :update, :index
+  belongs_to :project, optional: true
 
-
-  respond_to :html, only: :new
+  respond_to :html, only: [:new, :index]
   respond_to :json, only: [:create, :update]
 
+  layout false, only: :index
   
   # If the subscription process was complete, we set a session key to show the thanks page
   # Just because we don't other people to see if they aren't subscribers yet.
   before_filter only: [:thanks] { redirect_to root_path unless session[:subscriber_ok] }
   before_filter only: [:thanks] { @subscriber = User.find_by_id(params[:id]) }
-
-
 
   # Creating a subscriber based on a project
   def create

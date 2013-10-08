@@ -78,3 +78,4 @@ end
 
 # jQuery
 gem 'jquery-rails'
+gem 'gravatar_image_tag'

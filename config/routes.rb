@@ -1,7 +1,7 @@
 Selfstarter::Application.routes.draw do
 
   resources :projects,      only: [:index, :edit, :update] do
-    resources :subscribers,  only: [:new, :create] do
+    resources :subscribers,  only: [:new, :create, :index] do
       resources :subscriptions, only: [:create] do
         collection do
           post :create_with_bank_slip, as: :bank_slip
