@@ -79,3 +79,4 @@ end
 # jQuery
 gem 'jquery-rails'
 gem 'gravatar_image_tag'
+gem 'rails_12factor'
