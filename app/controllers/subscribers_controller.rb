@@ -6,7 +6,7 @@ class SubscribersController < InheritedResources::Base
   respond_to :html, only: [:new, :index]
   respond_to :json, only: [:create, :update]
 
-  layout false, only: :index
+  layout "iframe", only: :index
   
   # If the subscription process was complete, we set a session key to show the thanks page
   # Just because we don't other people to see if they aren't subscribers yet.
