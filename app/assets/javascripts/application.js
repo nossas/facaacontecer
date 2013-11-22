@@ -22,6 +22,7 @@
 //= require moip.subscription
 //= require best_in_place
 //= require selfstarter 
+//= require meurio_ui
 //= require_tree .
 
 $(function(){ $(document).foundation(); });

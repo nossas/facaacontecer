@@ -1,16 +1,6 @@
 require 'spec_helper'
 
 describe SubscribersController do
-  shared_examples "subscriber response" do
-    it "should be successful" do
-      expect(response).to be_success 
-    end
-
-    it "should return a json document with his subscription url" do
-      expect(JSON.parse(response.body)).to include("subscription_url")
-    end
-  end
-
   describe "POST #create" do
     let(:user)    { User.make! }
     let(:project) { Project.make! }
@@ -31,25 +21,5 @@ describe SubscribersController do
         phone:            "(21) 97137471"
       }
     end
-
-
-
-    context "When THERE IS NO invite code" do
-      before do
-        post :create, project_id: project.id, user: options, format: :json 
-      end
-
-      it_behaves_like "subscriber response"
-    end
-
-    context "When THERE IS a invite code" do
-      before do
-        session[:invite] = user.invite.code
-        post :create, project_id: project.id, user: options, format: :json 
-      end
-
-      it_behaves_like "subscriber response"
-    end
   end
-
 end
