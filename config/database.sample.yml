@@ -14,7 +14,7 @@ development:
   host: localhost
   database: crowdfunding_development 
   pool: 5
-  username: nicolasiensen
+  username: facaacontecer
 
 
   # Connect on a TCP socket. Omitted by default since the client uses a
@@ -42,7 +42,4 @@ test:
   host: localhost
   database: crowdfunding_test 
   pool: 5
-  username: nicolasiensen
-
-
-
+  username: facaacontecer
