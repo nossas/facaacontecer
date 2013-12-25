@@ -31,7 +31,7 @@ class WebhooksController < ApplicationController
       end
 
     elsif params[:event] == 'payment.status_updated'
-      @payment = PaymentInstruction.find_by_code(params[:resource][:id])
+      @payment = PaymentInstruction.find_by_code(params[:resource][:id].to_s)
       if @payment.present?
         @payment.status   = @codes[params[:resource][:status][:code].to_i]
         @payment.paid_at  = Time.now if params[:resource][:status][:code].to_i == 3 or params[:resource][:status][:code].to_i == 4
