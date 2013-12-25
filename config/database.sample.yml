@@ -12,7 +12,7 @@ development:
   adapter: postgresql
   encoding: unicode
   host: localhost
-  database: crowdfunding_development 
+  database: facaacontecer_development
   pool: 5
   username: facaacontecer
 
@@ -40,6 +40,6 @@ test:
   adapter: postgresql
   encoding: unicode
   host: localhost
-  database: crowdfunding_test 
+  database: facaacontecer_test
   pool: 5
   username: facaacontecer
