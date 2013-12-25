@@ -26,7 +26,7 @@ module ProjectDecorator
   end
 
   def progress
-    current = self.subscribers.size
+    current = self.subscriptions.raised.count
     goal    = 1000.00
     now = (current * 100)/goal
 

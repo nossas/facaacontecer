@@ -168,7 +168,7 @@ Selfstarter = window.Selfstarter =  {
     event.preventDefault();
 
     if (target.hasClass('step_one')){
-      var classes = ['input.email', 'input.name', 'input.cpf', 'input.date', 'input.phone'];
+      var classes = ['input.email', 'input.first_name', 'input.last_name', 'input.cpf', 'input.date', 'input.phone'];
     } else if (target.hasClass('step_two')) {
       var classes = ['input.addr_city', 'input.cep', 'input.addr_street', 'input.addr_extra', 'input.addr_dist', 'input.addr_number'];
     }

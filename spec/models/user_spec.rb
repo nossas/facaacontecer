@@ -5,7 +5,7 @@ describe User do
 
   context "attributes" do
     [
-      :name, :email, :cpf, :birthday, :zipcode,
+      :first_name, :last_name, :email, :cpf, :birthday, :postal_code,
       :address_street, :address_extra, :address_number,
       :address_district, :city, :state, :phone,  :country
     ].each do |attr|
@@ -27,20 +27,4 @@ describe User do
       expect(user.invite.code).to_not eq(nil)
     end
   end
-
-
-  context "#name" do
-    it "should return error if name has only one word" do
-      user = User.make(name: "Luiz", cpf: '417.524.931-17')
-      user.should_not be_valid
-      user.errors.should have_key(:name)
-    end
-    
-    it "should return no error if name has more than one word" do
-      user = User.make(name: "Luiz Claudio", cpf: '417.524.931-17')
-      user.should be_valid
-      user.errors.should_not have_key(:name)
-    end
-  end
-
 end

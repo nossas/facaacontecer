@@ -5,7 +5,6 @@ describe SubscribersController do
     it "should be successful" do
       expect(response).to be_success 
     end
-
     it "should return a json document with his subscription url" do
       expect(JSON.parse(response.body)).to include("subscription_url")
     end
@@ -16,7 +15,8 @@ describe SubscribersController do
     let(:project) { Project.make! }
     let(:options) do
       {
-        name:             "Juquinha da silva",
+        first_name:       "Juquinha",
+        last_name:        "Da Silva",
         birthday:         "1988/11/12",
         email:            "juquinha@zip.net",
         cpf:              "11144477735",
@@ -27,18 +27,15 @@ describe SubscribersController do
         city:             "Rio de Janeiro",
         state:            "RJ",
         country:          "BRA",
-        zipcode:          "78132-500",
+        postal_code:      "78132-500",
         phone:            "(21) 97137471"
       }
     end
-
-
 
     context "When THERE IS NO invite code" do
       before do
         post :create, project_id: project.id, user: options, format: :json 
       end
-
       it_behaves_like "subscriber response"
     end
 
@@ -47,9 +44,7 @@ describe SubscribersController do
         session[:invite] = user.invite.code
         post :create, project_id: project.id, user: options, format: :json 
       end
-
       it_behaves_like "subscriber response"
     end
   end
-
 end
