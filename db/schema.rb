@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131009131545) do
+ActiveRecord::Schema.define(:version => 20131226224205) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -82,26 +82,5 @@ ActiveRecord::Schema.define(:version => 20131009131545) do
   add_index "subscriptions", ["code"], :name => "index_subscriptions_on_code"
   add_index "subscriptions", ["project_id"], :name => "index_subscriptions_on_project_id"
   add_index "subscriptions", ["subscriber_id"], :name => "index_subscriptions_on_subscriber_id"
-
-  create_table "users", :force => true do |t|
-    t.string   "name"
-    t.string   "email"
-    t.string   "cpf"
-    t.date     "birthday"
-    t.string   "address_street"
-    t.string   "address_extra"
-    t.string   "address_number"
-    t.string   "address_district"
-    t.string   "city"
-    t.string   "state"
-    t.string   "country"
-    t.string   "zipcode"
-    t.string   "phone"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
-    t.string   "image"
-  end
-
-  add_index "users", ["email"], :name => "index_users_on_email"
 
 end
