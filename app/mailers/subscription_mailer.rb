@@ -65,7 +65,7 @@ class SubscriptionMailer < ActionMailer::Base
   end
 
   def defaults_for_subscription(subscription)
-    @project      = Project.first.subscribers.size
+    @project      = Project.first.subscriptions.count
     @subscription = subscription
     @subscriber   = @subscription.subscriber
     @code         = @subscription.code

@@ -3,7 +3,6 @@ Feature: Support the project
   as a backer
   I want to support the project
 
-  #
   #  @javascript
   #  Scenario: I choose boleto to back this project
   #    Given there is a project "Apoie meu projeto" with 25000 of goal and expires in 45 days
@@ -44,4 +43,3 @@ Feature: Support the project
   #    When I fill in "Celular" with "(21) 9713-7471"
   #    And I click "Apoiar"
   #    Then I should not see "Não pode ficar em branco"
-  #

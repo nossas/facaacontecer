@@ -11,7 +11,8 @@ pt-BR:
   helpers:
     label: &label
       user:
-        name: "Qual o seu nome completo?"
+        first_name: "Qual o seu nome?"
+        last_name: "Qual o seu sobrenome?"
         birthday: "Quando você nasceu?"
         email: "Qual seu email?"
         cpf:  "E o seu CPF?"

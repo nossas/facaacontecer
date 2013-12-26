@@ -1,54 +1,24 @@
 #coding: utf-8
 class User < ActiveRecord::Base
-
+  establish_connection Rails.env.production? ? ENV["ACCOUNTS_DATABASE"] : "accounts_#{Rails.env}"
 
   has_many  :subscriptions, foreign_key: :subscriber_id, dependent: :destroy
   has_many  :invitees,      class_name: :Invite, foreign_key: :parent_user_id
   has_one   :invite,        dependent: :destroy
 
-
   delegate :project, to: :subscription, allow_nil: true
-
 
   validates_date :birthday, before: -> { 14.years.ago }
   validates :cpf, cpf: true
   validates_uniqueness_of :email, :cpf
-  validates_length_of :name, in: 2...10, tokenizer: lambda { |str| str.scan(/[[:word:]]+/u) },
-    too_long: 'é muito longo. Precisa ter no máximo %{count} palavras',
-    too_short: 'é muito curto. Precisa ter no mínimo nome e sobrenome.'
+  validates_presence_of :first_name, :last_name, :email, :cpf, :birthday, :postal_code, :address_street, :address_extra, :address_number, :address_district, :city, :state, :phone, :country
 
-  validates_presence_of :name, 
-    :email, 
-    :cpf, 
-    :birthday,
-    :zipcode,
-    :address_street, 
-    :address_extra, 
-    :address_number,
-    :address_district, 
-    :city, 
-    :state,
-    :phone,
-    :country
-
-  attr_accessible :name, 
-    :email, 
-    :cpf, 
-    :birthday,
-    :zipcode,
-    :address_street, 
-    :address_extra, 
-    :address_number,
-    :address_district, 
-    :city, 
-    :state,
-    :phone,
-    :country
+  attr_accessible :first_name, :last_name, :email, :cpf, :birthday, :postal_code, :address_street, :address_extra, :address_number, :address_district, :city, :state, :phone, :country
 
   after_create :generate_invite_code
 
-  def first_name
-    self.name.scan(/[[:word:]]+/u).first
+  def name
+    "#{self.first_name} #{self.last_name}"
   end
 
   def as_json(options={})
@@ -66,24 +36,23 @@ class User < ActiveRecord::Base
       address_city:     self.city,
       address_state:    self.state,
       address_country:  self.country,
-      address_cep:      self.zipcode,
+      address_cep:      self.postal_code,
       address_phone:    self.phone,
       address_street:         self.address_street,
       address_street_number:  self.address_number,
       address_street_extra:   self.address_extra,
       address_neighbourhood:  self.address_district
     )
-    
-    return payer
 
+    return payer
   end
 
-
   private
-    def generate_invite_code
-      unless self.invite
-        invite = self.build_invite(code: SecureRandom.hex(6))
-        invite.save!
-      end
+
+  def generate_invite_code
+    unless self.invite
+      invite = self.build_invite(code: SecureRandom.hex(6))
+      invite.save!
     end
+  end
 end

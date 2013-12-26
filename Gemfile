@@ -1,17 +1,12 @@
 source 'https://rubygems.org'
 ruby '1.9.3'
 
-
 gem 'rails', '~> 3.2.13'
 gem 'inherited_resources'
 gem 'slim-rails'
-
 gem 'active_decorator'
-
 gem 'coveralls', require: false
-
 gem 'pg'
-
 
 # Allow the editing of fields in the admin
 gem 'best_in_place'

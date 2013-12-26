@@ -12,9 +12,9 @@ development:
   adapter: postgresql
   encoding: unicode
   host: localhost
-  database: crowdfunding_development 
+  database: facaacontecer_development
   pool: 5
-  username: nicolasiensen
+  username: facaacontecer
 
 
   # Connect on a TCP socket. Omitted by default since the client uses a
@@ -40,9 +40,6 @@ test:
   adapter: postgresql
   encoding: unicode
   host: localhost
-  database: crowdfunding_test 
+  database: facaacontecer_test
   pool: 5
-  username: nicolasiensen
-
-
-
+  username: facaacontecer
