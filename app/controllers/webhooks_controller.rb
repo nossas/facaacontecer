@@ -1,7 +1,4 @@
 class WebhooksController < ApplicationController 
-
-
-
   before_filter only: [:bankslips] do 
     redirect_to root_path unless params[:date] && params[:date].to_date.future? 
   end
@@ -9,10 +6,7 @@ class WebhooksController < ApplicationController
   before_filter only: [:subscription_status, :status] do
     # From 1 to 8. 0 is empty code
     @codes = ['', 'authorized', 'started', 'printed', 'done', 'canceled', 'waiting', 'reversed', 'refunded']
-
   end
-
-
 
   def subscription_status
     return render nothing: true, status: 406, content_type: 'application/json' unless params[:event] 
@@ -42,37 +36,23 @@ class WebhooksController < ApplicationController
     end
 
     return render nothing: true, status: 200, content_type: 'application/json'
-
   end
 
   def status
-
     instruction = PaymentInstruction.find_by_code(params[:id_transacao])
     instruction.status = @codes[params[:status_pagamento].to_i]
     instruction.paid_at = Time.now if params[:status_pagamento].to_i == 4 
     instruction.save!
-
     render nothing: true, status: 200, content_type: 'text/html'
   end
 
-
-
   def bankslips
-
     @subscriptions = Project.find_by_id(params[:project]).subscriptions.where(payment_option: :boleto, status: :active)
     @date          = params[:date]
     @sequence      = SecureRandom.hex(4) 
-
     @subscriptions.each do |s|
       s.delay.send_payment_request(@date.to_time.strftime("%Y-%m-%dT%H:%M:%S%:z"), @sequence)
     end
     render nil, body: "Enviando...", status: 200
   end
-
-
-
-
-
-
-
 end

@@ -26,3 +26,4 @@ config/environments/*.local.yml
 coverage/
 *.swp
 config/database.yml
+*.swo
