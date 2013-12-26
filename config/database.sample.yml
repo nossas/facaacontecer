@@ -43,3 +43,20 @@ test:
   database: facaacontecer_test
   pool: 5
   username: facaacontecer
+
+accounts_development:
+  adapter: postgresql
+  encoding: unicode
+  database: meurio_accounts_development
+  pool: 5
+  username: nicolasiensen
+  host: localhost
+  password:
+
+accounts_test:
+  adapter: postgresql
+  encoding: unicode
+  host: localhost
+  database: facaacontecer_test
+  pool: 5
+  username: nicolasiensen
