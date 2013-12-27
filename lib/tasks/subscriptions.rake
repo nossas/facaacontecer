@@ -35,6 +35,6 @@ namespace :subscriptions do
   end
 
   task :update_active_funders => :environment do
-    Subscription.active.each { |s| s.user.update_attribute :funder, true }
+    Subscription.active.each { |s| s.subscriber.update_attribute :funder, true }
   end
 end
