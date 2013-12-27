@@ -34,7 +34,7 @@ namespace :subscriptions do
     HTTParty.get(link, options )
   end
 
-  task :update_active_funders do
+  task :update_active_funders => :environment do
     Subscription.active.each { |s| s.user.update_attribute :funder, true }
   end
 end
