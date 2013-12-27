@@ -49,7 +49,7 @@ accounts_development:
   encoding: unicode
   database: meurio_accounts_development
   pool: 5
-  username: nicolasiensen
+  username: facaacontecer
   host: localhost
   password:
 
@@ -59,4 +59,4 @@ accounts_test:
   host: localhost
   database: facaacontecer_test
   pool: 5
-  username: nicolasiensen
+  username: facaacontecer
