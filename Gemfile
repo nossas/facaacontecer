@@ -18,7 +18,8 @@ gem 'before_actions'
 
 # Template-related gems
 gem 'slim-rails'
-gem 'active_decorator'
+gem 'active_decorator' # To be removed soon
+
 #gem 'best_in_place'  # Field live-edit
 
 
@@ -27,7 +28,7 @@ gem 'mymoip'
 
 
 # We will also use httparty with our workers
-gem 'httparty'
+gem 'httparty' # To be checked
 
 
 # Model-validation related gems
@@ -37,7 +38,6 @@ gem 'validates_timeliness', '~> 3.0'  # validate dates/intervals
 
 # Worker related gems
 gem 'delayed_job_active_record' # to be removed
-gem 'daemons'                   # to be removed
 
 
 # Assets related gems
