@@ -10,10 +10,8 @@ class User < ActiveRecord::Base
 
   validates_date :birthday, before: -> { 14.years.ago }
   validates :cpf, cpf: true
+  validates_uniqueness_of :email
   validates_presence_of :first_name, :last_name, :email, :cpf, :birthday, :postal_code, :address_street, :address_extra, :address_number, :address_district, :city, :state, :phone, :country
-
-  # DEPRECATED:
-  #attr_accessible :first_name, :last_name, :email, :cpf, :birthday, :postal_code, :address_street, :address_extra, :address_number, :address_district, :city, :state, :phone, :country
 
   after_create :generate_invite_code
 
