@@ -15,8 +15,6 @@ gem 'pg'
 
 # Controller-related gems
 gem 'before_actions'
-gem 'inherited_resources' # This will be removed soon.
-
 
 # Template-related gems
 gem 'slim-rails'
