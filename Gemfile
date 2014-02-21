@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 ruby '2.1.0'
 
 # Server related gems
+gem 'foreman'
 gem 'puma'
 
 # Latest rails version
