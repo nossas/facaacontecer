@@ -1,0 +1,693 @@
+// Color settings
+$blue:        #3398d4
+$darkblue:    #037ab7
+$green:       #059046
+$lightgreen:  #AECE6A
+$orange:      #f7921e 
+$vermillion:  #FF4E00
+$gray:        #666666
+$lightgray:   lighten($gray, 52%)
+$link:        $green
+
+
+
+.show
+  display: inline-block !important
+
+.hidden
+  display: none
+
+
+.container
+  min-width:  800px !important
+  min-height: 820px
+  height: auto
+
+.row
+  min-width: 960px
+  width: 960px
+
+.panel
+  width: 100%
+
+
+
+// Defining default-style classes
+html
+  zoom: 95% !important
+body
+  color:        white
+  font-size:    .9em
+  line-height:  1.4em
+  color:        black
+  font-family:  "Source Sans Pro", sans-serif
+  background: image-url('pattern.png')
+
+// Input patterns + placeholder style
+input[type='text']
+  border-radius: 2px
+  padding: .6em 1em
+  border: 1px solid lighten(gray, 35%)
+
+\::-webkit-input-placeholder, \:-moz-placeholder, \::-moz-placeholder, \::ms-input-placeholder
+  color:    #999
+
+// Button style
+.btn
+  font-family: "Arial Black"
+  font-weight: bold
+  color: white
+  font-size: 1.6em
+  text-align: center
+  padding: .4em 2em
+  border: none
+  display: block
+  margin: .4em auto
+  margin-bottom: 0
+  width: 100%
+  text-transform: uppercase
+  border: 1px solid darken($blue, 10%)
+  text-shadow: 0 -1px 0 #666
+  position: relative
+  background: $blue
+  +background(linear-gradient($blue, darken($blue, 15%)))
+  +box-shadow(0 1px 0 #666)
+  +border-radius(10px)
+  &:after
+    content: "  " 
+    width: 32px
+    height: 33px
+    display: inline-block
+    margin-top: -6px
+    background: image-url('arrow.png') no-repeat center 12px 
+  &:hover
+    cursor: pointer
+    +background(linear-gradient($blue, darken($blue, 25%)))
+  &:active
+    top: 2px
+
+// The loading spinner that appears when someone clicks on "continue"
+.loading, .loading:hover
+  background: image-url('loader.gif') no-repeat top center
+  text-indent: -9999px
+  border: none
+  +box-shadow(none)
+  &:hover
+    cursor: default
+.loader
+  float: right 
+  margin-top: -2em
+
+
+
+.panel
+  h2
+    font-size: 2.6em
+    text-align: center 
+    font-weight: 200
+    background: $orange
+    color: white
+    width: 35%
+    padding: .2em 0
+    margin: 2em auto
+    margin-bottom: -.6em
+    z-index: 99
+    position: relative
+  .text, li.project h3
+    width: 80%
+    margin-right: auto
+    margin-left: auto
+    font-size: 1.2em
+    line-height: 1.5em
+#panel-1
+  background:   url('bg.jpg') repeat center top
+  min-height: 870px
+  height: auto 
+  padding-bottom: 6.5em
+
+#panel-2
+  color: $gray
+  background-color: $lightgreen 
+  .text
+    background: image-url('panel-2_text.png') no-repeat center top
+    +background-size(100%)
+    min-height: 650px
+  p
+    width: 54%
+    margin: 0 auto
+    padding: 2.5em 0
+    color: $green
+    text-align: center
+    font-size: 1.15em
+    line-height: 1.5em
+
+
+#panel-2, #panel-3, #panel-4, #panel-6
+  background-image: image-url('pattern.png') 
+
+#panel-3
+  height: 950px
+
+#panel-3, #panel-5
+  h2
+    width: 60%
+    margin-bottom: 1em
+    margin-top: 1.2em
+  background-color: darken(gray, 20%)
+  background-image: image-url('pattern2.png')
+  color: white
+
+#panel-4, #panel-6
+  h2
+    width: 70%
+    margin-bottom: 1em
+  height: 700px
+#panel-4
+  height: 600px
+  min-height: 600px
+  h2  
+    margin-top: 1em
+#panel-5
+  h2
+    width: 55%
+    font-size: 2em
+  height: 740px
+  min-height: 740px
+
+
+#panel-6
+  height: 650px
+  min-height: 650px
+  h2
+    width: 50%
+    margin-top: 1em
+  .text
+    display: block
+    width: 60%
+    margin: 1em auto
+    height: 500px
+  .panel
+    background: image-url('panel-crowd.png') no-repeat center bottom
+
+#panel-7
+  height: auto
+  h2
+    width: 60%
+    margin: 1em auto 
+    clear: both
+  color: white
+  .text
+    @include grid-column($columns: 10, $last-column: true, $push: 2)
+  ul.subscribers
+    overflow: hidden
+  ul.subscribers li
+    @include grid-column(3)
+    font-size: .7em
+
+.gray
+  background-color: darken(gray, 20%)
+.lightgreen
+  background-color: $lightgreen
+
+
+li.project
+  @include grid-column(12)
+  .image
+    float: left
+    padding: .8em
+    padding-right: 1em
+  h3
+    line-height: .6em
+    font-weight: 300
+    font-size: 2.4em !important
+    margin: 0 
+  .text
+    font-size: 1.1em
+    line-height: 1.4em
+    margin-bottom: 1em
+    font-weight: 200
+  .signatures
+    background: $orange
+    padding: .2em .6em
+    font-weight: bold
+    margin-right: 2%
+    width: 16%
+    line-height: 1em
+    font-size: 1.4em
+    &::after
+      content: " "
+      width: 0
+      height: 0
+      margin-top: .1em
+      border: solid transparent
+      border-left: 20px solid $orange 
+      border-top: 10px solid transparent 
+      border-bottom: 13px solid transparent 
+      position: absolute
+
+
+// Header style
+header.facaacontecer
+  height: 100px
+  .image
+    @include grid-column(10)
+    img
+      width: 100%
+  .share
+    @include grid-column($columns: 2, $last-column: true)
+    a
+      display: block
+      text-indent: -9999px
+      width: 140px
+      height: 32px
+      &.facebook
+        background: image-url('header_facebook.png') no-repeat center top
+        &:hover
+          background: image-url('header_facebook_on.png') no-repeat center top
+      &.twitter
+        background: image-url('header_twitter.png') no-repeat center top
+        margin-top: .4em
+        &:hover
+          background: image-url('header_twitter_on.png') no-repeat center top
+
+// Video + Header style
+.video_and_header
+  @include grid-column(7)
+  iframe
+    width: 100% !important
+  .title
+    margin-top: 1em
+  h1
+    font-weight: 300 !important
+    color: darken(gray, 20%)
+    text-align: center 
+    font-size: 2.5em
+    margin-top: -.2em
+    margin-right: 0 !important
+    padding-right: .4em !important
+
+// Progress bars
+.days, .people
+  width: 47.5%
+  display: inline-block
+.days
+  margin-right: 5%
+  margin-left: 0%
+.people
+.progress
+  margin: 1em 0
+  margin-bottom: .2em
+  overflow: hidden
+  strong
+    font-size: 2.1em
+    padding-right: .2em
+  span
+    font-size: .85em
+    vertical-align: center
+    position: relative
+    top: -.4em
+    color: darken(gray,15%)
+    display: block
+.progress.successful
+  font-size: 1.5em
+  text-align: center
+  .people
+    width: 100%
+    line-height: 1.4em
+  #progress_bg
+    display: none
+
+.progress .days strong
+  color: $orange
+.progress .people strong
+  color: $green
+#progress_bg, #p_progress_bg
+  display: inline-block
+  background: lighten(gray, 10%)
+  width: 100%
+  height: 25px
+  margin-bottom: .2em
+
+#progress_bg, #p_progress_bg, #p_progress, #progress
+  border-radius: 8px
+
+#p_progress, #progress
+  height: 100% !important
+#p_progress
+  background: $orange
+  +background-image(linear-gradient(lighten($orange, 10%), $orange))
+#progress
+  background: $green
+  +background-image(linear-gradient(lighten($green, 10%), $green))  
+
+
+
+
+// The form style
+.subscription
+  @include grid-column($columns: 5, $last-column: true)
+  +transition(.2s)
+  background: lighten(gray, 48%)
+  &:active, &:hover
+    +box-shadow(0 2px .4em gray)
+
+  .head img
+    width: 100%
+
+
+// THe 3 steps above the form
+@media all and (max-width: 1020px)
+  ol.steps 
+    li
+      margin: 0 2.5% !important
+.clear
+  clear: both
+ol.steps
+  margin: 0 auto
+  li
+    float: left 
+    width: auto
+    margin: 0 3%
+  li.placeholder
+    width: 10%
+    img
+      margin-top: 1em
+  li span 
+    margin: 0 auto
+    text-align: center
+    font-size: .8em
+  li span:nth-child(1n+0)
+    display: block
+    color: lightgray
+  li span:first-child
+    display: block
+    width: 14px
+    margin: 0 auto
+    background: none
+    color: lighten(lightgray, 10%)
+    text-shadow: 0 0 1px #666
+    font-size: 1.8em
+    padding: .4em .6em
+    font-weight: 700
+    +border-radius(150px)
+    +box-shadow(inset 0px 1px 4px darken($lightgray, 20%), 0 1px 2px white)
+    &.selected
+      +box-shadow(inset 0px 1px 4px darken($orange, 20%), 0 1px 2px white)
+      background: $orange
+
+
+// The real form
+.subscription form
+  .step_one, .step_two
+    position: relative
+    top: .6em
+  color: gray
+  input
+    padding: .8em .6em
+    width: 96%
+    font-size: 1em
+    border: 1px solid lighten(gray, 43%)
+    +box-shadow(inset 0 1px .2em lighten(gray, 10%))
+    +border-radius(.2em)
+  input.cep
+    text-align: center
+  input.date, input.cpf, input.addr_number, input.addr_extra, input.addr_city
+    width: 42%
+    display: inline-block
+  input.date, input.addr_extra
+    margin-left: auto
+    margin-right: 0 !important
+    right: 0
+    position: relative
+    float: right
+  input.city
+    width: 50%
+  input.addr_extra  
+    color: lighten(gray,20%)
+    &:focus 
+      color: black
+  select#user_state
+    font-size: 1.2em
+    
+  label.usr_state
+    padding-left: 15%
+    padding-top: .6em
+    margin-right: .4em
+  p
+    margin: 1em 0
+.errors
+  color: red
+  text-align: center
+.card_submit, .boleto_submit
+  width: 90%
+label.expire_date
+  padding-top: .5em
+  color: #666
+
+
+ol.payment_options
+  margin: .8em 0
+  li
+    font-size: .9em !important
+  li a
+    color: white
+  li.selected a
+    color: black
+    
+
+ol.values, ol.payment_options
+  li
+    margin: 0 .8%
+    display: inline-block
+    padding: .6em .4em
+    color: white
+    font-weight: bold
+    font-size: 1.2em
+    text-transform: uppercase
+    font-family: "Arial Black"
+    text-shadow: 0 -1px 0 black
+    border: 1px solid $orange
+    background: $vermillion
+    +border-radius(6px)
+    +background-image(linear-gradient(lighten($orange,5%), $vermillion))
+    +transition(.2s)
+    &:hover
+      opacity: .9
+      cursor: pointer
+    &.selected
+      color: black
+      background: lighten($orange, 40%)
+      border-bottom: 2px solid black 
+      &::before
+        content: " ___"
+        color: lighten($orange,40%) 
+        background: image-url('checkmark.png') no-repeat center .3em 
+.wrap, .wrapped
+  padding: .2em 1em
+  padding-bottom: .4em
+.grey
+  background: lighten(lightgray, 12%)
+.plan_list
+  text-align: center
+  margin-top: .4em
+  padding-top: .4em
+  h4
+    margin-top: .4em
+
+#subscription_plan
+  display: block
+  width: 20%
+  margin: 0 auto
+  font-size: 1.5em
+  font-weight: bold
+  padding: .6em
+
+#options 
+  .wrapped
+    background: $lightgray
+    padding-top: .2em 
+    padding-bottom: .2em 
+  input
+    display: inline
+    width: auto
+  label
+    display: inline
+
+// When something fails on form submiting, these
+// are the styles of inputs with error 
+input.parsley-error, textarea.parsley-error
+  color: rgb(185, 74, 72)
+  background: rgb(242, 222, 222) image-url('error.png') right center no-repeat !important
+  border: 1px solid rgb(238, 211, 215)
+
+input.parsley-success, textarea.parsley-success
+  color: rgb(70, 136, 71)
+  background-color: rgb(223, 240, 216)
+  border: 1px solid rgb(214, 233, 198)
+
+.parsley-error-list
+
+
+
+// The thank you page
+.message
+  color: #333
+  @include grid-column(7)
+  h1
+    font-size: 2.2em
+    margin-top: 0
+    font-weight: 600
+  .text
+    padding: 0
+    width: 100%
+    font-weight: 400
+    line-height: 1.6em
+.thanks
+  zoom: 90%
+  min-height: 900px !important
+  .thanks_section
+    margin-top: 1em
+  .facebook, .unique
+    padding: 1.5em 1.5em 0 1.5em
+  .image
+    margin-top: .8em
+    text-align: center
+  label, .facebook span
+    font-size: 1.3em
+    display: block
+    margin-bottom: -.3em
+    color: #666 
+    font-weight: 200
+  input
+    display: block
+    font-size: .9em
+    width: 89%
+    margin-top: .6em
+    border: none
+    +border-radius(4px)
+    +box-shadow(inset 0 -1px 2px #333)
+  .facebook a
+    +transition(zoom .2s)
+    display: inline-block
+    margin-top: 1em
+    &:hover
+      opacity: .8
+
+.call_to_action
+  +background(linear-gradient(lighten(lightgray, 13%), lighten(lightgray, 15%)))
+  @include grid-column($columns: 5, $last-column: true)
+
+.bankslip
+  .message, .call_to_action
+    @include grid-column(6)
+  .call_to_action
+    .text
+      padding: .6em 1.5em
+      margin-top: .8em
+      width: 90%
+    .text p
+      padding: 0
+      font-size: 1.1em !important
+    .unique, .facebook
+      padding-top: .2em
+      text-align: center
+      input
+        width: 92%
+    .facebook
+      margin-top: 2em
+
+
+// Select2
+.select2-results
+  li
+    margin-left: 0
+#s2id_user_state
+  margin-top: .6em
+.select2-container, a.select2-choice
+
+
+// Social plugins
+.fb_ltr, .twitter-share-button
+  margin-top: .4em
+  right: 1em
+  width: 65px !important
+  height: 70px !important
+.fb_ltr
+  top: -1.15em
+  left: 1em
+  position: relative
+
+.twitter-share-button
+  width: 60px
+.tw-tweet, .twitter-share-button
+  display: inline-block
+  
+.alert
+  text-align: center
+  color: $green
+  font-size: .8em
+  small 
+    display: block
+  small a
+    color: lighten(gray, 10%)
+
+.accept
+  img
+    float: left
+    margin-top: .2em
+.moip-indicator
+  text-align: center
+  img
+    width: 30%
+    height: auto
+
+#subscription_error_message
+  padding-top: 1em
+  color: red !important
+
+.faq
+  @include grid-column($columns: 5, $push: 7, $last-column: true)
+  text-align: center
+  margin-top: .8em
+  a
+    color: darken(lightgray, 30%)
+    border-bottom: none
+    font-size: .9em
+    &:hover
+      text-decoration: none
+      color: $orange
+      border-bottom: 1px solid $orange
+
+.video_and_header:hover .share_overlay
+  display: block
+
+.share_overlay
+  +transition(all .3s)
+  display: none
+  position: absolute
+  margin-top: 8em
+  margin-left: -.7em
+  a
+    display: block
+    &.facebook, &.twitter
+      text-indent: -9999px
+      background: image-url('overlay_facebook.png') no-repeat center top
+      width: 120px
+      height: 35px
+      &:hover
+        background: image-url('overlay_facebook_on.png') no-repeat center top
+    &.twitter
+      background: image-url('overlay_twitter.png') no-repeat center top
+      &:hover
+        background: image-url('overlay_twitter_on.png') no-repeat center top
+.row_overlay
+  overflow: visible 
+
+body.subscribers
+  background: none
+  .subscriptions
+    img
+      width: 50px
+      height: 50px
+      margin: 5px
+      +border-radius(100%)

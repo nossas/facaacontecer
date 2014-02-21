@@ -1,0 +1,30 @@
+en:
+  home: 
+    value_proposition: "Roll your own crowdfunding!"
+    call_to_action: "Reserve Now!"
+    # The paragraph below the price. 
+    # You'd probably say something about how you're not 
+    # going to charge them before it ships (so it's less risky).
+    reason_to_say_no: "You'll get this exact site. All you'll need to get started is a great product."
+
+    key_points: 
+      what_is: "O que é o Selfstarter?"
+      what_is_text: "Selfstarter is an open source starting point for building your own ad-hoc crowdfunding site. It was put together by Lockitron after they were turned down from Kickstarter."
+      how_to_use: "How do I use it?"
+      how_to_use_text: "Selftstarter is a starting point for you to build your own solution. It is set up to collect reservations using Amazon Payments, but you can choose your own provider too."
+      just_skeleton: "It's just a skeleton"
+      just_skeleton_text: "We've kept Selfstarter really simple, but that also means that you should beef it up with your own authentication, administration and product management code."
+      lets_get_started: "Let's get started"
+      lets_get_started_text: "Most of what you need to get started is in the Readme. Selfstarter is based on Ruby on Rails, and we've tried to break up all of the different parts in a sensible fashion."
+
+  activerecord:
+    user:
+      one: "Backer"
+      other: "Backers"
+  backers_html:
+    one: "%{count} <span>backer</span>"
+    other: "%{count} <span>backers</span>"
+  goal:
+    reached_of_html: "%{current} of <span>%{goal}</span>"
+    days_remaining_html: "%{days} days<span>left</span>"
+    progress: "%{percent}% Implemented"

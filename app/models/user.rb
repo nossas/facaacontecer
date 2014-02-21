@@ -10,7 +10,6 @@ class User < ActiveRecord::Base
 
   validates_date :birthday, before: -> { 14.years.ago }
   validates :cpf, cpf: true
-  validates_uniqueness_of :cpf
   validates_presence_of :first_name, :last_name, :email, :cpf, :birthday, :postal_code, :address_street, :address_extra, :address_number, :address_district, :city, :state, :phone, :country
 
   # DEPRECATED:

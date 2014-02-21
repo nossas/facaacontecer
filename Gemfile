@@ -66,6 +66,8 @@ group :development, :test do
 end
 
 group :test do
+  gem 'fabrication'
+  gem 'selenium-webdriver'
   gem 'machinist'
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'

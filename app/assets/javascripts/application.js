@@ -16,11 +16,12 @@
 //= require jquery_ujs
 //= require foundation
 //= require jquery.to_json
-//= require jquery.mask
+// require jquery.mask
 //= require jquery.colorbox
-//= require jquery.placeholder
+
+
 //= require moip.subscription
-//= require best_in_place
+// require best_in_place
 //= require selfstarter 
 //= require meurio_ui
 //= require_tree .

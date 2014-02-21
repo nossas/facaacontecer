@@ -1,0 +1,81 @@
+pt-BR:
+  seo:
+    title: "Meu Rio: Faça Acontecer!"
+    description: "O Meu Rio não tem rabo preso com nenhum governo, político, partido ou empresa pública, e 80 mil cariocas acreditam nessa ideia. Para que isso continue assim, visite http://facaacontecer.meurio.org.br"
+    og_title: "Faça parte da conquista da independencia!"
+    og_description: "O desafio do Meu Rio é mobilizar pessoas para uma cidade melhor. Isso só pode ser feito com completa independência de interesses outros que não sejam os públicos. Clique e faça parte! http://apoie.meurio.org.br"
+    keywords: 'meu rio, doação, contribua, financie, independente'
+    twitter_description: 'O @Meu_Rio não tem rabo preso e 80 mil cariocas acreditam nessa ideia. Veja: '
+  admin:  
+    send_bank_slips: "Enviar boletos"
+  helpers:
+    label: &label
+      user:
+        first_name: "Nome"
+        last_name: "Sobrenome"
+        birthday: "Data de nascimento"
+        email: "Email"
+        cpf:  "CPF"
+        phone: "Celular"
+        address_street: "Qual seu endereço completo?"
+        address_extra: "Complemento?"
+        address_number: "Número?"
+        address_district: "Qual bairro?"
+        state: "Estado "
+        city: "E a cidade?"
+        postal_code: "Pra te ajudar, qual o seu CEP?"
+      subscription:
+        plan: "Quero apoiar com..."
+        fullname: "Nome que está escrito no seu cartão de crédito"
+        card_number: "Número do seu cartão de crédito (só os números)"
+        expiration_date: "Data de validade do cartão (mês/ano):"
+        value: "Você contribui todo mês com o valor abaixo, debitado de seu cartão de crédito. Você sempre pode cancelar sua contribuição por email e sem burocracia."
+        value_bankslip: "Você contribui todo o mês com o valor abaixo, através de boleto bancário enviado para a sua casa. Você sempre pode cancelar sua contribuição por email e sem burocracia."
+        anonymous: "Minha doação é anônima"
+        gift: "Quero receber as recompensas"
+  placeholder:
+    <<: *label
+  activerecord:
+    models:
+      subscription: "Apoio"
+    attributes:
+      user:
+        birthday: "Data de nascimento"
+        address_street: "Rua"
+        
+      subscription:
+        name: 'Nome'
+        email: 'E-mail'
+  home:
+    value_proposition: "Monte seu próprio crowdfunding!" 
+    call_to_action: "Apoie agora!"
+    # The paragraph below the price. 
+    # You'd probably say something about how you're not 
+    # going to charge them before it ships (so it's less risky).
+    reason_to_say_no: "Você terá este site aqui; igualzinho ou com seu próprio design. Tudo que você precisa é de um ótimo produto ou projeto! :-)"
+    ships: "O projeto será realizado se financiado até %{date}"
+    key_points: 
+      what_is: "O que é o Selfstarter?"
+      what_is_text: "Selfstarter é uma ferramenta open source para que qualquer possa criar seu próprio crowdfunding, diretamente aos seus apoiadores, amigos ou pessoas que estão interessadas no projeto/produto. Seja ele de produto maneiro ou de algum projeto bem legal!"
+      how_to_use: "O que eu faço?"
+      how_to_use_text: "Selfstarter é o seu ponto de partida para construir sua própria solução. Você pode escolher como receber seu dinheiro, quais formas de pagamento e afins."
+      just_skeleton: "É apenas um molde"
+      just_skeleton_text: "O Selfstarter é bem simples; porém você pode adicionar o que quiser nele. Administração, código, etc."
+      lets_get_started: "Vamos começar?"
+      lets_get_started_text: "A maioria das coisas que você precisa, estão no LEIAME do projeto. Selfstarter foi feito utilizando Ruby on Rails e o código foi feito com carinho ; )."
+
+  activerecord:
+    user:
+      one: "Apoiador"
+      other: "Apoiadores"
+  backers_html:
+    one: "<strong>%{count}</strong> <span>apoiador</span>"
+    other: "<strong>%{count}</strong> <span>apoiadores</span>"
+  goal:
+    reached_of_html: "<strong>%{current}</strong> <span>de %{goal}</span>"
+    days_remaining_html:
+      one: "<strong>%{count} dia </strong><span>para o fim da campanha</span>"
+      other: "<strong>%{count} dias </strong><span>para o fim da campanha</span>"
+    last_day_remaining_html: "<strong>último dia </strong><span>para o fim da campanha</span>"
+    people_so_far_html: "<strong>%{days} pessoas </strong><span>fazendo o Meu Rio acontecer</span>"
+    progress_text: "<strong>%{percent}%</strong> alcançados"
