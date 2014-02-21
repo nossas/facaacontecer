@@ -3,12 +3,12 @@ source 'https://rubygems.org'
 # Default ruby version
 ruby '2.1.0'
 
-# Server related gems
-gem 'foreman'
-gem 'puma'
-
 # Latest rails version
 gem 'rails', '~> 4.0.3'
+
+# Server related gems
+gem 'foreman'  # Start the server using `foreman start`
+gem 'puma'      
 
 # Database-related gems
 gem 'pg'
@@ -24,7 +24,7 @@ gem 'active_decorator' # To be removed soon
 
 
 # Payment/Gateway related gems
-gem 'mymoip'
+gem 'mymoip'                    # ~>  https://github.com/Irio/mymoip
 
 
 # We will also use httparty with our workers
