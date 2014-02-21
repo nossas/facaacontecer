@@ -1,78 +1,76 @@
 source 'https://rubygems.org'
-ruby '1.9.3'
 
-gem 'rails', '~> 3.2.13'
-gem 'inherited_resources'
-gem 'slim-rails'
-gem 'active_decorator'
-gem 'coveralls', require: false
+# Default ruby version
+ruby '2.1.0'
+
+# Server related gems
+gem 'puma'
+
+# Latest rails version
+gem 'rails', '~> 4.0.3'
+
+# Database-related gems
 gem 'pg'
 
-# Allow the editing of fields in the admin
-gem 'best_in_place'
+# Controller-related gems
+gem 'before_actions'
+gem 'inherited_resources' # This will be removed soon.
 
-# Using mymoip gem to handle recurring BOLETO option
-# for donation.
+
+# Template-related gems
+gem 'slim-rails'
+gem 'active_decorator'
+#gem 'best_in_place'  # Field live-edit
+
+
+# Payment/Gateway related gems
 gem 'mymoip'
 
-# This gem allow us to mantain only one dyno
-# for jobs we want to run. So we don't to expend any money
-# to run delayed jobs
-gem 'delayed_job_active_record'
-gem 'daemons'
 
 # We will also use httparty with our workers
 gem 'httparty'
 
-# An old gem to validate cpf
-gem "cpf_validator"
 
-# Validate dates
-gem 'validates_timeliness', '~> 3.0'
+# Model-validation related gems
+gem "cpf_validator"                   # validate cpfs
+gem 'validates_timeliness', '~> 3.0'  # validate dates/intervals
 
-group :development do
-  gem 'better_errors'
-  gem 'pry-rails'
-end
 
+# Worker related gems
+gem 'delayed_job_active_record' # to be removed
+gem 'daemons'                   # to be removed
+
+
+# Assets related gems
+gem 'jquery-rails'
+gem 'compass-rails'
+gem 'compass-columnal-plugin' # to be removed
+gem 'sass-rails'
+gem 'uglifier'
+gem "select2-rails"
+gem 'foundation-rails', '~> 5.1.1.0'
+
+# MeuRio UI related gems
+gem 'gravatar_image_tag'
+gem 'meurio_ui'
+
+
+# Group related gems
 group :production do
-  gem 'unicorn'
-  gem 'newrelic_rpm'
-  gem 'heroku-deflater'
+  gem 'newrelic_rpm' 
+  gem 'rails_12factor'
 end
 
-# Gems used only for assets and not required
-# in production environments by default.
-group :assets do
-  gem 'compass-rails'
-  gem 'compass-columnal-plugin'
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
-  gem 'uglifier', '>= 1.0.3'
-  gem "select2-rails"
-
-
-  gem 'zurb-foundation'
-end
 
 group :development, :test do
   gem 'rspec-rails'
-  gem 'mailcatcher'
 end
 
 group :test do
-  gem 'selenium-webdriver'
   gem 'machinist'
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
   gem 'shoulda'
-  gem 'jasmine'
   gem 'cpf_cnpj'
-  
 end
 
-# jQuery
-gem 'jquery-rails'
-gem 'gravatar_image_tag'
-gem 'rails_12factor'
-gem 'meurio_ui'

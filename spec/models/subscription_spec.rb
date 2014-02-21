@@ -14,13 +14,4 @@ describe Subscription do
     end
   end
 
-
-  context "attributes" do
-    [
-      :code, :value
-    ].each do |property|
-      it { should allow_mass_assignment_of property }
-    end
-
-  end
 end

@@ -14,16 +14,6 @@ describe Project do
     end
   end
 
-  context "attributes" do
-    [:description, :expiration_date, 
-     :goal, :image, :title, :video
-    ].each do |attribute|
-      it { should allow_mass_assignment_of attribute }
-    end
-  end
-
-
-
   context "instance methods" do
     before do
       @project = stub_model(Project, save: true)

@@ -1,37 +1,29 @@
-# coding: utf-8
 class SubscriptionsController < ApplicationController
-  inherit_resources
-  actions :create, :create_with_bank_slip, :update
 
-  respond_to :json, only: [:update]
+  before_actions do
+   
+    actions(:create_with_bank_slip) do
+      @subscription.payment_option  = :boleto
+      @subscription.code            = SecureRandom.hex(8) 
+    end
 
-  before_filter only: [:create, :create_with_bank_slip] do
-    @subscription             = Subscription.new(params[:subscription])
-    @subscription.project     = Project.find(params[:project_id])
-    @subscription.subscriber  = User.find(params[:subscriber_id])
-    @subscription.status      = :active 
-  end
-
-  append_before_filter only: [:create_with_bank_slip] do
-    @subscription.payment_option  = :boleto
-    @subscription.code            = SecureRandom.hex(8) 
-  end
+    actions(:create, :create_with_bank_slip) do 
+      @subscription = Subscription.new(subscription_params)
+      @subscription.project     = Project.find_by(id: params[:project_id])
+      @subscription.subscriber  = User.find_by(id: params[:subscriber_id])
+      @subscription.status = :active 
+    end
 
 
-  after_filter  only: [:create, :create_with_bank_slip] do 
-    session[:subscriber_ok] = true
-    send_successful_message
-    send_invite_email
+    #actions(:update) { @subscription = Subscription.find_by(id: params[:id]) }
   end
 
   def create
-    create! { thank_you_path(@subscription.subscriber) } 
+    if @subscription.save
+      deliver_notification_emails 
+      redirect_to thank_you_path(@subscription.subscriber)
+    end
   end
-
-  def update
-    update! { admin_subscribers_path }
-  end
-
 
   def create_with_bank_slip
     if send_payment_request && @subscription.save!
@@ -45,6 +37,27 @@ class SubscriptionsController < ApplicationController
 
 
   private
+    def subscription_params
+      if params[:subscription]
+        params.require(:subscription).permit(%i(
+          code value gift anonymous status payment_option))
+      else 
+        {}
+      end
+    end
+
+
+    def deliver_notification_emails
+      session[:subscriber_ok] = true
+      send_successful_message
+      send_invite_email
+    end
+
+
+
+
+    # TODO:
+    # Move all things below to a business class
     def send_payment_request 
       @transparent_request = MyMoip::TransparentRecurringRequest.new(@subscription.code)
       @transparent_request.api_call(@subscription.prepared_instruction)

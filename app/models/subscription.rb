@@ -1,7 +1,7 @@
 # coding: utf-8
 class Subscription < ActiveRecord::Base
-  # Attributes accessible on create! or update! 
-  attr_accessible :code, :value, :gift, :anonymous, :status, :payment_option
+  # DEPRECATED:
+  #attr_accessible 
 
   # Relationship with Projects and the correspondent user for each subscription 
   belongs_to :project
@@ -14,10 +14,10 @@ class Subscription < ActiveRecord::Base
   validates_presence_of :value, :project, :subscriber, :code
 
   # Scope for completed payments
-  scope :raised,      where(status: :active).select('distinct subscriber_id')
-  scope :bankslips,   where(payment_option: :boleto)
-  scope :creditcard,  where(payment_option: :creditcard)
-  scope :active,      joins(:payment_instructions).where("payment_instructions.paid_at > ?", Time.now - 1.month)
+  scope :raised,     -> { where(status: :active).select('distinct subscriber_id') }
+  scope :bankslips,  -> { where(payment_option: :boleto) }
+  scope :creditcard, -> { where(payment_option: :creditcard) }
+  scope :active,     -> { joins(:payment_instructions).where("payment_instructions.paid_at > ?", Time.now - 1.month) }
 
   def prepared_instruction
     instruction = MyMoip::Instruction.new(

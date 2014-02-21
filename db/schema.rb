@@ -9,13 +9,16 @@
 # from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
-# It's strongly recommended to check this file into your version control system.
+# It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131226224205) do
+ActiveRecord::Schema.define(version: 20131226224205) do
 
-  create_table "delayed_jobs", :force => true do |t|
-    t.integer  "priority",   :default => 0
-    t.integer  "attempts",   :default => 0
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "delayed_jobs", force: true do |t|
+    t.integer  "priority",   default: 0
+    t.integer  "attempts",   default: 0
     t.text     "handler"
     t.text     "last_error"
     t.datetime "run_at"
@@ -23,64 +26,64 @@ ActiveRecord::Schema.define(:version => 20131226224205) do
     t.datetime "failed_at"
     t.string   "locked_by"
     t.string   "queue"
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
+  add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
-  create_table "invites", :force => true do |t|
+  create_table "invites", force: true do |t|
     t.string   "code"
     t.integer  "user_id"
     t.integer  "parent_user_id"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  add_index "invites", ["code", "user_id"], :name => "index_invites_on_code_and_user_id", :unique => true
-  add_index "invites", ["user_id", "parent_user_id"], :name => "index_invites_on_user_id_and_parent_user_id"
+  add_index "invites", ["code", "user_id"], name: "index_invites_on_code_and_user_id", unique: true, using: :btree
+  add_index "invites", ["user_id", "parent_user_id"], name: "index_invites_on_user_id_and_parent_user_id", using: :btree
 
-  create_table "payment_instructions", :force => true do |t|
+  create_table "payment_instructions", force: true do |t|
     t.string   "code"
     t.integer  "subscription_id"
     t.string   "status"
     t.datetime "expires_at"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.datetime "paid_at"
     t.string   "url"
     t.string   "sequence"
   end
 
-  add_index "payment_instructions", ["subscription_id"], :name => "index_payment_instructions_on_subscription_id"
+  add_index "payment_instructions", ["subscription_id"], name: "index_payment_instructions_on_subscription_id", using: :btree
 
-  create_table "projects", :force => true do |t|
+  create_table "projects", force: true do |t|
     t.string   "title"
     t.text     "description"
     t.date     "expiration_date"
     t.decimal  "goal"
     t.string   "image"
     t.string   "video"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "days"
   end
 
-  create_table "subscriptions", :force => true do |t|
-    t.integer  "project_id",                               :null => false
-    t.decimal  "value",          :default => 0.0
+  create_table "subscriptions", force: true do |t|
+    t.integer  "project_id",                            null: false
+    t.decimal  "value",          default: 0.0
     t.string   "status"
-    t.datetime "created_at",                               :null => false
-    t.datetime "updated_at",                               :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "code"
     t.integer  "subscriber_id"
     t.boolean  "anonymous"
     t.boolean  "gift"
-    t.string   "payment_option", :default => "creditcard", :null => false
+    t.string   "payment_option", default: "creditcard", null: false
   end
 
-  add_index "subscriptions", ["code"], :name => "index_subscriptions_on_code"
-  add_index "subscriptions", ["project_id"], :name => "index_subscriptions_on_project_id"
-  add_index "subscriptions", ["subscriber_id"], :name => "index_subscriptions_on_subscriber_id"
+  add_index "subscriptions", ["code"], name: "index_subscriptions_on_code", using: :btree
+  add_index "subscriptions", ["project_id"], name: "index_subscriptions_on_project_id", using: :btree
+  add_index "subscriptions", ["subscriber_id"], name: "index_subscriptions_on_subscriber_id", using: :btree
 
 end

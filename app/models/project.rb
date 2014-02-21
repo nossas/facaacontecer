@@ -1,26 +1,19 @@
 class Project < ActiveRecord::Base
 
-  # Kinda useful when dealing with inherited resources
-  attr_accessible :description, :expiration_date, :goal, :image, :title, :video
+  # DEPRECATED:
+  # attr_accessible
 
   # Orders here will be used when the user made the checkout action (sent its data to moip)
   has_many :subscriptions, dependent: :destroy
 
   # Supporters are the people who supported the campaign with a valid payment token
-  has_many :subscribers, through: :subscriptions, 
-    conditions: { subscriptions: { status: :active } }, uniq: true
+  has_many :subscribers, -> { 
+    where(subscriptions: { status: 'active' }).uniq }, through: :subscriptions
 
   # Fetches only anonymous subscribers
-  has_many :anonymous_subscribers, through: :subscriptions, 
-    conditions: { subscriptions: { status: :active, anonymous: true } }, 
-    uniq: true, source: :subscriber
-
-
-  # Fetches only non-anonymous subscribers
-  has_many :non_anonymous_subscribers, through: :subscriptions, 
-    conditions: { subscriptions: { status: :active, anonymous: [false, nil] } }, 
-    uniq: true, source: :subscriber
-
+  has_many :anonymous_subscribers, -> { 
+    where(subscriptions: { status: :active, anonymous: true }).uniq },
+    through: :subscriptions, source: :subscriber
 
   # Attributes that should be present when creating or updating a project
   validates :title, :description, :goal, :expiration_date, presence: true

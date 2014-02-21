@@ -1,45 +1,62 @@
-class SubscribersController < InheritedResources::Base
-  defaults resource_class: User
-  actions :new, :create, :update, :index
-  belongs_to :project, optional: true
+class SubscribersController < ApplicationController
 
-  respond_to :html, only: [:new, :index]
-  respond_to :json, only: [:create, :update]
-
-  # If the subscription process was complete, we set a session key to show the thanks page
-  # Just because we don't other people to see if they aren't subscribers yet.
-  before_filter only: [:thanks] { redirect_to root_path unless session[:subscriber_ok] }
-  before_filter only: [:thanks] { @subscriber = User.find_by_id(params[:id]) }
-
-  # Creating a subscriber based on a project
-  def create
-    # This is need because for some reason, inherited resources is not working. 
-    @project  = Project.find(params[:project_id])
-
-    return if @project.nil?
-
-    # If the user already subscribed, just give to him his subscription url.
-    if @subscriber = User.find_by_email_and_cpf(params[:user][:email], params[:user][:cpf])
-      return subscriber_subscription_url 
+  before_actions do 
+    # Object actions
+    actions(:create)        do 
+      @project = Project.find_by(id: params[:project_id])
+      check_subscriber_constraints
     end
 
-    # If no subscriber was found, move on and create it. 
-    create! do |success, failure|
-      success.json do 
-        associate_invite
-        subscriber_subscription_url 
-      end
+    actions(:new, :create)  { @subscriber = User.new(subscriber_params) }
+
+    # Member actions
+    actions(:show, :update, :edit, :thanks) { @subscriber = User.find_by(id: params[:id]) }
+  end
+
+  # POST /subscribers/
+  def create
+    if @subscriber.save
+      associate_invite
+      render json: subscriber_subscription_urls
     end
   end
 
-  # After subscription, this will be the users' path
-  def thanks; end
+  # PUT /subscribers/:id
+  def update; end
 
-  protected 
+  
+  # GET /obrigado/:id
+  def thanks
+    redirect_to root_path unless session[:subscriber_ok]
+  end
+
+
+  private
+    def subscriber_params
+      # Checking for user params on request
+      if params[:user]
+        params.require(:user).permit(
+        %i(first_name last_name email cpf birthday 
+            postal_code address_street address_extra 
+            address_number address_district city state 
+            phone country))
+      else
+        {}
+      end
+    end
+  
+
+    def check_subscriber_constraints
+      # If the user already subscribed, just give to him his subscription url.
+      if @subscriber = User.find_by(email: params[:user][:email])
+        return subscriber_subscription_url 
+      end   
+    end
+
     # Associate invite, if present
     def associate_invite
       if session[:invite]
-        invite ||= Invite.find_by_code(session[:invite])
+        invite ||= Invite.find_by(code: session[:invite])
         if invite.present?
           @subscriber.invite.update_attributes!(parent_user_id: invite.user_id)
           session[:invite] = nil
@@ -48,10 +65,14 @@ class SubscribersController < InheritedResources::Base
     end
     
     # Common render action for both existing users and new users
-    def subscriber_subscription_url
-      render json: @subscriber.as_json(
+    def subscriber_subscription_urls
+      @subscriber.as_json(
         subscription_url: project_subscriber_subscriptions_path(@project, @subscriber.id),
         boleto_subscription_url: bank_slip_project_subscriber_subscriptions_path(@project, @subscriber.id) # For boleto users
       ) 
     end
+
+
+
+
 end
