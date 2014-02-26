@@ -8,7 +8,8 @@ class CreateUsersForeignTable < ActiveRecord::Migration
         %Q{ 
           CREATE FOREIGN TABLE users(
             id serial,
-            name character varying(255) NOT NULL,
+            first_name character varying(255) NOT NULL,
+            last_name character varying(255) NOT NULL,
             email character varying(255) NOT NULL,
             cpf character varying(255),
             birthday date NOT NULL,
@@ -28,7 +29,8 @@ class CreateUsersForeignTable < ActiveRecord::Migration
       )
     else
       create_table :users do |t|
-        t.string :name, null: false
+        t.string :first_name, null: false
+        t.string :last_name, null: false
         t.string :email, null: false
         t.string :cpf
         t.date   :birthday, null: false
