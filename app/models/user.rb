@@ -1,7 +1,5 @@
 #coding: utf-8
 class User < ActiveRecord::Base
-  establish_connection Rails.env.production? ? ENV["ACCOUNTS_DATABASE"] : "accounts_#{Rails.env}"
-
   has_many  :subscriptions, foreign_key: :subscriber_id, dependent: :destroy
   has_many  :invitees,      class_name: :Invite, foreign_key: :parent_user_id
   has_one   :invite,        dependent: :destroy
