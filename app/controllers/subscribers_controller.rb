@@ -37,7 +37,7 @@ class SubscribersController < ApplicationController
       if params[:user]
         params.require(:user).permit(
         %i(first_name last_name email cpf birthday 
-            postal_code address_street address_extra 
+            zipcode address_street address_extra 
             address_number address_district city state 
             phone country))
       else

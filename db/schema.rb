@@ -87,7 +87,8 @@ ActiveRecord::Schema.define(version: 20140225235228) do
   add_index "subscriptions", ["subscriber_id"], name: "index_subscriptions_on_subscriber_id", using: :btree
 
   create_table "users", force: true do |t|
-    t.string   "name",             null: false
+    t.string   "first_name",       null: false
+    t.string   "last_name",        null: false
     t.string   "email",            null: false
     t.string   "cpf"
     t.date     "birthday",         null: false

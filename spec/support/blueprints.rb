@@ -20,7 +20,7 @@ User.blueprint do
   city              { "Rio de Janeiro" }
   state             { "RJ" }
   country           { "BRA" }
-  postal_code       { "78132-500" }
+  zipcode       { "78132-500" }
   phone             { "(21) 97137471" }
 end
 

@@ -31,7 +31,7 @@ $em-base: 16px !default;
 
 //// Font-smoothing
 
-// $font-smoothing: antialiased;
+$font-smoothing: antialiased;
 
 //// Text direction settings
 
@@ -93,7 +93,7 @@ $em-base: 16px !default;
 
 $row-width: emCalc(1000px);
 $column-gutter: emCalc(30px);
-$total-columns: 16;
+$total-columns: 12;
 
 //
 // Block Grid Variables

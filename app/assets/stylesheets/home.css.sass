@@ -25,9 +25,9 @@ $link:        $green
 
 .row
   min-width: 960px
-  width: 960px
+  @include grid-row()
 
-.panel
+.mr-panel
   width: 100%
 
 
@@ -100,7 +100,7 @@ input[type='text']
 
 
 
-.panel
+.mr-panel
   h2
     font-size: 2.6em
     text-align: center 
@@ -120,7 +120,7 @@ input[type='text']
     font-size: 1.2em
     line-height: 1.5em
 #panel-1
-  background:   url('bg.jpg') repeat center top
+  background:   image-url('bg.jpg') repeat center top
   min-height: 870px
   height: auto 
   padding-bottom: 6.5em
@@ -186,7 +186,7 @@ input[type='text']
     width: 60%
     margin: 1em auto
     height: 500px
-  .panel
+  .mr-panel
     background: image-url('panel-crowd.png') no-repeat center bottom
 
 #panel-7
@@ -198,6 +198,7 @@ input[type='text']
   color: white
   .text
     @include grid-column($columns: 10, $last-column: true, $push: 2)
+    +clearfix
   ul.subscribers
     overflow: hidden
   ul.subscribers li
@@ -254,7 +255,7 @@ header.facaacontecer
     img
       width: 100%
   .share
-    @include grid-column($columns: 2, $last-column: true)
+    @include grid-column($columns: 2)
     a
       display: block
       text-indent: -9999px
@@ -345,7 +346,7 @@ header.facaacontecer
 
 // The form style
 .subscription
-  @include grid-column($columns: 5, $last-column: true)
+  @include grid-column($columns: 5)
   +transition(.2s)
   background: lighten(gray, 48%)
   &:active, &:hover
@@ -525,7 +526,6 @@ input.parsley-success, textarea.parsley-success
   background-color: rgb(223, 240, 216)
   border: 1px solid rgb(214, 233, 198)
 
-.parsley-error-list
 
 
 
@@ -575,7 +575,7 @@ input.parsley-success, textarea.parsley-success
 
 .call_to_action
   +background(linear-gradient(lighten(lightgray, 13%), lighten(lightgray, 15%)))
-  @include grid-column($columns: 5, $last-column: true)
+  @include grid-column(5)
 
 .bankslip
   .message, .call_to_action
@@ -646,7 +646,7 @@ input.parsley-success, textarea.parsley-success
   color: red !important
 
 .faq
-  @include grid-column($columns: 5, $push: 7, $last-column: true)
+  @include grid-column($columns: 5, $push: 7)
   text-align: center
   margin-top: .8em
   a

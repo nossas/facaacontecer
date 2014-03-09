@@ -9,7 +9,9 @@ class User < ActiveRecord::Base
   validates_date :birthday, before: -> { 14.years.ago }
   validates :cpf, cpf: true
   validates_uniqueness_of :email
-  validates_presence_of :first_name, :last_name, :email, :cpf, :birthday, :postal_code, :address_street, :address_extra, :address_number, :address_district, :city, :state, :phone, :country
+  validates_presence_of :first_name, :last_name, :email, :cpf, :birthday, 
+    :zipcode, :address_street, :address_extra, :address_number, 
+    :address_district, :city, :state, :phone, :country
 
   after_create :generate_invite_code
 
@@ -32,7 +34,7 @@ class User < ActiveRecord::Base
       address_city:     self.city,
       address_state:    self.state,
       address_country:  self.country,
-      address_cep:      self.postal_code,
+      address_cep:      self.zipcode,
       address_phone:    self.phone,
       address_street:         self.address_street,
       address_street_number:  self.address_number,

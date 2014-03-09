@@ -26,8 +26,8 @@
   fieldset.hidden.two
     .wrap.zip
       p
-        = f.label :postal_code
-        = f.text_field :postal_code, class: [:cep], size: 25, data: { required: true, trigger: :keyup, minlength: 7, maxlength: 9 }, placeholder: t('placeholder.user.zipcode')
+        = f.label :zipcode
+        = f.text_field :zipcode, class: [:cep], size: 25, data: { required: true, trigger: :keyup, minlength: 7, maxlength: 9 }, placeholder: t('placeholder.user.zipcode')
 
         = image_tag 'loader.gif', class: [:hidden, :loader], size: '24x24'
       p

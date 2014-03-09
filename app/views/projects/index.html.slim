@@ -3,7 +3,7 @@
 
 .container#panel-1
   .scroll
-    .panel
+    .mr-panel
       header.facaacontecer
         .row
           .image
@@ -33,40 +33,42 @@
               .progress.successful
                 .people
                   = @project.progress
-
           .subscription
-            .head= image_tag "top_form_header.png"
-            ol.steps
-              li.step1
-                span.selected 1
-                span Dados
-              li.step.placeholder= image_tag "steps_placeholder.png"
-              li.step2
-                span 2
-                span Endereço
-              li.step.placeholder= image_tag "steps_placeholder.png"
-              li.step3
-                span 3
-                span Contribuição
-            .clear
-            .errors
-            .step1
-              = render 'subscribers/form'
-            .step2.hidden
-              ol.payment_options
-                li.creditcard.selected Cartão de crédito
-                li.bankslip Boleto Mensal 
-              = render 'subscriptions/form'
-              = render 'subscriptions/form_boleto'
-          .faq
-            .something
-              = link_to "Perguntas frequentes sobre a campanha", 'http://faqly.herokuapp.com/faqs/1/questions/Meu%20Rio', id: :faq
-              br
-              = mail_to 'financiador@meurio.org.br'
+            = link_to "Contribua!", root_path, class: :button
+
+/          .subscription
+            /.head= image_tag "top_form_header.png"
+            /ol.steps
+              /li.step1
+                /span.selected 1
+                /span Dados
+              /li.step.placeholder= image_tag "steps_placeholder.png"
+              /li.step2
+                /span 2
+                /span Endereço
+              /li.step.placeholder= image_tag "steps_placeholder.png"
+              /li.step3
+                /span 3
+                /span Contribuição
+            /.clear
+            /.errors
+            /.step1
+              /= render 'subscribers/form'
+            /.step2.hidden
+              /ol.payment_options
+                /li.creditcard.selected Cartão de crédito
+                /li.bankslip Boleto Mensal 
+              /= render 'subscriptions/form'
+              /= render 'subscriptions/form_boleto'
+          /.faq
+            /.something
+              /= link_to "Perguntas frequentes sobre a campanha", 'http://faqly.herokuapp.com/faqs/1/questions/Meu%20Rio', id: :faq
+              /br
+              /= mail_to 'financiador@meurio.org.br'
 
 .container#panel-2.lightgreen
   .scroll
-    .panel
+    .mr-panel
       .row
         .our_history.page
           h2 Sobre o Meu Rio 
@@ -93,7 +95,7 @@
 
 .container#panel-3.gray
   .scroll
-    .panel
+    .mr-panel
       .row
         .our_victories.page
           h2 Algumas de nossas vitórias
@@ -123,7 +125,7 @@
               span.text Assinaturas
 .container#panel-4.lightgreen
   .scroll
-    .panel
+    .mr-panel
       .row
         .our_platforms
           h2 Nossas plataformas de mobilização 
@@ -132,7 +134,7 @@
   
 /.container#panel-5.gray
   .scroll
-    .panel
+    .mr-panel
       .row
         .more_contributors
           h2 Mais financiadores, mais mobilizações, mais recompensas! 
