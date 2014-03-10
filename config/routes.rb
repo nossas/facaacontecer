@@ -3,6 +3,17 @@ Selfstarter::Application.routes.draw do
   root :to => 'projects#index'
 
 
+  
+  resources :subscriptions, except: [:destroy]
+
+
+
+
+
+
+
+
+
 
   resources :projects,      only: [:index] do
     resources :subscribers,   except: [:edit, :destroy] do

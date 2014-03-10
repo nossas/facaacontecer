@@ -17,6 +17,7 @@ gem 'pg'
 gem 'before_actions'
 
 # Template-related gems
+gem 'simple_form'
 gem 'slim-rails'
 gem 'active_decorator' # To be removed soon
 

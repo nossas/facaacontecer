@@ -1,4 +1,6 @@
-// Color settings
+// 
+// Color definitions
+// 
 $blue:        #3398d4
 $darkblue:    #037ab7
 $green:       #059046
@@ -11,37 +13,20 @@ $link:        $green
 
 
 
-.show
-  display: inline-block !important
-
-.hidden
-  display: none
-
-
-.container
-  min-width:  800px !important
-  min-height: 820px
-  height: auto
-
-.row
-  min-width: 960px
-  @include grid-row()
-
-.mr-panel
-  width: 100%
-
-
-
-// Defining default-style classes
-html
-  zoom: 95% !important
+//
+// Defining default-style
+//
 body
-  color:        white
-  font-size:    .9em
-  line-height:  1.4em
-  color:        black
-  font-family:  "Source Sans Pro", sans-serif
   background: image-url('pattern.png')
+
+
+// Body-pages related styles
+body.projects
+  .row
+    min-width: 960px !important
+
+
+
 
 // Input patterns + placeholder style
 input[type='text']
@@ -85,18 +70,6 @@ input[type='text']
     +background(linear-gradient($blue, darken($blue, 25%)))
   &:active
     top: 2px
-
-// The loading spinner that appears when someone clicks on "continue"
-.loading, .loading:hover
-  background: image-url('loader.gif') no-repeat top center
-  text-indent: -9999px
-  border: none
-  +box-shadow(none)
-  &:hover
-    cursor: default
-.loader
-  float: right 
-  margin-top: -2em
 
 
 
@@ -341,191 +314,9 @@ header.facaacontecer
   background: $green
   +background-image(linear-gradient(lighten($green, 10%), $green))  
 
-
-
-
-// The form style
+// The button
 .subscription
-  @include grid-column($columns: 5)
-  +transition(.2s)
-  background: lighten(gray, 48%)
-  &:active, &:hover
-    +box-shadow(0 2px .4em gray)
-
-  .head img
-    width: 100%
-
-
-// THe 3 steps above the form
-@media all and (max-width: 1020px)
-  ol.steps 
-    li
-      margin: 0 2.5% !important
-.clear
-  clear: both
-ol.steps
-  margin: 0 auto
-  li
-    float: left 
-    width: auto
-    margin: 0 3%
-  li.placeholder
-    width: 10%
-    img
-      margin-top: 1em
-  li span 
-    margin: 0 auto
-    text-align: center
-    font-size: .8em
-  li span:nth-child(1n+0)
-    display: block
-    color: lightgray
-  li span:first-child
-    display: block
-    width: 14px
-    margin: 0 auto
-    background: none
-    color: lighten(lightgray, 10%)
-    text-shadow: 0 0 1px #666
-    font-size: 1.8em
-    padding: .4em .6em
-    font-weight: 700
-    +border-radius(150px)
-    +box-shadow(inset 0px 1px 4px darken($lightgray, 20%), 0 1px 2px white)
-    &.selected
-      +box-shadow(inset 0px 1px 4px darken($orange, 20%), 0 1px 2px white)
-      background: $orange
-
-
-// The real form
-.subscription form
-  .step_one, .step_two
-    position: relative
-    top: .6em
-  color: gray
-  input
-    padding: .8em .6em
-    width: 96%
-    font-size: 1em
-    border: 1px solid lighten(gray, 43%)
-    +box-shadow(inset 0 1px .2em lighten(gray, 10%))
-    +border-radius(.2em)
-  input.cep
-    text-align: center
-  input.date, input.cpf, input.addr_number, input.addr_extra, input.addr_city
-    width: 42%
-    display: inline-block
-  input.date, input.addr_extra
-    margin-left: auto
-    margin-right: 0 !important
-    right: 0
-    position: relative
-    float: right
-  input.city
-    width: 50%
-  input.addr_extra  
-    color: lighten(gray,20%)
-    &:focus 
-      color: black
-  select#user_state
-    font-size: 1.2em
-    
-  label.usr_state
-    padding-left: 15%
-    padding-top: .6em
-    margin-right: .4em
-  p
-    margin: 1em 0
-.errors
-  color: red
-  text-align: center
-.card_submit, .boleto_submit
-  width: 90%
-label.expire_date
-  padding-top: .5em
-  color: #666
-
-
-ol.payment_options
-  margin: .8em 0
-  li
-    font-size: .9em !important
-  li a
-    color: white
-  li.selected a
-    color: black
-    
-
-ol.values, ol.payment_options
-  li
-    margin: 0 .8%
-    display: inline-block
-    padding: .6em .4em
-    color: white
-    font-weight: bold
-    font-size: 1.2em
-    text-transform: uppercase
-    font-family: "Arial Black"
-    text-shadow: 0 -1px 0 black
-    border: 1px solid $orange
-    background: $vermillion
-    +border-radius(6px)
-    +background-image(linear-gradient(lighten($orange,5%), $vermillion))
-    +transition(.2s)
-    &:hover
-      opacity: .9
-      cursor: pointer
-    &.selected
-      color: black
-      background: lighten($orange, 40%)
-      border-bottom: 2px solid black 
-      &::before
-        content: " ___"
-        color: lighten($orange,40%) 
-        background: image-url('checkmark.png') no-repeat center .3em 
-.wrap, .wrapped
-  padding: .2em 1em
-  padding-bottom: .4em
-.grey
-  background: lighten(lightgray, 12%)
-.plan_list
-  text-align: center
-  margin-top: .4em
-  padding-top: .4em
-  h4
-    margin-top: .4em
-
-#subscription_plan
-  display: block
-  width: 20%
-  margin: 0 auto
-  font-size: 1.5em
-  font-weight: bold
-  padding: .6em
-
-#options 
-  .wrapped
-    background: $lightgray
-    padding-top: .2em 
-    padding-bottom: .2em 
-  input
-    display: inline
-    width: auto
-  label
-    display: inline
-
-// When something fails on form submiting, these
-// are the styles of inputs with error 
-input.parsley-error, textarea.parsley-error
-  color: rgb(185, 74, 72)
-  background: rgb(242, 222, 222) image-url('error.png') right center no-repeat !important
-  border: 1px solid rgb(238, 211, 215)
-
-input.parsley-success, textarea.parsley-success
-  color: rgb(70, 136, 71)
-  background-color: rgb(223, 240, 216)
-  border: 1px solid rgb(214, 233, 198)
-
+  @include grid-column(5)
 
 
 

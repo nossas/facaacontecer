@@ -30,7 +30,7 @@ module ApplicationHelper
     ]    
   end
 
-  def states_for_select
+  def address_states
     [
       'AC',
       'AL',

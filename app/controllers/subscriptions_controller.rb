@@ -1,24 +1,31 @@
 class SubscriptionsController < ApplicationController
 
   before_actions do
-   
+    
+    actions(:new, :create) { @subscription = Subscription.new(project: Project.first) }
+
     actions(:create_with_bank_slip) do
-      @subscription.payment_option  = :boleto
       @subscription.code            = SecureRandom.hex(8) 
     end
 
     actions(:create, :create_with_bank_slip) do 
-      @subscription = Subscription.new(subscription_params)
-      @subscription.project     = Project.find_by(id: params[:project_id])
-      @subscription.subscriber  = User.find_by(id: params[:subscriber_id])
-      @subscription.status = :active 
+      @subscription.build_subscriber({})
     end
 
 
-    #actions(:update) { @subscription = Subscription.find_by(id: params[:id]) }
   end
 
+  # GET /subscriptions/new
+  def new; end
+
+
+
+  # POST /subscriptions/
   def create
+    return render :new unless @subscription.save
+
+
+
     if @subscription.save
       deliver_notification_emails 
       redirect_to thank_you_path(@subscription.subscriber)

@@ -25,12 +25,11 @@ $em-base: 16px !default;
 
 // $body-bg: #fff;
 // $body-font-color: #222;
-// $body-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+$body-font-family: "Source Sans Pro", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
 // $body-font-weight: normal;
 // $body-font-style: normal;
 
 //// Font-smoothing
-
 $font-smoothing: antialiased;
 
 //// Text direction settings
@@ -89,8 +88,6 @@ $font-smoothing: antialiased;
 
 //
 // Grid Variables
-
-
 $row-width: emCalc(1000px);
 $column-gutter: emCalc(30px);
 $total-columns: 12;
@@ -1190,3 +1187,4 @@ $total-columns: 12;
 // $topbar-transition-speed: 300ms;
 // $topbar-breakpoint: emCalc(940px); // Change to 9999px for always mobile layout
 // $topbar-media-query: "only screen and (min-width "#{$topbar-breakpoint}")";
+

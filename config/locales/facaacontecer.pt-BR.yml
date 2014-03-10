@@ -11,19 +11,6 @@ pt-BR:
   helpers:
     label: &label
       user:
-        first_name: "Nome"
-        last_name: "Sobrenome"
-        birthday: "Data de nascimento"
-        email: "Email"
-        cpf:  "CPF"
-        phone: "Celular"
-        address_street: "Qual seu endereço completo?"
-        address_extra: "Complemento?"
-        address_number: "Número?"
-        address_district: "Qual bairro?"
-        state: "Estado "
-        city: "E a cidade?"
-        zipcode: "Pra te ajudar, qual o seu CEP?"
       subscription:
         plan: "Quero apoiar com..."
         fullname: "Nome que está escrito no seu cartão de crédito"
@@ -35,17 +22,37 @@ pt-BR:
         gift: "Quero receber as recompensas"
   placeholder:
     <<: *label
+  simple_form:
+    labels:
+      user: &user
+        birthday: "Data de nascimento"
+        first_name: "Nome"
+        last_name: "Sobrenome"
+        birthday: "Data de nascimento"
+        email: "Email"
+        cpf:  "CPF"
+        phone: "Telefone"
+        address_street: "Endereço"
+        address_extra: "Complemento"
+        address_number: "Número"
+        address_district: "Bairro"
+        state: "Estado"
+        city: "Cidade"
+        zipcode: "CEP"
+  
   activerecord:
     models:
       subscription: "Apoio"
+      user: "Colaborador"
     attributes:
       user:
-        birthday: "Data de nascimento"
-        address_street: "Rua"
-        
+        <<: &user
+      subscriber:
+        <<: &user
       subscription:
-        name: 'Nome'
-        email: 'E-mail'
+  
+        
+        
   home:
     value_proposition: "Monte seu próprio crowdfunding!" 
     call_to_action: "Apoie agora!"

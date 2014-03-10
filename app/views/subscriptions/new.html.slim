@@ -1,0 +1,84 @@
+.row
+  section.form-wrap
+    header
+    .subscription-form.large-12.columns
+      = simple_form_for @subscription do |sub|
+
+      
+        article.user-personal-info.row
+          // @subscriber
+          // Personal fields for the subscriber
+          .large-12.columns
+            h2 Insira seus dados pessoais
+          = simple_fields_for :user do |usr|
+            .large-3.columns= usr.input :first_name
+            .large-3.columns= usr.input :last_name
+            .large-3.columns= usr.input :cpf
+            .large-3.columns= usr.input :birthday
+            .large-5.columns= usr.input :email
+            .large-3.columns.end= usr.input :phone
+
+
+        article.subcription-donation-info.row
+          // @subscription
+          // Subscription options
+          .large-12.columns
+            h2 Que tipo de doação deseja efetuar?
+
+          
+
+        article.subscription-payment-choices.row
+          // @subscription
+          // Where the user chooses between CREDIT CARD/ SLIP / BANK ACCOUNT
+          .large-12.columns
+            h2 Qual a forma de pagamento?
+          dl.tabs[data-tab]
+            dd.active= link_to "Doação Mensal", "#mensal"
+            dd= link_to "Doação Semestral", "#semestral"
+            dd= link_to "Doação Anual", "#anual"
+    
+          div.tabs-content
+            #mensal.content.active
+              h4 helo
+              p
+                |Opções 1
+            #semestral.content
+              p
+                |Opções 2
+            #anual.content
+              p
+                |Opções 3
+
+
+        article.subscription-payment-fields.row
+          // @subscription
+          // If there are any required payment fields (like Account holder for Credit Card)
+
+
+
+
+
+
+        article.user-address-info.row
+          // @subscriber
+          // Address info for the subscriber
+          .large-12.columns
+            h2 Endereço
+          = simple_fields_for :user do |addr|
+            .large-12.columns
+              .row
+               .large-2.columns= addr.input :zipcode
+
+            .large-5.columns= addr.input :address_street
+            .large-2.columns= addr.input :address_number
+            .large-4.columns= addr.input :address_extra
+            .large-3.columns= addr.input :address_district
+            .large-3.columns= addr.input :city
+              
+            // address_states located @ application_helper
+            .large-3.columns.end= addr.input :state, as: :select, collection: address_states
+
+
+        footer.action
+          = sub.submit "Contribuir!", class: :button
+
