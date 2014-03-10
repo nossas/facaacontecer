@@ -24,14 +24,6 @@
           // Subscription options
           .large-12.columns
             h2 Que tipo de doação deseja efetuar?
-
-          
-
-        article.subscription-payment-choices.row
-          // @subscription
-          // Where the user chooses between CREDIT CARD/ SLIP / BANK ACCOUNT
-          .large-12.columns
-            h2 Qual a forma de pagamento?
           dl.tabs[data-tab]
             dd.active= link_to "Doação Mensal", "#mensal"
             dd= link_to "Doação Semestral", "#semestral"
@@ -48,7 +40,16 @@
             #anual.content
               p
                 |Opções 3
+            .hidden.subscription-value-input
+              = sub.input :value, as: :hidden
+          
 
+        article.subscription-payment-choices.row
+          // @subscription
+          // Where the user chooses between CREDIT CARD/ SLIP / BANK ACCOUNT
+          .large-12.columns
+            h2 Qual a forma de pagamento?
+            = sub.input :payment_option, as: :radio_buttons, label_field: false, collection: available_payment_options 
 
         article.subscription-payment-fields.row
           // @subscription

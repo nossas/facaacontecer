@@ -1,6 +1,11 @@
 # coding: utf-8
 module ApplicationHelper
 
+
+  def available_payment_options
+    ['Cartão de Crédito', 'Boleto', 'Débito Online']
+  end
+
   def available_plans
     # Value, Code in Moip
     [
