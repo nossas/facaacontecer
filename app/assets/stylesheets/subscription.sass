@@ -49,11 +49,15 @@ body.subscriptions
 
 .subscription-values
   background: lighten($blue, 25%)
-
+  
+  .control-label
+    display: none
   label 
     display: inline-block
     width: 150px
     height: 150px
-    background: lighten($blue, 50%)
+    background: lighten($blue, 30%)
     margin: 1em 
+  label > input:checked
+    background: $blue
 
