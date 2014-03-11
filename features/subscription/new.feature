@@ -27,15 +27,15 @@ Feature: New subscription for the current campaign
     And I fill in Data de nascimento with "12/11/1988"
     And I fill in Email with "homer@simpson.com"
     And I fill in Telefone with "(21) 99999-9999"
-    #And I choose an annual subscription of "R$ 20 por mês"
-    #And I choose "Cartão de Crédito" for "Qual a forma de pagamento?"
+    And I choose an "monthly" subscription of "R$ 20 por mês"
+    And I choose "Cartão de Crédito" for "Qual a forma de pagamento?"
     And I fill in CEP with "22222-080"
     And I fill in Endereço with "Rua Exemplo 201, Ap. 204"
     And I fill in Número with "306"
     And I fill in Complemento with "Ap 204"
     And I fill in Bairro with "Mister Bruns"
     And I fill in Cidade with "Rio de Janeiro"
-    #And I select "RJ" for "Estado"
+    And I select "RJ" for "Estado"
     When I click on Contribuir!
     Then I should see "Aguarde, estamos processando seu pagamento"
     And I should see 1 subscription in the database

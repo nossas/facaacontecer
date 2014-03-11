@@ -25,7 +25,7 @@ $em-base: 16px !default;
 
 // $body-bg: #fff;
 // $body-font-color: #222;
-$body-font-family: "Source Sans Pro", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+$body-font-family: "Proxima Nova Soft"; 
 // $body-font-weight: normal;
 // $body-font-style: normal;
 
@@ -112,7 +112,7 @@ $total-columns: 12;
 //// Heading font styles
 
 // $header-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-// $header-font-weight: bold;
+$header-font-weight: bold;
 // $header-font-style: normal;
 // $header-font-color: #222;
 // $header-line-height: 1.4;
@@ -1188,3 +1188,4 @@ $total-columns: 12;
 // $topbar-breakpoint: emCalc(940px); // Change to 9999px for always mobile layout
 // $topbar-media-query: "only screen and (min-width "#{$topbar-breakpoint}")";
 
+@import 'foundation';

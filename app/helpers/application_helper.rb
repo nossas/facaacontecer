@@ -6,33 +6,24 @@ module ApplicationHelper
     ['Cartão de Crédito', 'Boleto', 'Débito Online']
   end
 
-  def available_plans
-    # Value, Code in Moip
-    [
-      [9, '009'],
-      [15,'015'],
-      [17,'017'],
-      [20,'020'],
-      [50,'050'],
-      [80,'080'],
-      [100,'100'],
-      [150,'150'],
-      [250,'250']
-    ]
+
+  def available_subscription_intervals
+    Subscription.values_for_interval 
+  end
+
+  def available_monthly_plans
+    [9, 15, 17, 20, 50, 80, 100, 150, 250].map { |s| ["R$ #{s} por mês", s] }
   end
 
 
-  def available_values
-    [
-      [12,'12.00'],
-      [19,'19.00'],
-      [35,'35.00'],
-      [56,'56.00'],
-      [80,'80.00'],
-      [100,'100.00'],
-      [150,'150.00'],
-      [250,'250.00']
-    ]    
+
+  def available_biannual_plans
+    [9, 100, 200, 400].map { |s| ["R$ #{s} por semestre", s] }
+  end
+
+
+  def available_annual_plans
+    [100, 300, 400, 500].map { |s| ["R$ #{s} por ano", s] }
   end
 
   def address_states

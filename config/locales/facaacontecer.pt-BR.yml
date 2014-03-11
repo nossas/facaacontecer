@@ -39,7 +39,19 @@ pt-BR:
         state: "Estado"
         city: "Cidade"
         zipcode: "CEP"
-  
+      subscription:
+        interval: "Frequência de pagamento"
+        payment_option: "Forma de pagamento"
+    options:
+      subscription:
+        interval:
+          annual: "Anual"
+          monthly: "Mensal"
+          biannual: "Semestral"
+        value:
+          "17": "R$ 17 por mês"
+          "20": "R$ 20 por mês"
+
   activerecord:
     models:
       subscription: "Apoio"

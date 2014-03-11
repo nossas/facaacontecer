@@ -11,19 +11,15 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
-//= require select2
-//= require parsley
 //= require jquery_ujs
 //= require foundation
-//= require jquery.to_json
-// require jquery.mask
-//= require jquery.colorbox
-
-
-//= require moip.subscription
-// require best_in_place
-//= require selfstarter 
 //= require meurio_ui
+
+//= require angular
+//= require angular-resource
+//= require angular-animate
+
+// require best_in_place
 //= require_tree .
 
 $(function(){ $(document).foundation(); });

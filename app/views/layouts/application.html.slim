@@ -1,5 +1,5 @@
 doctype html
-html
+html[ng-app='facaAcontecer']
   head
     title= yield :title
     meta name="viewport"            content="width=960, initial-scale=1, maximum-scale=1"
@@ -15,9 +15,9 @@ html
     meta property="fb:app_id"       content="177910022269006"
     meta property="fb:page_id"      content="241897672509479"
 
-    link rel="stylesheet" href="http://i.icomoon.io/public/temp/4a1314950d/MeuRio/style.css"
-    = stylesheet_link_tag "https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,700"
+    = stylesheet_link_tag "http://i.icomoon.io/public/temp/4a1314950d/MeuRio/style.css"
     = stylesheet_link_tag :application
+
     = favicon_link_tag 'favicon.png'
     javascript:
 
@@ -32,25 +32,14 @@ html
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
 
-      // Tracking client-side errors using Google Analytics
-      window.onerror = function(message, url, line) {
-        if (typeof(_gaq) === "object") {
-            _gaq.push([
-                "_trackEvent",
-                "JS Exception Error",
-                message,
-                (url + " (" + line + ")"),
-                0, true
-                ]);
-        }
-        return true;
-      };
     /[if IE]
       script[src="https://html5shiv.googlecode.com/svn/trunk/html5.js"]
       
-  body[class=controller.controller_name.downcase]
+  body[class=controller.controller_name.downcase ng-view]
+    = meurio_header_for :apoie
+  
     = yield
     = render 'layouts/footer'
     #fb-root
-  = javascript_include_tag MOIP_JS_URL 
-  = javascript_include_tag :application
+    = javascript_include_tag MOIP_JS_URL 
+    = javascript_include_tag :application

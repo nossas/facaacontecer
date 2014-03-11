@@ -1,7 +1,5 @@
 # coding: utf-8
 class Subscription < ActiveRecord::Base
-  # DEPRECATED:
-  #attr_accessible 
 
   # Relationship with Projects and the correspondent user for each subscription 
   belongs_to :project
@@ -12,6 +10,11 @@ class Subscription < ActiveRecord::Base
 
   # This attributes should be present when creating an order
   validates_presence_of :value, :project, :subscriber, :code
+
+    
+  # BITMASK options for subscription's intervals
+  bitmask :interval, as: [:monthly, :biannual, :annual], null: false
+
 
   # Scope for completed payments
   scope :raised,     -> { where(status: :active).select('distinct subscriber_id') }

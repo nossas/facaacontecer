@@ -25,9 +25,12 @@
           .large-12.columns
             h2 Que tipo de doação deseja efetuar?
           dl.tabs[data-tab]
-            dd.active= link_to "Doação Mensal", "#mensal"
-            dd= link_to "Doação Semestral", "#semestral"
-            dd= link_to "Doação Anual", "#anual"
+            dd.active
+              = link_to "Doação Mensal", "#mensal"
+            dd
+              = link_to "Doação Semestral", "#semestral"
+            dd
+              = link_to "Doação Anual", "#anual"
     
           div.tabs-content
             #mensal.content.active
@@ -41,15 +44,33 @@
               p
                 |Opções 3
             .hidden.subscription-value-input
-              = sub.input :value, as: :hidden
+              .monthly
+                = sub.input :value, as: :radio_buttons, label_field: false, collection: available_monthly_plans
+              .biannual
+                = sub.input :value, as: :radio_buttons, label_field: false, collection: available_biannual_plans
+              .annual
+                = sub.input :value, as: :radio_buttons, label_field: false, collection: available_annual_plans
           
+            .hidden.subscription-interval
+              = sub.input :interval, as: :radio_buttons, label_field: false, collection: available_subscription_intervals 
+
+
+
+
 
         article.subscription-payment-choices.row
           // @subscription
           // Where the user chooses between CREDIT CARD/ SLIP / BANK ACCOUNT
           .large-12.columns
             h2 Qual a forma de pagamento?
+
+            // available_payment_options: application_helper
             = sub.input :payment_option, as: :radio_buttons, label_field: false, collection: available_payment_options 
+
+
+
+
+
 
         article.subscription-payment-fields.row
           // @subscription
@@ -77,7 +98,7 @@
             .large-3.columns= addr.input :city
               
             // address_states located @ application_helper
-            .large-3.columns.end= addr.input :state, as: :select, collection: address_states
+            .large-3.columns.end= addr.input :state, as: :select, collection: address_states, prompt: 'Selecione...'
 
 
         footer.action

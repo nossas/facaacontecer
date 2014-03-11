@@ -12,6 +12,7 @@ gem 'puma'
 
 # Database-related gems
 gem 'pg'
+gem 'bitmask_attributes' # Mapping string attributes to integer values (e.g.: 1 to x, 2 to y, 0 to a)
 
 # Controller-related gems
 gem 'before_actions'
@@ -44,15 +45,14 @@ gem 'delayed_job_active_record' # to be removed
 # Assets related gems
 gem 'jquery-rails'
 gem 'compass-rails'
-gem 'compass-columnal-plugin' # to be removed
 gem 'sass-rails'
 gem 'uglifier'
-gem "select2-rails"
+gem 'angularjs-rails'
 gem 'foundation-rails', '~> 5.1.1.0'
 
 # MeuRio UI related gems
 gem 'gravatar_image_tag'
-gem 'meurio_ui'
+gem 'meurio_ui', '~> 1.4.1'
 
 
 # Group related gems
