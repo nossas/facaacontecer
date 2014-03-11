@@ -1,8 +1,59 @@
 body.subscriptions
   background: $lightgray
-  
 
-  input[type='text']
-    
+  .meurio_apps_and_application_menu
+    display: none
 
+  .hidden
+    display: none
+
+.subscription-form
+  h2
+    margin: 1.5em 0 1em 0
+  input
+    font-size: 1.2em    
+    padding-left: .6em
+
+  .tabs dd
+    margin-right: 2%
+    width: 32%
+    &:last-child
+      margin-right: 0%
+
+  .tabs dd a
+    text-align: center
+    background: lighten(lightgrey, 5%)
+    color: $gray
+    font-weight: bold
+    +border-radius(6px 6px 0 0)
+    +transition(all .2s)
+    &:hover
+      background: darken($lightgray, 5%)
+  .tabs dd.active a
+    background: white !important
+    +box-shadow(0 -2px 2px lighten(lightgray, 5%))
+
+  .tabs-content
+    margin-top: .1em
+    background: white
+
+
+.interval-info
+  text-align: center
+  line-height: 1.4em
+  padding-bottom: 1em
+  p
+    font-size: .8em
+    width: 70%
+    margin: 0 auto
+
+.subscription-values
+  background: lighten($blue, 25%)
+
+  label 
+    display: inline-block
+    width: 150px
+    height: 150px
+    background: lighten($blue, 50%)
+    margin: 1em 
 

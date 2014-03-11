@@ -32,25 +32,32 @@
             dd
               = link_to "Doação Anual", "#anual"
     
+          // All these helpers methods are located @ application_helper
           div.tabs-content
             #mensal.content.active
-              h4 helo
-              p
-                |Opções 1
-            #semestral.content
-              p
-                |Opções 2
-            #anual.content
-              p
-                |Opções 3
-            .hidden.subscription-value-input
-              .monthly
+              .interval-info
+                h4 Info mensal
+                p
+                  |Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+              .monthly.subscription-values
                 = sub.input :value, as: :radio_buttons, label_field: false, collection: available_monthly_plans
-              .biannual
+
+            #semestral.content
+              .interval-info
+                h4 Info semestral
+                p
+                  |Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+              .biannual.subscription-values
                 = sub.input :value, as: :radio_buttons, label_field: false, collection: available_biannual_plans
-              .annual
+
+            #anual.content
+              .interval-info
+                h4 Info anual
+                p
+                  |Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+              .annual.subscription-values
                 = sub.input :value, as: :radio_buttons, label_field: false, collection: available_annual_plans
-          
+
             .hidden.subscription-interval
               = sub.input :interval, as: :radio_buttons, label_field: false, collection: available_subscription_intervals 
 
