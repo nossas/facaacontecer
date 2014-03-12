@@ -36,7 +36,8 @@ body.subscriptions
   .tabs-content
     margin-top: .1em
     background: white
-
+  .tabs-content > .content
+    padding-bottom: 0
 
 .interval-info
   text-align: center
@@ -48,16 +49,31 @@ body.subscriptions
     margin: 0 auto
 
 .subscription-values
-  background: lighten($blue, 25%)
+  background: lighten($blue, 28%)
+  padding: 1em 0
   
   .control-label
     display: none
   label 
     display: inline-block
-    width: 150px
-    height: 150px
-    background: lighten($blue, 30%)
-    margin: 1em 
-  label > input:checked
-    background: $blue
+    padding: 1em
+    background: lighten($blue, 35%)
+    margin: 1em
+    font-size: 2em
+    font-weight: bold
+    vertical-align: middle
+    text-align: center
+    line-height: 2em
+    min-width: 32px
+    +transition(all .2s)
+    +border-radius(6px)
+    &:hover, &.selected
+      background: $blue
+      color: white
+    input
+      visibility: hidden
+
+
+
+  
 

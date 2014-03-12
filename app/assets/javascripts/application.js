@@ -27,6 +27,21 @@ var ts = $.tablesorter,
     sorting = false,
     searching = false;
 
+
+
+$('.subscription-values input').on('click', function(){ 
+
+  var id = $(this).parents('.content').attr('id');
+  var parent = $('.subscription-interval input#subscription_interval_'+id);
+
+  $('.subscription-values label').removeClass('animated pulse selected');
+
+  $(this).parent('label').addClass('animated pulse selected');
+  parent.trigger('click');
+});
+
+
+
 $('table')
     .on('sortBegin filterEnd', function (e, filters) {
         if (!(sorting || searching)) {
