@@ -13,10 +13,10 @@
           = simple_fields_for :user do |usr|
             .large-3.columns= usr.input :first_name
             .large-3.columns= usr.input :last_name
-            .large-3.columns= usr.input :cpf
-            .large-3.columns= usr.input :birthday
+            .large-3.columns= usr.input :cpf, input_html: { class: 'cpf-mask'  }
+            .large-3.columns= usr.input :birthday, input_html: { class: 'date-mask' }
             .large-5.columns= usr.input :email
-            .large-3.columns.end= usr.input :phone
+            .large-3.columns.end= usr.input :phone, input_html: { class: 'phone-mask' }
 
 
         article.subcription-donation-info.row
@@ -88,8 +88,8 @@
             .card-fields
               = simple_fields_for :creditcard do |credit|
                 .large-4.columns= credit.input :holder
-                .large-4.columns= credit.input :cardnumber
-                .large-2.columns.end= credit.input :expiration
+                .large-4.columns= credit.input :cardnumber, input_html: { class: 'creditcard-mask' }
+                .large-2.columns.end= credit.input :expiration, input_html: { class: 'expiration-mask' }
 
 
 
@@ -103,7 +103,7 @@
           = simple_fields_for :user do |addr|
             .large-12.columns
               .row
-               .large-3.columns= addr.input :zipcode
+                .large-3.columns= addr.input :zipcode, input_html: { class: 'zipcode-mask' }
 
             .large-5.columns= addr.input :address_street
             .large-2.columns= addr.input :address_number

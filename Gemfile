@@ -48,6 +48,7 @@ gem 'compass-rails'
 gem 'sass-rails'
 gem 'uglifier'
 gem 'angularjs-rails'
+gem 'jquery-inputmask-rails'
 gem 'foundation-rails', '~> 5.1.1.0'
 
 # MeuRio UI related gems

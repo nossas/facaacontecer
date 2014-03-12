@@ -15,13 +15,14 @@
 //= require foundation
 //= require meurio_ui
 
+//= require jquery.inputmask
+
 //= require angular
 //= require angular-resource
 //= require angular-animate
-
-// require best_in_place
-//= require_tree .
-
+//= require facaacontecerApp
+//= require_tree ./angular
+//
 $(function(){ $(document).foundation(); });
 
 
@@ -52,4 +53,9 @@ $('.subscription-payment-options input').on('click', function(){
 });
 
 
-
+$('.expiration-mask').inputmask('99/9999');
+$('.date-mask').inputmask('99/99/9999');
+$('.zipcode-mask').inputmask('99.999-999');
+$('.cpf-mask').inputmask('999.999.999-99');
+$('.phone-mask').inputmask('(99) 9999[9]-9999');
+$('.creditcard-mask').inputmask('9999-9999-9999-9999');
