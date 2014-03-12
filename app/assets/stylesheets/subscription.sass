@@ -1,17 +1,20 @@
 body.subscriptions
   background: $lightgray
-
+  
+  // Hiding the application menu from the subscriptions page
   .meurio_apps_and_application_menu
     display: none
-
+  // Just a general class
   .hidden
     display: none
 
+
+// Form-default styles
 .subscription-form
-  h2
+  h3
     margin: 1.5em 0 1em 0
   input
-    font-size: 1.2em    
+    font-size: 1.3em    
     padding-left: .6em
 
   .tabs dd
@@ -19,7 +22,8 @@ body.subscriptions
     width: 32%
     &:last-child
       margin-right: 0%
-
+  
+  // Tabs specific styles
   .tabs dd a
     text-align: center
     background: lighten(lightgrey, 5%)
@@ -39,6 +43,7 @@ body.subscriptions
   .tabs-content > .content
     padding-bottom: 0
 
+// The text from each interval box
 .interval-info
   text-align: center
   line-height: 1.4em
@@ -48,6 +53,7 @@ body.subscriptions
     width: 70%
     margin: 0 auto
 
+// Selecting a subscription value
 .subscription-values
   background: lighten($blue, 28%)
   padding: 1em 0
@@ -56,15 +62,15 @@ body.subscriptions
     display: none
   label 
     display: inline-block
-    padding: 1em
     background: lighten($blue, 35%)
-    margin: 1em
+    width: 18.5%
+    padding: 1em 0 
+    margin: 1em 3.2%
     font-size: 2em
     font-weight: bold
     vertical-align: middle
     text-align: center
     line-height: 2em
-    min-width: 32px
     +transition(all .2s)
     +border-radius(6px)
     &:hover, &.selected
@@ -72,8 +78,35 @@ body.subscriptions
       color: white
     input
       visibility: hidden
+      position: absolute
 
 
 
-  
+// Choosing a payment option
+
+.subscription-payment-options
+  .control-label
+    display: none
+  input
+    visibility: hidden
+    position: absolute
+  label
+    display: inline-block
+    width: 20%
+    margin: .2em 2% 0 0
+    background: lighten($gray, 35%)
+    color: lighten($gray, 58%)
+    text-align: center
+    font-weight: bold
+    font-size: 1.2em
+    padding: .4em 0
+    +border-radius(8px)
+    &.selected, &:hover
+      color: white
+      padding: .4em 0
+      background: $blue
+      font-weight: bold !important
+    &.icon-heart:before
+      display: inline-block
+      padding-right: .4em
 

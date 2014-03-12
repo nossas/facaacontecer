@@ -23,57 +23,27 @@
 //= require_tree .
 
 $(function(){ $(document).foundation(); });
-var ts = $.tablesorter,
-    sorting = false,
-    searching = false;
 
 
+var pulseSelectionClass = 'animated pulse icon-checkmark selected';
 
 $('.subscription-values input').on('click', function(){ 
 
   var id = $(this).parents('.content').attr('id');
   var parent = $('.subscription-interval input#subscription_interval_'+id);
 
-  $('.subscription-values label').removeClass('animated pulse selected');
+  $('.subscription-values label').removeClass(pulseSelectionClass);
 
-  $(this).parent('label').addClass('animated pulse selected');
+  $(this).parent('label').addClass(pulseSelectionClass);
   parent.trigger('click');
 });
 
 
-
-$('table')
-    .on('sortBegin filterEnd', function (e, filters) {
-        if (!(sorting || searching)) {
-            var table = this,
-                c = table.config,
-                filters = ts.getFilters(table),
-                $sibs = c.$table.siblings('.tablesorter');
-            if (!sorting) {
-                sorting = true;
-                $sibs.trigger('sorton', [c.sortList, function () {
-                    setTimeout(function () {
-                        sorting = false;
-                    }, 500);
-                }]);
-            }
-            if (!searching) {
-                $sibs.each(function () {
-                    ts.setFilters(this, filters, true);
-                });
-                setTimeout(function () {
-                    searching = false;
-                }, 500);
-            }
-        }
-    })
-    .tablesorter({
-        theme: 'blue',
-        widthFixed: true,
-        widgets: ['filter']
-    });
-
-$(document).ready(function() {
-  /* Activating Best In Place */
-  jQuery(".best_in_place").best_in_place();
+$('.subscription-payment-options input').on('click', function(){
+  $('.subscription-payment-options label').removeClass(pulseSelectionClass);
+  $(this).parent('label').addClass(pulseSelectionClass);
 });
+
+
+
+

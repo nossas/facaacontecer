@@ -3,7 +3,7 @@ module ApplicationHelper
 
 
   def available_payment_options
-    ['Cartão de Crédito', 'Boleto', 'Débito Online']
+    [['Cartão de Crédito', 'creditcard'], ['Boleto', 'slip'], ['Débito Online', 'debit']]
   end
 
 

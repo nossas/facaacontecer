@@ -42,6 +42,10 @@ pt-BR:
       subscription:
         interval: "Frequência de pagamento"
         payment_option: "Forma de pagamento"
+      creditcard: 
+        holder: "Nome do titular do cartão"
+        cardnumber: "Número do cartão"
+        expiration: "Data de expiração"
     options:
       subscription:
         interval:

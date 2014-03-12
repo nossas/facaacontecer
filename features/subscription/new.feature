@@ -27,7 +27,7 @@ Feature: New subscription for the current campaign
     And I fill in Data de nascimento with "12/11/1988"
     And I fill in Email with "homer@simpson.com"
     And I fill in Telefone with "(21) 99999-9999"
-    And I choose an "monthly" subscription of "R$ 20 por mês"
+    And I choose an "monthly" subscription of "R$ 20"
     And I choose "Cartão de Crédito" for "Qual a forma de pagamento?"
     And I fill in CEP with "22222-080"
     And I fill in Endereço with "Rua Exemplo 201, Ap. 204"
