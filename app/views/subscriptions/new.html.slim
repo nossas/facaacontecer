@@ -79,16 +79,17 @@
 
 
 
-        article.subscription-payment-fields.creditcard.row
+        article.subscription-payment-fields.creditcard.hidden.row
           // @subscription
           // If there are any required payment fields (like Account holder for Credit Card)
-          .large-12.columns
-            h3 Dados do cartão
-
-          = simple_fields_for :creditcard do |credit|
-            .large-4.columns= credit.input :holder
-            .large-4.columns= credit.input :cardnumber
-            .large-2.columns.end= credit.input :expiration
+          .card-wrap
+            .large-12.columns
+              h3 Dados do cartão
+            .card-fields
+              = simple_fields_for :creditcard do |credit|
+                .large-4.columns= credit.input :holder
+                .large-4.columns= credit.input :cardnumber
+                .large-2.columns.end= credit.input :expiration
 
 
 

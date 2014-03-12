@@ -42,8 +42,14 @@ $('.subscription-values input').on('click', function(){
 $('.subscription-payment-options input').on('click', function(){
   $('.subscription-payment-options label').removeClass(pulseSelectionClass);
   $(this).parent('label').addClass(pulseSelectionClass);
-});
 
+  var card = $('.creditcard');
+  if ($(this).val() == 'creditcard') {
+    card.show();
+  } else { 
+    card.hide();
+  }
+});
 
 
 
