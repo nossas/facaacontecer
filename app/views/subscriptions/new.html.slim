@@ -115,6 +115,7 @@
             .large-3.columns.end= addr.input :state, as: :select, collection: address_states, prompt: 'Selecione...'
 
 
-        footer.action
-          .icon-heart= sub.submit "Contribuir!", class: :button
+        footer.button-action.row
+          .large-4.large-centered.columns
+            = sub.submit "Contribuir!", remote: true
 
