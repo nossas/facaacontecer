@@ -3,7 +3,7 @@ Given(/^I am in the root path$/) do
 end
 
 Given(/^I fill in (.*?) with "(.*?)"$/) do |arg1, arg2|
-  fill_in arg1, with: arg2
+  (fill_in arg1, with: arg2).first
 end
 
 When(/^I click on (.*?)$/) do |arg1|

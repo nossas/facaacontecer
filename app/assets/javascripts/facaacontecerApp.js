@@ -1,1 +1,1 @@
-facaAcontecer = angular.module('facaAcontecer', ['ngResource']);
+facaAcontecerApp = angular.module('facaAcontecerApp', ['ngResource']);

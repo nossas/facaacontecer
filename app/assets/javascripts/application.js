@@ -26,36 +26,67 @@
 $(function(){ $(document).foundation(); });
 
 
-var pulseSelectionClass = 'animated pulse icon-checkmark selected';
+Apoie = {};
 
-$('.subscription-values input').on('click', function(){ 
+Apoie = { 
+  
 
-  var id = $(this).parents('.content').attr('id');
-  var parent = $('.subscription-interval input#subscription_interval_'+id);
+  initialize: function(){
+    Apoie.renderInputMasks();
+    Apoie.toggleSubscriptionValues();
+    Apoie.togglePaymentOptions();
+  },
 
-  $('.subscription-values label').removeClass(pulseSelectionClass);
+  animationPulseClass: 'animated pulse icon-checkmark selected',
 
-  $(this).parent('label').addClass(pulseSelectionClass);
-  parent.trigger('click');
-});
-
-
-$('.subscription-payment-options input').on('click', function(){
-  $('.subscription-payment-options label').removeClass(pulseSelectionClass);
-  $(this).parent('label').addClass(pulseSelectionClass);
-
-  var card = $('.creditcard');
-  if ($(this).val() == 'creditcard') {
-    card.show();
-  } else { 
-    card.hide();
-  }
-});
+  renderInputMasks: function() {
+    $('.expiration-mask').inputmask('99/9999');
+    $('.date-mask').inputmask('99/99/9999');
+    $('.zipcode-mask').inputmask('99.999-999');
+    $('.cpf-mask').inputmask('999.999.999-99');
+    $('.phone-mask').inputmask('(99) 9999[9]-9999');
+    $('.creditcard-mask').inputmask('9999-9999-9999-9999');
 
 
-$('.expiration-mask').inputmask('99/9999');
-$('.date-mask').inputmask('99/99/9999');
-$('.zipcode-mask').inputmask('99.999-999');
-$('.cpf-mask').inputmask('999.999.999-99');
-$('.phone-mask').inputmask('(99) 9999[9]-9999');
-$('.creditcard-mask').inputmask('9999-9999-9999-9999');
+  },
+
+
+  toggleSubscriptionValues: function(){
+    $('.subscription-values input').on('click', function(){ 
+
+      var id = $(this).parents('.content').attr('id');
+      var parent = $('.subscription-interval input#subscription_interval_'+id);
+
+      $('.subscription-values label').removeClass(Apoie.animationPulseClass);
+
+      $(this).parent('label').addClass(Apoie.animationPulseClass);
+      parent.trigger('click');
+    });
+
+
+  },
+
+
+  togglePaymentOptions: function() {
+    $('.subscription-payment-options input').on('click', function(){
+      $('.subscription-payment-options label').removeClass(Apoie.animationPulseClass);
+      $(this).parent('label').addClass(Apoie.animationPulseClass).removeClass('icon-checkmark');
+
+      var card = $('.creditcard');
+      if ($(this).val() == 'creditcard') {
+        card.fadeIn();
+      } else { 
+        card.hide();
+      }
+    });
+
+  },
+
+
+
+};
+
+
+
+Apoie.initialize();
+
