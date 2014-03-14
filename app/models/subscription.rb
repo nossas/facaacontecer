@@ -9,8 +9,8 @@ class Subscription < ActiveRecord::Base
   has_many :payment_instructions
 
   # This attributes should be present when creating an order
-  validates_presence_of :value, :project, :subscriber, :code
-
+  validates_presence_of :value, :project, :subscriber_id
+  
     
   # BITMASK options for subscription's intervals
   bitmask :interval, as: [:monthly, :biannual, :annual], null: false
@@ -21,6 +21,20 @@ class Subscription < ActiveRecord::Base
   scope :bankslips,  -> { where(payment_option: :boleto) }
   scope :creditcard, -> { where(payment_option: :creditcard) }
   scope :active,     -> { joins(:payment_instructions).where("payment_instructions.paid_at > ?", Time.now - 1.month) }
+
+
+
+
+  def insert_code
+    self.code = SecureRandom.hex(8)
+  end
+
+
+
+
+
+
+
 
   def prepared_instruction
     instruction = MyMoip::Instruction.new(

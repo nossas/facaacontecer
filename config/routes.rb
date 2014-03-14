@@ -1,29 +1,10 @@
 Selfstarter::Application.routes.draw do
 
   root :to => 'projects#index'
-
-
   
-  resources :subscriptions, except: [:destroy]
+  resources :subscribers, except: [:destroy]
 
 
-
-
-
-
-
-
-
-
-  resources :projects,      only: [:index] do
-    resources :subscribers,   except: [:edit, :destroy] do
-      resources :subscriptions, only: [:create, :update] do
-        collection do
-          post :create_with_bank_slip, as: :bank_slip
-        end
-      end
-    end
-  end
 
 
 

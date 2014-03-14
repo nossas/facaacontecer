@@ -1,24 +1,18 @@
 class SubscribersController < ApplicationController
 
   before_actions do 
-    # Object actions
-    actions(:create)        do 
-      @project = Project.find_by(id: params[:project_id])
-      check_subscriber_constraints
-    end
-
     actions(:new, :create)  { @subscriber = User.new(subscriber_params) }
-
-    # Member actions
-    actions(:show, :update, :edit, :thanks) { @subscriber = User.find_by(id: params[:id]) }
   end
+
+
+  # GET /subscribers/
+  def new; end
+
 
   # POST /subscribers/
   def create
-    if @subscriber.save
-      associate_invite
-      render json: subscriber_subscription_urls
-    end
+    redirect_to @subscriber if @subscriber.save
+    render :new
   end
 
   # PUT /subscribers/:id

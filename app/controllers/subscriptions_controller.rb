@@ -2,16 +2,13 @@ class SubscriptionsController < ApplicationController
 
   before_actions do
     
-    actions(:new, :create) { @subscription = Subscription.new(project: Project.first) }
-
-    actions(:create_with_bank_slip) do
-      @subscription.code            = SecureRandom.hex(8) 
+    actions(:new, :create)  do
+      @user         = User.new(user_params)
+      @user.subscription.build(subscription_params)
+      @subscription.project = Project.first
     end
 
-    actions(:create, :create_with_bank_slip) do 
-      @subscription.build_subscriber({})
-    end
-
+    actions(:create)        { @subscription.build_subscriber(user_params) }
 
   end
 
@@ -22,14 +19,9 @@ class SubscriptionsController < ApplicationController
 
   # POST /subscriptions/
   def create
-    return render :new unless @subscription.save
+    return redirect_to root_path if @user.save
+    return render :new
 
-
-
-    if @subscription.save
-      deliver_notification_emails 
-      redirect_to thank_you_path(@subscription.subscriber)
-    end
   end
 
   def create_with_bank_slip
@@ -47,8 +39,20 @@ class SubscriptionsController < ApplicationController
     def subscription_params
       if params[:subscription]
         params.require(:subscription).permit(%i(
-          code value gift anonymous status payment_option))
+          value gift anonymous status payment_option interval))
       else 
+        {}
+      end
+    end
+
+
+    def user_params
+      if params[:subscription][:user]
+        params.require(:subscription).permit(subscriber: [%i(
+         :first_name :last_name :email :cpf :birthday 
+    :zipcode :address_street :address_extra :address_number 
+    :address_district :city :state :phone :country)])
+      else
         {}
       end
     end

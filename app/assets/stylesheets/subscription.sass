@@ -1,4 +1,4 @@
-body.subscriptions
+body.subscribers
   background: $lightgray
   
   // Hiding the application menu from the subscriptions page
@@ -133,4 +133,17 @@ body.subscriptions
     &:hover
       cursor: pointer
       background: $green
-      
+    &:disabled
+      background: $gray
+
+
+
+.error
+  label
+    color: $gray
+  input
+    border: 1px solid red
+  small
+    background: red
+    color: white
+    padding: .2em .4em

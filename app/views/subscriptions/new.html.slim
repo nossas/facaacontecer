@@ -3,14 +3,23 @@
     header
     .subscription-form.large-12.columns
       = simple_form_for @subscription do |sub|
-
+        = sub.error_notification
+        - if @subscription.errors.any?
+          #error_explanation
+            h2
+              = pluralize(@subscription.errors.count, "error")
+              | prohibited this user from being saved:
+            ul
+              - @subscription.errors.full_messages.each do |msg|
+                li= msg
+                
       
         article.user-personal-info.row
           // @subscriber
           // Personal fields for the subscriber
           .large-12.columns
             h3 Insira seus dados pessoais
-          = simple_fields_for :user do |usr|
+          = sub.simple_fields_for :user do |usr|
             .large-3.columns= usr.input :first_name
             .large-3.columns= usr.input :last_name
             .large-3.columns= usr.input :cpf, input_html: { class: 'cpf-mask'  }
@@ -100,13 +109,11 @@
           // Address info for the subscriber
           .large-12.columns
             h3 Endereço
-          = simple_fields_for :user do |addr|
+          = sub.simple_fields_for :user do |addr|
             .large-12.columns
               .row
                 .large-3.columns
-                  = addr.input :zipcode, input_html: { class: 'zipcode-mask', "ng-model" => "zipcode" }
-                  span
-                    | {{ cepmessage }}
+                  = addr.input :zipcode, input_html: { class: 'zipcode-mask', "ng-model" => "zipcode" } 
 
 
             .large-5.columns= addr.input :address_street, input_html: { "ng-model" => "address_street" }
@@ -122,5 +129,7 @@
 
         footer.button-action.row
           .large-4.large-centered.columns
-            = sub.submit "Contribuir!", remote: true, class: :animated
-
+            = sub.submit "Contribuir!", class: :animated, disable_with: 'Aguarde...'
+  
+  #subscription-status-message
+    | {{ subscription_message }}
