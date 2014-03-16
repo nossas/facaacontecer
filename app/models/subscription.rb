@@ -9,7 +9,7 @@ class Subscription < ActiveRecord::Base
   has_many :payment_instructions
 
   # This attributes should be present when creating an order
-  validates_presence_of :value, :project, :subscriber_id
+  validates_presence_of :value, :project, :subscriber_id, :code
   
     
   # BITMASK options for subscription's intervals

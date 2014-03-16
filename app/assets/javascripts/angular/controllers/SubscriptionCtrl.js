@@ -1,16 +1,25 @@
 facaAcontecerApp.controller('SubscriptionCtrl', function($scope, $http){
-  
-  $scope.$watch('zipcode', function(value){
-    $http.get("https://brazilapi.herokuapp.com/api?cep=" + value).
-      success(populateAddressFields).
-        error(showZipcodeNotFoundMessage);
+      
+  $scope.subscriber = new Object();
+  $scope.subscription = new Object();
+
+  $scope.subscribersApi = "/subscribers/";
+  $scope.cepApi         = "https://brazilapi.herokuapp.com/api?cep=";
 
   
-  });
+  $scope.sendSubscriptionForm = function() {
+    $http.post('/subscribers/', $scope.subcriber).success().error();
+  };
+
+  $scope.getZipcodeData = function() {
+    alert('hi');
+    $http.get($scope.cepApi + value).
+    success($scope.populateAddressFields).
+      error($scope.showZipcodeNotFoundMessage);
+  };
 
 
-
-  function populateAddressFields(response, status) {
+  $scope.populateAddressFields = function(response, status) {
     console.log(response[0]);
     if (!response[0].cep.valid) { 
         showZipcodeNotFoundMessage();
@@ -18,27 +27,24 @@ facaAcontecerApp.controller('SubscriptionCtrl', function($scope, $http){
     }
 
     if (response[0].cep.data == undefined) {
-        showZipcodeNotFoundMessage();
+        $scope.showZipcodeNotFoundMessage();
         return false;
     }
 
     if (response[0].cep.data == "" || response[0].cep.data.tp_logradouro == "") {
-        showZipcodeNotFoundMessage();
+        $scope.showZipcodeNotFoundMessage();
         return false;
     }
 
     var info = response[0].cep.data;
-    $scope.cepmessage       = ''; 
     $scope.address_street   = info.tp_logradouro + ' ' + info.logradouro;
-    $scope.address_extra    = '';
-    $scope.address_number   = '';
     $scope.address_district = info.bairro;
     $scope.city             = info.cidade;
     $scope.state            = info.uf.toUpperCase();
     
   };
 
-  function showZipcodeNotFoundMessage(data) {
+  $scope.showZipcodeNotFoundMessage = function(data) {
     $scope.cepmessage = '';
   };
 

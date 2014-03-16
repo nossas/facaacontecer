@@ -19,7 +19,7 @@ RSpec.configure do |config|
         city              character varying(255),
         state             character varying(255),
         country           character varying(255),
-        postal_code       character varying(255),
+        zipcode           character varying(255),
         cpf               character varying(255)
       );
     ")

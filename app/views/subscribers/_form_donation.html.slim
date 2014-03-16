@@ -1,0 +1,44 @@
+dl.tabs[data-tab]
+  dd.active
+    = link_to "Doação Mensal", "#monthly"
+  dd
+    = link_to "Doação Semestral", "#biannual"
+  dd
+    = link_to "Doação Anual", "#annual"
+
+  // All these helpers methods are located @ application_helper
+  div.tabs-content
+  #monthly.content.active
+    .interval-info.pulse
+      h4 Info mensal
+      p
+        |Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+    .monthly.subscription-values
+      = simple_fields_for :subscription do |sub|
+        = sub.input :value, as: :radio_buttons, label_field: false, collection: available_monthly_plans, input_html: { ng: { model: "subscription.value" } }
+
+  #biannual.content
+    .interval-info
+      h4 Info semestral
+      p
+        |Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+    .biannual.subscription-values
+      = simple_fields_for :subscription do |sub|
+        = sub.input :value, as: :radio_buttons, label_field: false, collection: available_biannual_plans, input_html: { ng: { model: "subscription.value" } }
+
+
+  #annual.content
+    .interval-info
+      h4 Info anual
+      p
+        |Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+    .annual.subscription-values
+      = simple_fields_for :subscription do |sub|
+        = sub.input :value, as: :radio_buttons, label_field: false, collection: available_annual_plans, input_html: { ng: { model: "subscription.value" } }
+
+
+  .hidden.subscription-interval
+    = simple_fields_for :subscription do |sub|
+      = sub.input :interval, as: :radio_buttons, label_field: false, collection: available_subscription_intervals, input_html: { ng: { model: "subscription.interval" } }
+
+

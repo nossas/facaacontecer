@@ -4,7 +4,7 @@ Fabricator(:user) do
   first_name        { "Juquinha" }
   last_name         { "Da Silva" }
   birthday          { "1988/11/12" }
-  email             { "juquinha#{sn}@zip.net" }
+  email             { "juquinha@zip.net" }
   cpf               { CPF.generate }
   address_street    { "Rua Belisario Tavora 500" }
   address_extra     { "Laranjeiras" }

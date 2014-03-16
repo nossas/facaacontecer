@@ -6,18 +6,29 @@ class User < ActiveRecord::Base
 
   delegate :project, to: :subscription, allow_nil: true
 
-  validates_date :birthday, before: -> { 14.years.ago }
+  # Validates if a CPF is valid/invalid
   validates :cpf, cpf: true
-  validates_uniqueness_of :email
+
+  # Validates if an Email is valid/invalid
+  validates :email, uniqueness: true, email: true
+
+    
+  # Validates if a phone number has at least 12 characters
+  validates_length_of :phone, minimum: 14
+
+  # Validates the presence of these fields
   validates_presence_of :first_name, :last_name, :email, :cpf, :birthday, 
     :zipcode, :address_street, :address_extra, :address_number, 
     :address_district, :city, :state, :phone, :country
 
-  after_create :generate_invite_code
 
-  def name
-    "#{self.first_name} #{self.last_name}"
-  end
+  # Validates if a given user is older than 14 years
+  validates_date :birthday, before: -> { 14.years.ago }
+
+  
+  after_create :generate_invite_code
+  
+
 
   def as_json(options={})
     {

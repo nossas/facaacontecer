@@ -21,7 +21,7 @@ describe Project do
 
 
     describe ".days" do
-      project = Project.make!(expiration_date: (Date.current + 45.days))
+      project = Fabricate(:project, expiration_date: (Date.current + 45.days))
       project.days.should == 45
     end
 

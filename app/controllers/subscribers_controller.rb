@@ -4,6 +4,7 @@ class SubscribersController < ApplicationController
     actions(:new, :create)  { @subscriber = User.new(subscriber_params) }
   end
 
+  respond_to :json, only: [:create]
 
   # GET /subscribers/
   def new; end
@@ -11,9 +12,16 @@ class SubscribersController < ApplicationController
 
   # POST /subscribers/
   def create
-    redirect_to @subscriber if @subscriber.save
+    respond_to format do
+      json do
+        {}
+      end
+
+    end
+    return render :edit if @subscriber.save
     render :new
   end
+ 
 
   # PUT /subscribers/:id
   def update; end

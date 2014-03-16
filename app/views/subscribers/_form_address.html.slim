@@ -1,0 +1,17 @@
+.large-12.columns
+  .row
+    .large-3.columns
+      = usr.input :zipcode, input_html: { class: 'zipcode-mask', "ng-model" => "subscriber.zipcode", blur: 'getZipcodeData' } 
+
+
+.large-5.columns= usr.input :address_street, input_html: { "ng-model" => "subscriber.address_street" }
+.large-2.columns= usr.input :address_number, input_html: { "ng-model" => "subscriber.address_number" }
+.large-4.columns= usr.input :address_extra, input_html: { "ng-model" => "subscriber.address_extra" }
+.large-3.columns= usr.input :address_district, input_html: { "ng-model" => "subscriber.address_district" }
+.large-3.columns= usr.input :city, input_html: { "ng-model" => "subscriber.city" }
+
+  
+// address_states located @ application_helper
+.large-3.columns.end= usr.input :state, as: :select, collection: address_states, prompt: 'Selecione...', input_html: { "ng-model" => "subscriberstate" }
+
+

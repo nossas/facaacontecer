@@ -8,7 +8,7 @@ describe Subscription do
 
   context "validations" do
     [
-      :value, :project, :subscriber, :code
+      :value, :project, :subscriber_id, :code
     ].each do |attribute|
       it { should validate_presence_of attribute }
     end
