@@ -1,7 +1,0 @@
-.card-fields
-  = simple_fields_for :creditcard do |credit|
-    .large-4.columns= credit.input :holder, input_html: { ng: { model: "subscription.card.holder" } }
-    .large-4.columns= credit.input :cardnumber, input_html: { class: 'creditcard-mask', ng: { model: "subscription.card.number" } }
-    .large-2.columns.end= credit.input :expiration, input_html: { class: 'expiration-mask', ng: { model: 'subscription.card.expiration' } }
-
-

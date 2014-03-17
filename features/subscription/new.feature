@@ -38,12 +38,12 @@ Feature: New subscription for the current campaign
     And I select "<state>" for "Estado"
     When I click on Contribuir!
     Then I should see "<message>"
-    And I should see <count> subscription in the database
-    And I should see <count> user in the database
+    And I should see <count> subscriptions in the database
+    And I should see <count> users in the database
     And the subscription status should be <status>
     
     Examples:
       | count | status | message                | first_name | last_name | cpf            | birthday   | email            |phone | interval | value | payment_option | zipcode | street | number | extra | district | city | state |
-      | 1     | active | Aguarde!               | Luiz       | Fonseca   | 919.133.769-07 | 12/11/1988 | email@email.com | (21) 99999-9999 | monthly | R$ 20 | Cartão de Crédito | 22222-222 | Rua | 300 | Ape | Botafogo | Rio de Janeiro | RJ  |
-      | 1     | active | não é um email válido  | Luiz       | Fonseca   | 919.133.769-07 | 12/11/1988 | emailemail.com | (21) 99999-9999 | monthly | R$ 20 | Cartão de Crédito | 22222-222 | Rua | 300 | Ape | Botafogo | Rio de Janeiro | RJ  |
-      | 1     | active | CPFnão é válido        | Luiz       | Fonseca   | 919.133.111-17 | 12/11/1988 | email@email.com | (21) 99999-9999 | monthly | R$ 20 | Cartão de Crédito | 22222-222 | Rua | 300 | Ape | Botafogo | Rio de Janeiro | RJ  |
+      | 1     | active | não é um email válido  | Luiz       | Fonseca   | 919.133.769-07 | 12/11/1988 | emailemail.com | (21) 99999-9999 | monthly | R$ 30 | Cartão de Crédito | 22222-222 | Rua | 300 | Ape | Botafogo | Rio de Janeiro | RJ  |
+      | 1     | active | CPFnão é válido        | Luiz       | Fonseca   | 919.133.111-17 | 12/11/1988 | email@email.com | (21) 99999-9999 | monthly | R$ 30 | Cartão de Crédito | 22222-222 | Rua | 300 | Ape | Botafogo | Rio de Janeiro | RJ  |
+      | 1     | active | Aguarde!               | Luiz       | Fonseca   | 919.133.769-07 | 12/11/1988 | email@email.com | (21) 99999-9999 | monthly | R$ 30 | Cartão de Crédito | 22222-222 | Rua | 300 | Ape | Botafogo | Rio de Janeiro | RJ  |

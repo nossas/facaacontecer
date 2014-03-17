@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   validates :cpf, cpf: true
 
   # Validates if an Email is valid/invalid
-  validates :email, uniqueness: true, email: true
+  validates :email, email: true
 
     
   # Validates if a phone number has at least 12 characters

@@ -3,8 +3,7 @@
     header
     .subscription-form.large-12.columns
       = simple_form_for @subscriber, url: subscribers_path do |usr|
-                  
-      
+
         article.user-personal-info.row
           // @subscriber
           // Personal fields for the subscriber
@@ -39,7 +38,7 @@
                 p
                   |Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
               .monthly.subscription-values
-                = simple_fields_for :subscription do |sub|
+                = usr.simple_fields_for :subscription, @subscription do |sub|
                   = sub.input :value, as: :radio_buttons, label_field: false, collection: available_monthly_plans
   
             #biannual.content
@@ -48,7 +47,7 @@
                 p
                   |Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
               .biannual.subscription-values
-                = simple_fields_for :subscription do |sub|
+                = usr.simple_fields_for :subscriptions, @subscription do |sub|
                   = sub.input :value, as: :radio_buttons, label_field: false, collection: available_biannual_plans
 
             #annual.content
@@ -57,11 +56,10 @@
                 p
                   |Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
               .annual.subscription-values
-                = simple_fields_for :subscription do |sub|
+                = usr.simple_fields_for :subscriptions, @subscription do |sub|
                   = sub.input :value, as: :radio_buttons, label_field: false, collection: available_annual_plans
-
             .hidden.subscription-interval
-              = simple_fields_for :subscription do |sub|
+              = usr.simple_fields_for :subscriptions, @subscription do |sub|
                 = sub.input :interval, as: :radio_buttons, label_field: false, collection: available_subscription_intervals 
 
 
@@ -75,7 +73,7 @@
             h3 Qual a forma de pagamento?
 
             // available_payment_options: application_helper
-            = simple_fields_for :subscription do |sub|
+            = usr.simple_fields_for :subscriptions, @subscription do |sub|
               = sub.input :payment_option, as: :radio_buttons, label_field: false, collection: available_payment_options 
 
 
@@ -115,12 +113,13 @@
           .large-4.columns= usr.input :address_extra
           .large-3.columns= usr.input :address_district, input_html: { "ng-model" => "address_district" }
           .large-3.columns= usr.input :city, input_html: { "ng-model" => "city" }
-
+          
             
           // address_states located @ application_helper
           .large-3.columns.end= usr.input :state, as: :select, collection: address_states, prompt: 'Selecione...', input_html: { "ng-model" => "state" }
 
-
+          .hidden.country
+            = usr.input :country, as: :string, value: 'BRA'
         footer.button-action.row
           .large-4.large-centered.columns
             = usr.submit "Contribuir!", class: :animated, data: { disable_with: 'Aguarde...' }

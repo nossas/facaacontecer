@@ -1,7 +1,12 @@
 class SubscribersController < ApplicationController
 
   before_actions do 
-    actions(:new, :create)  { @subscriber = User.new(subscriber_params) }
+    actions(:new, :create) do 
+      @subscriber   = User.new(subscriber_params)
+      @subscription = Subscription.new(subscription_params)
+      @subscription.project = Project.first
+      @subscriber.subscriptions.push @subscription 
+    end
   end
 
   respond_to :json, only: [:create]
@@ -12,12 +17,6 @@ class SubscribersController < ApplicationController
 
   # POST /subscribers/
   def create
-    respond_to format do
-      json do
-        {}
-      end
-
-    end
     return render :edit if @subscriber.save
     render :new
   end
@@ -46,33 +45,46 @@ class SubscribersController < ApplicationController
         {}
       end
     end
-  
 
-    def check_subscriber_constraints
-      # If the user already subscribed, just give to him his subscription url.
-      if @subscriber = User.find_by(email: params[:user][:email])
-        return subscriber_subscription_url 
-      end   
-    end
-
-    # Associate invite, if present
-    def associate_invite
-      if session[:invite]
-        invite ||= Invite.find_by(code: session[:invite])
-        if invite.present?
-          @subscriber.invite.update_attributes!(parent_user_id: invite.user_id)
-          session[:invite] = nil
-        end
+    def subscription_params
+      if params[:user]
+        params.require(:user).permit(
+          subscriptions_attributes: [:value, :interval, :payment_option]
+        )
+      else
+        {}
       end
     end
+
+
+
+  
+
+    #def check_subscriber_constraints
+      ## If the user already subscribed, just give to him his subscription url.
+      #if @subscriber = User.find_by(email: params[:user][:email])
+        #return subscriber_subscription_url 
+      #end   
+    #end
+
+    ### Associate invite, if present
+    ##def associate_invite
+      ##if session[:invite]
+        ##invite ||= Invite.find_by(code: session[:invite])
+        ##if invite.present?
+          ##@subscriber.invite.update_attributes!(parent_user_id: invite.user_id)
+          ##session[:invite] = nil
+        ##end
+      ##end
+    ##end
     
-    # Common render action for both existing users and new users
-    def subscriber_subscription_urls
-      @subscriber.as_json(
-        subscription_url: project_subscriber_subscriptions_path(@project, @subscriber.id),
-        boleto_subscription_url: bank_slip_project_subscriber_subscriptions_path(@project, @subscriber.id) # For boleto users
-      ) 
-    end
+    ## Common render action for both existing users and new users
+    #def subscriber_subscription_urls
+      #@subscriber.as_json(
+        #subscription_url: project_subscriber_subscriptions_path(@project, @subscriber.id),
+        #boleto_subscription_url: bank_slip_project_subscriber_subscriptions_path(@project, @subscriber.id) # For boleto users
+      #) 
+    #end
 
 
 

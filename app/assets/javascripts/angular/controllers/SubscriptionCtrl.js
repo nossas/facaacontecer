@@ -1,19 +1,13 @@
 facaAcontecerApp.controller('SubscriptionCtrl', function($scope, $http){
       
-  $scope.subscriber = new Object();
-  $scope.subscription = new Object();
 
-  $scope.subscribersApi = "/subscribers/";
+
+
   $scope.cepApi         = "https://brazilapi.herokuapp.com/api?cep=";
 
   
-  $scope.sendSubscriptionForm = function() {
-    $http.post('/subscribers/', $scope.subcriber).success().error();
-  };
-
   $scope.getZipcodeData = function() {
-    alert('hi');
-    $http.get($scope.cepApi + value).
+    $http.get($scope.cepApi + $scope.zipcode).
     success($scope.populateAddressFields).
       error($scope.showZipcodeNotFoundMessage);
   };
@@ -22,7 +16,7 @@ facaAcontecerApp.controller('SubscriptionCtrl', function($scope, $http){
   $scope.populateAddressFields = function(response, status) {
     console.log(response[0]);
     if (!response[0].cep.valid) { 
-        showZipcodeNotFoundMessage();
+        $scope.showZipcodeNotFoundMessage();
         return false;
     }
 
@@ -41,7 +35,7 @@ facaAcontecerApp.controller('SubscriptionCtrl', function($scope, $http){
     $scope.address_district = info.bairro;
     $scope.city             = info.cidade;
     $scope.state            = info.uf.toUpperCase();
-    
+   
   };
 
   $scope.showZipcodeNotFoundMessage = function(data) {

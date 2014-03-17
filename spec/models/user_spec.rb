@@ -15,7 +15,7 @@ describe User do
 
   context "associations" do
     it { should have_many :subscriptions } 
-    it { should validate_uniqueness_of :email }
+    #it { should validate_uniqueness_of :email }
   end
 
 

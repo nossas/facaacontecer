@@ -1,4 +1,4 @@
-angular.module('facaacontecerApp').service('subscriberService', ['$http', function($http){
+angular.module('facaAcontecerApp').service('subscriberService', ['$http', function($http){
 
 
 

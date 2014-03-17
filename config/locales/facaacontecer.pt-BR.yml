@@ -47,7 +47,7 @@ pt-BR:
         cardnumber: "Numero do cartão"
         expiration: "Data de expiração"
     options:
-      subscription:
+      subscriptions:
         interval:
           annual: "Anual"
           monthly: "Mensal"

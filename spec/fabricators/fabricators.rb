@@ -1,10 +1,10 @@
 # Model fabrication/fixtures
 
-Fabricator(:user) do
+Fabricator(:user, aliases: [:subscriber]) do
   first_name        { "Juquinha" }
   last_name         { "Da Silva" }
   birthday          { "1988/11/12" }
-  email             { "juquinha@zip.net" }
+  email             { sequence(:email) { |i| "#{i}email#{i}@gmail.com" } }
   cpf               { CPF.generate }
   address_street    { "Rua Belisario Tavora 500" }
   address_extra     { "Laranjeiras" }
@@ -24,4 +24,14 @@ Fabricator(:project) do
   goal            { 25000 }
   description     { "Minha descricao" }
   expiration_date { Date.current + 45.days }
+end
+
+
+Fabricator(:subscription) do
+  project 
+  value 10
+  status ""
+  subscriber
+  interval { "monthly" }
+  payment_option { "creditcard" }
 end

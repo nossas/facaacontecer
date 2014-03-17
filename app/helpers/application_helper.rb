@@ -12,18 +12,18 @@ module ApplicationHelper
   end
 
   def available_monthly_plans
-    [9, 15, 20, 50].map { |s| ["R$ #{s}", s] }
+    [['R$ 17', 17], ['R$ 30', 30], ['R$ 50', 50], ['R$ 100 ', 100]]
   end
 
 
 
   def available_biannual_plans
-    [9, 100, 200, 400].map { |s| ["R$ #{s}", s] }
+    [['R$ 90', 90], ['R$ 120', 120], ['R$ 180', 180], ['R$ 250', 250]]
   end
 
 
   def available_annual_plans
-    [100, 300, 400, 500].map { |s| ["R$ #{s}", s] }
+    [['R$ 180', 180], ['R$ 240', 240], ['R$ 360', 360], ['R$ 500', 500]]
   end
 
   def address_states

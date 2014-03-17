@@ -35,10 +35,12 @@ Apoie = {
     Apoie.renderInputMasks();
     Apoie.toggleSubscriptionValues();
     Apoie.togglePaymentOptions();
+    Apoie.setDefaultValues();
   },
 
   animationPulseClass: 'animated pulse icon-checkmark selected',
-
+  
+  // Start all input masks;
   renderInputMasks: function() {
     $('.expiration-mask').inputmask('99/9999');
     $('.date-mask').inputmask('99/99/9999');
@@ -50,7 +52,8 @@ Apoie = {
 
   },
 
-
+  //  Toggle subscription values when the user clicks 
+  //  And set the interval for the respective PLAN
   toggleSubscriptionValues: function(){
     $('.subscription-values input').on('click', function(){ 
 
@@ -66,7 +69,7 @@ Apoie = {
 
   },
 
-
+  // When Someone clicks on any payment option, show the value
   togglePaymentOptions: function() {
     $('.subscription-payment-options input').on('click', function(){
       $('.subscription-payment-options label').removeClass(Apoie.animationPulseClass);
@@ -79,6 +82,14 @@ Apoie = {
         card.hide();
       }
     });
+
+  },
+
+  // Set the default value to the MONTHLY R$ 17
+  // Set the default payment option to CREDIT CARD
+  setDefaultValues: function(){
+    $('.subscription-values input[value="17"]').trigger('click');
+    $('.subscription-payment-options input[value="creditcard"]').trigger('click');
 
   },
 

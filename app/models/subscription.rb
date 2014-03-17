@@ -9,12 +9,16 @@ class Subscription < ActiveRecord::Base
   has_many :payment_instructions
 
   # This attributes should be present when creating an order
-  validates_presence_of :value, :project, :subscriber_id, :code
+  validates_presence_of :value, :project, :subscriber_id, :interval, :payment_option
   
     
   # BITMASK options for subscription's intervals
   bitmask :interval, as: [:monthly, :biannual, :annual], null: false
 
+
+  # TODO:
+  # BITMASK options for subscription's payment_option
+  # bitmask :payment_option, as: [:boleto, :cartao, :debito], null: false
 
   # Scope for completed payments
   scope :raised,     -> { where(status: :active).select('distinct subscriber_id') }
@@ -23,15 +27,21 @@ class Subscription < ActiveRecord::Base
   scope :active,     -> { joins(:payment_instructions).where("payment_instructions.paid_at > ?", Time.now - 1.month) }
 
 
+  # Saving the code
+  before_validation :generate_unique_code
 
 
-  def insert_code
-    self.code = SecureRandom.hex(8)
+  # Generating a code based on the Current time in integer format
+  def generate_unique_code
+    self.code = Time.now.to_i 
   end
 
 
 
 
+
+
+  # TODO: remove the code below.
 
 
 
