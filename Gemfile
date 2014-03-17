@@ -12,7 +12,6 @@ gem 'puma'
 
 # Database-related gems
 gem 'pg'
-gem 'bitmask_attributes' # Mapping string attributes to integer values (e.g.: 1 to x, 2 to y, 0 to a)
 
 # Controller-related gems
 gem 'before_actions'
@@ -21,6 +20,10 @@ gem 'before_actions'
 gem 'simple_form'
 gem 'slim-rails'
 gem 'active_decorator' # To be removed soon
+
+
+# State machine gem
+gem 'state_machine'
 
 #gem 'best_in_place'  # Field live-edit
 

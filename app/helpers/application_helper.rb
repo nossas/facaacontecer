@@ -8,7 +8,7 @@ module ApplicationHelper
 
 
   def available_subscription_intervals
-    Subscription.values_for_interval 
+    Subscription::ALLOWED_PLANS
   end
 
   def available_monthly_plans

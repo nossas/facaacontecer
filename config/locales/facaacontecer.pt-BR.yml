@@ -39,19 +39,14 @@ pt-BR:
         state: "Estado"
         city: "Cidade"
         zipcode: "CEP"
-      subscription:
-        interval: "Frequência de pagamento"
+      subscriptions:
+        plan: "Frequência de pagamento"
         payment_option: "Forma de pagamento"
       creditcard: 
         holder: "Titular do cartão"
         cardnumber: "Numero do cartão"
         expiration: "Data de expiração"
-    options:
-      subscriptions:
-        interval:
-          annual: "Anual"
-          monthly: "Mensal"
-          biannual: "Semestral"
+
   activerecord:
     models:
       subscription: "Apoio"

@@ -3,15 +3,14 @@ describe Subscription do
 
   context "association" do
     it { should belong_to :project }
-    it { should belong_to :subscriber }
+    it { should belong_to :user }
     it { should have_many :payment_instructions }
   end
 
   context "validations" do
     it { should validate_presence_of :value }
     it { should validate_presence_of :project }
-    it { should validate_presence_of :subscriber_id }
-    it { should validate_presence_of :interval }
+    it { should validate_presence_of :user }
     it { should validate_presence_of :payment_option }
   end
   

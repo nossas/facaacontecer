@@ -58,12 +58,12 @@ Apoie = {
     $('.subscription-values input').on('click', function(){ 
 
       var id = $(this).parents('.content').attr('id');
-      var parent = $('.subscription-interval input#subscription_interval_'+id);
+      var interval = $('#user_subscriptions_interval_' + id);
 
       $('.subscription-values label').removeClass(Apoie.animationPulseClass);
 
       $(this).parent('label').addClass(Apoie.animationPulseClass);
-      parent.trigger('click');
+      interval.trigger('click');
     });
 
 

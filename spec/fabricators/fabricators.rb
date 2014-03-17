@@ -1,6 +1,6 @@
 # Model fabrication/fixtures
 
-Fabricator(:user, aliases: [:subscriber]) do
+Fabricator(:user) do
   first_name        { "Juquinha" }
   last_name         { "Da Silva" }
   birthday          { "1988/11/12" }
@@ -30,8 +30,8 @@ end
 Fabricator(:subscription) do
   project 
   value 10
-  status ""
-  subscriber
-  interval { "monthly" }
+  state { "waiting" } 
+  user { Fabricate(:user) } 
+  plan ""
   payment_option { "creditcard" }
 end

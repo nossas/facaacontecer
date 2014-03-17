@@ -1,10 +1,9 @@
 #coding: utf-8
 class User < ActiveRecord::Base
-  has_many  :subscriptions, foreign_key: :subscriber_id, dependent: :destroy
+  has_many  :subscriptions, dependent: :destroy
   has_many  :invitees,      class_name: :Invite, foreign_key: :parent_user_id
   has_one   :invite,        dependent: :destroy
 
-  delegate :project, to: :subscription, allow_nil: true
 
   # Validates if a CPF is valid/invalid
   validates :cpf, cpf: true
@@ -27,7 +26,9 @@ class User < ActiveRecord::Base
 
   
   after_create :generate_invite_code
-  
+ 
+
+  accepts_nested_attributes_for :subscriptions
 
 
   def as_json(options={})

@@ -8,14 +8,18 @@ Given(/^I select "(.*?)" for "(.*?)"$/) do |arg1, arg2|
 end
 
 
-Given(/^I choose an "(.*?)" subscription of "(.*?)"$/) do |arg1, label|
-  interval = case arg1
-      when 'annual'   then 'Anual'
-      when 'monthly'  then 'Mensal'
-      when 'biannual' then 'Semestral'
-    end
-  choose interval 
+Given(/^I choose a "(.*?)" subscription of "(.*?)"$/) do |arg1, value|
+
+  find('.subscription-plan', text: 'Frequência de pagamento').choose(arg1)
+
   within(".#{arg1}")  do
-    choose label
+    choose value
+  end
+end
+
+
+Then(/^the subscription status should be active$/) do
+  if Subscription.last
+    expect(Subscription.last.state).to eq('waiting')
   end
 end

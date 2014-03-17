@@ -1,29 +1,29 @@
-class SubscribersController < ApplicationController
+class UsersController < ApplicationController
 
   before_actions do 
     actions(:new, :create) do 
-      @subscriber   = User.new(subscriber_params)
-      @subscription = Subscription.new(subscription_params)
-      @subscription.project = Project.first
-      @subscriber.subscriptions.push @subscription 
+      @user   = User.new(user_params)
+      @user.subscriptions.build(project: Project.first, user: @user)
     end
+
+    actions(:edit, :update) { @user = User.find_by(id: params[:id]) }
   end
 
-  respond_to :json, only: [:create]
-
-  # GET /subscribers/
+  # GET /users/
   def new; end
 
 
-  # POST /subscribers/
+  # POST /users/
   def create
-    return render :edit if @subscriber.save
+    return render :edit if @user.save
     render :new
   end
  
 
-  # PUT /subscribers/:id
-  def update; end
+  # PATCH /users/:id
+  def update
+    render :edit
+  end
 
   
   # GET /obrigado/:id
@@ -33,29 +33,36 @@ class SubscribersController < ApplicationController
 
 
   private
-    def subscriber_params
+    def user_params 
       # Checking for user params on request
       if params[:user]
         params.require(:user).permit(
         %i(first_name last_name email cpf birthday 
             zipcode address_street address_extra 
             address_number address_district city state 
-            phone country))
+            phone country), :subscription_attributes => [ :value, :plan, :payment_option])
       else
         {}
       end
     end
 
-    def subscription_params
-      if params[:user]
-        params.require(:user).permit(
-          subscriptions_attributes: [:value, :interval, :payment_option]
-        )
-      else
-        {}
-      end
-    end
+    #def subscription_params
+      ## Checking for subscription params on request
+      #if params[:user]
+        #params.require(:user).permit(
+          #subscriptions_attributes: [:value, :interval, :payment_option]
+        #)
+      #else
+        #{}
+      #end
+    #end
 
+
+
+    def store_temp_card_data 
+      return false unless params[:creditcard] 
+      session[:card_info] = params[:creditcard]
+    end
 
 
   
