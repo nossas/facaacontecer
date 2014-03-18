@@ -4,8 +4,9 @@ class Subscription < ActiveRecord::Base
   # located @ app/states/
   include SubscriptionState
 
-  # Allowed subscription plans
-  ALLOWED_PLANS = %w(monthly biannual annual)
+  # Allowed subscription plans & Allowed payment options
+  ALLOWED_PLANS     = %w(monthly biannual annual)
+  ALLOWED_PAYMENTS  = %w(debit slip creditcard) 
 
   # Relationship with Projects and the correspondent user for each subscription 
   belongs_to :project
@@ -16,7 +17,10 @@ class Subscription < ActiveRecord::Base
 
   # This attributes should be present when creating an order
   validates_presence_of :value, :project, :user, :payment_option, :plan
+
+  # Check if the payment_option is in the allowed payments
   validates_inclusion_of :plan, in: ALLOWED_PLANS
+  validates_inclusion_of :payment_option, in: ALLOWED_PAYMENTS
   
 
   # TODO:
@@ -58,6 +62,7 @@ class Subscription < ActiveRecord::Base
 
   # Extending some business logic inside method calls
   def boleto
+    return false unless payment_option == 'slip'
     # Located @ app/business/payment_slip.rb
     extend Business::Slip
   end
@@ -65,6 +70,7 @@ class Subscription < ActiveRecord::Base
   
   # Extending some business logic inside method calls
   def debito
+    return false unless payment_option == 'debit'
     # Located @ app/business/payment_bank_debit.rb
     extend Business::BankDebit
   end

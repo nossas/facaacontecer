@@ -5,10 +5,12 @@ module Business
   end
 
   module Slip 
+    include Payment
     include PaymentSlip
   end
 
   module BankDebit
+    include Payment
     include PaymentBankDebit
   end
 end

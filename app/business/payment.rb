@@ -1,5 +1,5 @@
-module Business::Payment
-
+module Payment
+  extend ActiveSupport::Concern
 
   included do
 
@@ -20,7 +20,13 @@ module Business::Payment
 
       return transparent
     end
+ 
 
+    # Payment Request status
+    def success?
+      payment_request.success?
+    end
+   
 
     # Return the PAYMENT URL (Boleto, Debito) url
     def url

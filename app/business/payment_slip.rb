@@ -1,6 +1,5 @@
-module Business::PaymentSlip
+module PaymentSlip
   extend ActiveSupport::Concern
-  include Business::Payment
 
   included do
    
