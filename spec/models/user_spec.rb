@@ -55,6 +55,20 @@ describe User do
 
   end
 
+  
+  context "#business" do
+    before { @user = Fabricate(:user, first_name: "TESTER", last_name: "BETA", email: "email@email.com") }
 
 
+    it "should build an instance of MyMoip::Payer" do
+      expect(@user.business.build_payer).to be_a_kind_of(MyMoip::Payer)
+    end
+
+    it "should build a json hash called PAYER in order to allow MOIP subscriptions" do
+      expect(@user.business.as_payer).to eq({:id=>1, :name=>"TESTER BETA", :email=>"email@email.com", :address_street=>"Rua Belisario Tavora 500", :address_street_number=>"100", :address_street_extra=>"Laranjeiras", :address_neighbourhood=>"Laranjeiras", :address_city=>"Rio de Janeiro", :address_state=>"RJ", :address_country=>"BRA", :address_cep=>"78132500", :address_phone=>"21997137471"})
+    end 
+
+
+
+  end
 end

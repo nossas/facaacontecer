@@ -4,7 +4,7 @@ class Subscription < ActiveRecord::Base
   # located @ app/states/
   include SubscriptionState
 
-  # Allowed plans
+  # Allowed subscription plans
   ALLOWED_PLANS = %w(monthly biannual annual)
 
   # Relationship with Projects and the correspondent user for each subscription 
@@ -32,13 +32,14 @@ class Subscription < ActiveRecord::Base
 
   # Saving the code
   before_validation :generate_unique_code
+
+  # Using this to avoid param errors when running cucumber steps
   before_validation :set_fake_plan
 
   # Generating a code based on the Current time in integer format
   def generate_unique_code
     self.code = Time.now.to_i 
   end
-
 
 
   # For some reason, we can't test using the plan PARAM
@@ -48,46 +49,24 @@ class Subscription < ActiveRecord::Base
     end
   end
 
-  # TODO: remove the code below.
 
-
-
-
-  def prepared_instruction
-    instruction = MyMoip::Instruction.new(
-        id: SecureRandom.hex(8),
-        payment_reason: "Contribuição mensal para Meu Rio. Eu faço acontecer!",
-        values: [self.value],
-        payer: self.subscriber.as_payer,
-      )
-    instruction
+  def cartao
+    # Cartao is handled by the Moip's JavaScript Library
+    # Go check app/assets/javascripts
   end
 
-  def bankslip(options = {})
-    return unless options[:expiration]
-    MyMoip::BoletoPayment.new(expiration_date: options[:expiration], expiration_days: 14)
+
+  # Extending some business logic inside method calls
+  def boleto
+    # Located @ app/business/payment_slip.rb
+    extend Business::Slip
   end
 
-  def create_payment_instruction(code, token, sequence)
-    payment = PaymentInstruction.new do |p|
-      p.status        = nil
-      p.subscription  = self 
-      p.expires_at    = nil
-      p.code          = code
-      p.expires_at    = Time.now + 10.days
-      p.url           = MOIP_INSTRUCTION_URL + token
-      p.sequence      = sequence
-    end
-    payment.save!
+  
+  # Extending some business logic inside method calls
+  def debito
+    # Located @ app/business/payment_bank_debit.rb
+    extend Business::BankDebit
   end
 
-  def send_payment_request(date, sequence)
-    instruction = self.prepared_instruction 
-    @transparent_request = MyMoip::TransparentRequest.new(self.code)
-    @transparent_request.api_call(instruction)
-    @payment = MyMoip::PaymentRequest.new(self.code)
-    @payment.api_call(self.bankslip(expiration: date), token: @transparent_request.token)
-    create_payment_instruction(instruction.id, @transparent_request.token, sequence) if @payment.success?
-    @payment.success?
-  end
 end

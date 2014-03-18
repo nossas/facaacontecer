@@ -40,7 +40,10 @@ class UsersController < ApplicationController
         %i(first_name last_name email cpf birthday 
             zipcode address_street address_extra 
             address_number address_district city state 
-            phone country), :subscription_attributes => [ :value, :plan, :payment_option])
+            phone country), 
+            :subscription_attributes => [ :value, :plan, :payment_option],
+            :creditcard_attributes => [:holder, :card_number, :expiration] 
+        )
       else
         {}
       end

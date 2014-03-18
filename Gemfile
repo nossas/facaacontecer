@@ -68,15 +68,18 @@ end
 
 group :development, :test do
   gem 'rspec-rails'
+
 end
 
 group :test do
   gem 'fabrication'
   gem 'selenium-webdriver'
-  gem 'machinist'
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
   gem 'shoulda'
   gem 'cpf_cnpj'
+  # Mocking HTTP requests using VCR
+  gem 'vcr'
+  gem 'webmock'
 end
 
