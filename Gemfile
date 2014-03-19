@@ -48,7 +48,7 @@ gem 'delayed_job_active_record' # to be removed
 # Assets related gems
 gem 'jquery-rails'
 gem 'compass-rails'
-gem 'sass-rails'
+gem 'sass-rails', '4.0.2'
 gem 'uglifier'
 gem 'angularjs-rails'
 gem 'jquery-inputmask-rails'
