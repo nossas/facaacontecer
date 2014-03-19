@@ -4,7 +4,8 @@
     .subscription-form.large-12.columns
       = simple_form_for @user do |usr|
 
-        = @user.errors.messages.inspect
+        /pre
+          = @user.errors.messages.inspect
         /pre
           = params[:user].inspect
         article.user-personal-info.row
