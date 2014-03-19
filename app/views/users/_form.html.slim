@@ -4,9 +4,9 @@
     .subscription-form.large-12.columns
       = simple_form_for @user do |usr|
 
-        /pre
+        //pre
           = @user.errors.messages.inspect
-        /pre
+        //pre
           = params[:user].inspect
         article.user-personal-info.row
           // @subscriber
@@ -21,63 +21,61 @@
           .large-3.columns.end= usr.input :phone, input_html: { class: 'phone-mask' }
 
 
-        article.subcription-donation-info.row
-          // @subscription
-          // Subscription options
-          .large-12.columns
-            h3 Que tipo de doação deseja efetuar?
-          dl.tabs[data-tab]
-            dd.active
-              = link_to "Doação Mensal", "#monthly"
-            dd
-              = link_to "Doação Semestral", "#biannual"
-            dd
-              = link_to "Doação Anual", "#annual"
+        = usr.simple_fields_for :subscriptions do |sub|
+          article.subcription-donation-info.row
+            // @subscription
+            // Subscription options
+            .large-12.columns
+              h3 Que tipo de doação deseja efetuar?
+            dl.tabs[data-tab]
+              dd.active
+                = link_to "Doação Mensal", "#monthly"
+              dd
+                = link_to "Doação Semestral", "#biannual"
+              dd
+                = link_to "Doação Anual", "#annual"
+      
+            // All these helpers methods are located @ application_helper
+            div.tabs-content
+              #monthly.content.active
+                .interval-info.pulse
+                  h4 Info mensal
+                  p
+                    |Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+                .monthly.subscription-values
+                    = sub.input :value, as: :radio_buttons, label_field: false, collection: available_monthly_plans
     
-          // All these helpers methods are located @ application_helper
-          div.tabs-content
-            #monthly.content.active
-              .interval-info.pulse
-                h4 Info mensal
-                p
-                  |Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
-              .monthly.subscription-values
-                = usr.simple_fields_for :subscriptions do |sub|
-                  = sub.input :value, as: :radio_buttons, label_field: false, collection: available_monthly_plans
-  
-            #biannual.content
-              .interval-info
-                h4 Info semestral
-                p
-                  |Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
-              .biannual.subscription-values
-                = usr.simple_fields_for :subscriptions do |sub|
-                  = sub.input :value, as: :radio_buttons, label_field: false, collection: available_biannual_plans
+              #biannual.content
+                .interval-info
+                  h4 Info semestral
+                  p
+                    |Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+                .biannual.subscription-values
+                    = sub.input :value, as: :radio_buttons, label_field: false, collection: available_biannual_plans
 
-            #annual.content
-              .interval-info
-                h4 Info anual
-                p
-                  |Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
-              .annual.subscription-values
-                = usr.simple_fields_for :subscriptions do |sub|
+              #annual.content
+                .interval-info
+                  h4 Info anual
+                  p
+                    |Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+                .annual.subscription-values
                   = sub.input :value, as: :radio_buttons, label_field: false, collection: available_annual_plans
-            .subscription-plan
-              = usr.simple_fields_for :subscriptions do |sub|
-                = sub.input :plan, as: :radio_buttons, collection: available_subscription_intervals, checked: available_subscription_intervals.first 
+              .hidden.subscription-plan
+                = sub.input :plan, as: :select, collection: available_subscription_intervals
 
 
+              .subscription-project
+                = sub.input :project_id, as: :hidden, input_html: { value: Project.first.id }
 
+          article.subscription-payment-options.row
+            // @subscription
+            // Where the user chooses between CREDIT CARD/ SLIP / BANK ACCOUNT
+            .large-12.columns
+              h3 
+                |Qual a forma de pagamento?
 
-        article.subscription-payment-options.row
-          // @subscription
-          // Where the user chooses between CREDIT CARD/ SLIP / BANK ACCOUNT
-          .large-12.columns
-            h3 Qual a forma de pagamento?
-
-            // available_payment_options: application_helper
-            = usr.simple_fields_for :subscriptions do |sub|
-              = sub.input :payment_option, as: :radio_buttons, label_field: false, collection: available_payment_options 
+              // available_payment_options: application_helper
+              = sub.input :payment_option, as: :radio_buttons, collection: available_payment_options 
 
 
 

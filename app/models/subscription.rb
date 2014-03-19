@@ -9,8 +9,8 @@ class Subscription < ActiveRecord::Base
   ALLOWED_PAYMENTS  = %w(debit slip creditcard) 
 
   # Relationship with Projects and the correspondent user for each subscription 
-  belongs_to :project
-  belongs_to :user
+  belongs_to :project, inverse_of: :subscriptions
+  belongs_to :user, inverse_of: :subscriptions
 
   # Now we're recording payment instructions
   has_many :payment_instructions
@@ -22,7 +22,6 @@ class Subscription < ActiveRecord::Base
   validates_inclusion_of :plan, in: ALLOWED_PLANS
   validates_inclusion_of :payment_option, in: ALLOWED_PAYMENTS
   
-
   # TODO:
   # BITMASK options for subscription's payment_option
   # bitmask :payment_option, as: [:boleto, :cartao, :debito], null: false
@@ -38,7 +37,7 @@ class Subscription < ActiveRecord::Base
   before_validation :generate_unique_code
 
   # Using this to avoid param errors when running cucumber steps
-  before_validation :set_fake_plan
+  # before_validation :set_fake_plan
 
   # Generating a code based on the Current time in integer format
   def generate_unique_code
@@ -46,12 +45,12 @@ class Subscription < ActiveRecord::Base
   end
 
 
-  # For some reason, we can't test using the plan PARAM
-  def set_fake_plan
-    if Rails.env.test?
-      self.plan = 'monthly'
-    end
-  end
+#  # For some reason, we can't test using the plan PARAM
+  #def set_fake_plan
+    #if Rails.env.test?
+      #self.plan = 'monthly'
+    #end
+  #end
 
 
   def cartao

@@ -29,9 +29,9 @@ end
 
 Fabricator(:subscription) do
   project 
-  value 10
+  value 17
   state { "waiting" } 
   user { Fabricate(:user) } 
-  plan ""
+  plan "monthly"
   payment_option { "creditcard" }
 end

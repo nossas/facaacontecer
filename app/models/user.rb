@@ -1,9 +1,9 @@
 #coding: utf-8
 class User < ActiveRecord::Base
 
-  has_many  :subscriptions, dependent: :destroy
-  has_many  :invitees,      class_name: :Invite, foreign_key: :parent_user_id
   has_one   :invite,        dependent: :destroy
+  has_many  :invitees,      class_name: :Invite, foreign_key: :parent_user_id
+  has_many  :subscriptions, dependent: :destroy, inverse_of: :user
 
   # Validates if a CPF is valid/invalid
   validates :cpf, cpf: true

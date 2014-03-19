@@ -27,8 +27,9 @@ Feature: New subscription for the current campaign
     And I fill in Data de nascimento with "<birthday>"
     And I fill in Email with "<email>"
     And I fill in Telefone with "<phone>"
-    And I choose a "<interval>" subscription of "<value>"
+    And I choose "<value>" for "Qual o valor?"
     And I choose "<payment_option>" for "Qual a forma de pagamento?"
+    And I select "<interval>" for "Frequência de pagamento"
     And I fill in CEP with "<zipcode>"
     And I fill in Endereço with "<street>"
     And I fill in Número with "<number>"
@@ -44,7 +45,7 @@ Feature: New subscription for the current campaign
     
     Examples:
       | count | status | message                | first_name | last_name | cpf            | birthday   | email            |phone | interval | value | payment_option | zipcode | street | number | extra | district | city | state |
-      | 0     | active | não é um email válido  | Luiz       | Fonseca   | 919.133.769-07 | 12/11/1988 | emailemail.com | (21) 99999-9999 | monthly | R$ 30 | Cartão de Crédito | 22222-222 | Rua | 300 | Ape | Botafogo | Rio de Janeiro | RJ  |
-      | 0     | active | CPFnão é válido        | Luiz       | Fonseca   | 919.133.111-17 | 12/11/1988 | email@email.com | (21) 99999-9999 | monthly | R$ 30 | Cartão de Crédito | 22222-222 | Rua | 300 | Ape | Botafogo | Rio de Janeiro | RJ  |
-      | 1     | active | Aguarde!               | Luiz       | Fonseca   | 919.133.769-07 | 12/11/1988 | email@email.com | (21) 99999-9999 | monthly | R$ 30 | Cartão de Crédito | 22222-222 | Rua | 300 | Ape | Botafogo | Rio de Janeiro | RJ  |
-      # | 1     | active | Aguarde, estamos gerando o boleto  | Luiz       | Fonseca   | 919.133.769-07 | 12/11/1988 | email@email.com | (21) 99999-9999 | biannual | R$ 90 | Boleto | 22222-222 | Rua | 300 | Ape | Botafogo | Rio de Janeiro | RJ  |
+      | 0     |  | não é um email válido  | Luiz       | Fonseca   | 919.133.769-07 | 12/11/1988 | emailemail.com | (21) 99999-9999 | Mensal | R$ 30 | Cartão de Crédito | 22222-222 | Rua | 300 | Ape | Botafogo | Rio de Janeiro | RJ  |
+      | 0     |  | CPFnão é válido        | Luiz       | Fonseca   | 919.133.111-17 | 12/11/1988 | email@email.com | (21) 99999-9999 | Mensal | R$ 30 | Cartão de Crédito | 22222-222 | Rua | 300 | Ape | Botafogo | Rio de Janeiro | RJ  |
+      | 1     | waiting | Aguarde, estamos processando o pagamento.               | Luiz       | Fonseca   | 919.133.769-07 | 12/11/1988 | email@email.com | (21) 99999-9999 | Mensal | R$ 30 | Cartão de Crédito | 22222-222 | Rua | 300 | Ape | Botafogo | Rio de Janeiro | RJ  |
+      | 1     | waiting | Aguarde, estamos gerando seu boleto.  | Luiz       | Fonseca   | 919.133.769-07 | 12/11/1988 | email@email.com | (21) 99999-9999 | Semestral | R$ 90 | Boleto | 22222-222 | Rua | 300 | Ape | Botafogo | Rio de Janeiro | RJ  |

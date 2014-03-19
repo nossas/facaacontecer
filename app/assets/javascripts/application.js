@@ -35,7 +35,7 @@ Apoie = {
     Apoie.renderInputMasks();
     Apoie.toggleSubscriptionValues();
     Apoie.togglePaymentOptions();
-    Apoie.setDefaultValues();
+   // Apoie.setDefaultValues();
   },
 
   animationPulseClass: 'animated pulse icon-checkmark selected',
@@ -58,12 +58,12 @@ Apoie = {
     $('.subscription-values input').on('click', function(){ 
 
       var id = $(this).parents('.content').attr('id');
-      var interval = $('#user_subscriptions_interval_' + id);
+      var interval = $('#user_subscriptions_attributes_0_plan');
 
       $('.subscription-values label').removeClass(Apoie.animationPulseClass);
 
       $(this).parent('label').addClass(Apoie.animationPulseClass);
-      interval.trigger('click');
+      interval.val(id);
     });
 
 

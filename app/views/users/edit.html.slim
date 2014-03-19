@@ -1,6 +1,8 @@
 #successful-message
-  span 
-    |Aguarde!
+  span
+    //= @user.inspect
+    //= @user.subscriptions.inspect
+    = t "subscriptions.success.message.#{@user.subscriptions.last.payment_option}"
 
 
 
