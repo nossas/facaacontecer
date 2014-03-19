@@ -5,6 +5,7 @@ RSpec.configure do |config|
       CREATE TABLE IF NOT EXISTS users(
         id                SERIAL PRIMARY KEY, 
         created_at        timestamp without time zone,
+        updated_at        timestamp without time zone,
         email             varchar(40), 
         first_name        varchar(40), 
         last_name         varchar(40),
@@ -21,6 +22,7 @@ RSpec.configure do |config|
         country           character varying(255),
         zipcode           character varying(255),
         cpf               character varying(255)
+
       );
     ")
     User.any_instance.stub(:avatar_url).and_return("/assets/default-avatar.png")
