@@ -1,4 +1,3 @@
-require "lib/server"
 require 'vcr'
 
 VCR.configure do |c|
