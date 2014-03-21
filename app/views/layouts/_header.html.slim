@@ -1,12 +1,12 @@
 header#header
+  .meurio= image_tag "meurio.png", class: :meurio_logo
   .row
-    .large-2.columns
-      = image_tag "meurio.png"
-    .large-5.columns
+    .large-7.columns
       h2
         | Faça Acontecer
 
     .large-5.columns
-      = link_to "Contribuir!", new_user_path, class: :button
+      - if current_page? root_path
+        = link_to "Contribuir!", new_user_path, class: :button
 
 

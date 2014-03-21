@@ -14,6 +14,27 @@ describe Subscription do
     it { should validate_presence_of :payment_option }
   end
   
+  context "Field validations" do
+    it "should require the bank attribute if the subscription is DEBIT" do
+      expect(Subscription.new(payment_option: 'debit')).to have(1).error_on(:bank)
+    end
+
+    it "should not require the bank attribute if the subscription is CREDITCARD" do
+      expect(Subscription.new(payment_option: 'creditcard')).to have(0).error_on(:bank)
+    end
+ 
+    it "should not require the bank attribute if the subscription is BOLETO" do
+      expect(Subscription.new(payment_option: 'slip')).to have(0).error_on(:bank)
+    end   
+
+
+    it "should only allow the permitted bank names 'banco_do_brasil', 'itau' and 'bradesco'" do
+      expect(Subscription.new(payment_option: 'debit', bank: 'anything')).to have(1).error_on(:bank)
+      expect(Subscription.new(payment_option: 'debit', bank: 'itau')).to have(0).error_on(:bank)
+    end
+
+  end
+
 
   context "#generate_unique_code" do
     subscription = Fabricate(:subscription)
@@ -26,7 +47,7 @@ describe Subscription do
 
 
   context "#debito" do
-    before { @subscription = Fabricate(:subscription, payment_option: "debit", value: 90) }
+    before { @subscription = Fabricate(:subscription, payment_option: "debit", value: 90, bank: 'itau') }
   
     it "should return false if the payment_option isn't debit" do
       @subscription.payment_option = 'slip'
@@ -39,21 +60,8 @@ describe Subscription do
       end
     end
 
-    context "#bank=" do
-      it "should allow the assigment of a bank" do
-        @subscription.debito.bank = :itau
-        expect(@subscription.debito.bank).to eq(:itau)
-      end
-
-      it "should return false if an invalid bank was assigned" do
-        @subscription.debito.bank = :caixa
-        expect(@subscription.debito.bank).to eq(false)
-      end
-    end
-
 
     context "#payment_request", vcr: true do
-      before { @subscription.debito.bank = :itau }
 
       it "should return a Payment Request instance when a bank is set up" do
         expect(@subscription.debito.payment_request).to be_a_kind_of(MyMoip::PaymentRequest)

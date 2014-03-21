@@ -53,11 +53,12 @@ pt-BR:
         plan: "Frequência de pagamento"
         payment_option: "Forma de pagamento"
         value: "Qual o valor?"
+        bank: "Qual seu banco?"
       creditcard: 
         holder: "Titular do cartão"
         cardnumber: "Numero do cartão"
         expiration: "Data de expiração"
-
+    
   activerecord:
     models:
       subscription: "Apoio"
@@ -68,6 +69,7 @@ pt-BR:
       subscriber:
         <<: &user
       subscription:
+        bank: "Banco"
   
         
         

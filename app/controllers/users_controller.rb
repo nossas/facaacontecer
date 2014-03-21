@@ -38,7 +38,7 @@ class UsersController < ApplicationController
             zipcode address_street address_extra 
             address_number address_district city state 
             phone country), 
-            :subscriptions_attributes => [:value, :plan, :payment_option, :project_id],
+            :subscriptions_attributes => [:value, :plan, :payment_option, :project_id, :bank],
             :creditcard_attributes => [:holder, :card_number, :expiration] 
       )
     else

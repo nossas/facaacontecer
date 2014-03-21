@@ -33,5 +33,6 @@ Fabricator(:subscription) do
   state { "waiting" } 
   user { Fabricate(:user) } 
   plan "monthly"
+  bank { "itau" }
   payment_option { "creditcard" }
 end

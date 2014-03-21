@@ -13,14 +13,14 @@ Feature: New subscription for the current campaign
 
   Scenario: Visiting the new subscription page
     Given I am in the root path
-    When I click on Contribua!
+    When I click on Contribuir!
     Then I should see "Insira seus dados pessoais"
 
 
 
   Scenario Outline: A new user subscribe with credit card info in the subscription form
     Given I am in the root path 
-    And I click on Contribua!
+    And I click on Contribuir!
     And I fill in Nome with "<first_name>"
     And I fill in Sobrenome with "<last_name>"
     And I fill in CPF with "<cpf>"
@@ -29,6 +29,7 @@ Feature: New subscription for the current campaign
     And I fill in Telefone with "<phone>"
     And I choose "<value>" for "Qual o valor?"
     And I choose "<payment_option>" for "Qual a forma de pagamento?"
+    And I choose "<bank>" for "Qual seu banco?"
     And I select "<interval>" for "Frequência de pagamento"
     And I fill in CEP with "<zipcode>"
     And I fill in Endereço with "<street>"
@@ -44,8 +45,9 @@ Feature: New subscription for the current campaign
     And the subscription status should be <status>
     
     Examples:
-      | count | status | message                | first_name | last_name | cpf            | birthday   | email            |phone | interval | value | payment_option | zipcode | street | number | extra | district | city | state |
-      | 0     |  | não é um email válido  | Luiz       | Fonseca   | 919.133.769-07 | 12/11/1988 | emailemail.com | (21) 99999-9999 | Mensal | R$ 30 | Cartão de Crédito | 22222-222 | Rua | 300 | Ape | Botafogo | Rio de Janeiro | RJ  |
-      | 0     |  | CPFnão é válido        | Luiz       | Fonseca   | 919.133.111-17 | 12/11/1988 | email@email.com | (21) 99999-9999 | Mensal | R$ 30 | Cartão de Crédito | 22222-222 | Rua | 300 | Ape | Botafogo | Rio de Janeiro | RJ  |
-      | 1     | waiting | Aguarde, estamos processando o pagamento.               | Luiz       | Fonseca   | 919.133.769-07 | 12/11/1988 | email@email.com | (21) 99999-9999 | Mensal | R$ 30 | Cartão de Crédito | 22222-222 | Rua | 300 | Ape | Botafogo | Rio de Janeiro | RJ  |
-      | 1     | waiting | Aguarde, estamos gerando seu boleto.  | Luiz       | Fonseca   | 919.133.769-07 | 12/11/1988 | email@email.com | (21) 99999-9999 | Semestral | R$ 90 | Boleto | 22222-222 | Rua | 300 | Ape | Botafogo | Rio de Janeiro | RJ  |
+      | count | status  | message                                             | first_name | last_name | cpf            | birthday   | email            |phone | interval         | value | payment_option    | bank | zipcode | street | number | extra | district | city | state |
+      | 0     |         | não é um email válido                               | Luiz       | Fonseca   | 919.133.769-07 | 12/11/1988 | emailemail.com | (21) 99999-9999 | Mensal  | R$ 30 | Cartão de Crédito | Itaú | 22222-222 | Rua | 300 | Ape | Botafogo | Rio de Janeiro | RJ  |
+      | 0     |         | CPFnão é válido                                     | Luiz       | Fonseca   | 919.133.111-17 | 12/11/1988 | email@email.com | (21) 99999-9999 | Mensal | R$ 30 | Cartão de Crédito | Itaú | 22222-222 | Rua | 300 | Ape | Botafogo | Rio de Janeiro | RJ  |
+      | 1     | waiting | Aguarde, estamos processando o pagamento.           | Luiz       | Fonseca   | 919.133.769-07 | 12/11/1988 | email@email.com | (21) 99999-9999 | Mensal | R$ 30 | Cartão de Crédito | Itaú | 22222-222 | Rua | 300 | Ape | Botafogo | Rio de Janeiro | RJ  |
+      | 1     | waiting | Aguarde, estamos gerando o link para o seu banco.   | Luiz       | Fonseca   | 919.133.769-07 | 12/11/1988 | email@email.com | (21) 99999-9999 | Anual      | R$ 90 | Débito            | Itaú | 22222-222 | Rua | 300 | Ape | Botafogo | Rio de Janeiro | RJ  |
+      | 1     | waiting | Aguarde, estamos gerando seu boleto.                | Luiz       | Fonseca   | 919.133.769-07 | 12/11/1988 | email@email.com | (21) 99999-9999 | Semestral  | R$ 90 | Boleto            | Itaú | 22222-222 | Rua | 300 | Ape | Botafogo | Rio de Janeiro | RJ  |

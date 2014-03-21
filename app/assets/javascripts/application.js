@@ -75,13 +75,23 @@ Apoie = {
     $('.subscription-payment-options input').on('click', function(){
       $('.subscription-payment-options label').removeClass(Apoie.animationPulseClass);
       $(this).parent('label').addClass(Apoie.animationPulseClass).removeClass('icon-checkmark');
-
+      
+      var debit = $('.debit');
       var card = $('.creditcard');
+
+      $('.subscription-payment-fields').hide();
+
       if ($(this).val() == 'creditcard') {
         card.fadeIn();
-      } else { 
-        card.hide();
       }
+      else if ($(this).val() == 'debit') {
+        debit.fadeIn();
+      }
+
+      else {}
+      
+
+    
     });
 
   },

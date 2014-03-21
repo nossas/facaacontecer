@@ -7,6 +7,7 @@ class Subscription < ActiveRecord::Base
   # Allowed subscription plans & Allowed payment options
   ALLOWED_PLANS     = %w(monthly biannual annual)
   ALLOWED_PAYMENTS  = %w(debit slip creditcard) 
+  ALLOWED_BANKS     = %w(banco_do_brasil bradesco banrisul itau)
 
   # Relationship with Projects and the correspondent user for each subscription 
   belongs_to :project, inverse_of: :subscriptions
@@ -17,10 +18,14 @@ class Subscription < ActiveRecord::Base
 
   # This attributes should be present when creating an order
   validates_presence_of :value, :project, :user, :payment_option, :plan
+  
+  # We only need the bank account if the payment option is debit
+  validates_presence_of :bank, if: -> { debit? }
 
   # Check if the payment_option is in the allowed payments
   validates_inclusion_of :plan, in: ALLOWED_PLANS
   validates_inclusion_of :payment_option, in: ALLOWED_PAYMENTS
+  validates_inclusion_of :bank, in: ALLOWED_BANKS, allow_blank: true, allow_nil: true
   
   # TODO:
   # BITMASK options for subscription's payment_option
@@ -36,22 +41,14 @@ class Subscription < ActiveRecord::Base
   # Saving the code
   before_validation :generate_unique_code
 
-  # Using this to avoid param errors when running cucumber steps
-  # before_validation :set_fake_plan
-
   # Generating a code based on the Current time in integer format
   def generate_unique_code
     self.code = Time.now.to_i 
   end
 
-
-#  # For some reason, we can't test using the plan PARAM
-  #def set_fake_plan
-    #if Rails.env.test?
-      #self.plan = 'monthly'
-    #end
-  #end
-
+  def debit?
+    self.payment_option == 'debit'
+  end
 
   def cartao
     # Cartao is handled by the Moip's JavaScript Library

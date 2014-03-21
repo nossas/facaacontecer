@@ -1,3 +1,4 @@
+= content_for :title, "Faça Acontecer: "
 .row[ng-controller='SubscriptionCtrl']
   section.form-wrap
     header
@@ -79,6 +80,14 @@
 
 
 
+          article.subscription-payment-fields.debit.hidden.row
+            .debit-wrap
+              .large-12.columns
+                h3 Qual o seu banco?
+              .debit-fields
+                .large-12.columns
+                  = sub.input :bank, as: :radio_buttons, label: false, item_wrapper_class: "bank1", collection: available_payment_banks
+                  = sub.full_error :bank
 
 
 
