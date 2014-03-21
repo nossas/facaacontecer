@@ -10,6 +10,8 @@ before_script:
 
 env:
   - DISPLAY=:99.0
+  - MYMOIP_TOKEN="4WV0YFD94HGZS9QSL8NU1LIPUYQELTGO" 
+  - MYMOIP_KEY="YUSNOJ3UWDS3CMDYCV8OKIX2MF7MOM6AUGMZVZ6X"
 
 # uncomment this line if your project needs to run something other than `rake`:
 script: "bundle exec rake db:migrate RAILS_ENV=test && bundle exec rspec spec"
@@ -17,3 +19,4 @@ script: "bundle exec rake db:migrate RAILS_ENV=test && bundle exec rspec spec"
 branches:
   only:
     - master
+
