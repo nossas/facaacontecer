@@ -8,7 +8,7 @@ class Project < ActiveRecord::Base
 
   # Supporters are the people who supported the campaign with a valid payment token
   has_many :users, -> { 
-    where(subscriptions: { status: 'active' }).uniq }, through: :subscriptions
+    where(subscriptions: { state: :active }).uniq }, through: :subscriptions
 
   # Fetches only anonymous subscribers
   has_many :anonymous_users, -> { 

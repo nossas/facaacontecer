@@ -1,0 +1,169 @@
+= content_for :title, @project.title
+
+
+.container#panel-1
+  .scroll
+    .mr-panel
+      header.facaacontecer
+        .row
+          .image
+            = image_tag "header.png"
+          .share
+            = link_to "Tweetar", twitter_share_common_url, class: [:twitter, :external]
+            = link_to "Compartilhar", facebook_share_common_url, class: [:facebook, :external]
+      .row.row_overlay
+        .about.page
+          .video_and_header
+            .share_overlay
+              = link_to "Compartilhar", facebook_share_common_url, class: [:facebook, :external]
+              = link_to "Tweetar", twitter_share_common_url, class: [:twitter, :external]
+
+            .title
+              h1
+                | Somos mobilizadores, somos independentes, somos o Meu Rio.
+
+            - unless @project.expiration_date <= Date.current
+              .progress
+                .days
+                  = @project.days_remaining
+                .people
+                  = @project.progress
+            - else
+              .progress.successful
+                .people
+                  = @project.progress
+          .subscription
+            = link_to "Contribua!", new_user_path, class: [:button, :btn]
+
+/          .subscription
+            /.head= image_tag "top_form_header.png"
+            /ol.steps
+              /li.step1
+                /span.selected 1
+                /span Dados
+              /li.step.placeholder= image_tag "steps_placeholder.png"
+              /li.step2
+                /span 2
+                /span Endereço
+              /li.step.placeholder= image_tag "steps_placeholder.png"
+              /li.step3
+                /span 3
+                /span Contribuição
+            /.clear
+            /.errors
+            /.step1
+              /= render 'subscribers/form'
+            /.step2.hidden
+              /ol.payment_options
+                /li.creditcard.selected Cartão de crédito
+                /li.bankslip Boleto Mensal 
+              /= render 'subscriptions/form'
+              /= render 'subscriptions/form_boleto'
+          /.faq
+            /.something
+              /= link_to "Perguntas frequentes sobre a campanha", 'http://faqly.herokuapp.com/faqs/1/questions/Meu%20Rio', id: :faq
+              /br
+              /= mail_to 'financiador@meurio.org.br'
+
+.container#panel-2.lightgreen
+  .scroll
+    .mr-panel
+      .row
+        .our_history.page
+          h2 Sobre o Meu Rio 
+          .text
+            p
+              |O
+              strong 
+                |&nbsp;Meu Rio&nbsp;
+              | é independente. Isso quer dizer que não temos rabo preso com nenhum governo, político, partido ou empresa pública. 
+              br
+              |Hoje, somos mais de 70.000 membros espalhados por todo o Rio de Janeiro. Para continuar assim, dependemos dos cariocas de alma e coração que querem um Rio mais justo e democrático. Não precisamos de muito. Mas precisamos de <strong>MUITOS</strong>. 
+              br
+              |Muita gente que pode contribuir com pouco para ajudar a financiar esse projeto de todos nós. Assista ao vídeo, conheça as nossas recompensas e faça o Meu Rio acontecer!  
+      .row
+        .our_finance
+          #piechart
+            = image_tag "panel-2_infographic.png"
+
+
+          #block
+            p &nbsp;
+
+
+
+.container#panel-3.gray
+  .scroll
+    .mr-panel
+      .row
+        .our_victories.page
+          h2 Algumas de nossas vitórias
+          ol
+            li.project
+              .image= image_tag "victory-2.jpg"
+              h3 Friedenreich de Pé
+              p.text
+                |Quase vinte mil cariocas se levantaram para impedir que uma das melhores escolas do Rio fosse demolida para a construção de uma quadra de aquecimento. Assinando uma petição eletrônica ou vigiando 24 horas por dia a nossa escola, vencemos juntos. Mostramos que o Rio é nosso! 
+              span.signatures 17.968 
+              span.text Assinaturas
+
+            li.project
+              .image= image_tag "victory-3.jpg"
+              h3.name Legislação ambiental pra quem?
+              p.text
+                |Ao lado do GAEMA (divisão do Ministério Público responsável por Meio Ambiente) e com o apoio de 7.000 pessoas que assinaram a petição em poucas horas, tiramos de pauta o projeto de lei do Governo que eliminaria as proteções mais importantes ao meio ambiente da legislação do Rio.  
+              span.signatures 7.093
+              span.text Assinaturas
+
+            li.project
+              .image= image_tag "victory-1.jpg"
+              h3 Ficha Limpa Estadual
+              p.text
+                |Resgatamos um projeto de lei e uma proposta de emenda constitucional que estavam engavetados há meses na Alerj. Graças à participação dos membros do Meu Rio dentro e fora da Assembleia, conseguimos a aprovação da Lei da Ficha Limpa Estadual por unanimidade! 
+              span.signatures 1.995
+              span.text Assinaturas
+.container#panel-4.lightgreen
+  .scroll
+    .mr-panel
+      .row
+        .our_platforms
+          h2 Nossas plataformas de mobilização 
+          .text
+            = link_to image_tag("platforms.png"), 'http://www.meurio.org.br/paginas/sobre_nos'
+  
+/.container#panel-5.gray
+  .scroll
+    .mr-panel
+      .row
+        .more_contributors
+          h2 Mais financiadores, mais mobilizações, mais recompensas! 
+          .text
+            = image_tag "rewards.png"
+
+/.container#panel-6.lightgreen
+  .scroll
+    .panel
+      .row
+        .the_crowd
+          h2 1.000 apoiadores ou mais
+          .text
+            p= image_tag 'panel-crowd-text.png'
+            p &nbsp;
+/.container#panel-7.gray
+  .scroll
+    .panel
+      .row
+        .our_colaborators
+          h2 Nossos novos apoiadores
+          .text
+            ul.subscribers
+              - @project.non_anonymous_subscribers.pluck(:name).each do |name|
+                li= name
+        .our_contributors
+          h2 Nossos primeiros apoiadores
+          .text 
+            ul.subscribers
+              - initial_colaborators.each do |name|
+                li= name
+
+

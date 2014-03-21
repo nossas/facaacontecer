@@ -173,6 +173,8 @@ GEM
     simple_form (3.0.1)
       actionpack (>= 4.0.0, < 4.1)
       activemodel (>= 4.0.0, < 4.1)
+    skrollr-rails (0.6.21)
+      rails (>= 3.1.0)
     slim (2.0.2)
       temple (~> 0.6.6)
       tilt (>= 1.3.3, < 2.1)
@@ -246,6 +248,7 @@ DEPENDENCIES
   selenium-webdriver
   shoulda
   simple_form
+  skrollr-rails
   slim-rails
   state_machine
   uglifier

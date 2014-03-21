@@ -36,7 +36,7 @@ html[ng-app='facaAcontecerApp']
       script[src="https://html5shiv.googlecode.com/svn/trunk/html5.js"]
       
   body[class=controller.controller_name.downcase ng-view]
-    = meurio_header_for :apoie
+    = render 'layouts/header'
     = yield
     = render 'layouts/footer'
     #fb-root

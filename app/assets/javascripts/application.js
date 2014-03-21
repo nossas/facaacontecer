@@ -14,17 +14,18 @@
 //= require jquery_ujs
 //= require foundation
 //= require meurio_ui
-
+//= require skrollr
+//= require skrollr.ie
 //= require jquery.inputmask
 
 //= require angular
 //= require angular-resource
-//= require angular-animate
 //= require facaacontecerApp
 //= require_tree ./angular
 //
 $(function(){ $(document).foundation(); });
 
+var parallax = skrollr.init();
 
 Apoie = {};
 
