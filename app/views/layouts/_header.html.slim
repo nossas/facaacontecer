@@ -2,8 +2,7 @@ header#header
   .meurio= image_tag "meurio.png", class: :meurio_logo
   .row
     .large-7.columns
-      h2
-        | Faça Acontecer
+      = link_to image_tag("logo.png"), root_path, class: :logo
 
     .large-5.columns
       - if current_page? root_path
