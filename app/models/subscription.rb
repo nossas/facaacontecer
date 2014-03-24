@@ -38,13 +38,6 @@ class Subscription < ActiveRecord::Base
   validates_inclusion_of :bank, in: ALLOWED_BANKS, allow_blank: true, allow_nil: true
   
 
-  # Scope for completed payments
-  scope :raised,     -> { where(state: :active).select('distinct user_id') }
-  scope :bankslips,  -> { where(payment_option: :boleto) }
-  scope :creditcard, -> { where(payment_option: :creditcard) }
-  scope :active,     -> { joins(:payments).where("payments.paid_at > ?", Time.now - 1.month) }
-
-
   # Saving the code
   before_validation :generate_unique_code
 
