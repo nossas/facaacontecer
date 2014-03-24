@@ -1,16 +1,16 @@
 # Initializing module
 module Business
   module Payer
-    include Subscriber
+    include SubscriberBusiness
   end
 
   module Slip 
-    include Payment
-    include PaymentSlip
+    include PaymentBusiness
+    include PaymentSlipBusiness
   end
 
   module BankDebit
-    include Payment
-    include PaymentBankDebit
+    include PaymentBusiness
+    include PaymentBankDebitBusiness
   end
 end

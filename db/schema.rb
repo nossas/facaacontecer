@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140321182849) do
+ActiveRecord::Schema.define(version: 20140321234642) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 20140321182849) do
   add_index "invites", ["code", "user_id"], name: "index_invites_on_code_and_user_id", unique: true, using: :btree
   add_index "invites", ["user_id", "parent_user_id"], name: "index_invites_on_user_id_and_parent_user_id", using: :btree
 
-  create_table "payment_instructions", force: true do |t|
+  create_table "payments", force: true do |t|
     t.string   "code"
     t.integer  "subscription_id"
     t.string   "status"
@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 20140321182849) do
     t.string   "sequence"
   end
 
-  add_index "payment_instructions", ["subscription_id"], name: "index_payment_instructions_on_subscription_id", using: :btree
+  add_index "payments", ["subscription_id"], name: "index_payments_on_subscription_id", using: :btree
 
   create_table "projects", force: true do |t|
     t.string   "title"

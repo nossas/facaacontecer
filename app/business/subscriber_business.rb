@@ -1,6 +1,6 @@
 # This module handles all business/payment logic that 
 # belongs to subscribers.
-module Subscriber
+module SubscriberBusiness
   extend ActiveSupport::Concern
 
 

@@ -1,4 +1,4 @@
-module PaymentSlip
+module PaymentSlipBusiness
   extend ActiveSupport::Concern
 
   included do

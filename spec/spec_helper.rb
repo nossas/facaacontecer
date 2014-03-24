@@ -4,6 +4,7 @@ ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
+require 'sidekiq/testing'
 require 'vcr'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
@@ -16,7 +17,6 @@ VCR.configure do |c|
   c.hook_into :webmock
   c.configure_rspec_metadata!
 end
-
 
 RSpec.configure do |config|
 
@@ -46,17 +46,19 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = "random"
-
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.clean_with(:truncation)
   end
 
   config.before(:each) do
+    Sidekiq::Worker.clear_all
     DatabaseCleaner.start
   end
 
   config.after(:each) do
     DatabaseCleaner.clean
   end
+
+
 end

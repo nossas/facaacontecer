@@ -30,9 +30,16 @@ end
 Fabricator(:subscription) do
   project 
   value 17
-  state { "waiting" } 
   user { Fabricate(:user) } 
   plan "monthly"
   bank { "itau" }
   payment_option { "creditcard" }
+end
+
+
+Fabricator(:payment) do
+  subscription
+  url { "" }
+  expires_at { }
+
 end

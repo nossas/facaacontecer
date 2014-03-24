@@ -4,7 +4,7 @@ describe Subscription do
   context "association" do
     it { should belong_to :project }
     it { should belong_to :user }
-    it { should have_many :payment_instructions }
+    it { should have_many :payments }
   end
 
   context "validations" do
@@ -33,6 +33,16 @@ describe Subscription do
       expect(Subscription.new(payment_option: 'debit', bank: 'itau')).to have(0).error_on(:bank)
     end
 
+  end
+
+
+  context "#worker" do
+
+    before { @subscription = Fabricate(:subscription, payment_option: 'slip') }
+
+    it "should have called SubscriptionWorker after_create event" do
+      expect(SubscriptionWorker.jobs.size).to eq(1) 
+    end
   end
 
 

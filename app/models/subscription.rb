@@ -1,8 +1,15 @@
 # coding: utf-8
 class Subscription < ActiveRecord::Base
-    
+
   # located @ app/states/
   include SubscriptionState
+
+
+  # This file holds all CALLBACKS that belongs to subscription's objects
+  # located @ app/observers/
+  include SubscriptionObserver
+
+
 
   # Allowed subscription plans & Allowed payment options
   ALLOWED_PLANS     = %w(monthly biannual annual)
@@ -14,7 +21,7 @@ class Subscription < ActiveRecord::Base
   belongs_to :user, inverse_of: :subscriptions
 
   # Now we're recording payment instructions
-  has_many :payment_instructions
+  has_many :payments
 
   # This attributes should be present when creating an order
   validates_presence_of :value, :project, :user, :payment_option, :plan
@@ -25,17 +32,17 @@ class Subscription < ActiveRecord::Base
   # Check if the payment_option is in the allowed payments
   validates_inclusion_of :plan, in: ALLOWED_PLANS
   validates_inclusion_of :payment_option, in: ALLOWED_PAYMENTS
+
+
+  # Allowing nil or blank when payment_option is creditcard
   validates_inclusion_of :bank, in: ALLOWED_BANKS, allow_blank: true, allow_nil: true
   
-  # TODO:
-  # BITMASK options for subscription's payment_option
-  # bitmask :payment_option, as: [:boleto, :cartao, :debito], null: false
 
   # Scope for completed payments
   scope :raised,     -> { where(state: :active).select('distinct user_id') }
   scope :bankslips,  -> { where(payment_option: :boleto) }
   scope :creditcard, -> { where(payment_option: :creditcard) }
-  scope :active,     -> { joins(:payment_instructions).where("payment_instructions.paid_at > ?", Time.now - 1.month) }
+  scope :active,     -> { joins(:payments).where("payments.paid_at > ?", Time.now - 1.month) }
 
 
   # Saving the code
@@ -50,6 +57,10 @@ class Subscription < ActiveRecord::Base
     self.payment_option == 'debit'
   end
 
+  def slip?
+    self.payment_option == 'slip'
+  end
+
   def cartao
     # Cartao is handled by the Moip's JavaScript Library
     # Go check app/assets/javascripts
@@ -59,7 +70,7 @@ class Subscription < ActiveRecord::Base
   # Extending some business logic inside method calls
   def boleto
     return false unless payment_option == 'slip'
-    # Located @ app/business/payment_slip.rb
+    # Located @ app/business/payment_slip_business.rb
     extend Business::Slip
   end
 
@@ -67,7 +78,7 @@ class Subscription < ActiveRecord::Base
   # Extending some business logic inside method calls
   def debito
     return false unless payment_option == 'debit'
-    # Located @ app/business/payment_bank_debit.rb
+    # Located @ app/business/payment_bank_debit_business.rb
     extend Business::BankDebit
   end
 

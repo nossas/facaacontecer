@@ -1,4 +1,4 @@
-module PaymentBankDebit
+module PaymentBankDebitBusiness
   extend ActiveSupport::Concern
 
 

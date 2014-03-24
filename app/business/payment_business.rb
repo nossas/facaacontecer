@@ -1,4 +1,4 @@
-module Payment
+module PaymentBusiness
   extend ActiveSupport::Concern
 
   included do

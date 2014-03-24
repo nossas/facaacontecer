@@ -3,20 +3,29 @@ Feature: Show that my payment was created or not
   as an user
   I want to see a message that my payment was created
 
+  Background: 
+    Given the following project:
+      | title | Projeto |
+      | goal  | 450000  |
+      | description | New desc | 
+      | expiration_date | 22/10/2020 |
 
 
-
-  Scenario Outline: A user subscribes using boleto|debit
-    Given I subscribed using <payment>
-    And I'm in the edit subscriber path
+  @vcr
+  Scenario Outline: A user subscribes using boleto
+    Given I am in the root path 
+    And I click on Contribuir!
+    And I subscribe using <payment>
     And I should see "<waiting_message>"
     And the subscription status should be <status>
-    When I reload the page after 5 seconds
-    Then I should be on the subscriber_path
-    And I should see <final_message>
+    When I reload the subscription page
+    Then I should see <count> payments in the database
+    And the subscription status should be <final_status>
+    And I should see "<final_message>"
     And I should see the subscription <payment> url
     Examples:
-      | payment | status | waiting_message | final_message |
+      |count | payment | status      | final_status | waiting_message                                    | final_message |
+      |1     | boleto  | processing  | waiting      | Aguarde, estamos gerando o link para o seu boleto. | ops           |      
 
 
 

@@ -14,7 +14,7 @@ pt-BR:
       message:
         debit: "Aguarde, estamos gerando o link para o seu banco."
         creditcard: "Aguarde, estamos processando o pagamento."
-        slip: "Aguarde, estamos gerando seu boleto."
+        slip: "Aguarde, estamos gerando o link para o seu boleto."
 
 
 

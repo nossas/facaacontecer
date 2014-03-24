@@ -16,18 +16,10 @@ class UsersController < ApplicationController
 
   # POST /users/
   def create
-    return render :edit if @user.save
+    return render :new unless @user.save
+    redirect_to subscription_path(@user.subscriptions.last)
   end
 
-
-  # PATCH /users/:id
-  def update
-    render :edit
-  end
-
-
-  # GET /obrigado/:id
-  def thanks; end
 
   private
   def user_params 

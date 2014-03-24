@@ -9,6 +9,7 @@ gem 'rails', '~> 4.0.3'
 # Server related gems
 gem 'foreman'  # Start the server using `foreman start`
 gem 'puma'      
+gem 'sidekiq'  # Using sidekiq to perform delayed jobs
 
 # Database-related gems
 gem 'pg'
@@ -18,7 +19,7 @@ gem 'before_actions'
 
 # Template-related gems
 gem 'simple_form'
-gem 'slim-rails'
+gem 'slim-rails'       # Template engine
 gem 'active_decorator' # To be removed soon
 
 
@@ -53,7 +54,7 @@ gem 'uglifier'
 gem 'angularjs-rails'
 gem 'jquery-inputmask-rails'
 gem 'foundation-rails', '~> 5.1.1.0'
-gem 'skrollr-rails'
+gem 'skrollr-rails' 
 
 # MeuRio UI related gems
 gem 'gravatar_image_tag'
@@ -64,11 +65,17 @@ gem 'meurio_ui', '~> 1.4.1'
 group :production do
   gem 'newrelic_rpm' 
   gem 'rails_12factor'
+  
+  # Using autoscaler on heroku, so we can turn off workers if not being used.
+  # See https://github.com/JustinLove/autoscaler
+  # See http://manuel.manuelles.nl/blog/2012/11/13/scalable-heroku-worker-for-sidekiq/
+  gem 'autoscaler'
 end
 
 
 group :development, :test do
   gem 'rspec-rails'
+  gem 'colorize'
 
 end
 
