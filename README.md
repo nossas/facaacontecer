@@ -1,5 +1,5 @@
 # Faça Acontecer
-A selfstarter based project
+Plataforma de crowdfunding para campanhas. Inspirado pelo Selfstarter!
 
 [![Build Status](https://travis-ci.org/meurio/facaacontecer.png?branch=master)](https://travis-ci.org/meurio/facaacontecer)
 [![Code Climate](https://codeclimate.com/github/meurio/facaacontecer.png)](https://codeclimate.com/github/meurio/facaacontecer)
