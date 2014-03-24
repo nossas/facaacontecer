@@ -4,7 +4,6 @@ class Subscription < ActiveRecord::Base
   # located @ app/states/
   include SubscriptionState
 
-
   # This file holds all CALLBACKS that belongs to subscription's objects
   # located @ app/observers/
   include SubscriptionObserver

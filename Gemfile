@@ -85,7 +85,9 @@ group :test do
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
   gem 'shoulda'
-  gem 'cpf_cnpj'
+  gem 'cpf_cnpj'  # Allow the testing/generation of CPFs
+  gem "codeclimate-test-reporter", require: nil
+  
   # Mocking HTTP requests using VCR
   gem 'vcr'
   gem 'webmock'

@@ -9,7 +9,7 @@ before_script:
   - "sh -e /etc/init.d/xvfb start"
 
 env:
-  - DISPLAY=:99.0 MYMOIP_TOKEN="4WV0YFD94HGZS9QSL8NU1LIPUYQELTGO" MYMOIP_KEY="YUSNOJ3UWDS3CMDYCV8OKIX2MF7MOM6AUGMZVZ6X"
+  - DISPLAY=:99.0 MYMOIP_TOKEN="4WV0YFD94HGZS9QSL8NU1LIPUYQELTGO" MYMOIP_KEY="YUSNOJ3UWDS3CMDYCV8OKIX2MF7MOM6AUGMZVZ6X" CODECLIMATE_REPO_TOKEN="c24111fa7e8ab6d16d7f000b9c73cc32583c4403241fba7f6da3c8146d75ed59"
 
 # uncomment this line if your project needs to run something other than `rake`:
 script: "bundle exec rake db:migrate RAILS_ENV=test && bundle exec rspec spec"
