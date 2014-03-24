@@ -9,7 +9,7 @@ gem 'rails', '~> 4.0.3'
 # Server related gems
 gem 'foreman'  # Start the server using `foreman start`
 gem 'puma'      
-gem 'sidekiq'  # Using sidekiq to perform delayed jobs
+gem 'sidekiq'  # Using sidekiq to perform delayed jobs. LOVE.
 
 # Database-related gems
 gem 'pg'
@@ -33,17 +33,10 @@ gem 'state_machine'
 gem 'mymoip'                    # ~>  https://github.com/Irio/mymoip
 
 
-# We will also use httparty with our workers
-gem 'httparty' # To be checked
-
 
 # Model-validation related gems
 gem "cpf_validator"                   # validate cpfs
 gem 'validates_timeliness', '~> 3.0'  # validate dates/intervals
-
-
-# Worker related gems
-gem 'delayed_job_active_record' # to be removed
 
 
 # Assets related gems
@@ -88,7 +81,7 @@ group :test do
   gem 'cpf_cnpj'  # Allow the testing/generation of CPFs
   gem "codeclimate-test-reporter", require: nil
   
-  # Mocking HTTP requests using VCR
+  # Mocking HTTP requests using VCR + Webmock
   gem 'vcr'
   gem 'webmock'
 end
