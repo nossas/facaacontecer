@@ -41,7 +41,7 @@ pt-BR:
         birthday: "Data de nascimento"
         email: "Email"
         cpf:  "CPF"
-        phone: "Telefone"
+        phone: "Celular"
         address_street: "Endereço"
         address_extra: "Complemento"
         address_number: "Número"

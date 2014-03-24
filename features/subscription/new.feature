@@ -26,7 +26,7 @@ Feature: New subscription for the current campaign
     And I fill in CPF with "<cpf>"
     And I fill in Data de nascimento with "<birthday>"
     And I fill in Email with "<email>"
-    And I fill in Telefone with "<phone>"
+    And I fill in Celular with "<phone>"
     And I choose "<value>" for "Qual o valor?"
     And I choose "<payment_option>" for "Qual a forma de pagamento?"
     And I choose "<bank>" for "Qual seu banco?"

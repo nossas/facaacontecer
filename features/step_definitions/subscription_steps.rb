@@ -41,7 +41,7 @@ Given(/^I subscribe using (.*?)$/) do |payment|
       And I fill in CPF with "919.133.769-07"
       And I fill in Data de nascimento with "13/11/1980"
       And I fill in Email with "email@email.com"
-      And I fill in Telefone with "(55) 21122-2123"
+      And I fill in Celular with "(55) 21122-2123"
       And I choose "R$ 90" for "Qual o valor?"
       And I choose "Boleto" for "Qual a forma de pagamento?"
       And I select "Semestral" for "Frequência de pagamento"

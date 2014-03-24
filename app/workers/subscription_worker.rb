@@ -29,8 +29,9 @@ class SubscriptionWorker
   end
 
   def create_payment_instruction(url)
-    @subscription.payments.create(url: url)
-    @subscription.wait_confirmation!
+    if @subscription.payments.create(url: url)
+      @subscription.wait_confirmation!
+    end
   end
 
 

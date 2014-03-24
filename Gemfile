@@ -76,7 +76,7 @@ end
 group :development, :test do
   gem 'rspec-rails'
   gem 'colorize'
-
+  gem 'sinatra', :require => nil
 end
 
 group :test do

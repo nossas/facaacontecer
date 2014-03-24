@@ -1,22 +1,14 @@
+require 'sidekiq/web'
 Selfstarter::Application.routes.draw do
 
+
   root :to => 'projects#index'
-
-
-  # Isolating subscription routes
-  concern :subscriptable do
-    member do 
-      get :confirming
-    end
-  end
-
-
-
   
   resources :users, except: [:destroy, :update]
-  resources :subscriptions, except: [:destroy], concerns: [:subscriptable]
+  resources :subscriptions, only: [:show, :edit]
+  resources :payments, only: [:show]
 
-
+  mount Sidekiq::Web => '/sidekiq'
 
 
 
