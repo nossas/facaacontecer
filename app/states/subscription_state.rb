@@ -34,8 +34,9 @@ module SubscriptionState
 
       event(:start)             { transition :created => :processing  } 
       event(:wait_confirmation) { transition :processing => :waiting  }
-      event(:cancel)            { transition all => :cancel           }
-      event(:activate)          { transition all => :active           }
+      event(:pause)             { transition any => :paused           }
+      event(:cancel)            { transition any => :cancel           }
+      event(:activate)          { transition any => :active           }
     end
   end
 end

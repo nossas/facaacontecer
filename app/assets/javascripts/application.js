@@ -23,7 +23,6 @@
 //= require facaacontecerApp
 //= require_tree ./angular
 //
-$(function(){ $(document).foundation(); });
 
 var parallax = skrollr.init();
 
@@ -43,12 +42,12 @@ Apoie = {
   
   // Start all input masks;
   renderInputMasks: function() {
-    $('.expiration-mask').inputmask('99/9999');
-    $('.date-mask').inputmask('99/99/9999');
-    $('.zipcode-mask').inputmask('99.999-999');
-    $('.cpf-mask').inputmask('999.999.999-99');
-    $('.phone-mask').inputmask('(99) 9999[9]-9999');
-    $('.creditcard-mask').inputmask('9999-9999-9999-9999');
+    $('.expiration-mask').inputmask('99/9999',{ "clearIncomplete": true });
+    $('.date-mask').inputmask('99/99/9999', { "clearIncomplete": true });
+    $('.zipcode-mask').inputmask('99.999-999', { "clearIncomplete": true });
+    $('.cpf-mask').inputmask('999.999.999-99', { "clearIncomplete": true });
+    $('.phone-mask').inputmask('(99) 9999[9]-9999', { "clearIncomplete": true });
+    $('.creditcard-mask').inputmask('9999-9999-9999-9999', { "clearIncomplete": true });
 
 
   },
@@ -112,3 +111,4 @@ Apoie = {
 
 Apoie.initialize();
 
+$(function(){ $(document).foundation(); });

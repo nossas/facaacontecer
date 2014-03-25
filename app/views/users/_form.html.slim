@@ -3,7 +3,7 @@
   section.form-wrap
     header
     .subscription-form.large-12.columns
-      = simple_form_for @user do |usr|
+      = simple_form_for @user, html: { "data-abide" => true } do |usr|
 
         //pre
           = @user.errors.messages.inspect
@@ -14,12 +14,12 @@
           // Personal fields for the subscriber
           .large-12.columns
             h3 Insira seus dados pessoais
-          .large-3.columns= usr.input :first_name
-          .large-3.columns= usr.input :last_name
-          .large-3.columns= usr.input :cpf, input_html: { class: 'cpf-mask'  }
-          .large-3.columns= usr.input :birthday, as: :string, input_html: { class: 'date-mask' }
-          .large-5.columns= usr.input :email
-          .large-3.columns.end= usr.input :phone, input_html: { class: 'phone-mask' }
+          .large-3.columns= usr.input :first_name, input_html: { required: true } 
+          .large-3.columns= usr.input :last_name, input_html: { required: true }
+          .large-3.columns= usr.input :cpf, input_html: { class: 'cpf-mask', required: true  }
+          .large-3.columns= usr.input :birthday, as: :string, input_html: { class: 'date-mask', required: true }
+          .large-5.columns= usr.input :email, input_html: { required: true }
+          .large-3.columns.end= usr.input :phone, input_html: { class: 'phone-mask', required: true }
 
 
         = usr.simple_fields_for :subscriptions do |sub|
@@ -76,7 +76,7 @@
                 |Qual a forma de pagamento?
 
               // available_payment_options: application_helper
-              = sub.input :payment_option, as: :radio_buttons, collection: available_payment_options 
+              = sub.input :payment_option, as: :radio_buttons, collection: available_payment_options, input_html: { required: true }
 
 
 
@@ -115,14 +115,14 @@
           .large-12.columns
             .row
               .large-3.columns
-                = usr.input :zipcode, input_html: { class: 'zipcode-mask', "ng-model" => "zipcode", "ng-blur" => 'getZipcodeData()' } 
+                = usr.input :zipcode, input_html: { required: true, class: 'zipcode-mask', "ng-model" => "zipcode", "ng-blur" => 'getZipcodeData()' } 
 
 
-          .large-5.columns= usr.input :address_street, input_html: { "ng-model" => "address_street" }
-          .large-2.columns= usr.input :address_number
-          .large-4.columns= usr.input :address_extra
-          .large-3.columns= usr.input :address_district, input_html: { "ng-model" => "address_district" }
-          .large-3.columns= usr.input :city, input_html: { "ng-model" => "city" }
+          .large-5.columns= usr.input :address_street, input_html: { required: true, "ng-model" => "address_street" }
+          .large-2.columns= usr.input :address_number, input_html: { required: true }
+          .large-4.columns= usr.input :address_extra, input_html: { required: true }
+          .large-3.columns= usr.input :address_district, input_html: { required: true, "ng-model" => "address_district" }
+          .large-3.columns= usr.input :city, input_html: { required: true, "ng-model" => "city" }
           
             
           // address_states located @ application_helper
