@@ -1,39 +1,46 @@
 # Faça Acontecer
-A selfstarter based project
+Plataforma de crowdfunding para campanhas. Inspirado pelo Selfstarter!
 
 [![Build Status](https://travis-ci.org/meurio/facaacontecer.png?branch=master)](https://travis-ci.org/meurio/facaacontecer)
 [![Code Climate](https://codeclimate.com/github/meurio/facaacontecer.png)](https://codeclimate.com/github/meurio/facaacontecer)
-[![Coverage Status](https://coveralls.io/repos/meurio/facaacontecer/badge.png?branch=master)](https://coveralls.io/r/meurio/facaacontecer)
+[![Coverage](https://codeclimate.com/github/meurio/facaacontecer/coverage.png)](https://codeclimate.com/github/meurio/facaacontecer)
+
+## Este projeto
+
+- Livremente inspirado pelo [Selfstarter](https://github.com/lockitron/selfstarter). 
+- Os commits iniciais do Selfstarter foram preservados.
+- Depende do MoIP Assinaturas, veja: http://site.moip.com.br/assinaturas/
+- Depende da Gem MYMOIP.
+- Fora o README, está tudo em inglês.
+
+## Rodando o projeto
+
+- Ruby 2.1.0, não há suporte para versões anteriores.
+- PostgreSQL. Você precisa ter instalado na sua máquina
+- Rails 4.0.3 ou superior.
+- Firefox, pra rodar os testes de integração.
+- APIs do MoIP (`http://sandbox.moip.com.br`)
+
+## Organização
+
+Pra evitar muita complexidade desnecessária, o código na aplicação foi "decoupled" em várias partes menores reaproveitáveis, graças ao uso constante de Concerns.
+
+- `App/business` - é onde se concentra toda a lógica de negócios dos modelos. 3rd-party APIs, calculos, etc. devem ficar aqui. E são isolados em methods dentro dos modelos (facilitando o teste).
+- `App/observers` - é onde se concentra toda a lógica que acompanha callbacks. Se você precisa fazer uma ação after_create, before_validation, before_*; é aqui que deve ficar.
+- `App/workers` - é onde se concentram os workers, que utilizando o Sidekiq, operam de forma assincrona e em conjunto com os `Observers`. (praticamente todo callback é child de um observer - exceto os de notificação)
+- `App/scopes`  - é onde ficam concentrados os scopes dos modelos. Pra evitar que o modelo ficasse ilegível, foi optado pela separação.
+- `App/states`  - é onde ficam as definições de estado. Utilizando `state_machine`, objetos são transicionados de um estado para o outro.
+- `App/validators` - o nome já diz o suficiente. Coloque os validators personalizados aqui; não no modelo.
+
+## Pull requests
+
+São muito bem vindas. Crie testes e é só enviar :)
 
 
-## This project
+## Fork
 
-- Couldn't be possible without the guys from [Selfstarter](https://github.com/lockitron/selfstarter). 
-- The origin was preserved (including the name of the app, git commits), but with huge adaptations for the Brazilian reality.
-- Is heavilly dependent on Moip Assinaturas. Go check at: http://site.moip.com.br/assinaturas/
-- It's in English. Universal language, you know.
+Você é livre pra fazer o que quiser com o código. Desde que cite a origem (este repositório) ou até mesmo mande um email dizendo "ei galera, to usando!".
 
-## What do you need to run?
-
-- Ruby 1.9.3+ I'll migrate it to ruby 2.0 soon, so don't expect 1.9.3 support in future releases.
-- Rails 3.2.13 or greater. Note that a Rails 4.0 update is planned, so things will break for sure. And don't expect support for 3.2.13 in the future.
-- Always keep your code updated, because I'll only move forward.
-- SQLite for development, for now. But in the future, the schema will be plain and good SQL for postgres.
-- Linux. You'll have a headache using windows. Trust me.
-
-
-## Initial Roadmap
-
-### Highest
-- Improve tests. We have a slow coverage now (only 76%).
-- Cucumber specs, to check the form
-- Jasmine specs, to check javascripts
-- An admin to create Project or Projects.
-
-### Minor
-- A way to get webhooks from moip after order submits.
-- An admin/dashboard to check current progress, social engagement and clicks.
-- Improve form, because hidden labels can lead to misinterpretation.
 
 ## Thanks
 - The guys and inspiration from [Selfstarter](https://selfstarter.us).
