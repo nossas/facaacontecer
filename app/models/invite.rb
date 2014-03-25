@@ -1,7 +1,4 @@
 class Invite < ActiveRecord::Base
-  # deprecated:
-  #attr_accessible
-
   belongs_to :user
   belongs_to :host, class_name: :User, foreign_key: :parent_user_id
 

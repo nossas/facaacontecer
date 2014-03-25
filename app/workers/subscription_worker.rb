@@ -1,5 +1,15 @@
 class SubscriptionWorker 
   include Sidekiq::Worker
+  sidekiq_options retry: 2
+
+
+  # Warn the tech team when a sidekiq job fails twice
+
+  sidekiq_retries_exhausted do |msg|
+    #TODO: send email to tech@meurio.org.br
+    Sidekiq.logger.warn "ATTENTION: Failed #{msg['class']} with #{msg['args']}: #{msg['error_message']}"
+  end
+
 
 
 
