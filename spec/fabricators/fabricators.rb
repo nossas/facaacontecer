@@ -29,7 +29,7 @@ end
 
 Fabricator(:subscription) do
   project 
-  value 17
+  value { 30 }
   user { Fabricate(:user) } 
   plan "monthly"
   bank { "itau" }

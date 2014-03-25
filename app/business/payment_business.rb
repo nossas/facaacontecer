@@ -6,7 +6,9 @@ module PaymentBusiness
     # Default instruction object
     def instruction 
       MyMoip::Instruction.new(
-        id:             code,
+        # generate an unique identifier for this instruction
+        # adding _payment suffix to it.
+        id:             "#{code}PAYMENT",
         payment_reason: "Doação para o MeuRio - http://meurio.org.br - #{payment_option}",
         values:         [value],
         payer:          user.business.build_payer

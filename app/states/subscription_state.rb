@@ -32,8 +32,10 @@ module SubscriptionState
 
     state_machine initial: :created do
 
-      event(:start)             { transition :created => :processing } 
-      event(:wait_confirmation) { transition :processing => :waiting }
+      event(:start)             { transition :created => :processing  } 
+      event(:wait_confirmation) { transition :processing => :waiting  }
+      event(:cancel)            { transition all => :cancel           }
+      event(:activate)          { transition all => :active           }
     end
   end
 end

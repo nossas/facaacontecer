@@ -1,19 +1,22 @@
 require 'sidekiq/web'
 Selfstarter::Application.routes.draw do
 
+  mount Sidekiq::Web => '/sidekiq'
 
   root :to => 'projects#index'
-  
+
+
   resources :users, except: [:destroy, :update]
   resources :subscriptions, only: [:show, :edit]
   resources :payments, only: [:show]
 
-  mount Sidekiq::Web => '/sidekiq'
 
 
 
 
-
+  namespace :notifications do
+    resources :payments, only: [:create]
+  end
 
   
   get '/invite/:code',                to: "projects#index",     as: :invite

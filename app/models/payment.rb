@@ -1,15 +1,20 @@
 class Payment < ActiveRecord::Base
+
+
+  # Located @ app/states/payment_state.rb
+  include PaymentState
+
+  # Located @ app/observers/payment_observer.rb
+  include PaymentObserver
+
+  # Associations
   belongs_to :subscription
 
-  delegate :user, to: :subscription, allow_nil: true
+  # Access the subscription's user directly, using the subscription object
+  delegate :user, to: :subscription
+ 
 
-  
+  # Validates the presence of these fields
   validates_presence_of :subscription
 
-
-
-  scope :by_month, ->(month) { 
-    where("extract(month from paid_at) = ? 
-          AND status IN ('done', 'authorized') ", month) 
-  }
 end
