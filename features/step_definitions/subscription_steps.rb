@@ -69,7 +69,7 @@ end
 
 Then(/^I should see the subscription boleto url$/) do
   if sub = Subscription.last
-    page.should have_content(sub.payments.last.url)
+    page.should have_xpath("//a[@href=\"#{sub.payments.last.url}\"]")
   else
     raise "Couldn't find subscription".white.on_red
   end

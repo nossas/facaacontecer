@@ -10,6 +10,10 @@ pt-BR:
     send_bank_slips: "Enviar boletos"
   
   subscriptions:
+    payments:
+      slip: "Boleto"
+      debit: "Débito"
+      creditcard: "Cartão de crédito"
     success:
       message:
         debit: "Aguarde, estamos gerando o link para o seu banco."

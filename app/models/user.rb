@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   has_one   :invite,        dependent: :destroy
   has_many  :invitees,      class_name: :Invite, foreign_key: :parent_user_id
   has_many  :subscriptions, dependent: :destroy, inverse_of: :user
+  has_many  :payments,      through: :subscriptions
+
 
   # Validates if a CPF is valid/invalid
   validates :cpf, cpf: true

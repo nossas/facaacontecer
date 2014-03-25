@@ -1,2 +1,19 @@
-h1 ops
-= link_to @payment.url, @payment.url
+.row
+  section.large-10.large-centered.columns.confirming
+    header
+      h2
+        | #{@payment.user.first_name}, obrigado por fazer o Meu Rio acontecer!
+      article
+        p
+          | Dentro de instantes, você receberá um email com nossa prestação de contas 
+          | e detalhes das celebrações especiais que preparamos para nossos 
+          | financiadores e voluntários.
+
+        p
+          br
+
+          - if @payment.subscription.slip?
+            = link_to "Clique para imprimir seu boleto", @payment.url, class: :button, target: '_blank'
+          - elsif @payment.subscription.debit?
+            = link_to "Clique para ir para o site do seu banco", @payment.url, class: :button, target: '_blank'
+
