@@ -1,4 +1,4 @@
-require 'sidekiq/web'
+#require 'sidekiq/web'
 Selfstarter::Application.routes.draw do
 
   
