@@ -69,6 +69,8 @@ end
 group :development, :test do
   gem 'rspec-rails'
   gem 'colorize'
+  # required by sidekiq
+  # gem 'sinatra', :require => nil
 end
 
 group :test do
