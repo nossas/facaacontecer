@@ -13,7 +13,9 @@ class Notifications::PaymentsController < ApplicationController
 
   # POST /notifications/payments
   def create
-    @payment.send(_params[:state])
+
+    # using the mapped :state param as a state call.
+    @payment.send(_params[:state].to_s)
     render_nothing_with_status(302)
   end
 

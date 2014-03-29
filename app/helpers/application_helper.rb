@@ -16,7 +16,7 @@ module ApplicationHelper
   end
 
   def available_monthly_plans
-    [['R$ 17', 17], ['R$ 30', 30], ['R$ 50', 50], ['R$ 100 ', 100]]
+    [['R$ 15', 15], ['R$ 30', 30], ['R$ 50', 50], ['R$ 100', 100]]
   end
 
 

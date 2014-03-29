@@ -16,23 +16,75 @@ describe Notifications::PaymentsController do
       :status_pagamento   => "4", # finished
       :cod_moip           => "12345678",
       :forma_pagamento    => "3",
-      :tipo_pagamento     => "CartaoDeCredito",
+      :tipo_pagamento     => "BoletoBancario",
       :parcelas           => "1",
       :email_consumidor   => @payment.user.email,
       :classificacao      => "Solicitado pelo vendedor"
     }
+
   end
 
 
+  describe "#states" do
+    subject { @payment.reload }
 
-  context "When a payment instruction is sent with status 'finished'" do
-    before do
-      post :create, @nasp_params
+    context "When a payment instruction is sent with status 'Estornado'" do
+      before do
+        @nasp_params[:status_pagamento] = "7"
+        post :create, @nasp_params
+      end
+
+
+      it { expect(response.status).to eq(302) }
+      its(:subscription) { subject.subscription.state.should == 'paused' }
+      its(:state) { should == 'reversed' }
     end
-    it { expect(response.status).to eq(302) }
-    it { expect(@payment.reload.state).to eq("finished") }
-    it { expect(@payment.subscription.reload.state).to eq("active") }
+
+    context "When a payment instruction is sent with status 'BoletoImpresso'" do 
+      before do
+        @nasp_params[:status_pagamento] = "3"
+        post :create, @nasp_params
+      end
+
+      it { expect(response.status).to eq(302) }
+      its(:subscription) { subject.subscription.state.should == 'waiting' }
+      its(:state) { should == 'printed' }
+
+    end
+
+
+    context "When a payment instruction is sent with status 'Cancelado'" do
+      before do
+        @nasp_params[:status_pagamento] = "5"
+        post :create, @nasp_params
+      end
+
+      it { expect(response.status).to eq(302) }
+      its(:subscription) { subject.subscription.state.should == 'paused' }
+      its(:state) { should == 'cancelled' }
+
+    end
+
+
+
+    context "When a payment instruction is sent with status 'concluído'" do
+
+      before do
+        post :create, @nasp_params
+        Sidekiq::Extensions::DelayedMailer.drain
+      end
+
+      it { expect(response.status).to eq(302) }
+      its(:state) { should == 'finished' } 
+      its(:subscription) { expect(subject.subscription.reload.state).to eq("active") }
+
+      it "should send an PAYMENT APPROVED email to the payer" do
+        expect(ActionMailer::Base.deliveries.last.to).to eq([@payment.user.email])
+      end
+
+    end
+
+
+
   end
-
-
 end

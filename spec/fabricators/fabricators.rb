@@ -33,7 +33,7 @@ Fabricator(:subscription) do
   user { Fabricate(:user) } 
   plan "monthly"
   bank { "itau" }
-  payment_option { "creditcard" }
+  payment_option { "slip" }
 end
 
 

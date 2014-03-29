@@ -9,10 +9,21 @@ module PaymentState
   included do
     state_machine initial: :created do
 
-      event(:start)     { transition :created => :started }
-      event(:print)     { transition all - [:finished, :cancelled] => :printed    }
-      event(:authorize) { transition all - [:finished, :cancelled] => :authorized }
-      event(:wait)      { transition all - [:finished, :cancelled] => :waiting    }
+      event(:start) do
+        transition :created => :started 
+      end
+
+      event(:printing) do
+        transition all - [:finished, :cancelled] => :printed
+      end
+
+      event(:authorize) do 
+        transition all - [:finished, :cancelled] => :authorized
+      end
+
+      event(:wait) do 
+        transition all - [:finished, :cancelled] => :waiting
+      end
 
       # Event: Estorno (reverse)
       event(:reverse)   { transition all - [:cancelled] => :reversed   }
