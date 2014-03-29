@@ -7,13 +7,10 @@ class Project < ActiveRecord::Base
   has_many :subscriptions, dependent: :destroy
 
   # Supporters are the people who supported the campaign with a valid payment token
-  has_many :users, -> { 
-    where(subscriptions: { state: :active }).uniq }, through: :subscriptions
+  has_many :users, -> { where(subscriptions: { state: :active }).uniq }, through: :subscriptions
 
   # Fetches only anonymous subscribers
-  has_many :anonymous_users, -> { 
-    where(subscriptions: { status: :active, anonymous: true }).uniq },
-    through: :subscriptions
+  has_many :anonymous_users, -> { where(subscriptions: { status: :active, anonymous: true }).uniq }, through: :subscriptions
 
   # Attributes that should be present when creating or updating a project
   validates :title, :description, :goal, :expiration_date, presence: true
