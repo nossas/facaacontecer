@@ -26,14 +26,24 @@ module PaymentState
       end
 
       # Event: Estorno (reverse)
-      event(:reverse)   { transition all - [:cancelled] => :reversed   }
+      event(:reverse)   do
+        transition all - [:cancelled] => :reversed
+      end
 
       # Event: Reembolsado (refund)
-      event(:refund)    { transition all - [:cancelled] => :refunded   }
+      event(:refund) do
+        transition all - [:cancelled] => :refunded
+      end
 
+      # Event: Cancelado (cancelled by the payer)
+      event(:cancel) do
+        transition all - [:finished]  => :cancelled
+      end
 
-      event(:cancel)    { transition all - [:finished]  => :cancelled   }
-      event(:finish)    { transition all - [:cancelled] => :finished    } 
+      # Event: Finished (payed)
+      event(:finish) do 
+        transition all - [:cancelled] => :finished
+      end
 
     end
 
