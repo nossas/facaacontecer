@@ -14,6 +14,11 @@ module PaymentObserver
     end
 
 
+    # Deliver an email informing that the payment is being processed
+    def notify_user
+      Notifications::PaymentMailer.delay.processing_payment(self.id)
+    end
+
 
     # After the finish event for a payment, activate the parent subscription
     # And send activated_subscription_email
@@ -37,6 +42,7 @@ module PaymentObserver
       after_transition on: :finish, do: :activate_subscription
       after_transition on: [:reverse, :refund], do: :pause_subscription
       after_transition on: :cancel, do: :pause_subscription
+      after_transition on: :wait, do: :notify_user
     end
   end
 

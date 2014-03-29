@@ -22,7 +22,7 @@ module Notifications::PaymentStatus
       statuses = { 
         "1" => "authorize", # Autorizado, but not yet in the MOIP account
         "2" => "start",     # Payment started
-        "3" => "printing",     # Slip only
+        "3" => "printing",  # Slip only
         "4" => "finish",    # Finalizada, which means money in the pocket (MOIP ACCOUNT)
         "5" => "cancel",    # Cancelada by the payer
         "6" => "wait",      # Awaiting confirmation

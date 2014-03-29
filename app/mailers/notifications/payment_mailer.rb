@@ -11,7 +11,14 @@ class Notifications::PaymentMailer < ActionMailer::Base
   default_url_options[:host] = 'apoie.meurio.org.br'
 
   
+  def processing_payment(id)
+    object(id)
+    mail(
+      to: @payment.user.email,
+      subject: "[MeuRio] Seu pagamento está sendo processado!"
 
+    )
+  end
 
   def finished_payment(id)
     object(id)
