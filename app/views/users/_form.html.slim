@@ -134,4 +134,5 @@
           .large-4.large-centered.columns
             = usr.submit "Contribuir!", class: :animated, data: { disable_with: 'Aguarde...' }
 
-
+javascript:
+  window.$zipcode = "#{@user.zipcode}"

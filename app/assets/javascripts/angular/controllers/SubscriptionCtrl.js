@@ -1,7 +1,6 @@
 facaAcontecerApp.controller('SubscriptionCtrl', function($scope, $http){
       
-
-
+  $scope.zipcode        = window.$zipcode;
 
   $scope.cepApi         = "https://brazilapi.herokuapp.com/api?cep=";
 
@@ -42,4 +41,7 @@ facaAcontecerApp.controller('SubscriptionCtrl', function($scope, $http){
     $scope.cepmessage = '';
   };
 
+
+
+  $scope.getZipcodeData();
 });
