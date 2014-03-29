@@ -9,6 +9,9 @@ module PaymentObserver
     # SETUP an unique code for each payment, after its creation
     # All subscriptions have only integer code
     # All payments have a PAYMENT suffix after the subscription code
+    # E.g.: 
+    #   123456        is the subscription
+    #   123456PAYMENT is the payment
     def setup_code
       self.code = "#{self.subscription.code}PAYMENT"
     end

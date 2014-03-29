@@ -28,6 +28,25 @@ describe Notifications::PaymentsController do
   describe "#states" do
     subject { @payment.reload }
 
+    context "When a payment instruction is sent with status 'EmAnalise'" do
+      before do
+        @nasp_params[:status_pagamento] = '6'
+        post :create, @nasp_params
+        Sidekiq::Extensions::DelayedMailer.drain
+      end
+
+
+      it { expect(response.status).to eq(302) }
+      its(:subscription) { expect(subject.subscription.state).to eq('waiting') }
+      its(:state) { should == 'waiting' }
+      it "should send an PAYMENT PROCESSING email to the payer" do
+        expect(ActionMailer::Base.deliveries.last.to).to eq([@payment.user.email])
+      end
+    end
+
+
+
+
     context "When a payment instruction is sent with status 'Estornado'" do
       before do
         @nasp_params[:status_pagamento] = "7"
