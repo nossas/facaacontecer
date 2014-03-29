@@ -1,3 +1,34 @@
 p
-  | 
-    Seu pagamento foi aprovado.
+  | Olá 
+  strong= @payment.user.first_name
+  |!
+p
+  |Sua contribuição acaba de ser confirmada!
+
+p
+  |Mais uma vez, muito obrigado por ajudar a Rede Meu Rio a construir a cidade que todos nós merecemos. A sua participação é tão importante que precisamos festejá-la.
+
+p
+  |Preparamos algumas experiências exclusivas e muito bacanas com alguns parceiros que têm tudo a ver com a nossa cidade. 
+p
+  |São eventos, descontos, presentes e encontros que foram escolhidos a dedo para você, que faz o Meu Rio acontecer. Acesse #{link_to 'http://eufaco.meurio.org.br', 'http://eufaco.meurio.org.br'} e saiba mais detalhes, e fique de olho no seu e-mail para ter sempre as informações mais atualizadas.
+
+p
+  |Agora, garanta a sua camiseta do Meu Rio chamando seus amigos para financiar a nossa Rede! Se pelo menos um amigo seu doar através do seu link exclusivo, que enviamos logo abaixo, enviaremos a sua camiseta por correio junto com a nossa cartinha de agradecimento.
+
+p
+  strong
+    | Compartilhe o seu link exclusivo por face ou e-mail: 
+  = link_to nil, invite_url(code: "#{@payment.user.invite.code}")
+
+p
+  br
+  br
+  br
+  br
+  br
+  |Muito obrigado!
+
+p
+  |Fernanda, Miguel, Alexandre, Alessandra e toda a equipe Meu Rio.
+

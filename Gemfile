@@ -66,6 +66,12 @@ group :production do
 end
 
 
+
+group :development do
+  gem 'mailcatcher'
+end
+
+
 group :development, :test do
   gem 'rspec-rails'
   gem 'colorize'

@@ -1,0 +1,38 @@
+doctype html
+html
+  head
+    title
+    style
+      | body { max-width: 710px }
+      |p { font-family: "Helvetica", "Arial", sans-serif; font-weight: 300; line-height: 1.4em} 
+      |.gray { color: gray }
+  body
+    = yield
+
+
+
+
+
+    footer
+      br
+      br
+      br
+      p
+        strong
+          |Saiba mais sobre o seu pagamento: 
+      p.gray
+        em
+          | - ID do pagamento: #{@payment.code}
+        br
+        em
+          | - Destinatário: Meu Rio
+        br
+        em
+          | - Identificação na fatura: MOIP/MeuRio
+        br
+        em
+          | - Meio de pagamento: #{t("subscriptions.payments.#{@payment.subscription.payment_option}")}
+        br
+        em
+          | - Valor total: #{number_to_currency(@payment.subscription.value)}
+
