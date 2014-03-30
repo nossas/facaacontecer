@@ -1,6 +1,16 @@
-#successful-message
-  span
-    = t "subscriptions.success.message.#{@subscription.payment_option}"
+#loading.row
+  .large-2.large-centered.columns.text-center
+    = image_tag 'loading.gif'
 
 
 
+#successful-message.row
+  .large-5.large-centered.columns.text-center
+    h4 
+      = t "subscriptions.success.message.#{@subscription.payment_option}"
+
+
+javascript:
+  setInterval(function(){
+    location.reload();
+  }, 2000)

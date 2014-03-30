@@ -1,0 +1,174 @@
+body#users
+  background: $lightgray
+  
+  // Hiding the application menu from the subscriptions page
+  .meurio_apps_and_application_menu
+    display: none
+  // Just a general class
+  .hidden
+    display: none
+
+
+// Form-default styles
+.subscription-form
+  h3
+    margin: 1.5em 0 1em 0
+  input
+    font-size: 1.3em    
+    padding-left: .6em
+
+  .tabs dd
+    margin-right: 2%
+    width: 32%
+    &:last-child
+      margin-right: 0%
+  
+  // Tabs specific styles
+  .tabs dd a
+    text-align: center
+    background: lighten(lightgrey, 5%)
+    color: $gray
+    font-weight: bold
+    +border-radius(6px 6px 0 0)
+    +transition(all .2s)
+    &:hover
+      background: darken($lightgray, 5%)
+  .tabs dd.active a
+    background: white !important
+    +box-shadow(0 -2px 2px lighten(lightgray, 5%))
+
+  .tabs-content
+    margin-top: .1em
+    background: white
+  .tabs-content > .content
+    padding-bottom: 0
+  
+
+
+// The text from each interval box
+.interval-info
+  text-align: center
+  line-height: 1.4em
+  padding-bottom: 1em
+  p
+    font-size: .8em
+    width: 70%
+    margin: 0 auto
+
+
+// Interval box
+.subscription-plan
+
+
+
+// Selecting a subscription value
+.subscription-values
+  background: lighten($blue, 28%)
+  padding: 1em 0
+  
+  .control-label
+    display: none
+  label 
+    display: inline-block
+    background: lighten($blue, 35%)
+    width: 18.5%
+    padding: 1em 0 
+    margin: 1em 3.2%
+    font-size: 2em
+    font-weight: bold
+    vertical-align: middle
+    text-align: center
+    line-height: 2em
+    +transition(all .2s)
+    +border-radius(6px)
+    &:before
+      font-size: .8em
+    &:hover, &.selected
+      background: $blue
+      color: white
+    input
+      visibility: hidden
+      position: absolute
+
+// Choosing a payment option
+
+.subscription-payment-options
+  .control-label
+    display: none
+  input
+    visibility: hidden
+    position: absolute
+  label
+    display: inline-block
+    width: 20%
+    margin: .2em 2% 0 0
+    background: lighten($gray, 35%)
+    color: lighten($gray, 58%)
+    text-align: center
+    font-weight: bold
+    font-size: 1.2em
+    padding: .4em 0
+    +border-radius(8px)
+    &.selected, &:hover
+      color: white
+      padding: .4em 0
+      background: $blue
+      font-weight: bold !important
+    &.icon-heart:before
+      display: inline-block
+      padding-right: .4em
+
+
+// The debit form
+.debit .debit-fields
+  label
+    display: inline-block
+    margin: 0 1em 0 0
+    line-height: 1.4em
+    width: 140px
+    text-indent: 5px
+
+    //background: image-url('bank-brasil.jpg') no-repeat 5% top
+
+  input
+    padding: 0 .4em .4em 1em
+    display: inline-block
+    margin-right: .2em
+
+
+// The creditcard form
+.creditcard .card-fields
+  background: darken($lightgray, 5%)
+
+
+.button-action
+  input
+    margin: 2.5em 0
+    background: $lightgreen 
+    border: none
+    color: white
+    font-size: 1.875em
+    font-weight: bold
+    width: 310px
+    height: 60px
+    text-transform: uppercase
+    text-align: center
+    font-family: "Proxima Nova Soft"
+    +border-radius(6px)
+    &:hover
+      cursor: pointer
+      background: $green
+    &:disabled
+      background: $gray
+
+
+
+.error
+  label
+    color: $gray
+  input
+    border: 1px solid red
+  small
+    background: red
+    color: white
+    padding: .2em .4em
