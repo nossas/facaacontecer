@@ -29,11 +29,11 @@
             .large-12.columns
               h3 Que tipo de doação deseja efetuar?
             dl.tabs[data-tab]
-              dd.active
+              dd.active.monthly-tab
                 = link_to "Doação Mensal", "#monthly"
-              dd
+              dd.biannual-tab
                 = link_to "Doação Semestral", "#biannual"
-              dd
+              dd.annual-tab
                 = link_to "Doação Anual", "#annual"
       
             // All these helpers methods are located @ application_helper
@@ -44,7 +44,7 @@
                   p
                     |Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
                 .monthly.subscription-values
-                    = sub.input :value, as: :radio_buttons, label_field: false, collection: available_monthly_plans
+                  = sub.input :value, as: :radio_buttons, label_field: false, collection: available_monthly_plans
     
               #biannual.content
                 .interval-info
@@ -52,7 +52,7 @@
                   p
                     |Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
                 .biannual.subscription-values
-                    = sub.input :value, as: :radio_buttons, label_field: false, collection: available_biannual_plans
+                  = sub.input :value, as: :radio_buttons, label_field: false, collection: available_biannual_plans
 
               #annual.content
                 .interval-info
@@ -135,4 +135,10 @@
             = usr.submit "Contribuir!", class: :animated, data: { disable_with: 'Aguarde...' }
 
 javascript:
-  window.$zipcode = "#{@user.zipcode}"
+  // Saving references in order to use it with jQuery 
+  // See application.js file.
+  // DO NOT ALTER the value of  .last
+  window.$zipcode   = "#{@user.zipcode}";
+  window.$value     = "#{@user.subscriptions.last.value.to_i}";
+  window.$payment   = "#{@user.subscriptions.last.payment_option}";
+  window.$plan      = "#{@user.subscriptions.last.plan}"

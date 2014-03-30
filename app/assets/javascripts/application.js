@@ -35,7 +35,7 @@ Apoie = {
     Apoie.renderInputMasks();
     Apoie.toggleSubscriptionValues();
     Apoie.togglePaymentOptions();
-   // Apoie.setDefaultValues();
+    Apoie.setDefaultValues();
   },
 
   animationPulseClass: 'animated pulse icon-checkmark selected',
@@ -95,11 +95,17 @@ Apoie = {
 
   },
 
-  // Set the default value to the MONTHLY R$ 17
-  // Set the default payment option to CREDIT CARD
+  // Set the default value to the previous SENT SUBSCRIPTION VALUE 
+  // Set the default payment to the previous SENT SUBSCRIPTION PAYMENT OPTION
+  // See users/_form
   setDefaultValues: function(){
-    $('.subscription-values input[value="17"]').trigger('click');
-    $('.subscription-payment-options input[value="creditcard"]').trigger('click');
+    if (window.$value != "0.0") {
+      $('#' + window.$plan +' .subscription-values input[value="'+window.$value+'"]').trigger('click');
+      $('.' + window.$plan + '-tab a').click();
+    }
+    if (window.$payment != "" ) {
+      $('.subscription-payment-options input[value="'+window.$payment+'"]').trigger('click');
+    }
 
   },
 
@@ -109,6 +115,9 @@ Apoie = {
 
 
 
-Apoie.initialize();
 
-$(function(){ $(document).foundation(); });
+
+$(function(){ 
+  $(document).foundation(); 
+  Apoie.initialize();
+});
