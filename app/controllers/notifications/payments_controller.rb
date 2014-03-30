@@ -3,6 +3,9 @@ class Notifications::PaymentsController < ApplicationController
   # Located @ app/controllers/notifications/concerns/payment_status.rb
   include Notifications::PaymentStatus
 
+  # Skipping authentication token for the create action
+  skip_before_filter :verify_authenticity_token, :only => [:create]
+
   before_actions do
     actions(:create) do
       @payment = Payment.find_by(code: _params[:code])
