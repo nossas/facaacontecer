@@ -36,6 +36,7 @@ Apoie = {
     Apoie.toggleSubscriptionValues();
     Apoie.togglePaymentOptions();
     Apoie.setDefaultValues();
+    Apoie.watchPaymentPlan();
   },
 
   animationPulseClass: 'animated pulse icon-checkmark selected',
@@ -52,6 +53,22 @@ Apoie = {
 
   },
 
+
+  watchPaymentPlan: function(){
+    var tab = $('dl.tabs > dd.active');
+    var debit = $('.subscription-payment-options input[value="debit"]').parent();
+    var slip = $('.subscription-payment-options input[value="slip"]').parent();
+
+    if (tab.hasClass('monthly-tab')){
+      slip.hide();
+      debit.hide();
+    } else {
+      slip.show();
+      debit.show();
+    }
+  },
+
+
   //  Toggle subscription values when the user clicks 
   //  And set the interval for the respective PLAN
   toggleSubscriptionValues: function(){
@@ -64,6 +81,9 @@ Apoie = {
 
       $(this).parent('label').addClass(Apoie.animationPulseClass);
       interval.val(id);
+
+
+      Apoie.watchPaymentPlan();
     });
 
 
@@ -99,7 +119,7 @@ Apoie = {
   // Set the default payment to the previous SENT SUBSCRIPTION PAYMENT OPTION
   // See users/_form
   setDefaultValues: function(){
-    if (window.$value != "0.0") {
+    if (window.$value != "0") {
       $('#' + window.$plan +' .subscription-values input[value="'+window.$value+'"]').trigger('click');
       $('.' + window.$plan + '-tab a').click();
     }
