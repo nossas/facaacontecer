@@ -30,9 +30,6 @@ GEM
     angularjs-rails (1.2.14)
     arel (4.0.2)
     atomic (1.1.16)
-    autoscaler (0.8.0)
-      heroku-api
-      sidekiq (~> 2.7)
     before_actions (1.0.0)
     builder (3.1.4)
     capybara (2.2.1)
@@ -80,7 +77,6 @@ GEM
     dotenv (0.10.0)
     erubis (2.7.0)
     eventmachine (1.0.3)
-    excon (0.32.1)
     execjs (2.0.2)
     fabrication (2.9.8)
     ffi (1.9.3)
@@ -96,9 +92,6 @@ GEM
     gravatar_image_tag (1.2.0)
     haml (4.0.5)
       tilt
-    heroku-api (0.3.18)
-      excon (~> 0.27)
-      multi_json (~> 1.8)
     hike (1.2.3)
     httparty (0.13.0)
       json (~> 1.8)
@@ -276,7 +269,6 @@ PLATFORMS
 DEPENDENCIES
   active_decorator
   angularjs-rails
-  autoscaler
   before_actions
   codeclimate-test-reporter
   colorize

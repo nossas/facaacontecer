@@ -62,7 +62,7 @@ group :production do
   # Using autoscaler on heroku, so we can turn off workers if not being used.
   # See https://github.com/JustinLove/autoscaler
   # See http://manuel.manuelles.nl/blog/2012/11/13/scalable-heroku-worker-for-sidekiq/
-  gem 'autoscaler'
+  #gem 'autoscaler'
 end
 
 
