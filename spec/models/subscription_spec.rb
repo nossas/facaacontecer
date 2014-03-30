@@ -50,7 +50,7 @@ describe Subscription do
     subscription = Fabricate(:subscription)
 
     it "should generate an unique code based on current time/stamp" do
-      expect(subscription.code).to be_within(2.seconds.to_i).of(Time.now.to_i)
+      expect(subscription.code).to be_within(3.seconds.to_i).of(Time.now.to_i)
     end
 
   end

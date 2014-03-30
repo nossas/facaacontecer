@@ -2,6 +2,8 @@
   background: $orange
   height: 80px
   overflow: hidden
+  *
+    +transition(all 0.4s)
   .columns
     position: relative
     margin-top: .6em
@@ -10,34 +12,34 @@
   margin-left: 10%
   margin-top: 1.2em
 
-.logo
+.logo, .btn
   position: relative
   top: .4em
 
-.button
-  background: $lightblue image-url('bg-heart.png') no-repeat 12% center
-  text-transform: uppercase
-  font-weight: bold !important
-  font-size: 2.2em
-  font-family: "Proxima Nova Soft"
-  padding: .3em 1.6em
-  text-indent: 8%
-  +border-radius(5px)
+.btn:hover
+  -webkit-filter: saturate(1.1) drop-shadow(0 0 1px gray)
+
   
+
+
+.screen .btn
+  display: block
+  margin: 4em 0
 .screen
-  height: 720px
-  overflow: auto 
-  background-size: 100% auto
+  min-height: 720px
+  height: auto 
+  background-size: cover !important
   p, h1, h2, h3, h4, h5
     color: white
-
+  h1
+    margin: 1em 0
 .screen1
-  background: image-url('bg-screen1.png') no-repeat center top
+  background: image-url('screen1.png') no-repeat center top
 .screen2
-  background: image-url('bg-screen2.png') no-repeat center top
+  background: image-url('screen2.jpg') no-repeat center top fixed
 .screen3
-  background: image-url('bg-screen3.png') no-repeat center top
+  background: image-url('screen3.jpg') no-repeat center top
 .screen4
-  background: image-url('bg-screen4.png') no-repeat center top
+  background: image-url('screen4.jpg') no-repeat center top fixed
 .screen5
-  background: image-url('bg-screen5.png') no-repeat center top
+  background: image-url('screen5.png') no-repeat center top 

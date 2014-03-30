@@ -1,32 +1,108 @@
 = content_for @project.title
 
-section.content.screen1.screen
+section.content.screen.screen1
   article.row
-    iframe.large-12.columns[src=@project.video height="500" frameborder="0"]
-      
-    .large-4.large-centered.columns
+    iframe.large-12.columns[src="//www.youtube.com/embed/ntfg_TX4Cfs?autohide=1&amp;controls=1&amp;showinfo=0&amp;rel=0&amp;playerapiid=ytplayer&amp;origin=https://apoie.meurio.org.br" height="500" frameborder="0" allowfullscreen]
+
+  
+  article.row
+    .large-4.large-centered.columns.text-center
       h2
         | #{@project.users.count} pessoas
-      h5 fazendo a Rede Meu Rio acontecer.
-      = link_to "Contribua", new_user_path, class: :button
+      h5 
+        |fazendo a Rede Meu Rio acontecer.
+      = link_to image_tag('btn-contrib.png', alt: "Contribuir"), new_user_path, class: :btn
 
-
-
-section.content.screen2.screen
+section.content.screen.screen2.text-center
   article.row
     .large-12.columns
-      h1.text-center
-        | Nossa história
+      h1
+        | Como celebramos nossos financiadores
       p
-        | Texto longo
-
-
-section.content.screen3.screen
+        | A Rede Meu Rio festeja a participação de quem faz a diferença na construção da cidade que todos merecemos. Contribua com a sua doação e desfrute de experiências únicas com parceiros escolhidos a dedo e que têm a cara do Rio. Veja algumas celebrações que fazem parte do Meu Rio Eu Faço!
+        
+      
+section.content.screen.screen3.text-center
   article.row
     .large-12.columns
       h1.text-center
         | Como gastamos nosso dinheiro
       p
-        | Texto longo
+        | <strong>Estrutura:<strong> Nossa pequena equipe dá conta das mobilizações iniciadas por mais de 130 mil pessoas. Aqui, usamos uma estrutura eficiente e ágil para aumentar ao máximo o impacto de cada real que recebemos. Todos os meses, investimos nossos recursos conforme ilustrado abaixo, com algumas pequenas variações.
+        
+       
+      = image_tag "screen3-cost.png"
+      
+      = link_to image_tag('btn-contrib.png', alt: "Contribuir"), new_user_path, class: :btn
+
+section.content.screen.screen4.text-center
+  article.row
     .large-12.columns
-      = image_tag "http://placehold.it/900x200"
+      h1.text-center
+        | Nossa história
+      p
+        |Rede Mobilizadora Meu Rio é formada por cariocas, de nascença e de coração, que se mobilizam para participar ativamente dos processos de decisão da cidade.
+
+      p
+        |Todas as mobilizações criadas por esses cariocas ganham o apoio de uma equipe multidisciplinar de profissionais que mantém ativos aplicativos como o Panela de Pressão, o Imagine e o Multitude. Baseada em critérios públicos, a equipe seleciona algumas das mobilizações para dar um suporte ainda maior, com estratégia, pesquisa, articulação e comunicação.
+
+      p
+        |Para manter essa equipe funcionando e dando suporte à Rede, precisamos de dinheiro.
+      p
+        |Acontece que o Meu Rio é independente. Isso quer dizer que não temos rabo preso com nenhum governo, político, partido ou empresa pública. E é por isso que para conseguir o dinheiro necessário ao funcionamento da nossa equipe, contamos com todos os cariocas apaixonados pelo Rio e que entendem que só pessoas mobilizadas poderão construir uma cidade melhor.
+
+      p
+        |Não precisamos de muito. Mas precisamos de MUITOS. Muita gente que pode contribuir com pouco para ajudar a financiar esse projeto de todos nós. 
+
+      p
+        |Faça a Rede Meu Rio acontecer!
+        
+      = link_to image_tag('btn-contrib.png', alt: "Contribuir"), new_user_path, class: :btn
+
+
+
+
+
+
+section.content.screen.screen5.text-center
+  article.row
+    .large-12.columns
+      h1 Nossas vitórias  
+  article.row
+    .large-4.columns
+      = image_tag "vitoria-01.jpg"
+      h4 Favela + Limpa no Lugar 
+      p
+        |Com menos de 2 semanas para agir, evitamos o despejo do Favela + Limpa, que teria seu terreno cedido para uma empreiteira e ia virar canteiro de obras. Foram 4 mil assinaturas em menos de 10 dias, que garantiram a continuação desse trabalho tão importante.
+    .large-4.columns
+      = image_tag "vitoria-02.jpg"
+      h4 
+        |Prudente de Moraes de Volta 
+      p
+        |Mais de mil cariocas se mobilizaram para devolver uma das escolas mais tradicionais da cidade a seus alunos. Depois de 2 anos de abandono por conta de obras que estavam previstas para durar apenas 6 meses, conseguimos que a Secretaria Municipal de Educação agisse rapidamente e garantimos mais uma vitória para a nossa cidade!
+    .large-4.columns.end
+      = image_tag "vitoria-03.jpg"
+      h4 Dados abertos dos GPS de Ônibus 
+      p
+        |Graças à pressão da nossa rede por e-mail e telefone, a Secretaria de Transportes trabalhou junto à RioÔnibus para disponibilizar a consulta aos dados de GPS dos ônibus do município. Com isso, podem ser criados aplicativos para observar o comportamento da frota, diagnosticar problemas e sugerir soluções para sua melhoria.
+
+
+    .large-4.columns
+      = image_tag "vitoria-04.jpg"
+      h4 Friedenreich de Pé
+      p
+        |Quase vinte mil cariocas se levantaram para impedir que uma das melhores escolas do Rio fosse demolida para a construção de um estacionamento. Assinando uma petição eletrônica ou vigiando 24 horas por dia a nossa escola, vencemos juntos. Mostramos que o Rio é nosso!
+    
+    .large-4.columns
+      = image_tag "vitoria-05.jpg"
+      h4 Legislação Ambiental protegida
+      p
+        |Ao lado do GAEMA (divisão do Ministério Público responsável por Meio Ambiente) e com o apoio de 7.000 pessoas que assinaram a petição em poucas horas, tiramos de pauta o projeto de lei do Governo que eliminaria as proteções mais importantes ao meio ambiente da legislação do Rio. 
+    .large-4.columns.end
+      = image_tag "vitoria-06.jpg"
+      h4 Ficha Limpa Estadual  
+      p
+        |Resgatamos um projeto de lei e uma proposta de emenda constitucional que estavam engavetados há meses na Alerj. Graças à participação dos membros do Meu Rio dentro e fora da Assembleia, conseguimos a aprovação da Lei da Ficha Limpa Estadual por unanimidade! 
+  .row
+    .large-4.large-centered.columns
+      = link_to image_tag('btn-contrib.png', alt: "Contribuir"), new_user_path, class: :btn
