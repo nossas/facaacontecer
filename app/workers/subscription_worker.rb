@@ -1,6 +1,6 @@
 class SubscriptionWorker 
   include Sidekiq::Worker
-  sidekiq_options retry: 2
+  sidekiq_options retry: 8 
 
 
   # Warn the tech team when a sidekiq job fails twice
