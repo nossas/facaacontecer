@@ -49,3 +49,7 @@ Você é livre pra fazer o que quiser com o código. Desde que cite a origem (es
 ## License
 
 Check LICENSE file.
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/meurio/facaacontecer/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
