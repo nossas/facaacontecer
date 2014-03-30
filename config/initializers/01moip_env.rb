@@ -22,3 +22,10 @@ environment             = Rails.env.production? ? 'production' : 'sandbox'
 MyMoip.environment = environment
 MyMoip.send("#{environment}_token=", ENV['MYMOIP_TOKEN'])
 MyMoip.send("#{environment}_key=", ENV['MYMOIP_KEY'])
+
+
+# ==================
+# Notifications
+# ================
+
+MOIP_NOTIFICATIONS_HOST = ENV['NOTIFICATIONS_HOST'] || 'localhost'

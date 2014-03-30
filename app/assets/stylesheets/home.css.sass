@@ -16,9 +16,15 @@
   position: relative
   top: .4em
 
-.btn:hover
-  -webkit-filter: saturate(1.1) drop-shadow(0 0 1px gray)
+.btn
+  &:hover
+    -webkit-filter: saturate(1.1) drop-shadow(0 0 1px gray)
+    -ms-filter: saturate(1.1) drop-shadow(0 0 1px gray)
+    -moz-filter: saturate(1.1) drop-shadow(0 0 1px gray)
+    filter: saturate(1.1) drop-shadow(0 0 1px gray)
 
+  &:active
+    top: 2px
   
 
 
@@ -33,13 +39,15 @@
     color: white
   h1
     margin: 1em 0
+  p
+    font-size: 1.2em
 .screen1
   background: image-url('screen1.png') no-repeat center top
 .screen2
-  background: image-url('screen2.jpg') no-repeat center top fixed
+  background: image-url('screen2.jpg') no-repeat center top
 .screen3
   background: image-url('screen3.jpg') no-repeat center top
 .screen4
-  background: image-url('screen4.jpg') no-repeat center top fixed
+  background: image-url('screen4.jpg') no-repeat center top
 .screen5
   background: image-url('screen5.png') no-repeat center top 

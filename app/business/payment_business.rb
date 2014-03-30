@@ -11,7 +11,9 @@ module PaymentBusiness
         id:             "#{code}PAYMENT",
         payment_reason: "Doação para o MeuRio - http://meurio.org.br - #{payment_option}",
         values:         [value],
-        payer:          user.business.build_payer
+        payer:          user.business.build_payer,
+        return_url:    '', 
+        notification_url: Rails.application.routes.url_helpers.notifications_payments_url(host: MOIP_NOTIFICATIONS_HOST),
       )
     end
 
