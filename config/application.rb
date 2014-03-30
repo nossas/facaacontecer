@@ -14,6 +14,7 @@ module Selfstarter
     config.encoding             = "utf-8"
     config.i18n.default_locale  = "pt-BR"
     config.i18n.locale          = "pt-BR"
+    I18n.enforce_available_locales = true    
     config.filter_parameters    += [:password]
     
     # Enable the asset pipeline
