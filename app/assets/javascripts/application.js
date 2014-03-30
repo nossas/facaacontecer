@@ -56,15 +56,23 @@ Apoie = {
 
   watchPaymentPlan: function(){
     var tab = $('dl.tabs > dd.active');
-    var debit = $('.subscription-payment-options input[value="debit"]').parent();
-    var slip = $('.subscription-payment-options input[value="slip"]').parent();
+    var debit = $('.subscription-payment-options input[value="debit"]');
+    var slip = $('.subscription-payment-options input[value="slip"]');
+    var card = $('.subscription-payment-options input[value="creditcard"]');
 
     if (tab.hasClass('monthly-tab')){
-      slip.hide();
-      debit.hide();
+      slip.parent().addClass('disabled');
+      debit.parent().addClass('disabled');
+
+      slip.addClass('disabled').attr('disabled', 'disabled');
+      debit.addClass('disabled').attr('disabled', 'disabled');
+      card.trigger('click');
+      
     } else {
-      slip.show();
-      debit.show();
+      slip.parent().removeClass('disabled');
+      debit.parent().removeClass('disabled');
+      slip.removeClass('disabled').removeAttr('disabled');
+      debit.removeClass('disabled').removeAttr('disabled');
     }
   },
 
@@ -91,7 +99,7 @@ Apoie = {
 
   // When Someone clicks on any payment option, show the value
   togglePaymentOptions: function() {
-    $('.subscription-payment-options input').on('click', function(){
+    $('.subscription-payment-options input:not(:disabled)').on('click', function(){
       $('.subscription-payment-options label').removeClass(Apoie.animationPulseClass);
       $(this).parent('label').addClass(Apoie.animationPulseClass).removeClass('icon-checkmark');
       
