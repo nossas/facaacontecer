@@ -36,7 +36,7 @@ describe Notifications::PaymentsController do
       end
 
 
-      it { expect(response.status).to eq(302) }
+      it { expect(response.status).to eq(200) }
       its(:subscription) { expect(subject.subscription.state).to eq('waiting') }
       its(:state) { should == 'waiting' }
       it "should send an PAYMENT PROCESSING email to the payer" do
@@ -54,7 +54,7 @@ describe Notifications::PaymentsController do
       end
 
 
-      it { expect(response.status).to eq(302) }
+      it { expect(response.status).to eq(200) }
       its(:subscription) { subject.subscription.state.should == 'paused' }
       its(:state) { should == 'reversed' }
     end
@@ -65,7 +65,7 @@ describe Notifications::PaymentsController do
         post :create, @nasp_params
       end
 
-      it { expect(response.status).to eq(302) }
+      it { expect(response.status).to eq(200) }
       its(:subscription) { subject.subscription.state.should == 'waiting' }
       its(:state) { should == 'printed' }
 
@@ -78,7 +78,7 @@ describe Notifications::PaymentsController do
         post :create, @nasp_params
       end
 
-      it { expect(response.status).to eq(302) }
+      it { expect(response.status).to eq(200) }
       its(:subscription) { subject.subscription.state.should == 'paused' }
       its(:state) { should == 'cancelled' }
 
@@ -93,7 +93,7 @@ describe Notifications::PaymentsController do
         Sidekiq::Extensions::DelayedMailer.drain
       end
 
-      it { expect(response.status).to eq(302) }
+      it { expect(response.status).to eq(200) }
       its(:state) { should == 'finished' } 
       its(:subscription) { expect(subject.subscription.reload.state).to eq("active") }
 

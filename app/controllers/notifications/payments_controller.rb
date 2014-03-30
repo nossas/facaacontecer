@@ -8,6 +8,7 @@ class Notifications::PaymentsController < ApplicationController
 
   before_actions do
     actions(:create) do
+      Rails.logger params.inspect
       @payment = Payment.find_by(code: _params[:code])
       render_nothing_with_status(500) if @payment.nil?
     end
@@ -19,7 +20,7 @@ class Notifications::PaymentsController < ApplicationController
 
     # using the mapped :state param as a state call.
     @payment.send(_params[:state].to_s)
-    render_nothing_with_status(302)
+    render_nothing_with_status(200)
   end
 
 

@@ -9,7 +9,7 @@ module PaymentBusiness
         # generate an unique identifier for this instruction
         # adding _payment suffix to it.
         id:             "#{code}PAYMENT",
-        payment_reason: "Doação para o MeuRio - http://meurio.org.br - #{payment_option}",
+        payment_reason: "Doação para o MeuRio - http://meurio.org.br",
         values:         [value],
         payer:          user.business.build_payer,
         #return_url:    '', 
