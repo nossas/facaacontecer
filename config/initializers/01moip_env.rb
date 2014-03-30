@@ -19,5 +19,6 @@ end
 environment             = Rails.env.production? ? 'production' : 'sandbox'
 
 # Setting sandbox/production calling the methods based on environment switch
+MyMoip.enviroment = environment
 MyMoip.send("#{environment}_token=", ENV['MYMOIP_TOKEN'])
 MyMoip.send("#{environment}_key=", ENV['MYMOIP_KEY'])
