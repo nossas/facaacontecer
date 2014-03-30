@@ -8,7 +8,6 @@ class Notifications::PaymentsController < ApplicationController
 
   before_actions do
     actions(:create) do
-      Rails.logger params.inspect
       @payment = Payment.find_by(code: _params[:code])
       render_nothing_with_status(500) if @payment.nil?
     end
