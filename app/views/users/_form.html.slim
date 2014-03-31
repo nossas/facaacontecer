@@ -76,7 +76,7 @@
                 |Qual a forma de pagamento?
 
               // available_payment_options: application_helper
-              .text-center= sub.input :payment_option, as: :radio_buttons, collection: available_payment_options, input_html: { required: true }
+              .text-center= sub.input :payment_option, as: :radio_buttons, collection: available_payment_options, input_html: { required: true, "ng-model" => "payment_option"}
 
 
 
@@ -99,9 +99,9 @@
               h3 Dados do cartão
             .card-fields
               = usr.simple_fields_for :creditcard do |credit|
-                .large-5.columns= credit.input :holder
-                .large-5.columns= credit.input :cardnumber, input_html: { class: 'creditcard-mask' }
-                .large-2.columns.end= credit.input :expiration, input_html: { class: 'expiration-mask' }
+                .large-5.columns= credit.input :holder, input_html: { "ng-required" => "isCreditCard()" }
+                .large-5.columns= credit.input :cardnumber, input_html: { class: 'creditcard-mask', "ng-required" => "isCreditCard()" }
+                .large-2.columns.end= credit.input :expiration, input_html: { class: 'expiration-mask', "ng-required" => "isCreditCard()" }
 
 
 

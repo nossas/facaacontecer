@@ -17,6 +17,8 @@
 //= require skrollr
 //= require skrollr.ie
 //= require jquery.inputmask
+//= require jquery.inputmask.extensions
+//= require jquery.inputmask.date.extensions
 
 //= require angular
 //= require angular-resource
@@ -43,7 +45,7 @@ Apoie = {
   
   // Start all input masks;
   renderInputMasks: function() {
-    $('.expiration-mask').inputmask('99/9999',{ "clearIncomplete": true });
+    $('.expiration-mask').inputmask('mm/yyyy',{ "clearIncomplete": true });
     $('.date-mask').inputmask('99/99/9999', { "clearIncomplete": true });
     $('.zipcode-mask').inputmask('99.999-999', { "clearIncomplete": true });
     $('.cpf-mask').inputmask('999.999.999-99', { "clearIncomplete": true });

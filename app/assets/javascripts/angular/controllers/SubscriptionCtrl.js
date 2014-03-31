@@ -12,6 +12,14 @@ facaAcontecerApp.controller('SubscriptionCtrl', function($scope, $http){
   };
 
 
+  $scope.isCreditCard = function(){
+   if ($scope.payment_option == 'creditcard') {
+      return true;
+   } else { 
+     return false 
+   }
+  };
+
   $scope.populateAddressFields = function(response, status) {
     console.log(response[0]);
     if (!response[0].cep.valid) { 
