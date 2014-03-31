@@ -61,7 +61,7 @@ pt-BR:
       creditcard: 
         holder: "Titular do cartão"
         cardnumber: "Numero do cartão"
-        expiration: "Expiração (mês/ano)"
+        expiration: "Data de Expiração"
     
   activerecord:
     models:

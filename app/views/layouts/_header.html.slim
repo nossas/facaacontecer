@@ -1,10 +1,8 @@
 header#header
-  .meurio= image_tag "meurio.png", class: :meurio_logo
   .row
-    .large-8.columns
-      = link_to image_tag("logo.png"), root_path, class: :logo
-
-    .large-4.columns
+    .large-1.columns.meurio= image_tag "meurio.png", class: :meurio_logo
+    .large-5.columns= link_to image_tag("logo.png"), root_path, class: :logo
+    .large-5.columns.end.text-right
       - if current_page? root_path
         = link_to image_tag('btn-contrib.png', alt: "Contribuir"), new_user_path, class: :btn
 
