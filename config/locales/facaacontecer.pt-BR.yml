@@ -57,11 +57,11 @@ pt-BR:
         plan: "Frequência de pagamento"
         payment_option: "Forma de pagamento"
         value: "Qual o valor?"
-        bank: "Qual seu banco?"
+        bank: "Escolha seu banco"
       creditcard: 
-        holder: "Titular do cartão"
+        holder: "Nome do titular do cartão (como no cartão)"
         cardnumber: "Numero do cartão"
-        expiration: "Data de Expiração"
+        expiration: "Data de validade"
     
   activerecord:
     models:

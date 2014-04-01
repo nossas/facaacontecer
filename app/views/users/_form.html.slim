@@ -42,7 +42,7 @@
                 .interval-info.pulse
                   h4 Info mensal
                   p
-                    |Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+                    |O valor escolhido vai ser doado mensalmente através do seu cartão. 
                 .monthly.subscription-values
                   = sub.input :value, as: :radio_buttons, label_field: false, collection: available_monthly_plans
     
@@ -50,7 +50,7 @@
                 .interval-info
                   h4 Info semestral
                   p
-                    |Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+                    |O valor escolhido vai ser doado semestralmente. 
                 .biannual.subscription-values
                   = sub.input :value, as: :radio_buttons, label_field: false, collection: available_biannual_plans
 
@@ -58,7 +58,7 @@
                 .interval-info
                   h4 Info anual
                   p
-                    |Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+                    |O valor escolhido vai ser doado uma única vez. 
                 .annual.subscription-values
                   = sub.input :value, as: :radio_buttons, label_field: false, collection: available_annual_plans
               .hidden.subscription-plan
@@ -83,7 +83,7 @@
           article.subscription-payment-fields.debit.hidden.row
             .debit-wrap.text-center
               .large-12.columns
-                h3 Qual o seu banco?
+                h3 Escolha seu banco 
               .debit-fields
                 .large-12.columns
                   = sub.input :bank, as: :radio_buttons, label: false, item_wrapper_class: "bank1", collection: available_payment_banks
@@ -96,7 +96,7 @@
           // If there are any required payment fields (like Account holder for Credit Card)
           .card-wrap
             .large-12.columns.text-center
-              h3 Dados do cartão
+              h3 Dados do seu cartão
             .card-fields
               = usr.simple_fields_for :creditcard do |credit|
                 .large-5.columns= credit.input :holder, input_html: { "ng-required" => "isCreditCard()" }
@@ -112,7 +112,7 @@
           // Address info for the subscriber
           .large-12.columns
             h3.text-center
-              | &nbsp;
+              | Endereço
           .large-12.columns
             .row
               .large-3.columns
