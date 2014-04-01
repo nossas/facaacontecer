@@ -34,13 +34,12 @@
               dd.biannual-tab
                 = link_to "Doação Semestral", "#biannual"
               dd.annual-tab
-                = link_to "Doação Anual", "#annual"
+                = link_to "Doação Única", "#annual"
       
             // All these helpers methods are located @ application_helper
             div.tabs-content
               #monthly.content.active
                 .interval-info.pulse
-                  h4 Info mensal
                   p
                     |O valor escolhido vai ser doado mensalmente através do seu cartão. 
                 .monthly.subscription-values
@@ -48,7 +47,6 @@
     
               #biannual.content
                 .interval-info
-                  h4 Info semestral
                   p
                     |O valor escolhido vai ser doado semestralmente. 
                 .biannual.subscription-values
@@ -56,7 +54,6 @@
 
               #annual.content
                 .interval-info
-                  h4 Info anual
                   p
                     |O valor escolhido vai ser doado uma única vez. 
                 .annual.subscription-values
