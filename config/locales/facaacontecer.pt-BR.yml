@@ -59,7 +59,7 @@ pt-BR:
         value: "Qual o valor?"
         bank: "Escolha seu banco"
       creditcard: 
-        holder: "Nome do titular do cartão (como no cartão)"
+        holder: "Titular do cartão (como no cartão)"
         cardnumber: "Numero do cartão"
         expiration: "Data de validade"
     

@@ -14,7 +14,7 @@ Feature: Show that my payment was created or not
   @vcr
   Scenario Outline: A user subscribes using boleto
     Given I am in the root path 
-    And I click on Contribuir!
+    And I click on Contribua!
     And I subscribe using <payment>
     And I should see "<waiting_message>"
     And the subscription status should be <status>

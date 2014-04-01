@@ -13,14 +13,14 @@ Feature: New subscription for the current campaign
 
   Scenario: Visiting the new subscription page
     Given I am in the root path
-    When I click on Contribuir!
+    When I click on Contribua!
     Then I should see "Insira seus dados pessoais"
 
 
   @vcr
   Scenario Outline: A new user subscribe with credit card info in the subscription form
     Given I am in the root path 
-    And I click on Contribuir!
+    And I click on Contribua!
     And I fill in Nome with "<first_name>"
     And I fill in Sobrenome with "<last_name>"
     And I fill in CPF with "<cpf>"

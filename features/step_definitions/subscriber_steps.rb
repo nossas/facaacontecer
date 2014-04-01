@@ -7,7 +7,7 @@ Given(/^I fill in (.*?) with "(.*?)"$/) do |arg1, arg2|
 end
 
 When(/^I click on (.*?)$/) do |arg1|
-  click_on arg1.to_s
+  click_on(arg1)
 end
 
 Given(/^there is a registered user with email: (.*?) and cpf: (.*?)$/) do |arg1, arg2|
