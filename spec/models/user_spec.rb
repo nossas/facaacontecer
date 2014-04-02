@@ -28,6 +28,31 @@ describe User do
 
 
 
+  context "#create_or_update" do
+    before do
+      @params = { email: 'test@test.com', zipcode: '22245-010', address_street: 'New street' }
+      @user   = Fabricate(:user, email: 'test@test.com', 
+                          first_name: "Loiu", address_street: "Old Street", zipcode: '11.111-111')
+    end
+
+    
+    subject { User.initialize_or_update_by(@params) }
+
+    it "should update an user if he/she has an account already" do
+      expect{subject}.to change{@user.reload.zipcode}.from('11.111-111').to('22245-010') 
+      expect(@user.address_street).to eq('New street')
+    end
+
+    it "should create an user if she/he has NOT an account yet" do
+      @params[:email] = 'new@email.com'
+      new_user = User.initialize_or_update_by(@params)
+
+      expect(new_user.zipcode).to eq('22245-010')
+      expect(new_user.address_street).to eq('New street')
+      expect(new_user.first_name).to eq(nil)
+    end
+  end
+
   context "Field validations" do
 
     it "should not accept invalid emails" do

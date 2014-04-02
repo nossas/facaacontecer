@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   before_actions do 
 
-    actions(:new, :create) { @user = User.new(user_params) }
+    actions(:new, :create) { @user = User.initialize_or_update_by(user_params) }
     actions(:new) { @user.subscriptions.build }
     actions(:edit, :update) { @user = User.find_by(id: params[:id]) }
   end

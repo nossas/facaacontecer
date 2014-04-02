@@ -33,6 +33,26 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :subscriptions
 
 
+
+
+
+  # Method to create or update an user based on 
+  # received params
+  
+  def self.initialize_or_update_by(options = {})
+    return User.new({}) unless options.has_key?(:email)
+
+    user = User.find_by(email: options[:email])
+    
+    if user.nil?
+      return User.new(options) 
+    else
+      return user.update_attributes(options)
+    end
+  end
+
+
+
   # Isolating business logic inside a method
   # So if you need to call app/business/subscriber
   # Do as the following:
@@ -49,12 +69,12 @@ class User < ActiveRecord::Base
 
 
 
-
+  # Generate a invite code after the creation 
+  # of an user. This code allow tracking of
+  # who is inviting who in the system
   private
     def generate_invite_code
-      unless self.invite
-        invite = self.build_invite(code: SecureRandom.hex(6))
-        invite.save!
-      end
+      invite = self.build_invite(code: SecureRandom.hex(6))
+      invite.save!
     end
 end
