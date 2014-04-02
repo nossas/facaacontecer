@@ -47,7 +47,7 @@ pt-BR:
         cpf:  "CPF"
         phone: "Celular"
         address_street: "Endereço"
-        address_extra: "Complemento"
+        address_extra: "Complemento (casa/apt)"
         address_number: "Número"
         address_district: "Bairro"
         state: "Estado"

@@ -18,7 +18,7 @@
           .large-3.columns= usr.input :last_name, input_html: { required: true }
           .large-3.columns= usr.input :cpf, input_html: { class: 'cpf-mask', required: true  }
           .large-3.columns= usr.input :birthday, as: :string, input_html: { class: 'date-mask', required: true }
-          .large-5.columns= usr.input :email, input_html: { required: true }
+          .large-5.columns= usr.input :email, input_html: { required: true, pattern: 'email' }
           .large-3.columns.end= usr.input :phone, input_html: { class: 'phone-mask', required: true }
 
 
@@ -41,21 +41,21 @@
               #monthly.content.active
                 .interval-info.pulse
                   p
-                    |O valor escolhido vai ser doado mensalmente através do seu cartão. 
+                    |O valor escolhido vai ser doado mensalmente. (Apenas através do seu cartão de crédito)
                 .monthly.subscription-values
                   = sub.input :value, as: :radio_buttons, label_field: false, collection: available_monthly_plans
     
               #biannual.content
                 .interval-info
                   p
-                    |O valor escolhido vai ser doado semestralmente. 
+                    |O valor escolhido vai ser doado semestralmente. (Qualquer forma de pagamento) 
                 .biannual.subscription-values
                   = sub.input :value, as: :radio_buttons, label_field: false, collection: available_biannual_plans
 
               #annual.content
                 .interval-info
                   p
-                    |O valor escolhido vai ser doado uma única vez. 
+                    |O valor escolhido vai ser doado uma única vez. (Qualquer forma de pagamento) 
                 .annual.subscription-values
                   = sub.input :value, as: :radio_buttons, label_field: false, collection: available_annual_plans
               .hidden.subscription-plan
@@ -97,7 +97,7 @@
             .card-fields
               = usr.simple_fields_for :creditcard do |credit|
                 .large-5.columns= credit.input :holder, input_html: { "ng-required" => "isCreditCard()" }
-                .large-5.columns= credit.input :cardnumber, input_html: { class: 'creditcard-mask', "ng-required" => "isCreditCard()" }
+                .large-5.columns= credit.input :cardnumber, input_html: { class: 'creditcard-mask', pattern: "card", "ng-required" => "isCreditCard()" }
                 .large-2.columns.end= credit.input :expiration, input_html: { class: 'expiration-mask', "ng-required" => "isCreditCard()" }
 
 
