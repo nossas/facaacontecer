@@ -6,8 +6,12 @@ class SubscriptionWorker
   # It also checks which payment_option it should use
   def perform(subscription_id)
     @subscription = Subscription.find_by(id: subscription_id)
-     
-    send("perform_#{@subscription.reload.payment_option}")
+    
+    if @subscription.slip?
+      perform_slip
+    elsif @subscription.debit?
+      perform_debit
+    end
   end
 
   # BOLETO
