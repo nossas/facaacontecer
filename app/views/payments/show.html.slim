@@ -3,17 +3,27 @@
     header
       h3
         | #{@payment.user.first_name}, obrigado por fazer o Meu Rio acontecer!
-      article
-        p
-          | Dentro de instantes, você receberá um email com nossa prestação de contas 
-          | e detalhes das celebrações especiais que preparamos para nossos 
-          | financiadores e voluntários.
-
+      article.row
+        .large-12.large-centered.columns.text-center
+          p
+            | Dentro de instantes, você receberá um email com nossa prestação de contas 
+            | e detalhes das celebrações especiais que preparamos para nossos 
+            | financiadores e voluntários.
         p
           br
+          - if @payment.subscription.slip? && !@payment.subscription.active?
+            = link_to "Clique aqui para imprimir seu boleto", @payment.url, class: :button, target: '_blank'
+          - elsif @payment.subscription.debit? && !@payment.subscription.active?
+            = link_to "Clique aqui para ir para o site do seu banco", @payment.url, class: :button, target: '_blank'
 
-          - if @payment.subscription.slip?
-            = link_to "Clique para imprimir seu boleto", @payment.url, class: :button, target: '_blank'
-          - elsif @payment.subscription.debit?
-            = link_to "Clique para ir para o site do seu banco", @payment.url, class: :button, target: '_blank'
-
+      article.row
+        .large-3.columns
+          = image_tag "shirt_payment.png"
+        .large-8.columns.text-left.end
+          p
+            |Agora que você já faz o Meu Rio acontecer, garanta sua camisa exclusiva chamando seus amigos para essa Rede! Se um amigo seu doar através do link abaixo, enviaremos a sua camiseta por correio com nossa cartinha de agradecimento.
+          p
+            |Compartilhe o seu link exclusivo por Face e por email:
+            br
+            = text_field_tag :link, invite_url(code: @payment.user.invite.code)
+          

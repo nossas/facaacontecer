@@ -1,7 +1,31 @@
 body#subscriptions.show, body#payments.show
+  h1, h2, h3, h4, p
+    color: white
+    -webkit-text-stroke: 0.3px
+
+  p
+    font-size: 1.1em
+
+
+
+body#subscriptions.show
   background: image-url('screen5.png') no-repeat top center
   background-size: cover
   #loading
     margin: 2em auto 1em auto
-  h1, h2, h3, h4, p
-    color: white
+
+
+
+body#payments.show
+  background: image-url('payment_show.jpg') no-repeat top left 
+  background-size: cover
+
+
+  .confirming
+    margin-top: 2.5em
+  .button
+    font-weight: bold !important
+    font-size: 1.2em
+    background: $lightblue
+    +border-radius(4px)
+
