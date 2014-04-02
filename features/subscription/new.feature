@@ -10,6 +10,7 @@ Feature: New subscription for the current campaign
       | goal  | 450000  |
       | description | New desc | 
       | expiration_date | 22/10/2020 |
+     
 
   Scenario: Visiting the new subscription page
     Given I am in the root path
