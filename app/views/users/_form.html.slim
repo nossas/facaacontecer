@@ -3,7 +3,7 @@
   section.form-wrap
     header
     .subscription-form.large-12.columns
-      = simple_form_for @user, html: { "data-abide" => true } do |usr|
+      = simple_form_for @user, url: users_path, method: :post, html: { "data-abide" => true } do |usr|
 
         //pre
           = @user.errors.messages.inspect
