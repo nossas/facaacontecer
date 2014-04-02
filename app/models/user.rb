@@ -40,15 +40,14 @@ class User < ActiveRecord::Base
   # received params
   
   def self.initialize_or_update_by(options = {})
-    return User.new({}) unless options.has_key?(:email)
+    return User.new unless options.has_key?(:email)
 
     user = User.find_by(email: options[:email])
-    
-    if user.nil?
-      return User.new(options) 
-    else
-      return user.update_attributes(options)
-    end
+   
+    return User.new(options) if user.nil?
+
+    user.update_attributes(options)
+    user
   end
 
 

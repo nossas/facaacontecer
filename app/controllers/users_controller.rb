@@ -20,7 +20,6 @@ class UsersController < ApplicationController
     redirect_to subscription_path(@user.subscriptions.last)
   end
 
-
   private
   def user_params 
     # Checking for user params on request
