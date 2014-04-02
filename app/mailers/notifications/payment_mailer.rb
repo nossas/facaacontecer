@@ -10,13 +10,31 @@ class Notifications::PaymentMailer < ActionMailer::Base
   default_url_options[:protocol] = 'https://'
   default_url_options[:host] = 'apoie.meurio.org.br'
 
-  
+
+
+  # Email sent when a payment is created with URL and it's BOLETO
+  def created_payment_slip(id)
+    object(id)
+    mail(
+      to: @payment.user.email,
+      subject: "[MeuRio] Seu boleto foi gerado!"
+    )
+  end
+
+
+  def created_payment_debit(id)
+    object(id)
+    mail(
+      to: @payment.user.email,
+      subject: "[MeuRio] O link para a sua doação foi gerado!"
+    )
+  end
+
   def processing_payment(id)
     object(id)
     mail(
       to: @payment.user.email,
       subject: "[MeuRio] Seu pagamento está sendo processado!"
-
     )
   end
 

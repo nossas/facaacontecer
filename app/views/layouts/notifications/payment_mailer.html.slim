@@ -7,12 +7,17 @@ html
       |p { font-family: "Helvetica", "Arial", sans-serif; font-weight: 300; line-height: 1.4em} 
       |.gray { color: gray }
   body
+    p
+      | Olá 
+      strong= @payment.user.first_name
+      |!
     = yield
 
 
 
 
-
+    p
+      |Fernanda, Miguel, Alexandre, Alessandra e toda a equipe Meu Rio.
     footer
       br
       br

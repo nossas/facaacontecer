@@ -5,6 +5,9 @@ module PaymentObserver
 
   included do
     before_create :setup_code
+    after_create  :send_created_payment_email_slip, if: -> { self.subscription.slip? }
+    after_create  :send_created_payment_email_debit, if: -> { self.subscription.debit? }
+
 
     # SETUP an unique code for each payment, after its creation
     # All subscriptions have only integer code
@@ -14,6 +17,18 @@ module PaymentObserver
     #   123456PAYMENT is the payment
     def setup_code
       self.code = "#{self.subscription.code}PAYMENT"
+    end
+
+    # Deliver an email with payment links when slip
+    def send_created_payment_email_slip
+      return false unless self.url 
+      Notifications::PaymentMailer.delay.created_payment_slip(self.id)
+    end
+
+    # Deliver an email with payment links when debit
+    def send_created_payment_email_debit
+      return false unless self.url
+      Notifications::PaymentMailer.delay.created_payment_debit(self.id)
     end
 
 
