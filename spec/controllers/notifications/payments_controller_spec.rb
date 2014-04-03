@@ -95,6 +95,7 @@ describe Notifications::PaymentsController do
 
       it { expect(response.status).to eq(200) }
       its(:state) { should == 'finished' } 
+      its(:paid_at) { should_not == nil }
       its(:subscription) { expect(subject.subscription.reload.state).to eq("active") }
 
       it "should send an PAYMENT APPROVED email to the payer" do
