@@ -56,7 +56,7 @@ gem 'meurio_ui', '~> 1.4.1'
 group :production do
   gem 'newrelic_rpm' 
   gem 'rails_12factor'
-  
+  gem 'heroku-deflater' 
   # Using autoscaler on heroku, so we can turn off workers if not being used.
   # See https://github.com/JustinLove/autoscaler
   # See http://manuel.manuelles.nl/blog/2012/11/13/scalable-heroku-worker-for-sidekiq/

@@ -91,6 +91,8 @@ GEM
     gravatar_image_tag (1.2.0)
     haml (4.0.5)
       tilt
+    heroku-deflater (0.5.3)
+      rack (>= 1.4.5)
     hike (1.2.3)
     httparty (0.13.0)
       json (~> 1.8)
@@ -277,6 +279,7 @@ DEPENDENCIES
   foreman
   foundation-rails (~> 5.1.1.0)
   gravatar_image_tag
+  heroku-deflater
   jquery-inputmask-rails
   jquery-rails
   mailcatcher
