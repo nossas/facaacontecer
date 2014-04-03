@@ -41,6 +41,7 @@ module PaymentObserver
     # After the finish event for a payment, activate the parent subscription
     # And send activated_subscription_email
     def activate_subscription 
+      self.update_attribute(:paid_at, Time.now)
       self.subscription.activate!
       Notifications::PaymentMailer.delay.finished_payment(self.id)
     end
