@@ -14,8 +14,9 @@ Selfstarter::Application.configure do
   # Disable Rails's static asset server (Apache or nginx will already do this)
   config.serve_static_assets = false
 
+
   # Compress JavaScripts and CSS
-  config.assets.compress = true
+  config.assets.js_compressor = :uglifier
 
   # Don't fallback to assets pipeline if a precompiled asset is missed
   config.assets.compile = false
@@ -51,14 +52,14 @@ Selfstarter::Application.configure do
   # store assets in a 'folder' instead of bucket root
   #config.assets.prefix = "/crowdfunding/assets"
 
-  # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
-  config.assets.precompile += %w( application.js application.css admin.css )
+  ## Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
+  #config.assets.precompile += %w( application.js application.css admin.css )
 
   # Disable delivery errors, bad email addresses will be ignored
   config.action_mailer.raise_delivery_errors = false
 
   # Enable threaded mode
-  config.dependency_loading = true if $rails_rake_task
+  config.threadsafe!
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation can not be found)

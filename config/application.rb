@@ -2,9 +2,7 @@ require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
 
-if defined?(Bundler)
-  Bundler.require(*Rails.groups(:assets => %w(development test)))
-end
+Bundler.require(:default, Rails.env)
 
 module Selfstarter
   
@@ -23,6 +21,8 @@ module Selfstarter
     
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version           = '1.0'
-
+    
+    # Enable escaping HTML in JSON.
+    config.active_support.escape_html_entities_in_json = true
   end
 end
