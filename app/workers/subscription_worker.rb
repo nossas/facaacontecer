@@ -7,11 +7,8 @@ class SubscriptionWorker
   def perform(subscription_id)
     @subscription = Subscription.find_by(id: subscription_id)
     
-    if @subscription.slip?
-      perform_slip
-    elsif @subscription.debit?
-      perform_debit
-    end
+    perform_slip if @subscription.slip?
+    perform_debit if @subscription.debit?
   end
 
   # BOLETO

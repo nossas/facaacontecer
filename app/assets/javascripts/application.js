@@ -134,7 +134,9 @@ Apoie = {
       $('.' + window.$plan + '-tab a').click();
     }
     if (window.$payment != "" ) {
-      $('.subscription-payment-options input[value="'+window.$payment+'"]').trigger('click');
+      var input = $('.subscription-payment-options input[value="'+window.$payment+'"]');
+      input.prop('checked', true);
+      input.trigger('click');
     }
 
   },

@@ -20,7 +20,6 @@ gem 'before_actions'
 # Template-related gems
 gem 'simple_form'
 gem 'slim-rails'       # Template engine
-gem 'active_decorator' # To be removed soon
 
 
 # State machine gem

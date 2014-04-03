@@ -1,5 +1,5 @@
 body#subscriptions.show, body#payments.show
-  h1, h2, h3, h4, p
+  h1, h2, h3, h4, h6, p
     color: white
     -webkit-text-stroke: 0.3px
 
@@ -8,19 +8,14 @@ body#subscriptions.show, body#payments.show
 
 
 
-body#subscriptions.show
-  background: image-url('screen5.png') no-repeat top center
+body#subscriptions.show, body#payments.show
+  background: image-url('payment_show.jpg') no-repeat top left 
   background-size: cover
   #loading
     margin: 2em auto 1em auto
 
 
-
 body#payments.show
-  background: image-url('payment_show.jpg') no-repeat top left 
-  background-size: cover
-
-
   .confirming
     margin-top: 2.5em
   .button
@@ -28,4 +23,4 @@ body#payments.show
     font-size: 1.2em
     background: $lightblue
     +border-radius(4px)
-
+  
