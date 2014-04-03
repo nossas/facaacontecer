@@ -88,6 +88,9 @@ GEM
     fssm (0.2.10)
     gherkin (2.12.2)
       multi_json (~> 1.3)
+    gibbon (1.1.2)
+      httparty
+      multi_json (>= 1.3.4)
     gravatar_image_tag (1.2.0)
     haml (4.0.5)
       tilt
@@ -278,6 +281,7 @@ DEPENDENCIES
   fabrication
   foreman
   foundation-rails (~> 5.1.1.0)
+  gibbon
   gravatar_image_tag
   heroku-deflater
   jquery-inputmask-rails

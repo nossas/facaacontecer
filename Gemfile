@@ -8,7 +8,7 @@ gem 'rails', '~> 4.0.3'
 
 # Server related gems
 gem 'foreman'  # Start the server using `foreman start`
-gem 'puma'      
+gem 'puma'
 gem 'sidekiq'  # Using sidekiq to perform delayed jobs. LOVE.
 
 # Database-related gems
@@ -31,7 +31,8 @@ gem 'state_machine'
 # Payment/Gateway related gems
 gem 'mymoip'                    # ~>  https://github.com/Irio/mymoip
 
-
+# Mailchimp API wraper
+gem 'gibbon'
 
 # Model-validation related gems
 gem "cpf_validator"                   # validate cpfs
@@ -54,9 +55,9 @@ gem 'meurio_ui', '~> 1.4.1'
 
 # Group related gems
 group :production do
-  gem 'newrelic_rpm' 
+  gem 'newrelic_rpm'
   gem 'rails_12factor'
-  gem 'heroku-deflater' 
+  gem 'heroku-deflater'
   # Using autoscaler on heroku, so we can turn off workers if not being used.
   # See https://github.com/JustinLove/autoscaler
   # See http://manuel.manuelles.nl/blog/2012/11/13/scalable-heroku-worker-for-sidekiq/
@@ -85,9 +86,8 @@ group :test do
   gem 'shoulda'
   gem 'cpf_cnpj'  # Allow the testing/generation of CPFs
   gem "codeclimate-test-reporter", require: nil
-  
+
   # Mocking HTTP requests using VCR + Webmock
   gem 'vcr'
   gem 'webmock'
 end
-
