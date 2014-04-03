@@ -14,8 +14,6 @@
 //= require jquery_ujs
 //= require foundation
 //= require meurio_ui
-//= require skrollr
-//= require skrollr.ie
 //= require jquery.inputmask
 //= require jquery.inputmask.extensions
 //= require jquery.inputmask.date.extensions
@@ -26,7 +24,6 @@
 //= require_tree ./angular
 //
 
-var parallax = skrollr.init();
 
 Apoie = {};
 
