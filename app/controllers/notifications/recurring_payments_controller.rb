@@ -6,6 +6,7 @@ class Notifications::RecurringPaymentsController < ApplicationController
   # Located @ app/controllers/notifications/concerns/recurring_payment_status.rb
   include Notifications::RecurringPaymentStatus
   
+  respond_to :json
 
   # Find a payment or else, create one no matter what 
   # (doing this due to retrocompatibility)
