@@ -2,8 +2,11 @@ facaAcontecerApp.controller('SubscriptionCtrl', function($scope, $http){
       
   $scope.zipcode        = window.$zipcode;
   $scope.cepApi         = "https://brazilapi.herokuapp.com/api?cep=";
-
-  
+  if (store.get('card_number')) {
+    $scope.card_number = store.get('card_number');
+    $scope.card_expire = store.get('card_expire');
+    $scope.card_holder = store.get('card_holder');
+  };
   
 
   $scope.$watch('card_number', function(){

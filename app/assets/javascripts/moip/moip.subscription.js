@@ -160,7 +160,7 @@ MoipSubscription = {
         console.log(response)
         self.messages.append($("<h6/>").text(response.message + "!"));
 
-        $.post(self.subscription_url);
+        $.get(self.subscription_url);
 
         setInterval(function(){
           location.reload();

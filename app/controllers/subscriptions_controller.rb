@@ -13,5 +13,6 @@ class SubscriptionsController < ApplicationController
   # POST /subscriptions/:id/confirm
   def confirm
     @subscription.wait_confirmation
+    render nothing: true
   end
 end
