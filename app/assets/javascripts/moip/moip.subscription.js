@@ -3,8 +3,9 @@ MoipSubscription = {
   billing: null,
   customer: null, 
   messages: $('.subscription-messages'),
-  button: $('.subscription-form-button'),
-
+  button:   $('.subscription-form-button'),
+  success:  $('#successful-message'),
+  loading:  $('#loading'),
   /**
    *  Function to split the chars /().- and spaces.
    *  Because we receive inputs with these characters and the result, which is
@@ -145,7 +146,10 @@ MoipSubscription = {
         // Show all errors above the submit button
         for ( var i = 0, len = response.errors.length; i < len; i++) {
           var error = response.errors[i].description;
-          self.messages.append($('<strong/>').addClass('error').text(error));
+          self.success.css({ visibility: 'hidden' });
+          self.loading.css({ visibility: 'hidden'});
+
+          self.messages.append($('<strong/>').addClass('').text(error));
         }
 
         self.button.show();
