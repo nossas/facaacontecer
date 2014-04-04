@@ -7,6 +7,8 @@ class UsersController < ApplicationController
     actions(:edit)    { @user = User.find_by(id: params[:id]) }
   end
 
+  force_ssl if: :ssl_configured?
+
   # GET /users
   def index; end
 

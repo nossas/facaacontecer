@@ -18,7 +18,6 @@ Selfstarter::Application.routes.draw do
 
 
 
-
   namespace :notifications do
     resources :payments, only: [:create]
     resources :recurring_payments, only: [:create]

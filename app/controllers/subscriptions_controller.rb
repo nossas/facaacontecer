@@ -4,6 +4,7 @@ class SubscriptionsController < ApplicationController
     actions(:show) { redirect_to payment_path(@subscription.payments.last) if @subscription.waiting? }
   end
 
+  force_ssl if: :ssl_configured?
 
 
   # GET /subscriptions/:id
