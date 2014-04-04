@@ -8,45 +8,49 @@
   .large-5.large-centered.columns.text-center
     h4 
       = t "subscriptions.success.message.#{@subscription.payment_option}"
-    br
-    .error_messages 
+.row
+  .large-6.large-centered.columns.text-center.end
+    .subscription-messages 
       h6
         | Se esta tela demorar, mande um email para <em>financiador@meurio.org.br</em> informando seu email. 
+    .subscription-form-button.hidden
+      br
+      = link_to "Clique para voltar ao formulário", "javascript:history.back(-1)", class: :button
 
 - if @subscription.creditcard?
-  javascript:
-    window.$user = {
-      name:                   "#{@subscription.user.first_name} #{@subscription.user.last_name}",
-      email:                  "#{@subscription.user.email}",
-      cpf:                    "#{@subscription.user.cpf}",
-      birthday:               "#{@subscription.user.birthday}",
-      phone:                  "#{@subscription.user.phone}",
-      address_street:         "#{@subscription.user.address_street}",
-      address_number:         "#{@subscription.user.address_number}",
-      address_extra:          "#{@subscription.user.address_extra}",
-      address_district:       "#{@subscription.user.address_district}",
-      city:                   "#{@subscription.user.city}",
-      state:                  "#{@subscription.user.state}",
-      country:                "BRA",
-      zipcode:                "#{@subscription.user.zipcode}"
-      
-    };
+  = content_for :javascripts do
+    = javascript_include_tag MOIP_JS_URL 
+    javascript:
+      var input = {}
+      input.user = {
+        name:                   "#{@subscription.user.first_name} #{@subscription.user.last_name}",
+        email:                  "#{@subscription.user.email}",
+        cpf:                    "#{@subscription.user.cpf}",
+        birthday:               "#{@subscription.user.birthday.strftime('%d/%m/%Y')}",
+        phone:                  "#{@subscription.user.phone}",
+        address_street:         "#{@subscription.user.address_street}",
+        address_number:         "#{@subscription.user.address_number}",
+        address_extra:          "#{@subscription.user.address_extra}",
+        address_district:       "#{@subscription.user.address_district}",
+        city:                   "#{@subscription.user.city}",
+        state:                  "#{@subscription.user.state}",
+        country:                "BRA",
+        zipcode:                "#{@subscription.user.zipcode}"
+        
+      };
 
-    window.$subscription = {
-      fullname:   store.get('card_holder'),
-      card_number: store.get('card_number'),
-      expire:     store.get('card_expire'),
-    }
-    
-    var input = { 
-      user: window.$user,
-      subscription: window.$subscription
-    }
-    
-    if (!window.$subscription.card_number == undefined) {
-      var customer = MoipSubscription.buildCustomer(input);
-      MoipSubscription(customer, #{@subscription.value.to_i}, #{session[:moip_token]});
-    }
+      input.subscription = {
+        fullname:     window.store.get('card_holder'),
+        card_number:  window.store.get('card_number'),
+        expire:       window.store.get('card_expire'),
+      };
+
+
+      input.plan    = "FA20_#{t("subscriptions.plans.#{@subscription.plan}")}_#{@subscription.value.to_i}";
+      input.code    = "#{@subscription.code}";
+      if (!input.subscription.card_number == "") {
+        MoipSubscription.createCustomerSubscription(input.code, input, input.plan, "#{MOIP_TOKEN}");
+      }
 
 - else
   javascript:

@@ -2,7 +2,8 @@ MoipSubscription = {
 
   billing: null,
   customer: null, 
-  error_message: $('#subscription_error_message'),
+  messages: $('.subscription-messages'),
+  button: $('.subscription-form-button'),
 
   /**
    *  Function to split the chars /().- and spaces.
@@ -20,6 +21,7 @@ MoipSubscription = {
    */
   buildCustomer: function(input) {
 
+    console.log('Building Customer...');
     this.billing  = input.subscription
     var customer  = input.user;
 
@@ -44,7 +46,7 @@ MoipSubscription = {
       birthdate_month:  customer.birthday[1],
       birthdate_year:   customer.birthday[2],
       phone_area_code:  customer.phone[0],
-      phone_number:     customer.phone[1],
+      phone_number:     customer.phone[1]+customer.phone[2],
       billing_info:     this.buildBillingInfo(this.billing),
       address:          this.buildAddress(customer)
     };
@@ -58,7 +60,7 @@ MoipSubscription = {
    */
 
   buildAddress: function(customer) {
-
+    console.log('Building Address...');
     // As we are receiving zip code in the format 00000-000
     // We have to split the '-' and join the numbers
 
@@ -84,6 +86,7 @@ MoipSubscription = {
    *
    */
   buildBillingInfo: function(billing){
+    console.log('Building Billing...');
 
     var card = billing;
     var expire = card.expire.split('/');
@@ -106,18 +109,15 @@ MoipSubscription = {
    * arguments: Object customer
    *            String plan_code
    */
-  createCustomerSubscription: function(customer, plan_code, token) {
+  createCustomerSubscription: function(code, customer, plan, token) {
 
     var self      = this;
 
     var customer  = this.buildCustomer(customer);
     var moip      = new MoipAssinaturas(token);
 
-    // Subscription Code ( needed for event subscription.created )
-    var code      = new Date().getTime();
-
-    // Cleaning error messages
-    this.error_message.html('');
+    // Cleaning messages
+    this.messages.html('');
 
     // Creating a subscription for a new user
     moip.subscribe(
@@ -130,7 +130,7 @@ MoipSubscription = {
       .with_new_customer(customer)
 
       // The plan ID
-      .with_plan_code(plan_code)
+      .with_plan_code(plan)
 
       // The return function of the new subscribing action    
     ).callback(function(response){
@@ -140,25 +140,29 @@ MoipSubscription = {
       if (response.has_errors()) {
         console.log(response);
         // Remove the loading icon
-        Selfstarter.cardButton.removeClass('loading');
+        //Selfstarter.cardButton.removeClass('loading');
 
         // Show all errors above the submit button
         for ( var i = 0, len = response.errors.length; i < len; i++) {
           var error = response.errors[i].description;
-          self.error_message.append($('<li/>').text(error));
+          self.messages.append($('<strong/>').addClass('error').text(error));
         }
+
+        self.button.show();
       } 
       // If no errors were found
       else {
-        // The codes 1, 2 and 3 are good ones, so we can 
-        // move to the next step: save the subscription into our db
-        Selfstarter.saveSubscription(
-          code, 
-          // We receive 00,00 values. This removes the two ,00 
-          // from the end
-          parseInt(response.amount.toString().slice(0,-2)),
-          // Setting up which form will be sent (in this case, the one with creditcard fields)
-          Selfstarter.cardForm);
+        console.log(response)
+        self.messages.append($("<h6/>").text(response.message + "!"));
+      /*  // The codes 1, 2 and 3 are good ones, so we can */
+        //// move to the next step: save the subscription into our db
+        //Selfstarter.saveSubscription(
+          //code, 
+          //// We receive 00,00 values. This removes the two ,00 
+          //// from the end
+          //parseInt(response.amount.toString().slice(0,-2)),
+          //// Setting up which form will be sent (in this case, the one with creditcard fields)
+          /*Selfstarter.cardForm);*/
 
       }
     });

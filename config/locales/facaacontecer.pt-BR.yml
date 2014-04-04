@@ -10,6 +10,10 @@ pt-BR:
     send_bank_slips: "Enviar boletos"
   
   subscriptions:
+    plans:
+      monthly: "Mensal"
+      biannual: "Semestral"
+      annual: "Unica"
     payments:
       slip: "Boleto"
       debit: "Débito"

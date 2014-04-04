@@ -21,6 +21,7 @@
 //= require angular
 //= require angular-resource
 //= require store
+//= require moip/moip.subscription
 //= require facaacontecerApp
 //= require_tree ./angular
 //
