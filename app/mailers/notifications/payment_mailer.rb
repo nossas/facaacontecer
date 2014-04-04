@@ -49,6 +49,15 @@ class Notifications::PaymentMailer < ActionMailer::Base
   end
 
 
+  def cancelled_payment(id)
+    object(id)
+
+    mail(
+      to: @payment.user.email,
+      subject: "[MeuRio] Oops, houve um problema com a sua doação"
+    )
+  end
+
 
   def object(id)
     @payment = Payment.find_by(id: id)
