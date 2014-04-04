@@ -91,15 +91,16 @@ describe Notifications::PaymentsController do
 
 
 
-    context "When a payment instruction is sent with status 'concluído'" do
+    context "When a payment instruction is sent with status 'Autorizado'" do
 
       before do
+        @nasp_params[:status_pagamento] = "1"
         post :create, @nasp_params
         Sidekiq::Extensions::DelayedMailer.drain
       end
 
       it { expect(response.status).to eq(200) }
-      its(:state) { should == 'finished' } 
+      its(:state) { should == 'authorized' } 
       its(:paid_at) { should_not == nil }
       its(:subscription) { expect(subject.subscription.reload.state).to eq("active") }
 

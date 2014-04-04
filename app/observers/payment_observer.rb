@@ -43,7 +43,7 @@ module PaymentObserver
     def activate_subscription 
       self.update_attribute(:paid_at, Time.now)
       self.subscription.activate!
-      Notifications::PaymentMailer.delay.finished_payment(self.id)
+      Notifications::PaymentMailer.delay.authorized_payment(self.id)
     end
 
     # After the Refund/ Reverse action in a payment, Pause the subscription
@@ -69,7 +69,7 @@ module PaymentObserver
     # Putting it on states file. This way we can keep things organized.
     # States where states should be; Callbacks (observers) where they should be as well.
     state_machine do
-      after_transition on: :finish, do: :activate_subscription
+      after_transition on: :authorize, do: :activate_subscription
       after_transition on: [:reverse, :refund], do: [:pause_subscription, :notify_refund]
       after_transition on: :cancel, do: [:pause_subscription, :notify_cancelation]
       after_transition on: :wait, do: :notify_user

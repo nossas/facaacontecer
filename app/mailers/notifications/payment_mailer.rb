@@ -38,7 +38,7 @@ class Notifications::PaymentMailer < ActionMailer::Base
     )
   end
 
-  def finished_payment(id)
+  def authorized_payment(id)
     object(id)
 
     mail(
