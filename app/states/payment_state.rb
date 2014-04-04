@@ -37,12 +37,12 @@ module PaymentState
 
       # Event: Cancelado (cancelled by the payer)
       event(:cancel) do
-        transition all - [:finished]  => :cancelled
+        transition all - [:cancelled, :finished]  => :cancelled
       end
 
       # Event: Finished (payed)
       event(:finish) do 
-        transition all - [:cancelled] => :finished
+        transition all - [:finished, :cancelled] => :finished
       end
 
     end
