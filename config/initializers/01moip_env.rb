@@ -3,7 +3,7 @@
 # ==============================
 MOIP_TOKEN              = ENV['MOIP_ASSINATURAS_TOKEN'] 
 
-if Rails.env.production?
+if Rails.env.production? or Rails.env.staging?
   MOIP_INSTRUCTION_URL  = "https://www.moip.com.br/Instrucao.do?token="  
   MOIP_URL              = 'https://moip.com.br/assinaturas/v1'
   MOIP_JS_URL           = 'https://api.moip.com.br/moip-assinaturas.min.js'

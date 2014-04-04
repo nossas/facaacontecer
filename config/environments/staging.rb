@@ -4,6 +4,9 @@ Selfstarter::Application.configure do
   # Code is not reloaded between requests
   config.cache_classes = true
 
+  # Class eager loading
+  config.eager_load = true
+
   # Full error reports are disabled and caching is turned on
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
@@ -11,8 +14,9 @@ Selfstarter::Application.configure do
   # Disable Rails's static asset server (Apache or nginx will already do this)
   config.serve_static_assets = false
 
+
   # Compress JavaScripts and CSS
-  config.assets.compress = true
+  config.assets.js_compressor = Uglifier.new(mangle: false)
 
   # Don't fallback to assets pipeline if a precompiled asset is missed
   config.assets.compile = false
@@ -28,7 +32,7 @@ Selfstarter::Application.configure do
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for nginx
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  config.force_ssl = true
+  config.force_ssl = false 
 
   # See everything in the log (default is :info)
   # config.log_level = :debug
@@ -48,13 +52,13 @@ Selfstarter::Application.configure do
   # store assets in a 'folder' instead of bucket root
   #config.assets.prefix = "/crowdfunding/assets"
 
-  # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
-  config.assets.precompile += %w( application.js application.css admin.css foundation.css )
+  ## Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
+  #config.assets.precompile += %w( application.js application.css admin.css )
 
   # Disable delivery errors, bad email addresses will be ignored
   config.action_mailer.raise_delivery_errors = false
 
-  # Enable threaded mode
+  # Enabled by default on Rails 4 apps
   # config.threadsafe!
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
@@ -63,6 +67,13 @@ Selfstarter::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+
+
+
+  # Log the query plan for queries taking more than this (works
+  # with SQLite, MySQL, and PostgreSQL)
+  # config.active_record.auto_explain_threshold_in_seconds = 0.5
+  #
 
 
   # Email sending
