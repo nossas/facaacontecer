@@ -8,7 +8,11 @@ Selfstarter::Application.routes.draw do
 
 
   resources :users, except: [:destroy, :update]
-  resources :subscriptions, only: [:show, :edit]
+  resources :subscriptions, only: [:show] do
+    member do
+      post :confirm
+    end
+  end
   resources :payments, only: [:show]
 
 

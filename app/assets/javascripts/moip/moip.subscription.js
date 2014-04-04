@@ -6,6 +6,7 @@ MoipSubscription = {
   button:   $('.subscription-form-button'),
   success:  $('#successful-message'),
   loading:  $('#loading'),
+  subscription_url: $('#subscription-url').data('url'),
   /**
    *  Function to split the chars /().- and spaces.
    *  Because we receive inputs with these characters and the result, which is
@@ -158,6 +159,13 @@ MoipSubscription = {
       else {
         console.log(response)
         self.messages.append($("<h6/>").text(response.message + "!"));
+
+        $.post(self.subscription_url);
+
+        setInterval(function(){
+          location.reload();
+        }, 6000)
+
       /*  // The codes 1, 2 and 3 are good ones, so we can */
         //// move to the next step: save the subscription into our db
         //Selfstarter.saveSubscription(

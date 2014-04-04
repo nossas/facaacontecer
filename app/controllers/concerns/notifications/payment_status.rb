@@ -91,6 +91,10 @@ module Notifications::PaymentStatus
       return render nothing: true, status: status.to_i
     end
 
+
+    def is_from_moip?
+      request.header['authorization'] && request.header['authorization'] == Base64.encode("#{MyMoip.token}:#{MyMoip.key}") 
+    end
   end
 
 end
