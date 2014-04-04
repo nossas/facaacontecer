@@ -45,6 +45,10 @@ class Subscription < ActiveRecord::Base
     self.code = Time.now.to_i 
   end
 
+  def creditcard?
+    self.payment_option == 'creditcard'
+  end
+
   def debit?
     self.payment_option == 'debit'
   end

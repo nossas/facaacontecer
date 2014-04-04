@@ -86,13 +86,15 @@ MoipSubscription = {
   buildBillingInfo: function(billing){
 
     var card = billing;
+    var expire = card.expire.split('/');
+
     var params = {
       fullname:           card.fullname,
       credit_card_number: card.card_number,
-      expiration_month:   card['expiration_date(2i)'],
+      expiration_month:   expire[0],
 
       // Return only the two final numbers (2012 would be just '12')
-      expiration_year:    card['expiration_date(1i)'].substr(-2),
+      expiration_year:    expire[1].substr(-2),
     }
 
     return new BillingInfo(params);

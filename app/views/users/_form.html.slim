@@ -95,9 +95,9 @@
               h3 Dados do seu cartão
             .card-fields
               = usr.simple_fields_for :creditcard do |credit|
-                .large-5.columns= credit.input :holder, input_html: { "ng-required" => "isCreditCard()" }
-                .large-5.columns= credit.input :cardnumber, input_html: { class: 'creditcard-mask', pattern: "card", "ng-required" => "isCreditCard()" }
-                .large-2.columns.end= credit.input :expiration, input_html: { class: 'expiration-mask', "ng-required" => "isCreditCard()" }
+                .large-5.columns= credit.input :holder, input_html: { "ng-model" => "card_holder", "ng-required" => "isCreditCard()", autocomplete: "off" }
+                .large-5.columns= credit.input :cardnumber, input_html: { class: 'creditcard-mask', pattern: "card", "ng-model" => "card_number", "ng-required" => "isCreditCard()", autocomplete: "off" }
+                .large-2.columns.end= credit.input :expiration, input_html: { class: 'expiration-mask', "ng-model" => "card_expire", "ng-required" => "isCreditCard()", autocomplete: "off" }
 
 
 

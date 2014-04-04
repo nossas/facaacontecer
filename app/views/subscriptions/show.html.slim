@@ -9,10 +9,47 @@
     h4 
       = t "subscriptions.success.message.#{@subscription.payment_option}"
     br
-    h6 
-      | Se esta tela demorar, mande um email para <em>financiador@meurio.org.br</em> informando seu email. 
+    .error_messages 
+      h6
+        | Se esta tela demorar, mande um email para <em>financiador@meurio.org.br</em> informando seu email. 
 
-javascript:
-  setInterval(function(){
-    location.reload();
-  }, 6000)
+- if @subscription.creditcard?
+  javascript:
+    window.$user = {
+      name:                   "#{@subscription.user.first_name} #{@subscription.user.last_name}",
+      email:                  "#{@subscription.user.email}",
+      cpf:                    "#{@subscription.user.cpf}",
+      birthday:               "#{@subscription.user.birthday}",
+      phone:                  "#{@subscription.user.phone}",
+      address_street:         "#{@subscription.user.address_street}",
+      address_number:         "#{@subscription.user.address_number}",
+      address_extra:          "#{@subscription.user.address_extra}",
+      address_district:       "#{@subscription.user.address_district}",
+      city:                   "#{@subscription.user.city}",
+      state:                  "#{@subscription.user.state}",
+      country:                "BRA",
+      zipcode:                "#{@subscription.user.zipcode}"
+      
+    };
+
+    window.$subscription = {
+      fullname:   store.get('card_holder'),
+      card_number: store.get('card_number'),
+      expire:     store.get('card_expire'),
+    }
+    
+    var input = { 
+      user: window.$user,
+      subscription: window.$subscription
+    }
+    
+    if (!window.$subscription.card_number == undefined) {
+      var customer = MoipSubscription.buildCustomer(input);
+      MoipSubscription(customer, #{@subscription.value.to_i}, #{session[:moip_token]});
+    }
+
+- else
+  javascript:
+    setInterval(function(){
+      location.reload();
+    }, 6000)
