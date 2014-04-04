@@ -25,7 +25,7 @@ class SubscriptionsController < ApplicationController
       redirect_to payment_path(@subscription.payments.last)
 
     # But if it's creditcard, redirect it already
-    elsif @subscription.creditcard?
+    elsif @subscriptions.payments.last.present? && @subscription.creditcard?
       redirect_to payment_path(@subscription.payments.last) 
     end
   end
