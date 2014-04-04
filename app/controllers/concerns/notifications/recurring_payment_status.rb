@@ -46,7 +46,7 @@ module Notifications::RecurringPaymentStatus
 
         # Receiving a number from MOIP POST request and
         # mapping it a Payment state on the system.
-        :state           => get_payment_state(param[:resource][:status][:code]),
+        :state      => get_payment_state(param[:resource][:status][:code]),
       }
 
       return request_params
