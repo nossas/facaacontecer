@@ -76,12 +76,17 @@ describe Notifications::PaymentsController do
       before do
         @nasp_params[:status_pagamento] = "5"
         post :create, @nasp_params
+        Sidekiq::Extensions::DelayedMailer.drain
       end
 
       it { expect(response.status).to eq(200) }
       its(:subscription) { subject.subscription.state.should == 'paused' }
       its(:state) { should == 'cancelled' }
 
+      it "should send an Email informing the user about the cancellation" do
+        expect(ActionMailer::Base.deliveries.last.subject).to eq("[MeuRio] Oops, houve um problema com a sua doação")
+        expect(ActionMailer::Base.deliveries.last.to).to eq([@payment.user.email])
+      end
     end
 
 

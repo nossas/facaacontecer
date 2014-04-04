@@ -1,7 +1,7 @@
 # ==============================
 # Moip assinaturas configuration
 # ==============================
-MOIP_TOKEN  = ENV['MOIP_TOKEN'] 
+MOIP_TOKEN              = ENV['MOIP_ASSINATURAS_TOKEN'] 
 
 if Rails.env.production?
   MOIP_INSTRUCTION_URL  = "https://www.moip.com.br/Instrucao.do?token="  

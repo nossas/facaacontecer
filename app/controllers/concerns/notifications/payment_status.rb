@@ -8,6 +8,18 @@ module Notifications::PaymentStatus
 
   included do
 
+    # Skipping authentication token for the create action
+    skip_before_filter :verify_authenticity_token, :only => [:create]
+
+    # POST /notifications/payments?{/recurring} 
+    def create
+
+      # using the mapped :state param as a state call.
+      @payment.send(_params[:state].to_s)
+      render_nothing_with_status(200)
+    end
+
+
     # See:
     # https://labs.moip.com.br/parametro/statuspagamento/
     # 1 - Autorizado
@@ -59,7 +71,6 @@ module Notifications::PaymentStatus
         # mapping it a Payment state on the system.
         :state           => get_payment_state(param[:status_pagamento]),
 
-
         :id              => param[:cod_moip],
         :user            => param[:email_consumidor],
         :payment_type    => param[:forma_pagamento]
@@ -68,7 +79,22 @@ module Notifications::PaymentStatus
       return request_params
     end
 
+    # Mapping all params received to the PaymentStatus concern
+    def _params
+      # Located @ app/controllers/concerns/notifications/payment_status
+      return payment_params(params)
+    end
 
+
+    # Avoiding repetition
+    def render_nothing_with_status(status)
+      return render nothing: true, status: status.to_i
+    end
+
+
+    def is_from_moip?
+      request.header['authorization'] && request.header['authorization'] == Base64.encode("#{MyMoip.token}:#{MyMoip.key}") 
+    end
   end
 
 end

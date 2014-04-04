@@ -1,16 +1,28 @@
 facaAcontecerApp.controller('SubscriptionCtrl', function($scope, $http){
       
   $scope.zipcode        = window.$zipcode;
-
   $scope.cepApi         = "https://brazilapi.herokuapp.com/api?cep=";
 
   
+  
+
+  $scope.$watch('card_number', function(){
+    store.set('card_number', $scope.card_number);
+  });
+
+  $scope.$watch('card_holder', function(){
+    store.set('card_holder', $scope.card_holder);
+  });
+
+  $scope.$watch('card_expire', function(){
+    store.set('card_expire', $scope.card_expire);
+  });
+
   $scope.getZipcodeData = function() {
     $http.get($scope.cepApi + $scope.zipcode).
     success($scope.populateAddressFields).
       error($scope.showZipcodeNotFoundMessage);
   };
-
 
   $scope.isCreditCard = function(){
    if ($scope.payment_option == 'creditcard') {
@@ -21,7 +33,7 @@ facaAcontecerApp.controller('SubscriptionCtrl', function($scope, $http){
   };
 
   $scope.populateAddressFields = function(response, status) {
-    console.log(response[0]);
+    //console.log(response[0]);
     if (!response[0].cep.valid) { 
         $scope.showZipcodeNotFoundMessage();
         return false;

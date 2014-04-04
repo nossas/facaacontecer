@@ -53,14 +53,25 @@ module PaymentObserver
     end
 
 
+    # Notify a refund or reverse action when the user requests it
+    def notify_refund
+      nil
+    end
+
+
+    # Notify a user when a payment is cancelled
+    def notify_cancelation
+      Notifications::PaymentMailer.delay.cancelled_payment(self.id)      
+    end
+
 
     # Placing all callbacks inside the observer, instead of 
     # Putting it on states file. This way we can keep things organized.
     # States where states should be; Callbacks (observers) where they should be as well.
     state_machine do
       after_transition on: :finish, do: :activate_subscription
-      after_transition on: [:reverse, :refund], do: :pause_subscription
-      after_transition on: :cancel, do: :pause_subscription
+      after_transition on: [:reverse, :refund], do: [:pause_subscription, :notify_refund]
+      after_transition on: :cancel, do: [:pause_subscription, :notify_cancelation]
       after_transition on: :wait, do: :notify_user
     end
   end

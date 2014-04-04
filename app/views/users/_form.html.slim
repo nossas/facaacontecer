@@ -4,7 +4,6 @@
     header
     .subscription-form.large-12.columns
       = simple_form_for @user, url: users_path, method: :post, html: { "data-abide" => true } do |usr|
-
         //pre
           = @user.errors.messages.inspect
         //pre
@@ -96,9 +95,9 @@
               h3 Dados do seu cartão
             .card-fields
               = usr.simple_fields_for :creditcard do |credit|
-                .large-5.columns= credit.input :holder, input_html: { "ng-required" => "isCreditCard()" }
-                .large-5.columns= credit.input :cardnumber, input_html: { class: 'creditcard-mask', pattern: "card", "ng-required" => "isCreditCard()" }
-                .large-2.columns.end= credit.input :expiration, input_html: { class: 'expiration-mask', "ng-required" => "isCreditCard()" }
+                .large-5.columns= credit.input :holder, input_html: { "ng-model" => "card_holder", "ng-required" => "isCreditCard()", autocomplete: "off" }
+                .large-5.columns= credit.input :cardnumber, input_html: { class: 'creditcard-mask', pattern: "card", "ng-model" => "card_number", "ng-required" => "isCreditCard()", autocomplete: "off" }
+                .large-2.columns.end= credit.input :expiration, input_html: { class: 'expiration-mask', "ng-model" => "card_expire", "ng-required" => "isCreditCard()", autocomplete: "off" }
 
 
 
@@ -139,4 +138,4 @@ javascript:
   window.$zipcode   = "#{@user.zipcode}";
   window.$value     = "#{@user.subscriptions.last.value.to_i}";
   window.$payment   = "#{@user.subscriptions.last.payment_option}";
-  window.$plan      = "#{@user.subscriptions.last.plan}"
+  window.$plan      = "#{@user.subscriptions.last.plan}";

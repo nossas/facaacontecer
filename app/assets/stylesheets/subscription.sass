@@ -2,10 +2,14 @@ body#subscriptions.show, body#payments.show
   h1, h2, h3, h4, h6, p
     color: white
     -webkit-text-stroke: 0.3px
-
   p
     font-size: 1.1em
-
+  .button
+    font-weight: bold !important
+    font-size: 1.2em
+    background: $lightblue
+    +border-radius(4px)
+  
 
 
 body#subscriptions.show, body#payments.show
@@ -13,13 +17,13 @@ body#subscriptions.show, body#payments.show
   #loading
     margin: 2em auto 1em auto
 
+body#subscriptions.show
+  .error
+    color: darken(red, 18%)
+  strong
+    display: block
 
 body#payments.show
   .confirming
     margin-top: 2.5em
-  .button
-    font-weight: bold !important
-    font-size: 1.2em
-    background: $lightblue
-    +border-radius(4px)
-  
+

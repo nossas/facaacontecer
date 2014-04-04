@@ -20,6 +20,8 @@
 
 //= require angular
 //= require angular-resource
+//= require store
+//= require moip/moip.subscription
 //= require facaacontecerApp
 //= require_tree ./angular
 //
@@ -65,8 +67,8 @@ Apoie = {
 
       slip.addClass('disabled').attr('disabled', 'disabled');
       debit.addClass('disabled').attr('disabled', 'disabled');
+
       card.trigger('click');
-      
     } else {
       slip.parent().removeClass('disabled');
       debit.parent().removeClass('disabled');

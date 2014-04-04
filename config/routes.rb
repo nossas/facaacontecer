@@ -8,7 +8,11 @@ Selfstarter::Application.routes.draw do
 
 
   resources :users, except: [:destroy, :update]
-  resources :subscriptions, only: [:show, :edit]
+  resources :subscriptions, only: [:show] do
+    member do
+      post :confirm
+    end
+  end
   resources :payments, only: [:show]
 
 
@@ -17,12 +21,9 @@ Selfstarter::Application.routes.draw do
 
   namespace :notifications do
     resources :payments, only: [:create]
+    resources :recurring_payments, only: [:create]
   end
 
   
   get '/invite/:code',                to: "projects#index",     as: :invite
-  
-  
-
-
 end

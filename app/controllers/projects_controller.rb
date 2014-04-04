@@ -1,6 +1,5 @@
 class ProjectsController < ApplicationController
 
-  before_filter { @token = MOIP_TOKEN }
   before_filter { session[:invite] = params[:code] if params[:code] }
   
   before_actions do

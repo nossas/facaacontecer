@@ -2,9 +2,9 @@ class UsersController < ApplicationController
 
   before_actions do 
 
-    actions(:new, :create) { @user = User.initialize_or_update_by(user_params) }
-    actions(:new) { @user.subscriptions.build }
-    actions(:edit, :update) { @user = User.find_by(id: params[:id]) }
+    actions(:new, :create)     { @user = User.new(user_params) }
+    actions(:new)     { @user.subscriptions.build }
+    actions(:edit)    { @user = User.find_by(id: params[:id]) }
   end
 
   # GET /users
@@ -15,9 +15,12 @@ class UsersController < ApplicationController
 
 
   # POST /users/
-  def create
-    return render :new unless @user.save
-    redirect_to subscription_path(@user.subscriptions.last)
+  def create 
+    if @user.save
+      redirect_to subscription_path(@user.subscriptions.last)
+    else
+      render :new
+    end
   end
 
   private
@@ -26,11 +29,10 @@ class UsersController < ApplicationController
     if params[:user]
       params.require(:user).permit(
         %i(first_name last_name email cpf birthday 
-            zipcode address_street address_extra 
-            address_number address_district city state 
-            phone country), 
-            :subscriptions_attributes => [:value, :plan, :payment_option, :project_id, :bank],
-            :creditcard_attributes => [:holder, :card_number, :expiration] 
+              zipcode address_street address_extra 
+              address_number address_district city state 
+              phone country), 
+              :subscriptions_attributes => [:value, :plan, :payment_option, :project_id, :bank]
       )
     else
       {}
