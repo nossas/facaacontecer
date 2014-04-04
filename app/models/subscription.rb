@@ -30,7 +30,7 @@ class Subscription < ActiveRecord::Base
 
   # Check if the payment_option is in the allowed payments
   validates_inclusion_of :plan, in: ALLOWED_PLANS
-  validates_inclusion_of :payment_option, in: ALLOWED_PAYMENTS, allow_blank: false, allow_nil: false
+  validates_inclusion_of :payment_option, in: ALLOWED_PAYMENTS
 
 
   # Allowing nil or blank when payment_option is creditcard

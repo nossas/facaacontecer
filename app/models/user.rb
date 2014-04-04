@@ -33,25 +33,6 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :subscriptions
 
 
-
-
-
-  # Method to create or update an user based on 
-  # received params
-  
-  def self.initialize_or_update_by(options = {})
-    return User.new unless options.has_key?(:email)
-
-    user = User.find_by(email: options[:email])
-   
-    return User.new(options) if user.nil?
-
-    user.update_attributes(options)
-    user
-  end
-
-
-
   # Isolating business logic inside a method
   # So if you need to call app/business/subscriber
   # Do as the following:

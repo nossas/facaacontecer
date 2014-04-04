@@ -68,12 +68,7 @@ Apoie = {
       slip.addClass('disabled').attr('disabled', 'disabled');
       debit.addClass('disabled').attr('disabled', 'disabled');
 
-
-      if (window.$payment && window.$payment == 'creditcard' || window.$payment == "") {
-
-        card.prop('checked', true);
-        card.trigger('click');
-      }
+      card.trigger('click');
     } else {
       slip.parent().removeClass('disabled');
       debit.parent().removeClass('disabled');
