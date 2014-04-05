@@ -25,7 +25,7 @@ Feature: Show that my payment was created or not
     And I should see the subscription <payment> url
     Examples:
       |count | payment | status      | final_status | waiting_message                                    | final_message |
-      |1     | boleto  | processing  | waiting      | Aguarde, estamos gerando o link para o seu boleto. | obrigado por fazer o Meu Rio acontecer           |      
+      |1     | boleto  | processing  | waiting      | Aguarde só um instantinho enquanto geramos o link para o seu boleto |  obrigado por fazer a Rede Meu Rio acontecer!           |      
 
 
 

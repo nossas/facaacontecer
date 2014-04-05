@@ -1,6 +1,9 @@
 #coding: utf-8
 class User < ActiveRecord::Base
 
+  # located @ app/observers/user_observer.rb
+  include UserObserver
+
   has_one   :invite,        dependent: :destroy
   has_many  :invitees,      class_name: :Invite, foreign_key: :parent_user_id
   has_many  :subscriptions, dependent: :destroy, inverse_of: :user
@@ -36,7 +39,6 @@ class User < ActiveRecord::Base
   # 
   #   user.business.as_payer
   #   user.business.build_payer
-  
   def business
     # located @ app/business/subscriber.rb
     extend Business::Payer
