@@ -24,4 +24,9 @@
             |Compartilhe o seu link exclusivo por Face e por email:
             br
             = text_field_tag :link, invite_url(code: @payment.user.invite.code)
-          
+
+
+javascript:
+  if (store) {
+    store.clear();
+  }

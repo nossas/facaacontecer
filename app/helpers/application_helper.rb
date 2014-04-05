@@ -3,7 +3,7 @@ module ApplicationHelper
 
 
   def available_payment_banks
-    [['Banco do brasil', 'banco_do_brasil'], ['Bradesco', 'bradesco'], ['Itaú', 'itau'], ['Banrisul', 'banrisul']]
+    [['Banco do Brasil', 'banco_do_brasil'], ['Bradesco', 'bradesco'], ['Itaú', 'itau'], ['Banrisul', 'banrisul']]
   end
 
   def available_payment_options

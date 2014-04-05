@@ -26,9 +26,6 @@ class User < ActiveRecord::Base
   # Validates if a given user is older than 14 years
   validates_date :birthday, before: -> { 14.years.ago }
 
-  # After creation, associante an invite code to this current user/instance 
-  after_create :generate_invite_code
- 
   # Accepts nested attributes for subscriptions
   accepts_nested_attributes_for :subscriptions
 
@@ -44,17 +41,4 @@ class User < ActiveRecord::Base
     # located @ app/business/subscriber.rb
     extend Business::Payer
   end
-
-
-
-
-
-  # Generate a invite code after the creation 
-  # of an user. This code allow tracking of
-  # who is inviting who in the system
-  private
-    def generate_invite_code
-      invite = self.build_invite(code: SecureRandom.hex(6))
-      invite.save!
-    end
 end

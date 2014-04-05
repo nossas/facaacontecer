@@ -41,14 +41,14 @@
                 .interval-info.pulse
                   p
                     |O valor escolhido vai ser doado mensalmente. (Apenas através do seu cartão de crédito)
-                .monthly.subscription-values
+                .monthly.subscription-values.monthly-values
                   = sub.input :value, as: :radio_buttons, label_field: false, collection: available_monthly_plans
     
               #biannual.content
                 .interval-info
                   p
                     |O valor escolhido vai ser doado semestralmente. (Qualquer forma de pagamento) 
-                .biannual.subscription-values
+                .biannual.subscription-values.biannual-values
                   = sub.input :value, as: :radio_buttons, label_field: false, collection: available_biannual_plans
 
               #annual.content

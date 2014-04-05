@@ -60,7 +60,6 @@ Apoie = {
     var debit = $('.subscription-payment-options input[value="debit"]');
     var slip = $('.subscription-payment-options input[value="slip"]');
     var card = $('.subscription-payment-options input[value="creditcard"]');
-
     if (tab.hasClass('monthly-tab')){
       slip.parent().addClass('disabled');
       debit.parent().addClass('disabled');

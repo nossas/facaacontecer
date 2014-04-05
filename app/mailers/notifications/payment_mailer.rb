@@ -7,7 +7,6 @@ class Notifications::PaymentMailer < ActionMailer::Base
     bcc: "financiador@meurio.org.br",
     reply_to: "financiador@meurio.org.br"
 
-  default_url_options[:protocol] = 'https://'
   default_url_options[:host] = 'apoie.meurio.org.br'
 
 
