@@ -2,13 +2,11 @@
   section.large-10.large-centered.columns.confirming.text-center
     header
       h3
-        | #{@payment.user.first_name}, obrigado por fazer o Meu Rio acontecer!
+        | #{@payment.user.first_name}, obrigado por fazer a Rede Meu Rio acontecer!
       article.row
         .large-12.large-centered.columns.text-center
           p
-            | Dentro de instantes, você receberá um email com nossa prestação de contas 
-            | e detalhes das celebrações especiais que preparamos para nossos 
-            | financiadores e voluntários.
+            | Assim que o seu pagamento for confirmado, você receberá um e-mail com detalhes das celebrações especiais que preparamos para nossos financiadores.
         p
           br
           - if @payment.subscription.slip? && !@payment.subscription.active?
@@ -21,9 +19,7 @@
           = image_tag "shirt_payment.png"
         .large-8.columns.text-left.end
           p
-            | Agora que você já faz o Meu Rio acontecer, garanta sua camisa exclusiva chamando seus 
-            | amigos para essa Rede! Se um amigo seu doar através do link abaixo, enviaremos a sua 
-            | camiseta por correio com nossa cartinha de agradecimento.
+            | Agora que você já faz parte da festa, convide seus amigos! Se pelo menos um deles doar através do link abaixo, te enviaremos por correio uma camiseta lindona para mostrar a todos que você Faz Acontecer!
           p
             |Compartilhe o seu link exclusivo por Face e por email:
             br

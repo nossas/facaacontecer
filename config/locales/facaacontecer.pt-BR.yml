@@ -1,13 +1,8 @@
 pt-BR:
   seo:
-    title: "Meu Rio: Faça Acontecer!"
-    description: "O Meu Rio não tem rabo preso com nenhum governo, político, partido ou empresa pública, e 80 mil cariocas acreditam nessa ideia. Para que isso continue assim, visite http://facaacontecer.meurio.org.br"
-    og_title: "Faça parte da conquista da independencia!"
-    og_description: "O desafio do Meu Rio é mobilizar pessoas para uma cidade melhor. Isso só pode ser feito com completa independência de interesses outros que não sejam os públicos. Clique e faça parte! http://apoie.meurio.org.br"
+    title: "Faça a diferença por um Rio melhor!"
+    description: "Financie a Rede Meu Rio e ajude a construir, com independência e transparência, a cidade que todos nós merecemos. Faça como eu, faça acontecer: http://bit.ly/eufacoacontecer"
     keywords: 'meu rio, doação, contribua, financie, independente'
-    twitter_description: 'O @Meu_Rio não tem rabo preso e 80 mil cariocas acreditam nessa ideia. Veja: '
-  admin:  
-    send_bank_slips: "Enviar boletos"
   
   subscriptions:
     plans:
@@ -20,10 +15,18 @@ pt-BR:
       creditcard: "Cartão de crédito"
     success:
       message:
-        debit: "Aguarde, estamos gerando o link para o seu banco."
-        creditcard: "Aguarde, estamos processando o pagamento."
-        slip: "Aguarde, estamos gerando o link para o seu boleto."
-
+        debit: "Aguarde só um instantinho enquanto geramos o link para o seu banco"
+        creditcard: "Aguarde só um instantinho enquanto processamos o seu pagamento"
+        slip: "Aguarde só um instantinho enquanto geramos o link para o seu boleto"
+    status:
+      authorize: "Autorizado"
+      start: "Iniciado"   
+      printing: "Boleto impresso"
+      finish: "Concluído"
+      cancel: "Cancelado"
+      wait: "Em análise"    
+      reverse: "Estornado"
+      refund: "Reembolsado"   
 
 
   helpers:

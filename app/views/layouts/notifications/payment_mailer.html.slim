@@ -20,8 +20,7 @@ html
       |Fernanda, Miguel, Alexandre, Alessandra e toda a equipe Meu Rio.
     footer
       br
-      br
-      br
+      | -- 
       p
         strong
           |Saiba mais sobre o seu pagamento: 
@@ -40,4 +39,10 @@ html
         br
         em
           | - Valor total: #{number_to_currency(@payment.subscription.value)}
-
+        br
+        em
+          | - Status do pagamento: #{t("subscriptions.status.#{@payment.state.to_s}")} 
+        p
+          | --
+        p
+          |Para dúvidas, sugestões ou cancelamento das contribuições, por favor entre em contato através de financiador@meurio.org.br informando o seu e-mail de cadastro.
