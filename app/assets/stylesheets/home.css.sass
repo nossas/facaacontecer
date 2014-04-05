@@ -37,12 +37,14 @@
   h1
     margin: 1em 0
 @media screen and (max-width: 700px) 
-  .screen1
-    background: $olive !important
-  .screen2
-    background: $green !important
-
-
+  .screen1, .screen3, .screen5
+    background: lighten($olive, 2%) image-url('pattern-dots_68a612.png') !important
+  .screen2, .screen4
+    background: darken($green, 5%) image-url('pattern-dots_68a612.png') !important
+  .screen1 iframe
+    margin-top: .8em
+    height: 320px !important
+  
 
 .screen1
   background: image-url('screen1.jpg') no-repeat center top
