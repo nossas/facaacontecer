@@ -3,6 +3,14 @@ require 'spec_helper'
 
 describe Notifications::PaymentsController do
 
+  def post_with_payment_status(status = "1") 
+    @nasp_params[:status_pagamento] = status
+    post :create, @nasp_params
+  end
+
+  def run_workers!
+    Sidekiq::Extensions::DelayedMailer.drain
+  end
 
   before do
     @payment = Fabricate(:payment)
@@ -30,9 +38,8 @@ describe Notifications::PaymentsController do
 
     context "When a payment instruction is sent with status 'EmAnalise'" do
       before do
-        @nasp_params[:status_pagamento] = '6'
-        post :create, @nasp_params
-        Sidekiq::Extensions::DelayedMailer.drain
+        post_with_payment_status("6")
+        run_workers!
       end
 
 
@@ -49,8 +56,7 @@ describe Notifications::PaymentsController do
 
     context "When a payment instruction is sent with status 'Estornado'" do
       before do
-        @nasp_params[:status_pagamento] = "7"
-        post :create, @nasp_params
+        post_with_payment_status("7")
       end
 
 
@@ -61,8 +67,7 @@ describe Notifications::PaymentsController do
 
     context "When a payment instruction is sent with status 'BoletoImpresso'" do 
       before do
-        @nasp_params[:status_pagamento] = "3"
-        post :create, @nasp_params
+        post_with_payment_status("3")
       end
 
       it { expect(response.status).to eq(200) }
@@ -74,9 +79,8 @@ describe Notifications::PaymentsController do
 
     context "When a payment instruction is sent with status 'Cancelado'" do
       before do
-        @nasp_params[:status_pagamento] = "5"
-        post :create, @nasp_params
-        Sidekiq::Extensions::DelayedMailer.drain
+        post_with_payment_status("5")
+        run_workers!
       end
 
       it { expect(response.status).to eq(200) }
@@ -91,13 +95,13 @@ describe Notifications::PaymentsController do
 
 
 
-    context "When a payment instruction is sent with status 'Autorizado'" do
+    context "When a payment instruction was sent with status 'Autorizado'" do
 
       before do
-        @nasp_params[:status_pagamento] = "1"
-        post :create, @nasp_params
-        Sidekiq::Extensions::DelayedMailer.drain
+        post_with_payment_status("1")
+        run_workers!
       end
+
 
       it { expect(response.status).to eq(200) }
       its(:state) { should == 'authorized' } 
@@ -107,6 +111,25 @@ describe Notifications::PaymentsController do
       it "should send an PAYMENT APPROVED email to the payer" do
         expect(ActionMailer::Base.deliveries.last.to).to eq([@payment.user.email])
       end
+
+    end
+
+    context "When a payment instruction was sent with status 'Autorizado' and the payment's user has 1 inviter/host" do
+      before do
+        @host = Fabricate(:user, email: 'host@email.com')
+        @payment.user.invite.update_attribute(:host, @host)
+        post_with_payment_status("1")
+        run_workers!
+        
+      end 
+
+      it { expect(response.status).to eq(200) }
+      it {
+        expect(ActionMailer::Base.deliveries.last.to).to eq([@host.email])
+      }
+      it { 
+        expect(ActionMailer::Base.deliveries.last.subject).to eq("[MeuRio] Você ganhou uma camiseta da Rede Meu Rio!")
+      }
 
     end
 

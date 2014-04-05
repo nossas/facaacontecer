@@ -82,7 +82,7 @@ module Notifications::PaymentStatus
     # Mapping all params received to the PaymentStatus concern
     def _params
       # Located @ app/controllers/concerns/notifications/payment_status
-      puts params.inspect
+      puts params.inspect if Rails.env.production?
       return payment_params(params)
     end
 

@@ -5,8 +5,8 @@ module PaymentObserver
 
   included do
     before_create :setup_code
-    after_create  :send_created_payment_email_slip, if: -> { self.subscription.slip? }
-    after_create  :send_created_payment_email_debit, if: -> { self.subscription.debit? }
+    after_create  :send_created_payment_email_slip,   if: -> { self.subscription.slip? }
+    after_create  :send_created_payment_email_debit,  if: -> { self.subscription.debit? }
 
 
     # SETUP an unique code for each payment, after its creation
@@ -38,6 +38,15 @@ module PaymentObserver
     end
 
 
+    # Deliver an email informating the user's INVITER that he won a prize
+    # if present, of course
+    def notify_inviter
+      inviter = self.user.invite.host
+      if inviter
+        Notifications::InviteMailer.delay.created_guest(self.user.id, inviter.id)
+      end
+    end
+
     # After the finish event for a payment, activate the parent subscription
     # And send activated_subscription_email
     def activate_subscription 
@@ -45,6 +54,8 @@ module PaymentObserver
       self.subscription.activate!
       Notifications::PaymentMailer.delay.authorized_payment(self.id)
     end
+
+ 
 
     # After the Refund/ Reverse action in a payment, Pause the subscription
     # And send paused_subscription_email
@@ -69,10 +80,10 @@ module PaymentObserver
     # Putting it on states file. This way we can keep things organized.
     # States where states should be; Callbacks (observers) where they should be as well.
     state_machine do
-      after_transition on: :authorize, do: :activate_subscription
+      after_transition on: :authorize,  do: [:activate_subscription,  :notify_inviter]
+      after_transition on: :cancel,     do: [:pause_subscription,     :notify_cancelation]
+      after_transition on: :wait,       do: [:notify_user]
       after_transition on: [:reverse, :refund], do: [:pause_subscription, :notify_refund]
-      after_transition on: :cancel, do: [:pause_subscription, :notify_cancelation]
-      after_transition on: :wait, do: :notify_user
     end
   end
 

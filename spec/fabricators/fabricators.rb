@@ -43,3 +43,8 @@ Fabricator(:payment) do
   expires_at { }
 
 end
+
+
+Fabricator(:invite) do
+  user
+end

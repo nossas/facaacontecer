@@ -1,0 +1,28 @@
+doctype html
+html
+  head
+    title
+    style
+      | body { max-width: 710px }
+      |p { font-family: "Helvetica", "Arial", sans-serif; font-weight: 300; line-height: 1.4em} 
+      |.gray { color: gray }
+  body
+    p
+      | Olá 
+      strong= @user.first_name
+      |!
+  
+    p
+      |Parabéns!
+
+    p
+      |<strong>#{@inviter.first_name}</strong> acaba de apoiar a Rede Meu Rio através do seu link exclusivo!
+
+    p
+      |Enviaremos a sua camiseta para o endereço constante no seu cadastro em breve.
+
+    p
+      |Muito obrigado!
+
+    p
+      |Fernanda, Miguel, Alexandre, Alessandra e toda a equipe Meu Rio.

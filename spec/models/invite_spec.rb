@@ -6,6 +6,6 @@ describe Invite do
     it { should belong_to :user }
     it { should belong_to :host }
     it { should validate_presence_of :user_id }
-    it { should validate_presence_of :code }
   end
+
 end
