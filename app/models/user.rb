@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
 
   # Validates the presence of these fields
   validates_presence_of :first_name, :last_name, :email, :cpf, :birthday, 
-    :zipcode, :address_street, :address_extra, :address_number, 
+    :postal_code, :address_street, :address_extra, :address_number, 
     :address_district, :city, :state, :phone, :country
 
 

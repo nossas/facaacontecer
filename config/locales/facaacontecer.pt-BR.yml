@@ -59,7 +59,7 @@ pt-BR:
         address_district: "Bairro"
         state: "Estado"
         city: "Cidade"
-        zipcode: "CEP"
+        postal_code: "CEP"
       subscriptions:
         plan: "Frequência de pagamento"
         payment_option: "Forma de pagamento"

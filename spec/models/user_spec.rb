@@ -6,7 +6,7 @@ describe User do
   context "attributes" do
     [
     :first_name, :last_name, :email, :cpf, :birthday, 
-    :zipcode, :address_street, :address_extra, :address_number, 
+    :postal_code, :address_street, :address_extra, :address_number, 
     :address_district, :city, :state, :phone, :country
     ].each do |attr|
       it { should validate_presence_of attr }

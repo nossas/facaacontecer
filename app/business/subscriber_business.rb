@@ -19,7 +19,7 @@ module SubscriberBusiness
         address_city:           city,
         address_state:          state,
         address_country:        'BRA',
-        address_cep:            only_numerical(zipcode),
+        address_cep:            only_numerical(postal_code),
         address_phone:          only_numerical(phone)
     
       }

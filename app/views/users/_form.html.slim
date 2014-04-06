@@ -112,7 +112,7 @@
           .large-12.columns
             .row
               .large-3.columns
-                = usr.input :zipcode, input_html: { required: true, class: 'zipcode-mask', "ng-model" => "zipcode", "ng-blur" => 'getZipcodeData()' } 
+                = usr.input :postal_code, input_html: { required: true, class: 'zipcode-mask', "ng-model" => "zipcode", "ng-blur" => 'getZipcodeData()' } 
           .large-12.columns
             .row
               .large-5.columns= usr.input :address_street, input_html: { required: true, "ng-model" => "address_street" }
@@ -134,7 +134,7 @@ javascript:
   // Saving references in order to use it with jQuery 
   // See application.js file.
   // DO NOT ALTER the value of  .last
-  window.$zipcode   = "#{@user.zipcode}";
+  window.$zipcode   = "#{@user.postal_code}";
   window.$value     = "#{@user.subscriptions.last.value.to_i}";
   window.$payment   = "#{@user.subscriptions.last.payment_option}";
   window.$plan      = "#{@user.subscriptions.last.plan}";
