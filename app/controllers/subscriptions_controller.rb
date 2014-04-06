@@ -12,8 +12,9 @@ class SubscriptionsController < ApplicationController
 
 
   # POST /subscriptions/:id/confirm
+  # Only used for creditcard
   def confirm
-    @subscription.wait_confirmation
+    @subscription.wait_confirmation! if @subscription.creditcard?
     render nothing: true
   end
 
