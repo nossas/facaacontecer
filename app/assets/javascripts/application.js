@@ -48,7 +48,7 @@ Apoie = {
     $('.date-mask').inputmask('99/99/9999', { "clearIncomplete": true });
     $('.zipcode-mask').inputmask('99.999-999', { "clearIncomplete": true });
     $('.cpf-mask').inputmask('999.999.999-99', { "clearIncomplete": true });
-    $('.phone-mask').inputmask('(99) 9999[9]-9999', { "clearIncomplete": true });
+    $('.phone-mask').inputmask('(99) 99999999[9]', { "clearIncomplete": true });
     $('.creditcard-mask').inputmask('999999999999999[9]', { "clearIncomplete": true });
 
 
