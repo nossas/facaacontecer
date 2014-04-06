@@ -21,7 +21,7 @@ class CreateUsersForeignTable < ActiveRecord::Migration
             state character varying(5),
             country character varying(50),
             zipcode character varying(10),
-            phone character varying(255),
+            phone character varying(255)
           )
           SERVER meurio_accounts
           OPTIONS (table_name 'users');
