@@ -27,9 +27,13 @@ class Notifications::RecurringPaymentsController < ApplicationController
     def build_payment
       @subscription = Subscription.find_by(code: _params[:code])
       if @subscription.present?
+
+        # Create a payment with the params from moip webhook
         @payment = @subscription.payments.create!(url: nil)
+
+        # Update @payment because the CODE attribute is automatically generate on Create
         @payment.update_attributes!(code: _params[:id])
-        @payment
+        return @payment
       else
         raise "Subscription couldn't be found!"
       end
