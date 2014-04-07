@@ -37,10 +37,10 @@ module Notifications::RecurringPaymentStatus
     # }
 
     def payment_params(param)
-      return false unless param[:resource]
-      return false unless param[:event]
+      return {} unless param[:resource]
+      return {} unless param[:event]
       
-      return false unless (param[:event] =~ /^payment/) == 0
+      return {} unless (param[:event] =~ /^payment/) == 0
 
       request_params = {
         :event      => param[:event],
