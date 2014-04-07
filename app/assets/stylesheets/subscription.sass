@@ -12,7 +12,7 @@ body#subscriptions.show, body#payments.show
   
 
 
-body#subscriptions.show, body#payments.show
+body#subscriptions.show
   background: $olive image-url('pattern-dots_68a612.png')
   #loading
     margin: 2em auto 1em auto
@@ -27,3 +27,18 @@ body#payments.show
   .confirming
     margin-top: 2.5em
 
+
+
+body#payments.show
+  background: #333
+  .payment-screen1
+    background: image-url('screen3.jpg') center -90px no-repeat
+    background-size: 100% !important
+  .payment-screen2
+    min-height: 300px
+    background-size: cover !important
+    background: image-url('payment-screen2.jpg') -200px top no-repeat
+
+  input
+    border: 1px solid lightgray
+    font-size: 1.2em

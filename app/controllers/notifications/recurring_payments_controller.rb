@@ -12,6 +12,7 @@ class Notifications::RecurringPaymentsController < ApplicationController
   # (doing this due to retrocompatibility)
   before_actions do
     actions(:create) do
+       
       @payment = Payment.find_by(code: _params[:id])
       if @payment.nil?
         build_payment
