@@ -38,6 +38,9 @@ module Notifications::RecurringPaymentStatus
 
     def payment_params(param)
       return false unless param[:resource]
+      return false unless param[:event]
+      
+      return false unless (param[:event] =~ /^payment/).zero?
 
       request_params = {
         :event      => param[:event],
@@ -50,6 +53,13 @@ module Notifications::RecurringPaymentStatus
       }
 
       return request_params
+    end
+
+    # Mapping all params received to the PaymentStatus concern
+    def _params
+      # Located @ app/controllers/concerns/notifications/payment_status
+      puts params.inspect if Rails.env.production?
+      return payment_params(params)
     end
 
 

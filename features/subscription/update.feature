@@ -45,6 +45,6 @@ Feature: Existing subscription for the current campaign
     
     Examples:
       | count | sub_count | status     | message                                             | first_name | last_name | cpf            | birthday   | email            |phone | interval         | value | payment_option    | bank | zipcode | street | number | extra | district | city | state |
-      | 1     |   1       | processing | Aguarde só um instantinho enquanto geramos o link para o seu banco   | Luiz       | Fonseca   | 919.133.769-07 | 12/11/1988 | this@user.com | (21) 99999-9999 | Anual      | R$ 90 | Débito            | Itaú | 22222-222 | Rua | 300 | Ape | Botafogo | Rio de Janeiro | RJ  |
+      | 1     |   1       | processing | Aguarde só um instantinho enquanto geramos o link para o seu banco   | Luiz       | Fonseca   | 919.133.769-07 | 12/11/1988 | this@user.com | (21) 99999-9999 | Única      | R$ 90 | Débito            | Itaú | 22222-222 | Rua | 300 | Ape | Botafogo | Rio de Janeiro | RJ  |
       | 2     |   1       | processing | Aguarde só um instantinho enquanto geramos o link para o seu boleto  | Luiz       | Fonseca   | 919.133.769-07 | 12/11/1988 | email@email.com | (21) 99999-9999 | Semestral  | R$ 90 | Boleto            | Itaú | 22222-222 | Rua | 300 | Ape | Botafogo | Rio de Janeiro | RJ  |
 
