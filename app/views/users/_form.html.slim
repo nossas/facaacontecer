@@ -75,21 +75,21 @@
               #monthly.content.active
                 .interval-info.pulse
                   p
-                    |O valor escolhido vai ser doado mensalmente. (Apenas através do seu cartão de crédito)
+                    |O valor escolhido vai ser doado mensalmente (apenas através do seu cartão de crédito).
                 .monthly.subscription-values.monthly-values.selected-radio-button
                   = sub.input :value, as: :radio_buttons, label_field: false, collection: available_monthly_plans
     
               #biannual.content
                 .interval-info
                   p
-                    |O valor escolhido vai ser doado semestralmente. (Qualquer forma de pagamento) 
+                    |O valor escolhido vai ser doado semestralmente (qualquer forma de pagamento). 
                 .biannual.subscription-values.biannual-values.selected-radio-button
                   = sub.input :value, as: :radio_buttons, label_field: false, collection: available_biannual_plans
 
               #annual.content
                 .interval-info
                   p
-                    |O valor escolhido vai ser doado uma única vez. (Qualquer forma de pagamento) 
+                    |O valor escolhido vai ser doado uma única vez (qualquer forma de pagamento).
                 .annual.subscription-values.annual-values.selected-radio-button
                   = sub.input :value, as: :radio_buttons, label_field: false, collection: available_annual_plans
 
