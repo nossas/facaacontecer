@@ -3,7 +3,7 @@ facaAcontecerApp = angular.module('facaAcontecerApp', ['ngResource']);
 
 Apoie = {};
 
-Apoie = { 
+Apoie = {
 
 
   initialize: function(){
@@ -12,6 +12,7 @@ Apoie = {
     Apoie.watchPaymentPlanClick();
     Apoie.watchPaymentPlan();
     Apoie.watchPaymentOptionChoice();
+    Apoie.watchShareButtons();
   },
 
   animationPulseClass: 'animated pulse icon-checkmark selected',
@@ -39,7 +40,7 @@ Apoie = {
     switch(window.$plan) {
       case "0":
         break;
-      default: 
+      default:
         $('input[value="'+ window.$plan +'"]').trigger('click');
         break;
     }
@@ -59,19 +60,19 @@ Apoie = {
     switch (window.$payment) {
       case "":
         break;
-      default: 
+      default:
         $('input[value="' + window.$payment + '"]').trigger('click');
 
     }
   },
 
-  
+
   watchPaymentPlanClick: function() {
     var self = Apoie;
     $('.subscription-plans input').on('click', function(){
       self.startPaymentFlux($(this).val());
       Apoie.watchPaymentOption();
-      
+
     });
 
   },
@@ -86,7 +87,7 @@ Apoie = {
       var obj = $(this);
       $('label.radio').has('input[value="' + obj.val() + '"]').siblings().removeClass(Apoie.animationPulseClass);
       obj.parent('label').addClass(Apoie.animationPulseClass).removeClass('icon-checkmark');
-      
+
     });
   },
 
@@ -94,7 +95,7 @@ Apoie = {
   showValuesForPlan: function(plan) {
     var tabs = $('.tabs-content');
     var self = Apoie;
-    window.$plan = plan; 
+    window.$plan = plan;
 
     tabs.show();
     tabs.children('.content').hide()
@@ -106,14 +107,14 @@ Apoie = {
   },
 
 
-  // Set given value if window.value is present or 
+  // Set given value if window.value is present or
   // set a default one if it's not
   setDefaultSubscriptionValue: function(){
     var value = window.$value;
     var self = Apoie;
 
     switch(parseInt(value)) {
-      case 0: 
+      case 0:
         self.toggleDefaultValue('input:eq(1)');
         break;
       default:
@@ -141,7 +142,7 @@ Apoie = {
     console.log(plan);
     switch(plan) {
       case "monthly":
-        not_monthly.each(function() { 
+        not_monthly.each(function() {
           $(this).parent().addClass('disabled').
             attr('title', 'Esta opção não está disponível no plano Mensal').
             attr('data-tooltip', '');
@@ -150,7 +151,7 @@ Apoie = {
         });
         break;
       default:
-        not_monthly.each(function() { 
+        not_monthly.each(function() {
           $(this).removeAttr('disabled');
           $(this).parent().removeClass('disabled has-tip').removeAttr('title').removeAttr('data-tooltip');
         });
@@ -182,10 +183,16 @@ Apoie = {
 
       }
     });
+  },
 
-
+  watchShareButtons: function() {
+    $("a.share-button").click(function(){
+      window.open(
+        $(event.target).attr("href"),
+        'share-dialog',
+        'width=626,height=436'
+      );
+      return false;
+    });
   }
-
-
 };
-
