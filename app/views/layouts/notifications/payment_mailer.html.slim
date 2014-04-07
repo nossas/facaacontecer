@@ -4,13 +4,11 @@ html
     title
     style
       | body { max-width: 710px }
-      |p { font-family: "Helvetica", "Arial", sans-serif; font-weight: 300; line-height: 1.4em} 
+      |p { font-family: "Helvetica", "Arial", sans-serif; font-weight: 400; line-height: 1.4em} 
       |.gray { color: gray }
   body
     p
-      | Olá 
-      strong= @payment.user.first_name
-      |!
+      | Olá #{@payment.user.first_name}!
     = yield
 
 
