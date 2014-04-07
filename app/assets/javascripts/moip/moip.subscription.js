@@ -118,8 +118,6 @@ MoipSubscription = {
     var customer  = this.buildCustomer(customer);
     var moip      = new MoipAssinaturas(token);
 
-    // Cleaning messages
-    this.messages.fadeOut();
 
     // Creating a subscription for a new user
     moip.subscribe(
