@@ -11,11 +11,11 @@ module PaymentObserver
 
     # SETUP an unique code for each payment, after its creation
     # All subscriptions have only integer code
-    # All payments have a PAYMENT suffix after the subscription code
+    # All payments (except creditcard) have a PAYMENT suffix after the subscription code
     # E.g.: 
-    #   123456        is the subscription
-    #   123456PAYMENT is the payment
-    #   123123 is the payment for creditcard
+    #   int: 123456        is the subscription
+    #   int + string: 123456PAYMENT is the payment for boleto and debito
+    #   int: 123123 is the payment for creditcard
     def setup_code
       self.code = "#{self.subscription.code}PAYMENT"
     end
@@ -45,9 +45,13 @@ module PaymentObserver
       inviter = self.user.invite.host
 
       # TODO: Only send the notify inviter email once for 
-      if inviter
+      if inviter and has_at_least_one_authorized_payment?
         Notifications::InviteMailer.delay.created_guest(self.user.id, inviter.id)
       end
+    end
+
+    def has_at_least_one_authorized_payment?
+      Payment.where(state: :authorized, subscription: self.subscription).count == 1 && self.subscription.creditcard?
     end
 
     # After the finish event for a payment, activate the parent subscription
