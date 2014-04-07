@@ -1,3 +1,5 @@
+OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
+
 namespace :mailchimp do
   def create_segment name
     begin
