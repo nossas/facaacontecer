@@ -54,9 +54,13 @@ describe User do
     end
 
 
+    # Length not, format almost there
     it "should not accept phone number with less than 12 characters" do
-      expect(User.new(phone: '(21) 9999-999')).to have(1).errors_on(:phone)
+      expect(User.new(phone: '(21) 9999-999')).to have(2).errors_on(:phone)
     end
+
+    # Length ok, but format is invalid
+    it { expect(User.new(phone: '(021) 9999-9999')).to have(1).errors_on(:phone) }
 
   end
 
