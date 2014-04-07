@@ -1,14 +1,14 @@
 doctype html
 html[ng-app='facaAcontecerApp']
   head
-    title= t('seo.title') 
+    title= t('seo.title')
     meta name="viewport"            content="width=device-width, maximum-scale=1.0"
     meta name="description"         content=t('seo.description')
     meta name="keywords"            content=t('seo.keywords')
     meta property="og:title"        content=t('seo.title')
     meta property="og:description"  content=t('seo.description')
     meta property="og:site_name"    content=t('seo.title')
-    meta property="og:image"        content="https://imgur.com/uKQMaxz.jpg"
+    meta property="og:image"        content="https://i.imgur.com/JB3kzDH.jpg"
     meta property="og:type"         content="website"
     meta property="og:url"          content="http://apoie.meurio.org.br"
     meta property="fb:admins"       content="100001105729764,100000428222603"
@@ -26,7 +26,7 @@ html[ng-app='facaAcontecerApp']
 
       ga('create', 'UA-26278513-12', 'meurio.org.br');
       ga('send', 'pageview');
-      
+
   body[id=controller.controller_name.downcase class=controller.action_name.downcase ng-view]
     = render 'layouts/header'
     = yield
