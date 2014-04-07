@@ -11,7 +11,7 @@
         article.user-personal-info.row
           .large-12.columns
             h3.text-center 
-              |Insira seus dados pessoais
+              | Dados Pessoais
           .large-3.columns= usr.input :first_name, input_html: { required: true } 
           .large-3.columns= usr.input :last_name, input_html: { required: true }
           .large-3.columns= usr.input :cpf, input_html: { class: 'cpf-mask', required: true  }
@@ -52,7 +52,7 @@
           article.subscription-plans.row
             .large-12.columns
               h3.text-center 
-                |Que tipo de doação deseja efetuar?
+                | Tipo de Doação
               .text-center.selected-radio-button
                 = sub.input :plan, as: :radio_buttons, collection: available_subscription_intervals, input_html: { required: true, "ng-model" => "plan"}
 
@@ -65,7 +65,7 @@
             // Subscription options
            
             h3.text-center 
-              |Qual valor você deseja doar?
+              | Valor da Doação
 
             .subscription-choose-option.text-center
               em Escolha um plano para poder escolher um valor
@@ -75,21 +75,21 @@
               #monthly.content.active
                 .interval-info.pulse
                   p
-                    |O valor escolhido vai ser doado mensalmente. (Apenas através do seu cartão de crédito)
+                    |O valor escolhido vai ser doado mensalmente (apenas através do seu cartão de crédito).
                 .monthly.subscription-values.monthly-values.selected-radio-button
                   = sub.input :value, as: :radio_buttons, label_field: false, collection: available_monthly_plans
     
               #biannual.content
                 .interval-info
                   p
-                    |O valor escolhido vai ser doado semestralmente. (Qualquer forma de pagamento) 
+                    |O valor escolhido vai ser doado semestralmente (qualquer forma de pagamento). 
                 .biannual.subscription-values.biannual-values.selected-radio-button
                   = sub.input :value, as: :radio_buttons, label_field: false, collection: available_biannual_plans
 
               #annual.content
                 .interval-info
                   p
-                    |O valor escolhido vai ser doado uma única vez. (Qualquer forma de pagamento) 
+                    |O valor escolhido vai ser doado uma única vez (qualquer forma de pagamento).
                 .annual.subscription-values.annual-values.selected-radio-button
                   = sub.input :value, as: :radio_buttons, label_field: false, collection: available_annual_plans
 
@@ -101,7 +101,7 @@
           article.subscription-payment-options.row
             .large-12.columns
               h3.text-center
-                |Qual a forma de pagamento?
+                | Forma de Pagamento
               .subscription-choose-option.text-center
                 em Escolha um plano para poder escolher uma forma de pagamento
             
@@ -117,11 +117,14 @@
           article.subscription-payment-fields.debit.hidden.row
             .debit-wrap.text-center
               .large-12.columns
-                h3 Escolha seu banco 
+                h3
+                  | Seu banco
               .debit-fields
                 .large-12.columns
                   = sub.input :bank, as: :radio_buttons, label: false, item_wrapper_class: "bank1", collection: available_payment_banks
                   = sub.full_error :bank
+                  small
+                    |As opcões disponíveis são as suportadas pelo Moip. Se o seu banco não constar na lista, por favor escolha outra opção de pagamento.
 
 
 
@@ -130,18 +133,23 @@
           // If there are any required payment fields (like Account holder for Credit Card)
           .card-wrap
             .large-12.columns.text-center
-              h3 Dados do seu cartão
+              h3 
+                | Dados do seu cartão 
             .card-fields
               = usr.simple_fields_for :creditcard do |credit|
                 .large-5.columns= credit.input :holder, input_html: { "ng-model" => "card_holder", "ng-required" => "isCreditCard()", autocomplete: "off" }
                 .large-5.columns= credit.input :cardnumber, input_html: { class: 'creditcard-mask', pattern: "card", "ng-model" => "card_number", "ng-required" => "isCreditCard()", autocomplete: "off" }
                 .large-2.columns.end= credit.input :expiration, input_html: { class: 'expiration-mask', "ng-model" => "card_expire", "ng-required" => "isCreditCard()", autocomplete: "off" }
-
+              small.small-12.text-center.small-centered.columns
+                |As bandeiras suportadas pelo Moip são Visa e Master. Se o seu cartão for de uma bandeira diferente, por favor escolha outra opção de pagamento.
 
         footer.button-action.row
-          .large-4.large-centered.columns
-            = usr.submit "Contribuir!", class: :animated, data: { disable_with: 'Aguarde...' }
-
+          .large-5.large-centered.text-center.columns
+            = usr.submit "Contribuir!", class: [:animated, :submit_form_button], data: { disable_with: 'Aguarde...' }
+        .row 
+          .large-5.large-centered.text-center.columns
+            small.icon-lock
+              |Todas as doações que recebemos são processadas de forma segura pelo Moip, nós não armazenamos seus dados de pagamento.
 
 
 

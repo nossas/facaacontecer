@@ -111,19 +111,19 @@ describe Notifications::PaymentsController do
       it "should send an PAYMENT APPROVED email to the payer" do
         expect(ActionMailer::Base.deliveries.last.to).to eq([@payment.user.email])
       end
-
     end
 
     context "When a payment instruction was sent with status 'Autorizado' and the payment's user has 1 inviter/host" do
       before do
         @host = Fabricate(:user, email: 'host@email.com')
         @payment.user.invite.update_attribute(:host, @host)
+        @payment.subscription.update_attribute(:payment_option, 'creditcard')
         post_with_payment_status("1")
         run_workers!
         
       end 
-
       it { expect(response.status).to eq(200) }
+      it { expect(@payment.reload.has_at_least_one_authorized_payment?).to eq true }
       it {
         expect(ActionMailer::Base.deliveries.last.to).to eq([@host.email])
       }
@@ -133,6 +133,29 @@ describe Notifications::PaymentsController do
 
     end
 
+    context %Q{
+      When a payment instruction was sent with status 'Autorizado'
+      and the payment's user has 1 inviter/host and 2 other payments} do
+      before do
+        @payment.user.invite.update_attribute(:host, @host)
+        @host = Fabricate(:user, email: 'host@email.com')
+        2.times { Fabricate(:payment, subscription: Fabricate(:subscription, payment_option: 'creditcard', user: @payment.user)) }
+
+        post_with_payment_status("1")
+        run_workers!
+        
+      end 
+
+      it { expect(response.status).to eq(200) }
+      it { expect(@payment.has_at_least_one_authorized_payment?).to eq false }
+      it {
+        expect(ActionMailer::Base.deliveries.last.to).to_not eq([@host.email])
+      }
+      it { 
+        expect(ActionMailer::Base.deliveries.last.subject).to_not eq("[MeuRio] Você ganhou uma camiseta da Rede Meu Rio!")
+      }
+
+    end
 
 
   end
