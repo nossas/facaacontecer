@@ -1,27 +1,33 @@
-.row[ng-controller='PaymentCtrl']
-  section.large-10.large-centered.columns.confirming.text-center
-    header
-      h3
-        | #{@payment.user.first_name}, obrigado por fazer a Rede Meu Rio acontecer!
-      article.row
-        .large-12.large-centered.columns.text-center
-          p
-            | Assim que o seu pagamento for confirmado, você receberá um e-mail com detalhes das celebrações especiais que preparamos para nossos financiadores.
-        p
-          br
-          - if @payment.subscription.slip? && !@payment.subscription.active?
-            = link_to "Clique aqui para imprimir seu boleto", @payment.url, class: :button, target: '_blank'
-          - elsif @payment.subscription.debit? && !@payment.subscription.active?
-            = link_to "Clique aqui para ir para o site do seu banco", @payment.url, class: :button, target: '_blank'
-
-      article.row
-        .large-3.columns
-          = image_tag "shirt_payment.png"
-        .large-8.columns.text-left.end
-          p
-            | Agora que você já faz parte da festa, convide seus amigos! Se pelo menos um deles doar através do link abaixo, te enviaremos por correio uma camiseta lindona para mostrar a todos que você Faz Acontecer!
-          p
-            |Compartilhe o seu link exclusivo por Face e por email:
-            br
-            = text_field_tag :link, invite_url(code: @payment.user.invite.code)
+#payment-page[ng-controller='PaymentCtrl']
+  .payment-screen1
+    .row
+      section.large-10.large-centered.columns.confirming.text-center
+        header
+          h3
+            | #{@payment.user.first_name}, obrigado por fazer a Rede Meu Rio acontecer!
+          article.row
+            .large-8.large-centered.columns.text-center
+              p
+                | Assim que o seu pagamento for confirmado, você receberá um e-mail com detalhes das celebrações especiais que preparamos para nossos financiadores.
+            p
+              br
+              - if @payment.subscription.slip? && @payment.subscription.waiting?
+                = link_to "Clique aqui para imprimir seu boleto", @payment.url, class: :button, target: '_blank'
+              - elsif @payment.subscription.debit? && @payment.subscription.waiting?
+                = link_to "Clique aqui para ir para o site do seu banco", @payment.url, class: :button, target: '_blank'
+  .payment-screen2
+    .row
+      section.large-10.large-centered.columns.confirming.text-center
+          article.row
+            .large-3.columns
+              = image_tag "shirt_payment.png"
+            .large-8.columns.text-left.end
+              p
+                | Agora que você já faz parte da festa, convide seus amigos! Se pelo menos um deles doar através do link abaixo, te enviaremos por correio uma camiseta lindona para mostrar a todos que você Faz Acontecer!
+              p
+                |Compartilhe o seu link exclusivo por Face e por email:
+                br
+                = text_field_tag :link, invite_url(code: @payment.user.invite.code)
+                = link_to image_tag('bt-face.png', size: '32x32'), "https://www.facebook.com/sharer/sharer.php?u=#{URI::encode(invite_url(code: @payment.user.invite.code))}", class: ["share-button", "bt-face"]
+                = link_to image_tag('bt-twitter.png', size: '32x32'), "https://twitter.com/share?url=#{URI::encode(invite_url(code: @payment.user.invite.code))}&text=#{URI::encode("Ajude a financiar o Meu Rio! Faça como eu, faça acontecer:")}&", class: ["share-button", "bt-twitter"]
 
