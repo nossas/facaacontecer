@@ -56,7 +56,7 @@ describe User do
 
   
   context "#business" do
-    before { @user = Fabricate(:user, first_name: "TESTER", last_name: "BETA", email: "email@email.com") }
+    before { @user = Fabricate(:user, id: 1, first_name: "TESTER", last_name: "BETA", email: "email@email.com") }
 
 
     it "should build an instance of MyMoip::Payer" do

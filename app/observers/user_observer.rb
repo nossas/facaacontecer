@@ -3,8 +3,10 @@ module UserObserver
 
 
   included do
-    # Build invite when creating a new user
+    # Hack due to MEURIO ACCOUNTS foreign table
     before_create :find_next_val_for_id, if: -> { Rails.env.production? }
+
+    # Build invite when creating a new user
     before_create { self.build_invite } 
 
 

@@ -13,8 +13,8 @@ Fabricator(:user) do
   city              { "Rio de Janeiro" }
   state             { "RJ" }
   country           { "BRA" }
-  postal_code           { "78132-500" }
   phone             { "(21) 997137471" }
+  postal_code       { "78132-500" }
 end
 
 

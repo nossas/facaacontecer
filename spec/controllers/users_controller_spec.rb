@@ -23,7 +23,7 @@ describe UsersController do
           city:               "Rio de Janeiro",
           state:              "RJ",
           country:            "BRA",
-          zipcode:            "78132-500",
+          postal_code:            "78132-500",
           phone:              "(21) 997137471",
 
           subscriptions_attributes: [
