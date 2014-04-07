@@ -1,4 +1,4 @@
-.row
+.row[ng-controller='PaymentCtrl']
   section.large-10.large-centered.columns.confirming.text-center
     header
       h3
@@ -25,8 +25,3 @@
             br
             = text_field_tag :link, invite_url(code: @payment.user.invite.code)
 
-
-javascript:
-  if (store) {
-    store.clear();
-  }

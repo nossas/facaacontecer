@@ -44,7 +44,7 @@ Given(/^I subscribe using (.*?)$/) do |payment|
       And I fill in Celular with "(55) 21122-2123"
       And I choose "R$ 90" for "Qual o valor?"
       And I choose "Boleto" for "Qual a forma de pagamento?"
-      And I select "Semestral" for "Frequência de pagamento"
+      And I choose "Semestral" for "Frequência de pagamento"
       And I fill in CEP with "22220-000"
       And I fill in Endereço with "Rua qexmeplo 12"
       And I fill in Número with "450"

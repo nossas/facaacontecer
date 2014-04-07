@@ -1,0 +1,41 @@
+- if @subscription.creditcard?
+
+  = content_for :javascripts do
+    = javascript_include_tag MOIP_JS_URL 
+    javascript:
+      var input = {}
+      input.user = {
+        name:                   "#{@subscription.user.first_name} #{@subscription.user.last_name}",
+        email:                  "#{@subscription.user.email}",
+        cpf:                    "#{@subscription.user.cpf}",
+        birthday:               "#{@subscription.user.birthday.strftime('%d/%m/%Y')}",
+        phone:                  "#{@subscription.user.phone}",
+        address_street:         "#{@subscription.user.address_street}",
+        address_number:         "#{@subscription.user.address_number}",
+        address_extra:          "#{@subscription.user.address_extra}",
+        address_district:       "#{@subscription.user.address_district}",
+        city:                   "#{@subscription.user.city}",
+        state:                  "#{@subscription.user.state}",
+        country:                "BRA",
+        zipcode:                "#{@subscription.user.postal_code}"
+        
+      };
+
+      input.subscription = {
+        fullname:     window.store.get('card_holder'),
+        card_number:  window.store.get('card_number'),
+        expire:       window.store.get('card_expire'),
+      };
+
+
+      input.plan    = "FA20_#{t("subscriptions.plans.#{@subscription.plan}")}_#{@subscription.value.to_i}";
+      input.code    = "#{@subscription.code}";
+      if (!input.subscription.card_number == "") {
+        MoipSubscription.createCustomerSubscription(input.code, input, input.plan, "#{MOIP_TOKEN}");
+      }
+
+- else
+  javascript:
+    setInterval(function(){
+      location.reload();
+    }, 6000)

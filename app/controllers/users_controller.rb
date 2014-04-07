@@ -30,7 +30,7 @@ class UsersController < ApplicationController
     end
     
    
-    return render :new if @user.errors.any?
+    return render :create if @user.errors.any?
     redirect_to subscription_path(@user.subscriptions.last)
     
   end

@@ -31,7 +31,7 @@ Feature: New subscription for the current campaign
     And I choose "<value>" for "Qual o valor?"
     And I choose "<payment_option>" for "Qual a forma de pagamento?"
     And I choose "<bank>" for "Qual seu banco?"
-    And I select "<interval>" for "Frequência de pagamento"
+    And I choose "<interval>" for "Frequência de pagamento"
     And I fill in CEP with "<zipcode>"
     And I fill in Endereço with "<street>"
     And I fill in Número with "<number>"

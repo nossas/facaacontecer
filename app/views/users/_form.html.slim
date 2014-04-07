@@ -4,15 +4,14 @@
     header
     .subscription-form.large-12.columns
       = simple_form_for @user, url: users_path, method: :post, html: { "data-abide" => true } do |usr|
-        //pre
-          = @user.errors.messages.inspect
-        //pre
-          = params[:user].inspect
+        
+        
+        /// PERSONAL FIELDS
+
         article.user-personal-info.row
-          // @subscriber
-          // Personal fields for the subscriber
           .large-12.columns
-            h3.text-center Insira seus dados pessoais
+            h3.text-center 
+              |Insira seus dados pessoais
           .large-3.columns= usr.input :first_name, input_html: { required: true } 
           .large-3.columns= usr.input :last_name, input_html: { required: true }
           .large-3.columns= usr.input :cpf, input_html: { class: 'cpf-mask', required: true  }
@@ -20,59 +19,96 @@
           .large-5.columns= usr.input :email, input_html: { required: true, pattern: 'email' }
           .large-3.columns.end= usr.input :phone, input_html: { class: 'phone-mask', required: true }
 
+        //// ADDRESS FIELDS
+        
+        article.user-address-info.row
+          // @subscriber
+          // Address info for the subscriber
+          .large-12.columns
+            h3.text-center
+              | Endereço
+          .large-12.columns
+            .row
+              .large-3.columns
+                = usr.input :postal_code, input_html: { required: true, class: 'zipcode-mask', "ng-model" => "zipcode", "ng-blur" => 'getZipcodeData()' } 
+          .large-12.columns
+            .row
+              .large-5.columns= usr.input :address_street, input_html: { required: true, "ng-model" => "address_street" }
+              .large-2.columns= usr.input :address_number, input_html: { required: true }
+              .large-4.columns.end= usr.input :address_extra, input_html: { required: true }
+            .row
+              .large-3.columns= usr.input :address_district, input_html: { required: true, "ng-model" => "address_district" }
+              .large-3.columns= usr.input :city, input_html: { required: true, "ng-model" => "city" }
+              // address_states located @ application_helper
+              .large-3.columns.end= usr.input :state, as: :select, collection: address_states, prompt: 'Selecione...', input_html: { "ng-model" => "state" }
 
-        = usr.simple_fields_for :subscriptions do |sub|
+          .hidden.country
+            = usr.input :country, as: :string, input_html: { value: 'BRA' }
+
+
+        = usr.simple_fields_for :subscriptions, @user.subscriptions.last do |sub|
+          article.subscription-plans.row
+            .large-12.columns
+              h3.text-center 
+                |Que tipo de doação deseja efetuar?
+              .text-center.selected-radio-button
+                = sub.input :plan, as: :radio_buttons, collection: available_subscription_intervals, input_html: { required: true, "ng-model" => "plan"}
+
+
+
+
+
           article.subcription-donation-info.row
             // @subscription
             // Subscription options
-            .large-12.columns
-              h3.text-center Que tipo de doação deseja efetuar?
-            dl.tabs[data-tab]
-              dd.active.monthly-tab
-                = link_to "Doação Mensal", "#monthly"
-              dd.biannual-tab
-                = link_to "Doação Semestral", "#biannual"
-              dd.annual-tab
-                = link_to "Doação Única", "#annual"
-      
+           
+            h3.text-center 
+              |Qual valor você deseja doar?
+
+            .subscription-choose-option.text-center
+              em Escolha um plano para poder escolher um valor
+            
             // All these helpers methods are located @ application_helper
-            div.tabs-content
+            div.tabs-content.hidden-option.hidden
               #monthly.content.active
                 .interval-info.pulse
                   p
                     |O valor escolhido vai ser doado mensalmente. (Apenas através do seu cartão de crédito)
-                .monthly.subscription-values.monthly-values
+                .monthly.subscription-values.monthly-values.selected-radio-button
                   = sub.input :value, as: :radio_buttons, label_field: false, collection: available_monthly_plans
     
               #biannual.content
                 .interval-info
                   p
                     |O valor escolhido vai ser doado semestralmente. (Qualquer forma de pagamento) 
-                .biannual.subscription-values.biannual-values
+                .biannual.subscription-values.biannual-values.selected-radio-button
                   = sub.input :value, as: :radio_buttons, label_field: false, collection: available_biannual_plans
 
               #annual.content
                 .interval-info
                   p
                     |O valor escolhido vai ser doado uma única vez. (Qualquer forma de pagamento) 
-                .annual.subscription-values
+                .annual.subscription-values.annual-values.selected-radio-button
                   = sub.input :value, as: :radio_buttons, label_field: false, collection: available_annual_plans
-              .hidden.subscription-plan
-                = sub.input :plan, as: :select, collection: available_subscription_intervals
 
 
               .subscription-project
                 = sub.input :project_id, as: :hidden, input_html: { value: Project.first.id }
 
+
           article.subscription-payment-options.row
-            // @subscription
-            // Where the user chooses between CREDIT CARD/ SLIP / BANK ACCOUNT
             .large-12.columns
               h3.text-center
                 |Qual a forma de pagamento?
+              .subscription-choose-option.text-center
+                em Escolha um plano para poder escolher uma forma de pagamento
+            
+              // @subscription
+              // Where the user chooses between CREDIT CARD/ SLIP / BANK ACCOUNT
 
-              // available_payment_options: application_helper
-              .text-center= sub.input :payment_option, as: :radio_buttons, collection: available_payment_options, input_html: { required: true, "ng-model" => "payment_option"}
+              .payment-options.hidden
+                // available_payment_options: application_helper
+                .text-center= sub.input :payment_option, as: :radio_buttons, collection: available_payment_options, input_html: {  required: true, "ng-model" => "payment_option", class: 'has-tip ', "data-tooltip" => ""}
 
 
 
@@ -100,35 +136,14 @@
                 .large-2.columns.end= credit.input :expiration, input_html: { class: 'expiration-mask', "ng-model" => "card_expire", "ng-required" => "isCreditCard()", autocomplete: "off" }
 
 
-
-
-
-        article.user-address-info.row
-          // @subscriber
-          // Address info for the subscriber
-          .large-12.columns
-            h3.text-center
-              | Endereço
-          .large-12.columns
-            .row
-              .large-3.columns
-                = usr.input :postal_code, input_html: { required: true, class: 'zipcode-mask', "ng-model" => "zipcode", "ng-blur" => 'getZipcodeData()' } 
-          .large-12.columns
-            .row
-              .large-5.columns= usr.input :address_street, input_html: { required: true, "ng-model" => "address_street" }
-              .large-2.columns= usr.input :address_number, input_html: { required: true }
-              .large-4.columns.end= usr.input :address_extra, input_html: { required: true }
-            .row
-              .large-3.columns= usr.input :address_district, input_html: { required: true, "ng-model" => "address_district" }
-              .large-3.columns= usr.input :city, input_html: { required: true, "ng-model" => "city" }
-              // address_states located @ application_helper
-              .large-3.columns.end= usr.input :state, as: :select, collection: address_states, prompt: 'Selecione...', input_html: { "ng-model" => "state" }
-
-          .hidden.country
-            = usr.input :country, as: :string, input_html: { value: 'BRA' }
         footer.button-action.row
           .large-4.large-centered.columns
             = usr.submit "Contribuir!", class: :animated, data: { disable_with: 'Aguarde...' }
+
+
+
+
+
 
 javascript:
   // Saving references in order to use it with jQuery 
