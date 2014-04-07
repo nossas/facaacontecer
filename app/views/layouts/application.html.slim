@@ -10,7 +10,7 @@ html[ng-app='facaAcontecerApp']
     meta property="og:site_name"    content=t('seo.title')
     meta property="og:image"        content="https://imgur.com/uKQMaxz.jpg"
     meta property="og:type"         content="website"
-    meta property="og:url"          content="http://facaacontecer.meurio.org.br"
+    meta property="og:url"          content="http://apoie.meurio.org.br"
     meta property="fb:admins"       content="100001105729764,100000428222603"
     meta property="fb:app_id"       content="177910022269006"
     meta property="fb:page_id"      content="241897672509479"
@@ -20,20 +20,13 @@ html[ng-app='facaAcontecerApp']
 
     = favicon_link_tag 'favicon.png'
     javascript:
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-26278513-12']);
-      _gaq.push(['_setDomainName', 'meurio.org.br']);
-      _gaq.push(['_trackPageview']);
-
-      (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = 'https://ssl.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
-
-    /[if IE]
-      script[src="https://html5shiv.googlecode.com/svn/trunk/html5.js"]
+      ga('create', 'UA-26278513-12', 'meurio.org.br');
+      ga('send', 'pageview');
       
   body[id=controller.controller_name.downcase class=controller.action_name.downcase ng-view]
     = render 'layouts/header'
