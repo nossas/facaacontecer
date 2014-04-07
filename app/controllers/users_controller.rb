@@ -2,7 +2,10 @@ class UsersController < ApplicationController
 
   before_actions do 
 
-    actions(:new, :create)     { @user = User.new(user_params) }
+    actions(:new)              { @user = User.new(user_params) }
+    actions(:create) do 
+      @user = User.where(email: user_params[:email]).first_or_initialize(user_params)
+    end
     actions(:new)              { @user.subscriptions.build }
     actions(:edit)             { @user = User.find_by(id: params[:id]) }
   end
@@ -18,15 +21,22 @@ class UsersController < ApplicationController
 
   # POST /users/
   def create 
-    if @user.save
-      redirect_to subscription_path(@user.subscriptions.last)
-    else
-      render :new
+
+    case 
+    when @user.new_record?
+      @user.save 
+    when !@user.new_record?
+      @user.try(:update_attributes, user_params)
     end
+    
+   
+    return render :new if @user.errors.any?
+    redirect_to subscription_path(@user.subscriptions.last)
+    
   end
 
 
-  private
+    private
     # Checking for user params on request
     def user_params 
       if params[:user]
@@ -41,4 +51,4 @@ class UsersController < ApplicationController
         {}
       end
     end
-end
+  end

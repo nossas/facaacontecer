@@ -42,19 +42,23 @@ describe UsersController do
 
 
 
-    #context "When a existing user is sending its subscriber data" do
-      #before do
-        #post :create, http_params
-      #end
+    context "When a existing user is sending its subscriber data" do
+      before do
+        post :create, http_params
+      end
 
-      #it "should update the user data when receiving a new one" do
-        #expect(@user.reload.first_name).to eq('Zé')
-      #end
+      it "should update the user data when receiving a new one" do
+        expect(@user.reload.first_name).to eq('Zé')
+      end
 
-      #it "should redirect_to the last subscription created" do
-        #expect(response).to redirect_to action: :show, controller: :subscriptions, id: @user.subscriptions.last.id 
-      #end
-    #end
+      it "should redirect_to the last subscription created" do
+        expect(response).to redirect_to action: :show, controller: :subscriptions, id: @user.subscriptions.last.id 
+      end
+
+      it  "should not generate duplicated records for subscription" do
+        expect(Subscription.count).to eq(1)
+      end
+    end
 
 
     context "When a NEW user is sending its subscriber data" do
