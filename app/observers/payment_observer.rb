@@ -15,6 +15,7 @@ module PaymentObserver
     # E.g.: 
     #   123456        is the subscription
     #   123456PAYMENT is the payment
+    #   123123 is the payment for creditcard
     def setup_code
       self.code = "#{self.subscription.code}PAYMENT"
     end
