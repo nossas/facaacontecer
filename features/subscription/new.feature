@@ -15,7 +15,7 @@ Feature: New subscription for the current campaign
   Scenario: Visiting the new subscription page
     Given I am in the root path
     When I click on Contribua!
-    Then I should see "Insira seus dados pessoais"
+    Then I should see "Dados Pessoais"
 
 
   @vcr
@@ -50,7 +50,7 @@ Feature: New subscription for the current campaign
       | 0     |             | não é um email válido                               | Luiz       | Fonseca   | 919.133.769-07 | 12/11/1988 | emailemail.com | (21) 99999-9999 | Mensal  | R$ 30 | Cartão de Crédito | Itaú | 22222-222 | Rua | 300 | Ape | Botafogo | Rio de Janeiro | RJ  |
       | 0     |             | CPFnão é válido                                     | Luiz       | Fonseca   | 919.133.111-17 | 12/11/1988 | email@email.com | (21) 99999-9999 | Mensal | R$ 30 | Cartão de Crédito | Itaú | 22222-222 | Rua | 300 | Ape | Botafogo | Rio de Janeiro | RJ  |
       | 1     | processing  | Aguarde só um instantinho enquanto processamos o seu pagamento           | Luiz       | Fonseca   | 919.133.769-07 | 12/11/1988 | email@email.com | (21) 99999-9999 | Mensal | R$ 30 | Cartão de Crédito | Itaú | 22222-222 | Rua | 300 | Ape | Botafogo | Rio de Janeiro | RJ  |
-      | 1     | processing  | Aguarde só um instantinho enquanto geramos o link para o seu banco   | Luiz       | Fonseca   | 919.133.769-07 | 12/11/1988 | email@email.com | (21) 99999-9999 | Anual      | R$ 90 | Débito            | Itaú | 22222-222 | Rua | 300 | Ape | Botafogo | Rio de Janeiro | RJ  |
+      | 1     | processing  | Aguarde só um instantinho enquanto geramos o link para o seu banco   | Luiz       | Fonseca   | 919.133.769-07 | 12/11/1988 | email@email.com | (21) 99999-9999 | Única      | R$ 90 | Débito            | Itaú | 22222-222 | Rua | 300 | Ape | Botafogo | Rio de Janeiro | RJ  |
       | 1     | processing  | Aguarde só um instantinho enquanto geramos o link para o seu boleto  | Luiz       | Fonseca   | 919.133.769-07 | 12/11/1988 | email@email.com | (21) 99999-9999 | Semestral  | R$ 90 | Boleto            | Itaú | 22222-222 | Rua | 300 | Ape | Botafogo | Rio de Janeiro | RJ  |
 
 

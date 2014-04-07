@@ -12,7 +12,7 @@ describe Notifications::RecurringPaymentsController do
     # See: https://labs.moip.com.br/referencia/nasp/#notificacao
     # See: http://moiplabs.github.io/assinaturas-docs/api.html#status_pagamento
     @http_params =  {
-      :"event" => "payment.created",
+      :"event" => "payment.status_updated",
       :"date" => "14/12/2100 00:00:00",
       :"env" => "sandbox",
       :"resource" => {

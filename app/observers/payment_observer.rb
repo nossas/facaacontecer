@@ -45,13 +45,13 @@ module PaymentObserver
       inviter = self.user.invite.host
 
       # TODO: Only send the notify inviter email once for 
-      if inviter and has_at_least_one_authorized_payment?
+      if inviter and has_only_one_authorized_payment?
         Notifications::InviteMailer.delay.created_guest(self.user.id, inviter.id)
       end
     end
 
-    def has_at_least_one_authorized_payment?
-      Payment.where(state: :authorized, subscription: self.subscription).count == 1 && self.subscription.creditcard?
+    def has_only_one_authorized_payment?
+      Payment.where(state: :authorized, subscription: self.subscription).count.to_i == 1
     end
 
     # After the finish event for a payment, activate the parent subscription
