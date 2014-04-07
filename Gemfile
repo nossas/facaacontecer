@@ -16,11 +16,11 @@ gem 'pg'
 
 # Controller-related gems
 gem 'before_actions'
+gem 'actionpack-action_caching' # Caching https://github.com/rails/actionpack-action_caching
 
 # Template-related gems
 gem 'simple_form'
 gem 'slim-rails'       # Template engine
-
 
 # State machine gem
 gem 'state_machine'
