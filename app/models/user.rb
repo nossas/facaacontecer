@@ -19,8 +19,6 @@ class User < ActiveRecord::Base
   # Validates if a phone is valid
   validates :phone, phone: true
     
-  # Validates if a phone number has at least 12 characters
-  validates_length_of :phone, minimum: 14
 
   # Validates the presence of these fields
   validates_presence_of :first_name, :last_name, :email, :cpf, :birthday, 
