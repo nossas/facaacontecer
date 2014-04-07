@@ -48,7 +48,7 @@ MoipSubscription = {
       birthdate_month:  customer.birthday[1],
       birthdate_year:   customer.birthday[2],
       phone_area_code:  customer.phone[0],
-      phone_number:     customer.phone[1]+customer.phone[2],
+      phone_number:     customer.phone[1],
       billing_info:     this.buildBillingInfo(this.billing),
       address:          this.buildAddress(customer)
     };
@@ -119,7 +119,7 @@ MoipSubscription = {
     var moip      = new MoipAssinaturas(token);
 
     // Cleaning messages
-    this.messages.html('');
+    this.messages.fadeOut();
 
     // Creating a subscription for a new user
     moip.subscribe(

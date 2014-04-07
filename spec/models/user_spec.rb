@@ -20,8 +20,14 @@ describe User do
 
 
   context "#generate_share_code" do
+    let(:user) { Fabricate(:user) }
     it "should create a invite code" do
-      user = Fabricate(:user) 
+      expect(user.invite.code).to_not eq(nil)
+    end
+
+    it "should create a invite if the user has an updated account but not yet an invite" do
+      user.invite.destroy
+      user.update_attribute(:postal_code, '22222050')
       expect(user.invite.code).to_not eq(nil)
     end
   end
