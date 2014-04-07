@@ -144,9 +144,12 @@
                 |As bandeiras suportada pelo Moip são Visa e Master. Se o seu cartão for de uma bandeira diferente, por favor escolha outra opção de pagamento.
 
         footer.button-action.row
-          .large-4.large-centered.columns
-            = usr.submit "Contribuir!", class: :animated, data: { disable_with: 'Aguarde...' }
-
+          .large-5.large-centered.text-center.columns
+            = usr.submit "Contribuir!", class: [:animated, :submit_form_button], data: { disable_with: 'Aguarde...' }
+        .row 
+          .large-5.large-centered.text-center.columns
+            small.icon-lock
+              |Todas as doações que recebemos são processadas de forma segura pelo Moip, nós não armazenamos seus dados de pagamento.
 
 
 
