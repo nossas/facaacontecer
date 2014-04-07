@@ -2,11 +2,18 @@ class PaymentsController < ApplicationController
 
   before_actions do
     actions(:show) { @payment = Payment.find_by(id: params[:id]) }
+
+    # If the session[:code] was present when the
+    # user did his subscription, associate
+    # the invite with the user & its inviter
     actions(:show) { associate_invite_if_present }
   end
-  
+ 
+  # Force SSL on the controller
   force_ssl if: :ssl_configured?
 
+
+  # GET /payments/:id
   def show; end
 
 

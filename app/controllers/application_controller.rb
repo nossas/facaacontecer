@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
 
 
 
+
+  # Turn on SSL only for given actions in production
   def ssl_configured?
     Rails.env.production?
   end

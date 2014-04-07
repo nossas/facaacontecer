@@ -1,15 +1,18 @@
 class ProjectsController < ApplicationController
 
+  # Setup invite when the param
+  # is present
   before_filter { session[:invite] = params[:code] if params[:code] }
   
   before_actions do
     actions(:index) do
-      # Querying only the first project, because we dont' have more than 1
+      # Querying only the first project, 
+      # because we dont' have more than 1
       @project      = Project.first
     end
 
   end
   
-
+  # GET /
   def index; end
 end

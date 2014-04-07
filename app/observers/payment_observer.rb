@@ -42,6 +42,8 @@ module PaymentObserver
     # if present, of course
     def notify_inviter
       inviter = self.user.invite.host
+
+      # TODO: Only send the notify inviter email once for 
       if inviter
         Notifications::InviteMailer.delay.created_guest(self.user.id, inviter.id)
       end

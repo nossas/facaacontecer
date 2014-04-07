@@ -18,7 +18,7 @@ class SubscriptionsController < ApplicationController
     render nothing: true
   end
 
-  
+ 
   # Redirects
   def redirect_if_not_creditcard
     # If the subscription is waiting and it's SLIP or DEBIT
