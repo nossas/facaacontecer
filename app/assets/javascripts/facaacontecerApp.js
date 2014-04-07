@@ -186,7 +186,7 @@ Apoie = {
   },
 
   watchShareButtons: function() {
-    $("a.share-button").click(function(){
+    $("a.share-button").click(function(event){
       window.open(
         $(event.target).attr("href"),
         'share-dialog',
