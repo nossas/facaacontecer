@@ -5,7 +5,7 @@ module UserObserver
   included do
     # Build invite when creating a new user
     before_create :find_next_val_for_id, if: -> { Rails.env.production? }
-    after_create { self.invite.create! } 
+    before_create { self.build_invite } 
 
 
     def find_next_val_for_id
