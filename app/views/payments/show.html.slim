@@ -28,4 +28,6 @@
                 |Compartilhe o seu link exclusivo por Face e por email:
                 br
                 = text_field_tag :link, invite_url(code: @payment.user.invite.code)
+                = link_to image_tag('bt-face.png', size: '32x32'), "https://www.facebook.com/sharer/sharer.php?u=#{URI::encode(invite_url(code: @payment.user.invite.code))}", class: ["share-button", "bt-face"]
+                = link_to image_tag('bt-twitter.png', size: '32x32'), "https://twitter.com/share?url=#{URI::encode(invite_url(code: @payment.user.invite.code))}&text=#{URI::encode("Ajude a financiar o Meu Rio! Faça como eu, faça acontecer:")}&", class: ["share-button", "bt-twitter"]
 
