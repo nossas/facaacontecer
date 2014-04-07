@@ -12,7 +12,7 @@ module ApplicationHelper
 
 
   def available_subscription_intervals
-    [['Mensal', 'monthly'], ['Semestral', 'biannual'], ['Anual', 'annual']]
+    [['Mensal', 'monthly'], ['Semestral', 'biannual'], ['Única', 'annual']]
   end
 
   def available_monthly_plans
