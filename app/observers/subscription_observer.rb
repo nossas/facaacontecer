@@ -19,9 +19,6 @@ module SubscriptionObserver
     # All callbacks calls should be inside the state_machine block
     #
     state_machine do
-      after_transition on: :start do |subscription|
-        SubscriptionWorker.perform_async(subscription.id)
-      end
     end
 
 
