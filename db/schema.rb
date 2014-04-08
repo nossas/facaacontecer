@@ -11,10 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140406225100) do
+ActiveRecord::Schema.define(version: 20140408120956) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "postgres_fdw"
 
   create_table "invites", force: true do |t|
     t.string   "code"
@@ -64,31 +65,12 @@ ActiveRecord::Schema.define(version: 20140406225100) do
     t.boolean  "anonymous"
     t.boolean  "gift"
     t.string   "payment_option", default: "",  null: false
-    t.string   "plan",           default: "0", null: false
+    t.string   "plan",                         null: false
     t.string   "bank"
   end
 
   add_index "subscriptions", ["code"], name: "index_subscriptions_on_code", using: :btree
   add_index "subscriptions", ["project_id"], name: "index_subscriptions_on_project_id", using: :btree
   add_index "subscriptions", ["user_id"], name: "index_subscriptions_on_user_id", using: :btree
-
-  create_table "users", force: true do |t|
-    t.string   "first_name",       null: false
-    t.string   "last_name",        null: false
-    t.string   "email",            null: false
-    t.string   "cpf"
-    t.date     "birthday",         null: false
-    t.string   "address_street"
-    t.string   "address_extra"
-    t.string   "address_number"
-    t.string   "address_district"
-    t.string   "city"
-    t.string   "state"
-    t.string   "country"
-    t.string   "postal_code"
-    t.string   "phone"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
 end
