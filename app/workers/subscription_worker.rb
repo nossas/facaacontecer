@@ -24,6 +24,11 @@ class SubscriptionWorker
     create_payment_instruction(@subscription.debito.url)
   end
 
+
+  def perform_creditcard
+    true
+  end
+
   def create_payment_instruction(url)
     if @subscription.payments.create(url: url)
       @subscription.wait_confirmation!
