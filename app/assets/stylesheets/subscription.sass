@@ -34,10 +34,10 @@ body#payments.show
   background: $olive image-url('pattern-dots_68a612.png') 
   .payment-screen1
     background: image-url('screen3.jpg') center -90px no-repeat
-    background-size: cover !important
+    background-size: cover 
   .payment-screen2
     min-height: 380px
-    background-size: cover !important
+    background-size: cover 
     background: image-url('payment-screen2.jpg') -200px top no-repeat
 
   input
@@ -48,3 +48,13 @@ body#payments.show
   .bt-face, .bt-twitter
     display: inline-block
     margin-left: .4em
+
+@media screen and (max-width: 900px)
+  body#payments.show
+    min-width: 640px !important
+  .payment-screen1
+    background: lighten($olive, 2%) image-url('pattern-dots_68a612.png') !important
+    background-size: none !important
+  .payment-screen2
+    background: darken($green, 5%) image-url('pattern-dots_68a612.png') !important
+    background-size: none !important

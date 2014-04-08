@@ -7,8 +7,9 @@ class SubscriptionWorker
   def perform(subscription_id)
     @subscription = Subscription.find_by(id: subscription_id)
     
-    perform_slip if @subscription.slip?
-    perform_debit if @subscription.debit?
+    if @subscription
+      send("perform_#{@subscription.payment_option}")
+    end
   end
 
   # BOLETO
@@ -21,6 +22,11 @@ class SubscriptionWorker
   def perform_debit
     @subscription.debito
     create_payment_instruction(@subscription.debito.url)
+  end
+
+
+  def perform_creditcard
+    true
   end
 
   def create_payment_instruction(url)

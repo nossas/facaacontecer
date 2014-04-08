@@ -11,13 +11,9 @@ module UserObserver
 
 
     def find_next_val_for_id
-     next_id = raw_sql %Q{select (id + 1) from users order by id desc limit 1}
-     self.id = next_id.to_i
+      self.id = User.last.id.next 
     end
 
-    def raw_sql(sql)
-      ActiveRecord::Base.connection.execute(sql).to_a.first["id"]
-    end
 
   end
 end

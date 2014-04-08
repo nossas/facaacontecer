@@ -3,7 +3,7 @@ class ProjectsController < ApplicationController
   # Setup invite when the param
   # is present
   before_filter { session[:invite] = params[:code] if params[:code] }
-  
+ 
   before_actions do
     actions(:index) do
       # Querying only the first project, 

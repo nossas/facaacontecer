@@ -12,10 +12,11 @@ class Notifications::RecurringPaymentsController < ApplicationController
   # (doing this due to retrocompatibility)
   before_actions do
     actions(:create) do
-       
-      @payment = Payment.find_by(code: _params[:id])
-      if @payment.nil?
-        build_payment
+      if _params.has_key?(:id) 
+        @payment = Payment.find_by(code: _params[:id])       
+        build_payment if @payment.nil?
+      else 
+        render_nothing_with_status(401)
       end
     end
   end

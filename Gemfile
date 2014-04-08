@@ -21,7 +21,6 @@ gem 'before_actions'
 gem 'simple_form'
 gem 'slim-rails'       # Template engine
 
-
 # State machine gem
 gem 'state_machine'
 
