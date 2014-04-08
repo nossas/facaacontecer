@@ -1,7 +1,7 @@
 class CreateUsersForeignTableOlive < ActiveRecord::Migration
   def up
     if Rails.env.production? || Rails.env.staging?
-      execute 'DROP FOREIGN TABLE users;'
+      # execute 'DROP FOREIGN TABLE users;'
     else
       execute 'DROP TABLE users;'
     end
