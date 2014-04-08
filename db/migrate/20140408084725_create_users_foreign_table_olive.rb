@@ -21,7 +21,7 @@ class CreateUsersForeignTableOlive < ActiveRecord::Migration
         address_number character varying(255),
         address_district character varying(255),
         city character varying(255),
-        state character varying(5),
+        state character varying(255),
         country character varying(50),
         phone character varying(255)
         )
