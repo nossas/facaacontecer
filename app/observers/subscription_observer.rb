@@ -12,10 +12,6 @@ module SubscriptionObserver
     # Where we perform the payment method using MyMoip
     # I was going to try observers, but lets keep using concerns.
     #
-    def process_subscription
-      SubscriptionWorker.perform_async(self.id)
-    end
-
 
 
     # 
@@ -23,7 +19,9 @@ module SubscriptionObserver
     # All callbacks calls should be inside the state_machine block
     #
     state_machine do
-      after_transition on: :start, do: :process_subscription 
+      after_transition on: :start do |subscription|
+        SubscriptionWorker.perform_async(subscription.id)
+      end
     end
 
 
