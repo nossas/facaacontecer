@@ -1,7 +1,7 @@
 class AddServerMeurioAccountsOlive < ActiveRecord::Migration
   def up
     if Rails.env.production? || Rails.env.staging?
-      execute "DROP EXTENSION postgres_fdw CASCADE;"
+      execute "DROP EXTENSION IF EXISTS postgres_fdw CASCADE;"
       raise "MEURIO_ACCOUNTS_DBNAME is missing" if ENV["MEURIO_ACCOUNTS_DBNAME"].nil?
       raise "MEURIO_ACCOUNTS_DBHOST is missing" if ENV["MEURIO_ACCOUNTS_DBHOST"].nil?
       raise "MEURIO_ACCOUNTS_DBUSER is missing" if ENV["MEURIO_ACCOUNTS_DBUSER"].nil?
