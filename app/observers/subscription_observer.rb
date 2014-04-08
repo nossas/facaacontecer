@@ -13,7 +13,7 @@ module SubscriptionObserver
     # I was going to try observers, but lets keep using concerns.
     #
     def process_subscription
-      SubscriptionWorker.perform(self.id)
+      SubscriptionWorker.perform_async(self.id)
     end
 
 
