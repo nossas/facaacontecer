@@ -23,7 +23,6 @@ class CreateUsersForeignTableOlive < ActiveRecord::Migration
         city character varying(255),
         state character varying(5),
         country character varying(50),
-        zipcode character varying(10),
         phone character varying(255)
         )
         SERVER meurio_accounts
