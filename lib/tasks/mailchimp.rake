@@ -14,7 +14,7 @@ namespace :mailchimp do
   end
 
   def add_batch_to_segment payments, id
-    batch = payments.map{|p| {email: p.user.email}}
+    batch = payments.map{|p| { email: p.user.email }}
     Gibbon::API.lists.static_segment_members_add(id: ENV["MAILCHIMP_LIST_ID"], seg_id: id, batch: batch)
   end
 
@@ -23,7 +23,7 @@ namespace :mailchimp do
     create_segment name
     segment = find_segment name
 
-    Payment.where("paid_at IS NOT NULL").find_in_batches do |payments|
+    Payment.where("paid_at IS NOT NULL OR state = 'authorized' OR state = 'finished'").find_in_batches do |payments|
       add_batch_to_segment payments, segment["id"]
     end
   end
@@ -33,7 +33,11 @@ namespace :mailchimp do
     create_segment name
     segment = find_segment name
 
-    Payment.where("EXTRACT(month FROM paid_at) = ?", Date.today.month).find_in_batches do |payments|
+    Payment.where(%Q{
+                  EXTRACT(month FROM paid_at) = ? 
+                  AND EXTRACT(year FROM paid_at) = ? 
+                  AND (state = 'authorized' OR state = 'finished')}, 
+                  Date.today.month, Date.today.year).find_in_batches do |payments|
       add_batch_to_segment payments, segment["id"]
     end
   end
@@ -43,7 +47,11 @@ namespace :mailchimp do
     create_segment name
     segment = find_segment name
 
-    Payment.where("EXTRACT(month FROM created_at) = ? AND state <> 'finished'", Date.today.month).find_in_batches do |payments|
+    Payment.where(%Q{
+                    EXTRACT(month FROM created_at) = ? 
+                    AND EXTRACT(year FROM paid_at) = ?
+                    AND state <> 'finished' OR state <> 'authorized'}, 
+                      Date.today.month, Date.today.year).find_in_batches do |payments|
       add_batch_to_segment payments, segment["id"]
     end
   end
