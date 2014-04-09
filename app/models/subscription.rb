@@ -29,8 +29,8 @@ class Subscription < ActiveRecord::Base
   validates_presence_of :bank, if: -> { debit? }
 
   # Check if the payment_option is in the allowed payments
-  validates_inclusion_of :plan, in: ALLOWED_PLANS
-  validates_inclusion_of :payment_option, in: ALLOWED_PAYMENTS
+  validates_inclusion_of :plan, in: ALLOWED_PLANS, allow_blank: false, allow_nil: false
+  validates_inclusion_of :payment_option, in: ALLOWED_PAYMENTS, allow_blank: false, allow_nil: false
 
 
   # Allowing nil or blank when payment_option is creditcard
