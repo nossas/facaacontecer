@@ -1,24 +1,20 @@
 require 'spec_helper'
 
 describe Payment do
-
   context "associations & validations" do
     it { should validate_presence_of :subscription }
-    it { should belong_to :subscription } 
+    it { should belong_to :subscription }
   end
 
-
-
   it "should setup the code attribute using a `PAYMENT` suffix" do
-    payment = Fabricate(:payment) 
+    payment = Fabricate(:payment)
     expect(payment.code).to eq("#{Time.now.to_i}PAYMENT")
   end
 
   context "Slip - Boleto" do
-    before do 
-      @payment = Fabricate(:payment, 
+    before do
+      @payment = Fabricate(:payment,
                            subscription: Fabricate(:subscription, payment_option: 'slip'))
-      
       Sidekiq::Extensions::DelayedMailer.drain
     end
 
@@ -28,12 +24,10 @@ describe Payment do
     end
   end
 
-
   context "Debit - Débito" do
-    before do 
-      @payment = Fabricate(:payment, 
+    before do
+      @payment = Fabricate(:payment,
                            subscription: Fabricate(:subscription, payment_option: 'debit'))
-      
       Sidekiq::Extensions::DelayedMailer.drain
     end
     it "should send an email with LINK to BANK when the subscription is DEBITO (debit)" do
@@ -42,12 +36,35 @@ describe Payment do
     end
   end
 
-  context "Credit Card" do
-    it "should NOT send an email not" do
+  describe "#add_to_mailchimp_segment" do
+    subject { Fabricate(:payment) }
 
+    it "should call the Mailchimp API" do
+      lists = double("lists")
+      lists.should_receive(:static_segment_members_add).with(
+        id: "1",
+        seg_id: 1,
+        batch: [{ email: subject.user.email }]
+      )
+
+      Gibbon::API.stub(:lists).and_return(lists)
+      subject.add_to_mailchimp_segment 1
     end
   end
 
+  describe "#remove_from_mailchimp_segment" do
+    subject { Fabricate(:payment) }
 
+    it "should call the Mailchimp API" do
+      lists = double("lists")
+      lists.should_receive(:static_segment_members_del).with(
+        id: "1",
+        seg_id: 1,
+        batch: [{ email: subject.user.email }]
+      )
 
+      Gibbon::API.stub(:lists).and_return(lists)
+      subject.remove_from_mailchimp_segment 1
+    end
+  end
 end
