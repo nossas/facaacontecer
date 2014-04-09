@@ -107,7 +107,7 @@ module PaymentObserver
       after_transition on: :wait,               do: [:notify_user]
       after_transition on: [:reverse, :refund], do: [:pause_subscription, :notify_refund]
 
-      after_transition on: :finish do |payment|
+      after_transition on: [:finish, :authorize] do |payment|
         payment.delay.add_to_mailchimp_segment ENV["MAILCHIMP_ACTIVE_SEG_ID"]
         payment.delay.remove_from_mailchimp_segment ENV["MAILCHIMP_INACTIVE_SEG_ID"]
       end
