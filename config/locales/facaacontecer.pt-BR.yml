@@ -19,14 +19,14 @@ pt-BR:
         creditcard: "Aguarde só um instantinho enquanto processamos o seu pagamento"
         slip: "Aguarde só um instantinho enquanto geramos o link para o seu boleto"
     status:
-      authorize: "Autorizado"
-      start: "Iniciado"   
-      printing: "Boleto impresso"
-      finish: "Concluído"
-      cancel: "Cancelado"
-      wait: "Em análise"    
-      reverse: "Estornado"
-      refund: "Reembolsado"   
+      authorized: "Autorizado"
+      started: "Iniciado"   
+      printed: "Boleto impresso"
+      finished: "Concluído"
+      cancelled: "Cancelado"
+      waiting: "Em análise"    
+      reversed: "Estornado"
+      refunded: "Reembolsado"   
 
 
   helpers:
