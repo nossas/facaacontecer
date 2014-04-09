@@ -187,8 +187,9 @@ Apoie = {
 
   watchShareButtons: function() {
     $("a.share-button").click(function(event){
+      var self = $(this);
       window.open(
-        $(event.target).attr("href"),
+        self.attr("href"),
         'share-dialog',
         'width=626,height=436'
       );

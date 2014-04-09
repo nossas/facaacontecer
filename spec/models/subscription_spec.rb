@@ -36,15 +36,15 @@ describe Subscription do
   end
 
 
-  context "#worker" do
+#  context "#worker" do
 
-    before { @subscription = Fabricate(:subscription, payment_option: 'slip') }
+    #before { @subscription = Fabricate(:subscription, payment_option: 'slip') }
 
-    it "should have called SubscriptionWorker after_create event" do
-      expect(SubscriptionWorker.jobs.size).to eq(1) 
-    end
+    #it "should have called SubscriptionWorker after_create event" do
+      #expect(SubscriptionWorker.jobs.size).to eq(1) 
+    #end
 
-  end
+  #end
 
 
   context "#generate_unique_code" do

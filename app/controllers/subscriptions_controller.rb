@@ -22,12 +22,18 @@ class SubscriptionsController < ApplicationController
   # Redirects
   def redirect_if_not_creditcard
     # If the subscription is waiting and it's SLIP or DEBIT
-    if @subscription.waiting? && !@subscription.creditcard?
+    
+    if @subscription.waiting? && @subscription.creditcard? == false
       redirect_to payment_path(@subscription.payments.last)
 
     # But if it's creditcard, redirect it already
     elsif @subscription.payments.last.present? && @subscription.creditcard?
       redirect_to payment_path(@subscription.payments.last) 
+   
+    # Try to process the job if still processing
+    elsif @subscription.processing?
+      SubscriptionWorker.perform_async(@subscription.id)
     end
+
   end
 end
