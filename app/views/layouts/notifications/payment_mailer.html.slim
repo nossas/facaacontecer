@@ -39,7 +39,8 @@ html
           | - Valor total: #{number_to_currency(@payment.subscription.value)}
         br
         em
-          | - Status do pagamento: #{t("subscriptions.status.#{@payment.state.to_s}")} 
+          | - Status do pagamento: 
+          = t("subscriptions.status.#{@payment.state.to_s}") 
         p
           | --
         p
