@@ -48,7 +48,7 @@ describe Payment do
       )
 
       Gibbon::API.stub(:lists).and_return(lists)
-      subject.add_to_mailchimp_segment 1
+      subject.update_user_on_segment(:static_segment_members_add, 1)
     end
   end
 
@@ -64,7 +64,7 @@ describe Payment do
       )
 
       Gibbon::API.stub(:lists).and_return(lists)
-      subject.remove_from_mailchimp_segment 1
+      subject.update_user_on_segment(:static_segment_members_del, 1)
     end
   end
 end
