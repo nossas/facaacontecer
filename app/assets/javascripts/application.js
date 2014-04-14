@@ -33,7 +33,7 @@
 
 
 
-$(function(){ 
+$(function(){
   $(document).foundation(); 
   Apoie.initialize();
 });

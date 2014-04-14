@@ -1,10 +1,17 @@
 body#users
   background: $lightgray
-  
+
   // Hiding the application menu from the subscriptions page
   .meurio_apps_and_application_menu
     display: none
   // Just a general class
+
+  .magellan-container
+    background: $lightgray
+
+  article
+    padding-top: 2em
+
 .hidden
   display: none
 
@@ -12,9 +19,9 @@ body#users
 // Form-default styles
 .subscription-form
   h3
-    margin: 1.8em 0 1em 0
+    margin-bottom: 1em
   input
-    font-size: 1.3em    
+    font-size: 1.3em
     padding-left: .6em
 
   .tabs dd
@@ -22,7 +29,7 @@ body#users
     width: 32%
     &:last-child
       margin-right: 0%
-  
+
   // Tabs specific styles
   .tabs dd a
     text-align: center
@@ -42,7 +49,7 @@ body#users
     background: white
   .tabs-content > .content
     padding-bottom: 0
-  
+
 
 
 // The text from each interval box
@@ -65,14 +72,14 @@ body#users
 .subscription-values
   background: lighten($blue, 28%)
   padding: 1em 0
-  
+
   .control-label
     display: none
-  label 
+  label
     display: inline-block
     background: lighten($blue, 35%)
     width: 18.5%
-    padding: 1em 0 
+    padding: 1em 0
     margin: 1em 3.2%
     font-size: 2em
     font-weight: bold
@@ -92,7 +99,12 @@ body#users
 
 // Choosing a payment option
 
+.payment-options
+  margin-bottom: 2em
+
 .payment-options, .subscription-plans
+  .radio_buttons
+    margin-bottom: 1em
   .control-label
     display: none
   input
@@ -145,7 +157,7 @@ body#users
 .button-action
   input
     margin: 2.5em 0
-    background: $lightgreen 
+    background: $lightgreen
     border: none
     color: white
     font-size: 1.875em

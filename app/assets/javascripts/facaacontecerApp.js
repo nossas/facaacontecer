@@ -13,6 +13,8 @@ Apoie = {
     Apoie.watchPaymentPlan();
     Apoie.watchPaymentOptionChoice();
     Apoie.watchShareButtons();
+
+    $("#user_subscriptions_attributes_0_plan_monthly").click();
   },
 
   animationPulseClass: 'animated pulse icon-checkmark selected',
