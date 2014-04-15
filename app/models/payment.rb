@@ -12,9 +12,12 @@ class Payment < ActiveRecord::Base
 
   # Access the subscription's user directly, using the subscription object
   delegate :user, to: :subscription
- 
+
 
   # Validates the presence of these fields
   validates_presence_of :subscription
 
+  def self.successful
+    where("state = 'finished' OR state = 'authorized'")
+  end
 end
