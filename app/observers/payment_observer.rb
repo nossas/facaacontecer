@@ -99,17 +99,35 @@ module PaymentObserver
     # When it's cancelled, call :static_segment_members_del
     def update_user_on_segment(command, segment_id)
       begin
-        Gibbon::API.lists.try(command, 
+        Gibbon::API.lists.try(command,
             id: ENV["MAILCHIMP_LIST_ID"],
             seg_id: segment_id,
-            batch: [{ email: self.user.email }] 
+            batch: [{ email: self.user.email }]
           )
       rescue Exception => e
         Rails.logger.error e
       end
     end
 
-
+    def update_user_on_list
+      begin
+        Gibbon::API.lists.subscribe(
+          id: ENV["MAILCHIMP_LIST_ID"],
+          email: { email: self.user.email },
+          double_optin: false,
+          update_existing: true,
+          merge_vars: {
+            FNAME: self.user.first_name,
+            LNAME: self.user.last_name,
+            PLAN: self.subscription.plan,
+            POPTION: self.subscription.payment_option,
+            ADMISSION: self.subscription.created_at.strftime("%d/%m/%Y")
+          }
+        )
+      rescue Exception => e
+        Rails.logger.error e
+      end
+    end
 
     # Placing all callbacks inside the observer, instead of
     # Putting it on states file. This way we can keep things organized.
@@ -121,11 +139,13 @@ module PaymentObserver
       after_transition on: [:reverse, :refund], do: [:pause_subscription, :notify_refund]
 
       after_transition on: [:finish, :authorize] do |payment|
+        payment.delay.update_user_on_list
         payment.delay.update_user_on_segment(:static_segment_members_add, ENV["MAILCHIMP_ACTIVE_SEG_ID"])
         payment.delay.update_user_on_segment(:static_segment_members_del, ENV["MAILCHIMP_INACTIVE_SEG_ID"])
       end
 
       after_transition on: :cancel do |payment|
+        payment.delay.update_user_on_list
         payment.delay.update_user_on_segment(:static_segment_members_add, ENV["MAILCHIMP_INACTIVE_SEG_ID"])
         payment.delay.update_user_on_segment(:static_segment_members_del, ENV["MAILCHIMP_ACTIVE_SEG_ID"])
       end
