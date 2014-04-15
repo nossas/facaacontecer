@@ -18,6 +18,6 @@ class Payment < ActiveRecord::Base
   validates_presence_of :subscription
 
   def self.successful
-    where("state = 'finished' OR state = 'authorized'")
+    where("payments.state = 'finished' OR payments.state = 'authorized'")
   end
 end
