@@ -121,7 +121,7 @@ module PaymentObserver
             LNAME: self.user.last_name,
             PLAN: self.subscription.plan,
             POPTION: self.subscription.payment_option,
-            ADMISSION: self.subscription.created_at.strftime("%d/%m/%Y")
+            ADMISSION: self.subscription.created_at.strftime("%m/%d/%Y")
           }
         )
       rescue Exception => e
