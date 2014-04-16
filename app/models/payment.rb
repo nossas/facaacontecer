@@ -20,4 +20,8 @@ class Payment < ActiveRecord::Base
   def self.successful
     where("payments.state = 'finished' OR payments.state = 'authorized'")
   end
+
+  def last_successful_payment
+    self.payments.successful.order(:paid_at).last
+  end
 end

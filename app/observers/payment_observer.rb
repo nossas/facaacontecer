@@ -122,7 +122,8 @@ module PaymentObserver
             PLAN: self.subscription.plan,
             POPTION: self.subscription.payment_option,
             ADMISSION: self.subscription.created_at.strftime("%m/%d/%Y"),
-            NDONATIONS: self.user.payments.successful.count
+            NDONATIONS: self.user.payments.successful.count,
+            LDONATION: self.user.last_successful_payment.paid_at.strftime("%m/%d/%Y")
           }
         )
       rescue Exception => e
