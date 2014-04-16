@@ -12,10 +12,10 @@ class Subscription < ActiveRecord::Base
 
   # Allowed subscription plans & Allowed payment options
   ALLOWED_PLANS     = %w(monthly biannual annual)
-  ALLOWED_PAYMENTS  = %w(debit slip creditcard) 
+  ALLOWED_PAYMENTS  = %w(debit slip creditcard)
   ALLOWED_BANKS     = %w(banco_do_brasil bradesco banrisul itau)
 
-  # Relationship with Projects and the correspondent user for each subscription 
+  # Relationship with Projects and the correspondent user for each subscription
   belongs_to :project, inverse_of: :subscriptions
   belongs_to :user, inverse_of: :subscriptions
 
@@ -24,7 +24,7 @@ class Subscription < ActiveRecord::Base
 
   # This attributes should be present when creating an order
   validates_presence_of :value, :project, :user, :payment_option, :plan
-  
+
   # We only need the bank account if the payment option is debit
   validates_presence_of :bank, if: -> { debit? }
 
@@ -35,15 +35,6 @@ class Subscription < ActiveRecord::Base
 
   # Allowing nil or blank when payment_option is creditcard
   validates_inclusion_of :bank, in: ALLOWED_BANKS, allow_blank: true, allow_nil: true
-  
-
-  # Saving the code
-  before_validation :generate_unique_code
-
-  # Generating a code based on the Current time in integer format
-  def generate_unique_code
-    self.code = Time.now.to_i 
-  end
 
   def creditcard?
     self.payment_option == 'creditcard'
@@ -70,7 +61,7 @@ class Subscription < ActiveRecord::Base
     extend Business::Slip
   end
 
-  
+
   # Extending some business logic inside method calls
   def debito
     return false unless payment_option == 'debit'

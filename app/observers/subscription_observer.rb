@@ -14,14 +14,14 @@ module SubscriptionObserver
     #
 
 
-    # 
+    #
     # State machine callbacks
     # All callbacks calls should be inside the state_machine block
     #
     state_machine do
     end
 
-
+    # Saving the code
+    before_create { self.code = Time.now.to_i }
   end
-
 end
