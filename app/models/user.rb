@@ -18,11 +18,11 @@ class User < ActiveRecord::Base
 
   # Validates if a phone is valid
   validates :phone, phone: true
-    
+
 
   # Validates the presence of these fields
-  validates_presence_of :first_name, :last_name, :email, :cpf, :birthday, 
-    :postal_code, :address_street, :address_extra, :address_number, 
+  validates_presence_of :first_name, :last_name, :email, :cpf, :birthday,
+    :postal_code, :address_street, :address_extra, :address_number,
     :address_district, :city, :state, :phone, :country
 
 
@@ -36,11 +36,15 @@ class User < ActiveRecord::Base
   # Isolating business logic inside a method
   # So if you need to call app/business/subscriber
   # Do as the following:
-  # 
+  #
   #   user.business.as_payer
   #   user.business.build_payer
   def business
     # located @ app/business/subscriber.rb
     extend Business::Payer
+  end
+
+  def last_successful_payment
+    self.payments.successful.order(:paid_at).last
   end
 end
