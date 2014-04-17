@@ -26,9 +26,9 @@ gem 'state_machine'
 
 #gem 'best_in_place'  # Field live-edit
 
-
 # Payment/Gateway related gems
 gem 'mymoip'                    # ~>  https://github.com/Irio/mymoip
+gem 'api-moip-assinaturas', git: 'https://github.com/nicolasiensen/api-moip-assinaturas.git', require: 'moip'
 
 # Mailchimp API wraper
 gem 'gibbon'
@@ -36,7 +36,6 @@ gem 'gibbon'
 # Model-validation related gems
 gem "cpf_validator"                   # validate cpfs
 gem 'validates_timeliness', '~> 3.0'  # validate dates/intervals
-
 
 # Assets related gems
 gem 'jquery-rails'
@@ -51,30 +50,19 @@ gem 'foundation-rails', '~> 5.1.1.0'
 gem 'gravatar_image_tag'
 gem 'meurio_ui', '~> 1.4.1'
 
-
-# Group related gems
 group :production do
   gem 'newrelic_rpm'
   gem 'rails_12factor'
   gem 'heroku-deflater'
-  # Using autoscaler on heroku, so we can turn off workers if not being used.
-  # See https://github.com/JustinLove/autoscaler
-  # See http://manuel.manuelles.nl/blog/2012/11/13/scalable-heroku-worker-for-sidekiq/
-  #gem 'autoscaler'
 end
-
-
 
 group :development do
   gem 'mailcatcher'
 end
 
-
 group :development, :test do
   gem 'rspec-rails'
   gem 'colorize'
-  # required by sidekiq
-  # gem 'sinatra', :require => nil
 end
 
 group :test do

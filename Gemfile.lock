@@ -1,3 +1,13 @@
+GIT
+  remote: https://github.com/nicolasiensen/api-moip-assinaturas.git
+  revision: 8e4142bc6ac99f713b0139f8a56cb93a008f4265
+  specs:
+    api-moip-assinaturas (0.2.42)
+      activemodel (>= 3.2.12)
+      httparty (>= 0.11.0)
+      i18n (~> 0.6.1, >= 0.6.1)
+      json (>= 1.7.7)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -268,6 +278,7 @@ PLATFORMS
 
 DEPENDENCIES
   angularjs-rails
+  api-moip-assinaturas!
   before_actions
   codeclimate-test-reporter
   colorize
