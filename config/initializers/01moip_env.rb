@@ -1,10 +1,10 @@
 # ==============================
 # Moip assinaturas configuration
 # ==============================
-MOIP_TOKEN              = ENV['MOIP_ASSINATURAS_TOKEN'] 
+MOIP_TOKEN              = ENV['MOIP_ASSINATURAS_TOKEN']
 
 if Rails.env.production? or Rails.env.staging?
-  MOIP_INSTRUCTION_URL  = "https://www.moip.com.br/Instrucao.do?token="  
+  MOIP_INSTRUCTION_URL  = "https://www.moip.com.br/Instrucao.do?token="
   MOIP_URL              = 'https://moip.com.br/assinaturas/v1'
   MOIP_JS_URL           = 'https://api.moip.com.br/moip-assinaturas.min.js'
 else
@@ -29,3 +29,12 @@ MyMoip.send("#{environment}_key=", ENV['MYMOIP_KEY'])
 # ================
 
 MOIP_NOTIFICATIONS_HOST = ENV['NOTIFICATIONS_HOST'] || 'localhost'
+
+require 'moip'
+require 'moip/configuration'
+
+Moip.configure do |config|
+  config.token = ENV['MYMOIP_TOKEN']
+  config.acount_key = ENV['MYMOIP_KEY']
+  config.env = Rails.env.production? ? 'production' : 'sandbox'
+end
