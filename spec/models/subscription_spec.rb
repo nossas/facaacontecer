@@ -86,6 +86,11 @@ describe Subscription do
       it "should return a bank debit url if the payment request was successful" do
         expect(@subscription.debito.url).to eq("https://desenvolvedor.moip.com.br/sandbox/Instrucao.do?token=M2S0U1W4R043J198L2C0E0U1R5O3Q0O2R2N020U0V0D0E0N4V5O3X481P063")
       end
+
+
+      it "should save the token in the payment token's column" do
+        expect(@subscription.debito.token).to eq("B2L0Q1C4J0A4M128O1X9B350F5M6V6C6F5P0Y0705030F0K4Z5S8O0Y7N1E6")
+      end
     end
    
   end
@@ -117,6 +122,12 @@ describe Subscription do
     context "#url" do
       it "should return a valid BOLETO url when the requests finishes" do
         expect(@subscription.boleto.url).to eq("https://desenvolvedor.moip.com.br/sandbox/Instrucao.do?token=R2N081R4F0E3Z1Z8R2S0B1U3J2P9S3Z4Z1Q0N050O0G0Z0C4H503N4U144T4")
+      end
+    end
+
+    context "#token" do
+      it "should return a valid token in order to consult it afterwards" do
+        expect(@subscription.boleto.token).to eq("D2T081O4P0J4T1A811Q9B3O2M0C4A3Q3X260L0Y0L0H0I0T475T830N7B1O7")
       end
     end
   end

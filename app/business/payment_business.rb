@@ -39,6 +39,11 @@ module PaymentBusiness
     end
   
 
+    def token
+      # Getting the token for boleto/debito 
+      payment_request.token
+    end
+
 
   end
 end
