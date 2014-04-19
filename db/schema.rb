@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140408120956) do
+ActiveRecord::Schema.define(version: 20140419141523) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,10 +22,9 @@ ActiveRecord::Schema.define(version: 20140408120956) do
     t.integer  "parent_user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["code", "user_id"], :name => "index_invites_on_code_and_user_id", :unique => true, :order => {"code" => :asc, "user_id" => :asc}
+    t.index ["user_id", "parent_user_id"], :name => "index_invites_on_user_id_and_parent_user_id", :order => {"user_id" => :asc, "parent_user_id" => :asc}
   end
-
-  add_index "invites", ["code", "user_id"], name: "index_invites_on_code_and_user_id", unique: true, using: :btree
-  add_index "invites", ["user_id", "parent_user_id"], name: "index_invites_on_user_id_and_parent_user_id", using: :btree
 
   create_table "payments", force: true do |t|
     t.string   "code"
@@ -37,9 +36,8 @@ ActiveRecord::Schema.define(version: 20140408120956) do
     t.datetime "paid_at"
     t.string   "url"
     t.string   "sequence"
+    t.index ["subscription_id"], :name => "index_payments_on_subscription_id", :order => {"subscription_id" => :asc}
   end
-
-  add_index "payments", ["subscription_id"], name: "index_payments_on_subscription_id", using: :btree
 
   create_table "projects", force: true do |t|
     t.string   "title"
@@ -66,11 +64,10 @@ ActiveRecord::Schema.define(version: 20140408120956) do
     t.string   "payment_option", default: "",  null: false
     t.string   "plan",           default: "0", null: false
     t.string   "bank"
+    t.index ["code"], :name => "index_subscriptions_on_code", :unique => true, :order => {"code" => :asc}
+    t.index ["project_id"], :name => "index_subscriptions_on_project_id", :order => {"project_id" => :asc}
+    t.index ["user_id"], :name => "index_subscriptions_on_user_id", :order => {"user_id" => :asc}
   end
-
-  add_index "subscriptions", ["code"], name: "index_subscriptions_on_code", using: :btree
-  add_index "subscriptions", ["project_id"], name: "index_subscriptions_on_project_id", using: :btree
-  add_index "subscriptions", ["user_id"], name: "index_subscriptions_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "first_name",       null: false
