@@ -1,6 +1,6 @@
 class DropTableUsers < ActiveRecord::Migration
   def up
-    drop_table :users
+    drop_table :users, cascade: true
   end
 
   def down

@@ -22,34 +22,9 @@ ActiveRecord::Schema.define(version: 20140419141523) do
     t.integer  "parent_user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["user_id"], :name => "fk__invites_user_id", :order => {"user_id" => :asc}
     t.index ["code", "user_id"], :name => "index_invites_on_code_and_user_id", :unique => true, :order => {"code" => :asc, "user_id" => :asc}
     t.index ["user_id", "parent_user_id"], :name => "index_invites_on_user_id_and_parent_user_id", :order => {"user_id" => :asc, "parent_user_id" => :asc}
-  end
-
-  create_table "payments", force: true do |t|
-    t.string   "code"
-    t.integer  "subscription_id"
-    t.string   "state"
-    t.datetime "expires_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.datetime "paid_at"
-    t.string   "url"
-    t.string   "sequence"
-    t.string   "token"
-    t.index ["subscription_id"], :name => "index_payments_on_subscription_id", :order => {"subscription_id" => :asc}
-  end
-
-  create_table "projects", force: true do |t|
-    t.string   "title"
-    t.text     "description"
-    t.date     "expiration_date"
-    t.decimal  "goal"
-    t.string   "image"
-    t.string   "video"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "days"
   end
 
   create_table "subscriptions", force: true do |t|
@@ -68,6 +43,34 @@ ActiveRecord::Schema.define(version: 20140419141523) do
     t.index ["code"], :name => "index_subscriptions_on_code", :unique => true, :order => {"code" => :asc}
     t.index ["project_id"], :name => "index_subscriptions_on_project_id", :order => {"project_id" => :asc}
     t.index ["user_id"], :name => "index_subscriptions_on_user_id", :order => {"user_id" => :asc}
+  end
+
+  create_table "payments", force: true do |t|
+    t.string   "code"
+    t.integer  "subscription_id"
+    t.string   "state"
+    t.datetime "expires_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.datetime "paid_at"
+    t.string   "url"
+    t.string   "sequence"
+    t.string   "token"
+    t.index ["subscription_id"], :name => "fk__payments_subscription_id", :order => {"subscription_id" => :asc}
+    t.index ["subscription_id"], :name => "index_payments_on_subscription_id", :order => {"subscription_id" => :asc}
+    t.foreign_key ["subscription_id"], "subscriptions", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_payments_subscription_id"
+  end
+
+  create_table "projects", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.date     "expiration_date"
+    t.decimal  "goal"
+    t.string   "image"
+    t.string   "video"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "days"
   end
 
   create_table "users", force: true do |t|

@@ -3,7 +3,7 @@ class CreateInvites < ActiveRecord::Migration
     create_table :invites do |t|
       t.string :code
       t.integer :user_id
-      t.integer :parent_user_id
+      t.integer :parent_user_id, foreign_key: false
 
       t.timestamps
 
