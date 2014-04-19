@@ -13,6 +13,7 @@ gem 'sidekiq'  # Using sidekiq to perform delayed jobs. LOVE.
 
 # Database-related gems
 gem 'pg'
+gem 'schema_plus'
 
 # Controller-related gems
 gem 'before_actions'

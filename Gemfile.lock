@@ -193,6 +193,9 @@ GEM
       sass (~> 3.2.0)
       sprockets (~> 2.8, <= 2.11.0)
       sprockets-rails (~> 2.0.0)
+    schema_plus (1.2.0)
+      rails (>= 3.2)
+      valuable
     selenium-webdriver (2.40.0)
       childprocess (>= 0.5.0)
       multi_json (~> 1.0)
@@ -265,6 +268,7 @@ GEM
       json (>= 1.8.0)
     validates_timeliness (3.0.14)
       timeliness (~> 0.3.6)
+    valuable (0.9.8)
     vcr (2.8.0)
     webmock (1.17.4)
       addressable (>= 2.2.7)
@@ -305,6 +309,7 @@ DEPENDENCIES
   rails_12factor
   rspec-rails
   sass-rails (= 4.0.2)
+  schema_plus
   selenium-webdriver
   shoulda
   sidekiq
