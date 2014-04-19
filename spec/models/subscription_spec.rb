@@ -8,12 +8,14 @@ describe Subscription do
   end
 
   context "validations" do
+    before { Fabricate(:subscription) }
     it { should validate_presence_of :value }
     it { should validate_presence_of :project }
     it { should validate_presence_of :user }
     it { should validate_presence_of :payment_option }
+    it { should validate_uniqueness_of :code }
   end
-  
+
   context "Field validations" do
     it "should require the bank attribute if the subscription is DEBIT" do
       expect(Subscription.new(payment_option: 'debit')).to have(1).error_on(:bank)
@@ -22,10 +24,10 @@ describe Subscription do
     it "should not require the bank attribute if the subscription is CREDITCARD" do
       expect(Subscription.new(payment_option: 'creditcard')).to have(0).error_on(:bank)
     end
- 
+
     it "should not require the bank attribute if the subscription is BOLETO" do
       expect(Subscription.new(payment_option: 'slip')).to have(0).error_on(:bank)
-    end   
+    end
 
 
     it "should only allow the permitted bank names 'banco_do_brasil', 'itau' and 'bradesco'" do
@@ -41,7 +43,7 @@ describe Subscription do
     #before { @subscription = Fabricate(:subscription, payment_option: 'slip') }
 
     #it "should have called SubscriptionWorker after_create event" do
-      #expect(SubscriptionWorker.jobs.size).to eq(1) 
+      #expect(SubscriptionWorker.jobs.size).to eq(1)
     #end
 
   #end
@@ -51,7 +53,7 @@ describe Subscription do
     subscription = Fabricate(:subscription)
 
     it "should generate an unique code based on current time/stamp" do
-      expect(subscription.code).to be_within(30.seconds.to_i).of(Time.now.to_i)
+      expect(subscription.code.split("_")[1].to_i).to be_within(30.seconds.to_i).of(Time.now.to_i)
     end
 
   end
@@ -59,7 +61,7 @@ describe Subscription do
 
   context "#debito" do
     before { @subscription = Fabricate(:subscription, payment_option: "debit", value: 90, bank: 'itau') }
-  
+
     it "should return false if the payment_option isn't debit" do
       @subscription.payment_option = 'slip'
       expect(@subscription.debito).to eq(false)
@@ -92,14 +94,14 @@ describe Subscription do
         expect(@subscription.debito.token).to eq("B2L0Q1C4J0A4M128O1X9B350F5M6V6C6F5P0Y0705030F0K4Z5S8O0Y7N1E6")
       end
     end
-   
+
   end
 
 
 
   context "#boleto", vcr: true do
     before { @subscription = Fabricate(:subscription, payment_option: "slip", value: 320) }
-   
+
     it "should return false if the payment_option isn't SLIP (boleto)" do
       @subscription.payment_option = 'debit'
       expect(@subscription.boleto).to eq(false)

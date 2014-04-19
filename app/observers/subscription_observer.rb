@@ -22,6 +22,6 @@ module SubscriptionObserver
     end
 
     # Saving the code
-    before_create { self.code = Time.now.to_i }
+    before_create { self.code = "#{self.user_id}_#{Time.now.to_i}" }
   end
 end

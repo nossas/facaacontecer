@@ -36,6 +36,8 @@ class Subscription < ActiveRecord::Base
   # Allowing nil or blank when payment_option is creditcard
   validates_inclusion_of :bank, in: ALLOWED_BANKS, allow_blank: true, allow_nil: true
 
+  validates_uniqueness_of :code
+
   def creditcard?
     self.payment_option == 'creditcard'
   end
