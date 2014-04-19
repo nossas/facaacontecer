@@ -18,6 +18,7 @@ describe Payment do
       Sidekiq::Extensions::DelayedMailer.drain
     end
 
+
     it "should send an email with LINK to BOLETO when the subscrition is BOLETO (slip)" do
       expect(ActionMailer::Base.deliveries.last.subject).to eq("[MeuRio] Seu boleto foi gerado!")
       expect(ActionMailer::Base.deliveries.last.to).to eq([@payment.user.email])
@@ -30,10 +31,13 @@ describe Payment do
                            subscription: Fabricate(:subscription, payment_option: 'debit'))
       Sidekiq::Extensions::DelayedMailer.drain
     end
+
+
     it "should send an email with LINK to BANK when the subscription is DEBITO (debit)" do
       expect(ActionMailer::Base.deliveries.last.subject).to eq("[MeuRio] O link para a sua doação foi gerado!")
       expect(ActionMailer::Base.deliveries.last.to).to eq([@payment.user.email])
     end
+
   end
 
   describe "#add_to_mailchimp_segment" do

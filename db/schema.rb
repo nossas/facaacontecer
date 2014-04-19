@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20140419141523) do
     t.datetime "paid_at"
     t.string   "url"
     t.string   "sequence"
+    t.string   "token"
     t.index ["subscription_id"], :name => "index_payments_on_subscription_id", :order => {"subscription_id" => :asc}
   end
 

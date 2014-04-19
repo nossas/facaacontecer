@@ -1,0 +1,64 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://4WV0YFD94HGZS9QSL8NU1LIPUYQELTGO:YUSNOJ3UWDS3CMDYCV8OKIX2MF7MOM6AUGMZVZ6X@desenvolvedor.moip.com.br/sandbox/ws/alpha/EnviarInstrucao/Unica
+    body:
+      encoding: UTF-8
+      string: "<EnviarInstrucao><InstrucaoUnica TipoValidacao=\"Transparente\"><Razao>Doação
+        para o MeuRio - http://meurio.org.br</Razao><Valores><Valor moeda=\"BRL\">320.00</Valor></Valores><IdProprio>1397860323PAYMENT</IdProprio><Pagador><Nome>Juquinha
+        Da Silva</Nome><Email>13email13@gmail.com</Email><IdPagador>13</IdPagador><EnderecoCobranca><Logradouro>Rua
+        Belisario Tavora 500</Logradouro><Numero>100</Numero><Complemento>Laranjeiras</Complemento><Bairro>Laranjeiras</Bairro><Cidade>Rio
+        de Janeiro</Cidade><Estado>RJ</Estado><Pais>BRA</Pais><CEP>78132-500</CEP><TelefoneFixo>(21)99713-7471</TelefoneFixo></EnderecoCobranca></Pagador></InstrucaoUnica></EnviarInstrucao>"
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 18 Apr 2014 22:32:04 GMT
+      Server:
+      - Apache
+      Content-Length:
+      - '273'
+      Vary:
+      - Accept-Encoding
+      Content-Type:
+      - text/xml;charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: "<ns1:EnviarInstrucaoUnicaResponse xmlns:ns1=\"http://www.moip.com.br/ws/alpha/\"><Resposta><ID>201404181932043320000004580717</ID><Status>Sucesso</Status><Token>D2T081O4P0J4T1A811Q9B3O2M0C4A3Q3X260L0Y0L0H0I0T475T830N7B1O7</Token></Resposta></ns1:EnviarInstrucaoUnicaResponse>"
+    http_version: 
+  recorded_at: Fri, 18 Apr 2014 22:32:04 GMT
+- request:
+    method: get
+    uri: https://4WV0YFD94HGZS9QSL8NU1LIPUYQELTGO:YUSNOJ3UWDS3CMDYCV8OKIX2MF7MOM6AUGMZVZ6X@desenvolvedor.moip.com.br/sandbox/rest/pagamento?callback=?&pagamentoWidget=%7B%22pagamentoWidget%22:%7B%22referer%22:null,%22token%22:%22D2T081O4P0J4T1A811Q9B3O2M0C4A3Q3X260L0Y0L0H0I0T475T830N7B1O7%22,%22dadosPagamento%22:%7B%22Forma%22:%22BoletoBancario%22%7D%7D%7D
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 18 Apr 2014 22:32:05 GMT
+      Server:
+      - Apache
+      Content-Length:
+      - '92'
+      Vary:
+      - Accept-Encoding
+      Content-Type:
+      - application/json
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        Pyh7IkNvZGlnbyI6MCwiU3RhdHVzUGFnYW1lbnRvIjoiU3VjZXNzbyIsIk1l
+        bnNhZ2VtIjoiUmVxdWlzacOnw6NvIHByb2Nlc3NhZGEgY29tIHN1Y2Vzc28i
+        fSk=
+    http_version: 
+  recorded_at: Fri, 18 Apr 2014 22:32:07 GMT
+recorded_with: VCR 2.8.0
