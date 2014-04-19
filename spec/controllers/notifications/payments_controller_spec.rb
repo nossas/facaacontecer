@@ -3,7 +3,7 @@ require 'spec_helper'
 
 describe Notifications::PaymentsController do
 
-  def post_with_payment_status(status = "1") 
+  def post_with_payment_status(status = "1")
     @nasp_params[:status_pagamento] = status
     post :create, @nasp_params
   end
@@ -61,11 +61,10 @@ describe Notifications::PaymentsController do
 
 
       it { expect(response.status).to eq(200) }
-      its(:subscription) { subject.subscription.state.should == 'paused' }
       its(:state) { should == 'reversed' }
     end
 
-    context "When a payment instruction is sent with status 'BoletoImpresso'" do 
+    context "When a payment instruction is sent with status 'BoletoImpresso'" do
       before do
         post_with_payment_status("3")
       end
@@ -104,7 +103,7 @@ describe Notifications::PaymentsController do
 
 
       it { expect(response.status).to eq(200) }
-      its(:state) { should == 'authorized' } 
+      its(:state) { should == 'authorized' }
       its(:paid_at) { should_not == nil }
       its(:subscription) { expect(subject.subscription.reload.state).to eq("active") }
 
@@ -120,14 +119,14 @@ describe Notifications::PaymentsController do
         @payment.subscription.update_attribute(:payment_option, 'creditcard')
         post_with_payment_status("1")
         run_workers!
-        
-      end 
+
+      end
       it { expect(response.status).to eq(200) }
       it { expect(@payment.reload.has_only_one_authorized_payment?).to eq true }
       it {
         expect(ActionMailer::Base.deliveries.last.to).to eq([@host.email])
       }
-      it { 
+      it {
         expect(ActionMailer::Base.deliveries.last.subject).to eq("[MeuRio] Você ganhou uma camiseta da Rede Meu Rio!")
       }
 
@@ -143,14 +142,14 @@ describe Notifications::PaymentsController do
 
         post_with_payment_status("1")
         run_workers!
-        
-      end 
+
+      end
 
       it { expect(response.status).to eq(200) }
       it {
         expect(ActionMailer::Base.deliveries.last.to).to_not eq([@host.email])
       }
-      it { 
+      it {
         expect(ActionMailer::Base.deliveries.last.subject).to_not eq("[MeuRio] Você ganhou uma camiseta da Rede Meu Rio!")
       }
 
