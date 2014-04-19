@@ -11,11 +11,11 @@ module Notifications::PaymentStatus
     # Skipping authentication token for the create action
     skip_before_filter :verify_authenticity_token, :only => [:create]
 
-    # POST /notifications/payments?{/recurring} 
+    # POST /notifications/payments?{/recurring}
     def create
 
       # using the mapped :state param as a state call.
-      @payment.send(_params[:state].to_s)
+      @payment.send(_params[:state].to_s) if @payment.present?
       render_nothing_with_status(200)
     end
 
@@ -31,7 +31,7 @@ module Notifications::PaymentStatus
     # 7 - Estornado
     # 9 - Reembolsado
     def get_payment_state(code)
-      statuses = { 
+      statuses = {
         "1" => "authorize", # Autorizado, but not yet in the MOIP account
         "2" => "start",     # Payment started
         "3" => "printing",  # Slip only
@@ -42,7 +42,7 @@ module Notifications::PaymentStatus
         "9" => "refund"     # Reembolsado
       }
 
-      return statuses[code.to_s] 
+      return statuses[code.to_s]
     end
 
 
@@ -62,7 +62,7 @@ module Notifications::PaymentStatus
     def payment_params(param)
       return false unless param[:id_transacao]
 
-      request_params = { 
+      request_params = {
         :payment_type    => param[:tipo_pagamento],
         :code            => param[:id_transacao],
         :value           => param[:valor],
@@ -94,7 +94,7 @@ module Notifications::PaymentStatus
 
 
     def is_from_moip?
-      request.header['authorization'] && request.header['authorization'] == Base64.encode("#{MyMoip.token}:#{MyMoip.key}") 
+      request.header['authorization'] && request.header['authorization'] == Base64.encode("#{MyMoip.token}:#{MyMoip.key}")
     end
   end
 
