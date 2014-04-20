@@ -66,7 +66,7 @@ module PaymentObserver
     # And send activated_subscription_email
     def activate_subscription
       self.update_attribute(:paid_at, Time.now)
-      self.subscription.activate! if !self.subscription.creditcard?
+      # self.subscription.activate! if !self.subscription.creditcard?
       Notifications::PaymentMailer.delay.authorized_payment(self.id)
     end
 
@@ -75,7 +75,7 @@ module PaymentObserver
     # After the Refund/ Reverse action in a payment, Pause the subscription
     # And send paused_subscription_email
     def pause_subscription
-      self.subscription.pause! if !self.subscription.creditcard?
+      # self.subscription.pause! if !self.subscription.creditcard?
     end
 
 

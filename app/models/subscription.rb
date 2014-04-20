@@ -2,7 +2,7 @@
 class Subscription < ActiveRecord::Base
 
   # located @ app/states/
-  include SubscriptionState
+  # include SubscriptionState
 
   # This file holds all CALLBACKS that belongs to subscription's objects
   # located @ app/observers/
@@ -68,5 +68,17 @@ class Subscription < ActiveRecord::Base
     return false unless payment_option == 'debit'
     # Located @ app/business/payment_bank_debit_business.rb
     extend Business::BankDebit
+  end
+
+  def waiting?
+    state == "waiting"
+  end
+
+  def processing?
+    state == "processing"
+  end
+
+  def wait_confirmation!
+    self.update_attribute :state, "waiting"
   end
 end
