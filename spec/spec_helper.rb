@@ -15,6 +15,7 @@ require 'vcr'
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
+Dir[Rails.root.join("spec/concerns/**/*.rb")].each {|f| require f}
 
 VCR.configure do |c|
   c.cassette_library_dir = 'spec/cassettes'
