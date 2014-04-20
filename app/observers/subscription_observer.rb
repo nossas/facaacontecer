@@ -8,6 +8,7 @@ module SubscriptionObserver
 
     # TODO it should run only when state changes
     after_save do
+      self.delay.update_user_data
       self.delay.add_to_subscription_segment(self.user.email, self.state)
     end
 

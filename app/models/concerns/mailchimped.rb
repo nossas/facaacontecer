@@ -32,4 +32,25 @@ module Mailchimped
     remove_from_segment email, ENV["MAILCHIMP_CANCELED_SEG_ID"]
     add_to_segment email, ENV["MAILCHIMP_#{status.upcase}_SEG_ID"]
   end
+
+  def update_user_data
+    begin
+      Gibbon::API.lists.subscribe(
+        id: ENV["MAILCHIMP_LIST_ID"],
+        email: { email: self.user.email },
+        double_optin: false,
+        update_existing: true,
+        merge_vars: {
+          PLAN: self.plan,
+          POPTION: self.payment_option,
+          ADMISSION: self.created_at.strftime("%m/%d/%Y"),
+          NDONATIONS: self.successful_invoices.size,
+          LDONATION: self.last_successful_invoice_date.strftime("%m/%d/%Y"),
+          VALUE: self.value
+        }
+      )
+    rescue Exception => e
+      Rails.logger.error e
+    end
+  end
 end

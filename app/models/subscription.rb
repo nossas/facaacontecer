@@ -81,4 +81,21 @@ class Subscription < ActiveRecord::Base
   def wait_confirmation!
     self.update_attribute :state, "waiting"
   end
+
+  # TODO perhaps we should create an invoices table and integrate
+  def successful_invoices
+    api = Moip::Invoice.new
+    api.subscription_code = self.code
+    api.invoices.select{|i| i["status"]["code"] == 3}
+  end
+
+  # TODO we definitely have to create an invoices table
+  def last_successful_invoice_date
+    api = Moip::Invoice.new
+    api.subscription_code = self.code
+    last_invoice = api.invoices.select{|i| i["status"]["code"] == 3}.last
+    Date.new(day: last_invoice["creation_date"]["day"],
+      month: last_invoice["creation_date"]["month"],
+      year: last_invoice["creation_date"]["year"])
+  end
 end
