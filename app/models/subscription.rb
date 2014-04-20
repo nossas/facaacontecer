@@ -96,6 +96,6 @@ class Subscription < ActiveRecord::Base
     last_invoice = api.invoices.select{|i| i["status"]["code"] == 3}.last
     Date.new(day: last_invoice["creation_date"]["day"],
       month: last_invoice["creation_date"]["month"],
-      year: last_invoice["creation_date"]["year"])
+      year: last_invoice["creation_date"]["year"]) if last_invoice.present?
   end
 end
