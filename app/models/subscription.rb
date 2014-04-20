@@ -7,8 +7,7 @@ class Subscription < ActiveRecord::Base
   # This file holds all CALLBACKS that belongs to subscription's objects
   # located @ app/observers/
   include SubscriptionObserver
-
-
+  include Mailchimped
 
   # Allowed subscription plans & Allowed payment options
   ALLOWED_PLANS     = %w(monthly biannual annual)
@@ -71,4 +70,8 @@ class Subscription < ActiveRecord::Base
     extend Business::BankDebit
   end
 
+  def activate!
+    self.update_attribute :state, "active"
+    add_to_subscription_segment self.user.email, "active"
+  end
 end

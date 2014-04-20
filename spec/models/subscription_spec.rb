@@ -1,5 +1,8 @@
 # coding: utf-8
+require 'spec_helper'
+
 describe Subscription do
+  it_behaves_like "mailchimped"
 
   context "association" do
     it { should belong_to :project }
@@ -131,6 +134,22 @@ describe Subscription do
       it "should return a valid token in order to consult it afterwards" do
         expect(@subscription.boleto.token).to eq("D2T081O4P0J4T1A811Q9B3O2M0C4A3Q3X260L0Y0L0H0I0T475T830N7B1O7")
       end
+    end
+  end
+
+  describe "activate!" do
+    it "should update the state to active" do
+      subject.stub(:add_to_subscription_segment)
+      subject.stub_chain(:user, :email)
+      subject.should_receive(:update_attribute).with(:state, "active")
+      subject.activate!
+    end
+
+    it "should add to the active Mailchimp segment" do
+      subject.stub(:update_attribute)
+      subject.stub_chain(:user, :email).and_return("nicolas@trashmail.com")
+      subject.should_receive(:add_to_subscription_segment).with("nicolas@trashmail.com", "active")
+      subject.activate!
     end
   end
 end

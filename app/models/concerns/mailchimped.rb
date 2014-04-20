@@ -24,4 +24,12 @@ module Mailchimped
       Rails.logger.error e
     end
   end
+
+  def add_to_subscription_segment email, status
+    remove_from_segment email, ENV["MAILCHIMP_ACTIVE_SEG_ID"]
+    remove_from_segment email, ENV["MAILCHIMP_SUSPENDED_SEG_ID"]
+    remove_from_segment email, ENV["MAILCHIMP_OVERDUE_SEG_ID"]
+    remove_from_segment email, ENV["MAILCHIMP_CANCELED_SEG_ID"]
+    add_to_segment email, ENV["MAILCHIMP_#{status.upcase}_SEG_ID"]
+  end
 end
