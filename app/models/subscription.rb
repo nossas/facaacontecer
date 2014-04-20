@@ -91,11 +91,9 @@ class Subscription < ActiveRecord::Base
 
   # TODO we definitely have to create an invoices table
   def last_successful_invoice_date
-    api = Moip::Invoice.new
-    api.subscription_code = self.code
-    last_invoice = api.invoices.select{|i| i["status"]["code"] == 3}.last
-    Date.new(day: last_invoice["creation_date"]["day"],
-      month: last_invoice["creation_date"]["month"],
-      year: last_invoice["creation_date"]["year"]) if last_invoice.present?
+    last_invoice = successful_invoices.last
+    Date.new(last_invoice["creation_date"]["year"],
+             last_invoice["creation_date"]["month"],
+             last_invoice["creation_date"]["day"]) if last_invoice.present?
   end
 end
