@@ -137,19 +137,19 @@ describe Subscription do
     end
   end
 
-  describe "activate!" do
-    it "should update the state to active" do
+  describe "update_state!" do
+    it "should update the state attribute" do
       subject.stub(:add_to_subscription_segment)
       subject.stub_chain(:user, :email)
       subject.should_receive(:update_attribute).with(:state, "active")
-      subject.activate!
+      subject.update_state!("active")
     end
 
-    it "should add to the active Mailchimp segment" do
+    it "should add to the Mailchimp segment" do
       subject.stub(:update_attribute)
       subject.stub_chain(:user, :email).and_return("nicolas@trashmail.com")
       subject.should_receive(:add_to_subscription_segment).with("nicolas@trashmail.com", "active")
-      subject.activate!
+      subject.update_state!("active")
     end
   end
 end

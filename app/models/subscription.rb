@@ -70,8 +70,8 @@ class Subscription < ActiveRecord::Base
     extend Business::BankDebit
   end
 
-  def activate!
-    self.update_attribute :state, "active"
-    add_to_subscription_segment self.user.email, "active"
+  def update_state! new_state
+    self.update_attribute :state, new_state
+    add_to_subscription_segment self.user.email, new_state
   end
 end
