@@ -6,7 +6,10 @@ module SubscriptionObserver
     # Calling state_machine method to transit from created -> processing
     after_create :start!
 
-
+    # TODO it should run only when state changes
+    after_save do
+      self.delay.add_to_subscription_segment(self.user.email, self.state)
+    end
 
     # Method to call the SubscriptionWorker
     # Where we perform the payment method using MyMoip

@@ -69,9 +69,4 @@ class Subscription < ActiveRecord::Base
     # Located @ app/business/payment_bank_debit_business.rb
     extend Business::BankDebit
   end
-
-  def update_state! new_state
-    self.update_attribute :state, new_state
-    add_to_subscription_segment self.user.email, new_state
-  end
 end
