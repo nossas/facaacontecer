@@ -41,36 +41,4 @@ describe Payment do
     end
 
   end
-
-  describe "#add_to_mailchimp_segment" do
-    subject { Fabricate(:payment) }
-
-    it "should call the Mailchimp API" do
-      lists = double("lists")
-      lists.should_receive(:static_segment_members_add).with(
-        id: "1",
-        seg_id: 1,
-        batch: [{ email: subject.user.email }]
-      )
-
-      Gibbon::API.stub(:lists).and_return(lists)
-      subject.update_user_on_segment(:static_segment_members_add, 1)
-    end
-  end
-
-  describe "#remove_from_mailchimp_segment" do
-    subject { Fabricate(:payment) }
-
-    it "should call the Mailchimp API" do
-      lists = double("lists")
-      lists.should_receive(:static_segment_members_del).with(
-        id: "1",
-        seg_id: 1,
-        batch: [{ email: subject.user.email }]
-      )
-
-      Gibbon::API.stub(:lists).and_return(lists)
-      subject.update_user_on_segment(:static_segment_members_del, 1)
-    end
-  end
 end
