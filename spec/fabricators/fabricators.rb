@@ -28,9 +28,9 @@ end
 
 
 Fabricator(:subscription) do
-  project 
+  project
   value { 30 }
-  user { Fabricate(:user) } 
+  user { Fabricate(:user) }
   plan "monthly"
   bank { "itau" }
   payment_option { "slip" }
@@ -47,4 +47,12 @@ end
 
 Fabricator(:invite) do
   user
+end
+
+Fabricator(:invoice) do
+  uid { 1 }
+  subscription
+  value { 9.0 }
+  occurrence { 1 }
+  status { "started" }
 end

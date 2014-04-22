@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140420172243) do
+ActiveRecord::Schema.define(version: 20140422145230) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,19 @@ ActiveRecord::Schema.define(version: 20140420172243) do
     t.index ["code"], :name => "index_subscriptions_on_code", :unique => true, :order => {"code" => :asc}
     t.index ["project_id"], :name => "index_subscriptions_on_project_id", :order => {"project_id" => :asc}
     t.index ["user_id"], :name => "index_subscriptions_on_user_id", :order => {"user_id" => :asc}
+  end
+
+  create_table "invoices", force: true do |t|
+    t.integer  "uid",             null: false
+    t.integer  "subscription_id", null: false
+    t.decimal  "value",           null: false
+    t.integer  "occurrence",      null: false
+    t.string   "status",          null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["subscription_id"], :name => "fk__invoices_subscription_id", :order => {"subscription_id" => :asc}
+    t.index ["uid"], :name => "index_invoices_on_uid", :unique => true, :order => {"uid" => :asc}
+    t.foreign_key ["subscription_id"], "subscriptions", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_invoices_subscription_id"
   end
 
   create_table "payments", force: true do |t|

@@ -3,6 +3,19 @@ require 'spec_helper'
 
 describe Notifications::RecurringPaymentsController do
   describe "POST create" do
+    context "when it's an invoice event" do
+      it "should call the create_or_update_invoice method" do
+        http_params = { event: "invoice.*", resource: { id: 1 } }
+
+        Notifications::RecurringPaymentsController.
+        any_instance.
+        should_receive(:create_or_update_invoice).
+        with({ "id" => "1" })
+
+        post :create, http_params
+      end
+    end
+
     context "when it's a subscription event" do
       it "should call the update_subscription_state method" do
         subscription = Fabricate(:subscription)
@@ -164,6 +177,47 @@ describe Notifications::RecurringPaymentsController do
       it "should update the subscription state to canceled" do
         subscription.should_receive(:update_attribute).with(:state, "canceled")
         subject.send(:update_subscription_state, "123", nil, event)
+      end
+    end
+  end
+
+  describe "#create_or_update_invoice" do
+    let(:subscription) { Fabricate(:subscription) }
+
+    context "when it's a new invoice" do
+      let(:resource){{
+        id: 13,
+        subscription_code: subscription.code,
+        amount: 100,
+        occurrence: 1,
+        status: { code: 1, description: "Em aberto" }
+      }}
+
+      it "should create the new invoice" do
+        Invoice.should_receive(:create!).with(
+          uid: 13,
+          subscription_id: subscription.id,
+          value: 1.0,
+          occurrence: 1,
+          status: "started"
+        )
+
+        subject.send(:create_or_update_invoice, resource)
+      end
+    end
+
+    context "when it's an existing invoice" do
+      let(:invoice) { double("invoice") }
+
+      let(:resource){{
+        id: 1,
+        status: { code: 2 }
+      }}
+
+      it "should update the existing invoice" do
+        invoice.should_receive(:update!).with(status: "waiting")
+        Invoice.stub(:find_by).with(uid: 1).and_return(invoice)
+        subject.send(:create_or_update_invoice, resource)
       end
     end
   end
