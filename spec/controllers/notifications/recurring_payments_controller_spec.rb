@@ -186,11 +186,11 @@ describe Notifications::RecurringPaymentsController do
 
     context "when it's a new invoice" do
       let(:resource){{
-        id: 13,
-        subscription_code: subscription.code,
-        amount: 100,
-        occurrence: 1,
-        status: { code: 1, description: "Em aberto" }
+        "id" => 13,
+        "subscription_code" => subscription.code,
+        "amount" => 100,
+        "occurrence" => 1,
+        "status" => { "code" => 1, "description" => "Em aberto" }
       }}
 
       it "should create the new invoice" do
@@ -210,8 +210,8 @@ describe Notifications::RecurringPaymentsController do
       let(:invoice) { double("invoice") }
 
       let(:resource){{
-        id: 1,
-        status: { code: 2 }
+        "id" => 1,
+        "status" => { "code" => 2 }
       }}
 
       it "should update the existing invoice" do

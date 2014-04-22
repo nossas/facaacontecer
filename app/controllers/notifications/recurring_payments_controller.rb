@@ -13,9 +13,9 @@ class Notifications::RecurringPaymentsController < ApplicationController
   before_actions do
     actions(:create) do
       if params[:event].match(/subscription/)
-        update_subscription_state params[:resource][:code], params[:resource][:status], params[:event]
+        update_subscription_state params["resource"]["code"], params["resource"]["status"], params["event"]
       elsif params[:event].match(/invoice/)
-        create_or_update_invoice(params[:resource])
+        create_or_update_invoice(params["resource"])
       elsif _params.has_key?(:id)
         @payment = Payment.find_by(code: _params[:id])
         build_payment if @payment.nil?
@@ -56,15 +56,15 @@ class Notifications::RecurringPaymentsController < ApplicationController
   end
 
   def create_or_update_invoice params
-    if invoice = Invoice.find_by(uid: params[:id])
-      invoice.update!(status: Invoice::STATUS[params[:status][:code].to_s])
+    if invoice = Invoice.find_by(uid: params["id"])
+      invoice.update!(status: Invoice::STATUS[params["status"]["code"].to_s])
     else
       Invoice.create!(
-        uid: params[:id],
-        subscription_id: Subscription.find_by(code: params[:subscription_code]).id,
-        value: params[:amount].to_f/100,
-        occurrence: params[:occurrence],
-        status: Invoice::STATUS[params[:status][:code].to_s]
+        uid: params["id"],
+        subscription_id: Subscription.find_by(code: params["subscription_code"]).id,
+        value: params["amount"].to_f/100,
+        occurrence: params["occurrence"],
+        status: Invoice::STATUS[params["status"]["code"].to_s]
       )
     end
   end
