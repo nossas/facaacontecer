@@ -33,6 +33,15 @@ module Mailchimped
     add_to_segment email, ENV["MAILCHIMP_#{status.upcase}_SEG_ID"]
   end
 
+  def add_to_single_payment_segment email, status
+    remove_from_segment email, ENV["MAILCHIMP_AUTHORIZED_PAYMENT_SEG_ID"]
+    remove_from_segment email, ENV["MAILCHIMP_PRINTED_PAYMENT_SEG_ID"]
+    remove_from_segment email, ENV["MAILCHIMP_FINISHED_PAYMENT_SEG_ID"]
+    remove_from_segment email, ENV["MAILCHIMP_STARTED_PAYMENT_SEG_ID"]
+    remove_from_segment email, ENV["MAILCHIMP_CANCELLED_PAYMENT_SEG_ID"]
+    add_to_segment email, ENV["MAILCHIMP_#{status.upcase}_PAYMENT_SEG_ID"]
+  end
+
   def update_user_data
     begin
       Gibbon::API.lists.subscribe(

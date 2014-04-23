@@ -1,11 +1,7 @@
 class Payment < ActiveRecord::Base
-
-
-  # Located @ app/states/payment_state.rb
   include PaymentState
-
-  # Located @ app/observers/payment_observer.rb
   include PaymentObserver
+  include Mailchimped
 
   # Associations
   belongs_to :subscription

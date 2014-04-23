@@ -58,4 +58,28 @@ shared_examples_for "mailchimped" do
       mailchimped.add_to_subscription_segment("nicolas@trashmail.com", "active")
     end
   end
+
+  describe("#add_to_single_payment_segment") do
+    before { ENV["MAILCHIMP_AUTHORIZED_PAYMENT_SEG_ID"] = "1" }
+    before { ENV["MAILCHIMP_PRINTED_PAYMENT_SEG_ID"] = "2" }
+    before { ENV["MAILCHIMP_FINISHED_PAYMENT_SEG_ID"] = "3" }
+    before { ENV["MAILCHIMP_STARTED_PAYMENT_SEG_ID"] = "4" }
+    before { ENV["MAILCHIMP_CANCELLED_PAYMENT_SEG_ID"] = "5" }
+
+    it "should remove the given email from all segments" do
+      mailchimped = Fabricate(model.to_s.underscore.to_sym)
+      mailchimped.should_receive(:remove_from_segment).with("nicolas@trashmail.com", "1")
+      mailchimped.should_receive(:remove_from_segment).with("nicolas@trashmail.com", "2")
+      mailchimped.should_receive(:remove_from_segment).with("nicolas@trashmail.com", "3")
+      mailchimped.should_receive(:remove_from_segment).with("nicolas@trashmail.com", "4")
+      mailchimped.should_receive(:remove_from_segment).with("nicolas@trashmail.com", "5")
+      mailchimped.add_to_single_payment_segment("nicolas@trashmail.com", "authorized")
+    end
+
+    it "should add the given email to the given segment" do
+      mailchimped = Fabricate(model.to_s.underscore.to_sym)
+      mailchimped.should_receive(:add_to_segment).with("nicolas@trashmail.com", "1")
+      mailchimped.add_to_single_payment_segment("nicolas@trashmail.com", "authorized")
+    end
+  end
 end
