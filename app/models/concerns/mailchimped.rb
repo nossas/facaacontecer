@@ -43,7 +43,6 @@ module Mailchimped
         merge_vars: {
           PLAN: self.plan,
           POPTION: self.payment_option,
-          ADMISSION: self.created_at.strftime("%m/%d/%Y"),
           NDONATIONS: self.successful_invoices.size,
           LDONATION: self.last_successful_invoice_date.try(:strftime, "%m/%d/%Y"),
           SUBUPDATED: self.updated_at.strftime("%m/%d/%Y"),
