@@ -45,7 +45,7 @@ module Mailchimped
           POPTION: self.payment_option,
           NDONATIONS: self.successful_invoices.size,
           LDONATION: self.last_successful_invoice_date.try(:strftime, "%m/%d/%Y"),
-          SUBUPDATED: self.updated_at.strftime("%m/%d/%Y"),
+          SUBUPDATED: self.state_updated_at.strftime("%m/%d/%Y"),
           VALUE: self.value
         }
       )
