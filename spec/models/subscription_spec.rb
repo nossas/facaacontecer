@@ -136,4 +136,18 @@ describe Subscription do
       end
     end
   end
+
+  describe "#state_updated_at" do
+    subject { Fabricate(:subscription) }
+
+    context "when the state is changed" do
+      before { subject.update_attribute :state, "active" }
+      its(:state_updated_at){ should_not be_nil }
+    end
+
+    context "when the state is not changed" do
+      before { subject.update_attribute :value, 50 }
+      its(:state_updated_at){ should be_nil }
+    end
+  end
 end
