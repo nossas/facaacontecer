@@ -123,7 +123,7 @@ describe Notifications::RecurringPaymentsController do
       context "when the status is ACTIVE" do
         let(:status){ "ACTIVE" }
         it "should update the subscription state to active" do
-          subscription.should_receive(:update!).with(:state, "active")
+          subscription.should_receive(:update_attributes).with(state: "active")
           subject.send(:update_subscription_state, "123", status, event)
         end
       end
@@ -131,7 +131,7 @@ describe Notifications::RecurringPaymentsController do
       context "when the status is SUSPENDED" do
         let(:status){ "SUSPENDED" }
         it "should update the subscription state to suspended" do
-          subscription.should_receive(:update!).with(:state, "suspended")
+          subscription.should_receive(:update_attributes).with(state: "suspended")
           subject.send(:update_subscription_state, "123", status, event)
         end
       end
@@ -139,7 +139,7 @@ describe Notifications::RecurringPaymentsController do
       context "when the status is OVERDUE" do
         let(:status){ "OVERDUE" }
         it "should update the subscription state to overdue" do
-          subscription.should_receive(:update!).with(:state, "overdue")
+          subscription.should_receive(:update_attributes).with(state: "overdue")
           subject.send(:update_subscription_state, "123", status, event)
         end
       end
@@ -147,7 +147,7 @@ describe Notifications::RecurringPaymentsController do
       context "when the status is CANCELED" do
         let(:status){ "CANCELED" }
         it "should update the subscription state to canceled" do
-          subscription.should_receive(:update!).with(:state, "canceled")
+          subscription.should_receive(:update_attributes).with(state: "canceled")
           subject.send(:update_subscription_state, "123", status, event)
         end
       end
@@ -157,7 +157,7 @@ describe Notifications::RecurringPaymentsController do
       let(:event){ "subscription.suspended" }
 
       it "should update the subscription state to suspended" do
-        subscription.should_receive(:update!).with(:state, "suspended")
+        subscription.should_receive(:update_attributes).with(state: "suspended")
         subject.send(:update_subscription_state, "123", nil, event)
       end
     end
@@ -166,7 +166,7 @@ describe Notifications::RecurringPaymentsController do
       let(:event){ "subscription.activated" }
 
       it "should update the subscription state to active" do
-        subscription.should_receive(:update!).with(:state, "active")
+        subscription.should_receive(:update_attributes).with(state: "active")
         subject.send(:update_subscription_state, "123", nil, event)
       end
     end
@@ -175,7 +175,7 @@ describe Notifications::RecurringPaymentsController do
       let(:event){ "subscription.canceled" }
 
       it "should update the subscription state to canceled" do
-        subscription.should_receive(:update!).with(:state, "canceled")
+        subscription.should_receive(:update_attributes).with(state: "canceled")
         subject.send(:update_subscription_state, "123", nil, event)
       end
     end
@@ -215,7 +215,7 @@ describe Notifications::RecurringPaymentsController do
       }}
 
       it "should update the existing invoice" do
-        invoice.should_receive(:update!).with(status: "waiting")
+        invoice.should_receive(:update_attributes).with(status: "waiting")
         Invoice.stub(:find_by).with(uid: 1).and_return(invoice)
         subject.send(:create_or_update_invoice, resource)
       end

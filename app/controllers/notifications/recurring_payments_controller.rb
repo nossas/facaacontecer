@@ -45,19 +45,19 @@ class Notifications::RecurringPaymentsController < ApplicationController
   def update_subscription_state code, status, event
     subscription = Subscription.find_by_code(code)
     if event == "subscription.created" || event == "subscription.updated"
-      subscription.update! :state, status.downcase
+      subscription.update_attributes state: status.downcase
     elsif event == "subscription.suspended"
-      subscription.update! :state, "suspended"
+      subscription.update_attributes state: "suspended"
     elsif event == "subscription.activated"
-      subscription.update! :state, "active"
+      subscription.update_attributes state: "active"
     elsif event == "subscription.canceled"
-      subscription.update! :state, "canceled"
+      subscription.update_attributes state: "canceled"
     end
   end
 
   def create_or_update_invoice params
     if invoice = Invoice.find_by(uid: params["id"])
-      invoice.update!(status: Invoice::STATUS[params["status"]["code"].to_s])
+      invoice.update_attributes status: Invoice::STATUS[params["status"]["code"].to_s]
     else
       Invoice.create!(
         uid: params["id"],
