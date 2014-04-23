@@ -7,7 +7,7 @@ module PaymentObserver
     after_create  :send_created_payment_email_debit,  if: -> { self.subscription.debit? }
 
     after_save do
-      self.delay.add_to_single_payment_segment(self.user.email, self.state)
+      self.delay.add_to_single_payment_segment(self.user.email, self.state) if !self.subscription.creditcard?
     end
 
     # SETUP an unique code for each payment, after its creation
