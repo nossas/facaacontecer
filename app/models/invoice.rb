@@ -11,4 +11,8 @@ class Invoice < ActiveRecord::Base
     "4" => "rejected",
     "5" => "overdue"
   }
+
+  def self.successful
+    where(status: 'finished')
+  end
 end

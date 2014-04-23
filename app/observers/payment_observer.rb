@@ -8,6 +8,7 @@ module PaymentObserver
 
     after_save do
       self.delay.add_to_single_payment_segment(self.user.email, self.state) if !self.subscription.creditcard?
+      self.delay.update_user_data
     end
 
     # SETUP an unique code for each payment, after its creation

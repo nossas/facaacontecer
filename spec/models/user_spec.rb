@@ -76,8 +76,49 @@ describe User do
     it "should build a json hash called PAYER in order to allow MOIP subscriptions" do
       expect(@user.business.as_payer).to eq({:id=>1, :name=>"TESTER BETA", :email=>"email@email.com", :address_street=>"Rua Belisario Tavora 500", :address_street_number=>"100", :address_street_extra=>"Laranjeiras", :address_neighbourhood=>"Laranjeiras", :address_city=>"Rio de Janeiro", :address_state=>"RJ", :address_country=>"BRA", :address_cep=>"78132500", :address_phone=>"21997137471"})
     end 
+  end
 
+  context "#last_donation_date" do
+    let(:user) { Fabricate(:user) }
+    let(:subscription) { Fabricate(:subscription, user: user) }
 
+    context "when there is no invoices" do
+      let(:payment) { Fabricate(:payment, subscription: subscription, state: 'finished') }
 
+      it "gets the last payment date" do
+        expect(user.last_donation_date).to eq user.last_successful_payment_date
+      end
+    end
+
+    context "when there is no payments" do
+      let(:invoice) { Fabricate(:invoice, subscription: subscription, status: 'finished') }
+
+      it "gets the last invoice date" do
+        expect(user.last_donation_date).to eq user.last_successful_invoice_date
+      end
+    end
+
+    context "when there is invoices and payments" do
+      let(:invoice) { Fabricate(:invoice, subscription: subscription, status: 'finished') }
+      let(:payment) { Fabricate(:payment, subscription: subscription, state: 'finished') }
+
+      context "when the last donation is the last invoice" do
+        before { invoice.update(created_on_moip_at: 1.week.ago) }
+        before { payment.update(paid_at: 2.weeks.ago) }
+      
+        it "gets the last invoice date" do
+          expect(user.last_donation_date).to eq user.last_successful_invoice_date
+        end
+      end
+
+      context "when the last donation is the last single payment" do
+        before { invoice.update(created_on_moip_at: 2.weeks.ago) }
+        before { payment.update(paid_at: 1.week.ago) }
+
+        it "gets the last single payment date" do
+          expect(user.last_donation_date).to eq user.last_successful_payment_date
+        end
+      end
+    end
   end
 end

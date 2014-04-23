@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   has_many  :invitees,      class_name: :Invite, foreign_key: :parent_user_id
   has_many  :subscriptions, dependent: :destroy, inverse_of: :user
   has_many  :payments,      through: :subscriptions
+  has_many  :invoices,      through: :subscriptions
 
 
   # Validates if a CPF is valid/invalid
@@ -44,7 +45,24 @@ class User < ActiveRecord::Base
     extend Business::Payer
   end
 
-  def last_successful_payment
-    self.payments.successful.order(:paid_at).last
+  # Returns the last payment with state 'finished' or 'authorized'
+  def last_successful_payment_date
+    self.payments.successful.order(:paid_at).last.try(:paid_at)
+  end
+
+  # Returns the last payment with status 'finished'
+  def last_successful_invoice_date
+    self.invoices.successful.order(:created_on_moip_at).last.try(:created_on_moip_at)
+  end
+
+  # Compares last payment date and last invoice date. Returns most recent date or nil
+  def last_donation_date
+    if last_successful_payment_date.nil?
+      last_successful_invoice_date
+    elsif last_successful_invoice_date.nil?
+      last_successful_payment_date
+    else
+      (last_successful_payment_date > last_successful_invoice_date) ? last_successful_payment_date : last_successful_invoice_date
+    end
   end
 end
