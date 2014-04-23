@@ -5,12 +5,12 @@ describe Notifications::RecurringPaymentsController do
   describe "POST create" do
     context "when it's an invoice event" do
       it "should call the create_or_update_invoice method" do
-        http_params = { event: "invoice.*", resource: { id: 1 } }
+        http_params = { event: "invoice.*", resource: { id: 1 }, date: "31/03/2014 14:55:21" }
 
         Notifications::RecurringPaymentsController.
         any_instance.
         should_receive(:create_or_update_invoice).
-        with({ "id" => "1" })
+        with({ "id" => "1" }, "31/03/2014 14:55:21")
 
         post :create, http_params
       end
@@ -185,6 +185,7 @@ describe Notifications::RecurringPaymentsController do
     let(:subscription) { Fabricate(:subscription) }
 
     context "when it's a new invoice" do
+      let(:date) { "31/03/2014 14:55:21" }
       let(:resource){{
         "id" => 13,
         "subscription_code" => subscription.code,
@@ -199,25 +200,26 @@ describe Notifications::RecurringPaymentsController do
           subscription_id: subscription.id,
           value: 1.0,
           occurrence: 1,
-          status: "started"
+          status: "started",
+          created_on_moip_at: date
         )
 
-        subject.send(:create_or_update_invoice, resource)
+        subject.send(:create_or_update_invoice, resource, date)
       end
     end
 
     context "when it's an existing invoice" do
       let(:invoice) { double("invoice") }
-
+      let(:date) { "31/03/2014 14:55:21" }
       let(:resource){{
         "id" => 1,
         "status" => { "code" => 2 }
       }}
 
       it "should update the existing invoice" do
-        invoice.should_receive(:update_attributes).with(status: "waiting")
+        invoice.should_receive(:update_attributes).with(status: "waiting", created_on_moip_at: date)
         Invoice.stub(:find_by).with(uid: 1).and_return(invoice)
-        subject.send(:create_or_update_invoice, resource)
+        subject.send(:create_or_update_invoice, resource, date)
       end
     end
   end
