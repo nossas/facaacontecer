@@ -12,9 +12,9 @@ class Notifications::RecurringPaymentsController < ApplicationController
   # (doing this due to retrocompatibility)
   before_actions do
     actions(:create) do
-      if params[:event].match(/subscription/)
+      if params["event"].match(/subscription/)
         update_subscription_state params["resource"]["code"], params["resource"]["status"], params["event"]
-      elsif params[:event].match(/invoice/)
+      elsif params["event"].match(/invoice/)
         create_or_update_invoice(params["resource"])
       elsif _params.has_key?(:id)
         @payment = Payment.find_by(code: _params[:id])
@@ -45,13 +45,13 @@ class Notifications::RecurringPaymentsController < ApplicationController
   def update_subscription_state code, status, event
     subscription = Subscription.find_by_code(code)
     if event == "subscription.created" || event == "subscription.updated"
-      subscription.update_attribute :state, status.downcase
+      subscription.update! :state, status.downcase
     elsif event == "subscription.suspended"
-      subscription.update_attribute :state, "suspended"
+      subscription.update! :state, "suspended"
     elsif event == "subscription.activated"
-      subscription.update_attribute :state, "active"
+      subscription.update! :state, "active"
     elsif event == "subscription.canceled"
-      subscription.update_attribute :state, "canceled"
+      subscription.update! :state, "canceled"
     end
   end
 
