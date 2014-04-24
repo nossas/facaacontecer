@@ -9,7 +9,7 @@ class Invoice < ActiveRecord::Base
 
   # Updates user data on Mailchimp after save a invoice
   include Mailchimped
-  after_save { self.delay.update_user_data }
+  after_save { self.delay.update_user_data(last_invoice: self.user.last_successful_invoice_date) }
 
   STATUS = {
     "1" => "started",
