@@ -6,7 +6,6 @@ Selfstarter::Application.routes.draw do
   resources :payments, only: [:show] do
     member do
       get :retry
-      post :retry
     end
   end
 

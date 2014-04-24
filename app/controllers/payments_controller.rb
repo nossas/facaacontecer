@@ -17,13 +17,9 @@ class PaymentsController < ApplicationController
   def show; end
 
   def retry
-    @payment = Payment.find(params[:id])
-    if request.post?
-      @payment.subscription.update state: "processing"
-      redirect_to @payment.subscription
-    else
-      render :retry
-    end
+    payment = Payment.find(params[:id])
+    payment.subscription.update state: "processing"
+    redirect_to payment.subscription
   end
 
   private
