@@ -42,21 +42,29 @@ module Mailchimped
     add_to_segment email, ENV["MAILCHIMP_#{status.upcase}_PAYMENT_SEG_ID"]
   end
 
-  def update_user_data
+  def update_user_data *options
+    merge_vars = if options.nil?
+      {
+        PLAN: self.plan,
+        POPTION: self.payment_option,
+        NDONATIONS: self.successful_invoices.size,
+        LDONATION: self.user.last_donation_date.try(:strftime, "%m/%d/%Y"),
+        SUBUPDATED: self.state_updated_at.try(:strftime, "%m/%d/%Y"),
+        VALUE: self.value        
+      }
+    else
+      {
+        LINVOICE: options[:last_invoice].try(:strftime, "%m/%d/%Y")
+      }
+    end
+
     begin
       Gibbon::API.lists.subscribe(
         id: ENV["MAILCHIMP_LIST_ID"],
         email: { email: self.user.email },
         double_optin: false,
         update_existing: true,
-        merge_vars: {
-          PLAN: self.plan,
-          POPTION: self.payment_option,
-          NDONATIONS: self.successful_invoices.size,
-          LDONATION: self.last_successful_invoice_date.try(:strftime, "%m/%d/%Y"),
-          SUBUPDATED: self.state_updated_at.try(:strftime, "%m/%d/%Y"),
-          VALUE: self.value
-        }
+        merge_vars: merge_vars
       )
     rescue Exception => e
       Rails.logger.error e

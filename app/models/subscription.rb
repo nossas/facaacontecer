@@ -21,6 +21,9 @@ class Subscription < ActiveRecord::Base
   # Now we're recording payment instructions
   has_many :payments
 
+  # And now we're recording invoices
+  has_many :invoices
+
   # This attributes should be present when creating an order
   validates_presence_of :value, :project, :user, :payment_option, :plan
 

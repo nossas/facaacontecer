@@ -4,6 +4,13 @@ class Invoice < ActiveRecord::Base
   validates :uid, :subscription_id, :value, :occurrence, :status, presence: true
   validates :uid, uniqueness: true
 
+  # Access the subscription's user directly, using the subscription object
+  delegate :user, to: :subscription
+
+  # Updates user data on Mailchimp after save a invoice
+  include Mailchimped
+  after_save { self.delay.update_user_data(last_invoice: self.user.last_successful_invoice_date) }
+
   STATUS = {
     "1" => "started",
     "2" => "waiting",
@@ -11,4 +18,8 @@ class Invoice < ActiveRecord::Base
     "4" => "rejected",
     "5" => "overdue"
   }
+
+  def self.successful
+    where(status: 'finished')
+  end
 end
