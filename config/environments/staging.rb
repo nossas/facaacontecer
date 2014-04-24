@@ -32,7 +32,7 @@ Selfstarter::Application.configure do
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for nginx
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  config.force_ssl = false 
+  config.force_ssl = false
 
   # See everything in the log (default is :info)
   # config.log_level = :debug
@@ -48,7 +48,7 @@ Selfstarter::Application.configure do
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server
   #config.action_controller.asset_host = "https://s3.amazonaws.com/#{ENV['AWS_BUCKET']}"
-  
+
   # store assets in a 'folder' instead of bucket root
   #config.assets.prefix = "/crowdfunding/assets"
 
@@ -77,7 +77,7 @@ Selfstarter::Application.configure do
 
 
   # Email sending
-  config.action_mailer.delivery_method = :smtp   
+  config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     :address        => 'smtp.sendgrid.net',
     :port           => '587',
@@ -87,9 +87,8 @@ Selfstarter::Application.configure do
     :domain         => 'heroku.com',
     :enable_starttls_auto => true
   }
-  
+
   config.action_mailer.default_url_options = {
-    :host => "apoie.meurio.org.br"
+    :host => "facaacontecer.meurio-staging.org.br"
   }
 end
-
