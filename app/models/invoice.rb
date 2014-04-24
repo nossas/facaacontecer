@@ -4,6 +4,9 @@ class Invoice < ActiveRecord::Base
   validates :uid, :subscription_id, :value, :occurrence, :status, presence: true
   validates :uid, uniqueness: true
 
+  # Access the subscription's user directly, using the subscription object
+  delegate :user, to: :subscription
+
   # Updates user data on Mailchimp after save a invoice
   include Mailchimped
   after_save { self.delay.update_user_data }
