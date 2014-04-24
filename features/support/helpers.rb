@@ -1,7 +1,6 @@
 def to_route string
   return retry_payment_path(@payment.id) if string == "this payment retry page"
-  return payment_path(Payment.last.id) if string == "the new payment page"
-  return payment_path(@payment.id) if string == "this payment page"
+  return subscription_path(@payment.subscription.id) if string == "this payment subscription page"
   raise "I don't know path '#{string}'"
 end
 

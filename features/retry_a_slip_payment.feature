@@ -7,5 +7,4 @@ Feature: retry a slip payment
     When I go to "this payment retry page"
     Then I should see "this payment retry link" element
     When I click in "this payment retry link"
-    Then I should not be in "this payment page"
-    And I should be in "the new payment page"
+    Then I should be in "this payment subscription page"
