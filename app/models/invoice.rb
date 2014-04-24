@@ -4,6 +4,10 @@ class Invoice < ActiveRecord::Base
   validates :uid, :subscription_id, :value, :occurrence, :status, presence: true
   validates :uid, uniqueness: true
 
+  # Updates user data on Mailchimp after save a invoice
+  include Mailchimped
+  after_save { self.delay.update_user_data }
+
   STATUS = {
     "1" => "started",
     "2" => "waiting",
