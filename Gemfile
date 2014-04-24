@@ -51,7 +51,7 @@ gem 'foundation-rails', '~> 5.1.1.0'
 gem 'gravatar_image_tag'
 gem 'meurio_ui', '~> 1.4.1'
 
-group :production do
+group :production, :staging do
   gem 'newrelic_rpm'
   gem 'rails_12factor'
   gem 'heroku-deflater'
