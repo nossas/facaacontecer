@@ -91,4 +91,6 @@ Selfstarter::Application.configure do
   config.action_mailer.default_url_options = {
     :host => "facaacontecer.meurio-staging.org.br"
   }
+
+  default_url_options[:host] = "facaacontecer.meurio-staging.org.br"
 end
