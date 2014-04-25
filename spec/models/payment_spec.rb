@@ -12,7 +12,7 @@ describe Payment do
     now = Time.now
     Time.stub(:now).and_return(now)
     payment = Fabricate(:payment)
-    expect(payment.code).to eq("#{payment.user.id}_#{now.to_i}PAYMENT")
+    expect(payment.code).to eq("#{payment.user.id}_#{now.to_i}_0_PAYMENT")
   end
 
   context "Slip - Boleto" do
