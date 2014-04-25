@@ -8,7 +8,7 @@ module PaymentObserver
     after_create  :send_created_payment_email_debit,  if: -> { self.subscription.debit? }
 
     after_create do
-      self.delay.update_user_data retry_link: retry_payment_url(self) if !payment.creditcard?
+      self.delay.update_user_data retry_link: retry_payment_url(self) if !self.subscription.creditcard?
     end
 
     after_save do
