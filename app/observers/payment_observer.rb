@@ -14,7 +14,7 @@ module PaymentObserver
         retry_link: retry_payment_url(self),
         payments_count: self.user.payments.successful.count,
         last_payment_created_at: self.user.payments.successful.order(:created_at).last.try(:created_at),
-        payment_value: self.subscritpion.value
+        payment_value: self.subscription.value
       )
     end
 
