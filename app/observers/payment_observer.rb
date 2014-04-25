@@ -6,16 +6,18 @@ module PaymentObserver
     before_create :setup_code
     after_create  :send_created_payment_email_slip,   if: -> { self.subscription.slip? }
     after_create  :send_created_payment_email_debit,  if: -> { self.subscription.debit? }
+    after_save    :update_mailchimp_user_data,        unless: -> { self.subscription.creditcard? }
+    after_save    :update_mailchimp_user_segment,     unless: -> { self.subscription.creditcard? }
 
-    after_save do
-      if !self.subscription.creditcard?
-        self.delay.add_to_single_payment_segment(self.user.email, self.state)
+    def update_mailchimp_user_data
+      self.delay.update_user_data(
+        retry_link: retry_payment_url(self),
+        payments_count: self.user.payments.successful.count
+      )
+    end
 
-        self.delay.update_user_data(
-          retry_link: retry_payment_url(self),
-          payments_count: self.user.payments.successful.count
-        )
-      end
+    def update_mailchimp_user_segment
+      self.delay.add_to_single_payment_segment(self.user.email, self.state)
     end
 
     # SETUP an unique code for each payment, after its creation
