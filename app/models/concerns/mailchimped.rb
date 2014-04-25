@@ -44,12 +44,13 @@ module Mailchimped
 
   def update_user_data options
     merge_vars = {
-      PLAN: options[:plan],
-      POPTION: options[:payment_option],
-      SUBUPDATED: options[:state_updated_at],
-      LINVOICE: options[:last_invoice].try(:strftime, "%m/%d/%Y"),
-      RETRYLINK: options[:retry_link],
-      NPAYMENTS: options[:payments_count]
+      PLAN:         options[:plan],
+      POPTION:      options[:payment_option],
+      SUBUPDATED:   options[:state_updated_at],
+      LINVOICE:     options[:last_invoice].try(:strftime, "%m/%d/%Y"),
+      RETRYLINK:    options[:retry_link],
+      NPAYMENTS:    options[:payments_count],
+      LPAYMENT:     options[:last_payment].try(:strftime, "%m/%d/%Y")
     }
 
     begin

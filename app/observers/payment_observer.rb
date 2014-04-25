@@ -12,7 +12,8 @@ module PaymentObserver
     def update_mailchimp_user_data
       self.delay.update_user_data(
         retry_link: retry_payment_url(self),
-        payments_count: self.user.payments.successful.count
+        payments_count: self.user.payments.successful.count,
+        last_payment: self.user.payments.successful.order(:created_at).last
       )
     end
 
