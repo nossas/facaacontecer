@@ -43,8 +43,8 @@ module Mailchimped
   end
 
   def update_user_data options = nil
-    merge_vars = if options.nil?
-      {
+    if options.nil?
+      merge_vars = {
         PLAN: self.plan,
         POPTION: self.payment_option,
         NDONATIONS: self.successful_invoices.size,
@@ -53,7 +53,7 @@ module Mailchimped
         VALUE: self.value
       }
     else
-      {
+      merge_vars = {
         LINVOICE: options[:last_invoice].try(:strftime, "%m/%d/%Y"),
         RETRYLINK: options[:retry_link]
       }
