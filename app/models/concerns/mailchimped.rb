@@ -50,7 +50,7 @@ module Mailchimped
       LINVOICE:     options[:last_invoice].try(:strftime, "%m/%d/%Y"),
       RETRYLINK:    options[:retry_link],
       NPAYMENTS:    options[:payments_count],
-      LPAYMENT:     options[:last_payment].try(:strftime, "%m/%d/%Y")
+      LPAYMENT:     options[:last_payment_created_at].try(:strftime, "%m/%d/%Y")
     }
 
     begin

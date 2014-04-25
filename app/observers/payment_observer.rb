@@ -13,7 +13,7 @@ module PaymentObserver
       self.delay.update_user_data(
         retry_link: retry_payment_url(self),
         payments_count: self.user.payments.successful.count,
-        last_payment: self.user.payments.successful.order(:created_at).created_at.last
+        last_payment_created_at: self.user.payments.successful.order(:created_at).last.created_at
       )
     end
 
