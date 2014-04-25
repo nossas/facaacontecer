@@ -42,22 +42,14 @@ module Mailchimped
     add_to_segment email, ENV["MAILCHIMP_#{status.upcase}_PAYMENT_SEG_ID"]
   end
 
-  def update_user_data options = nil
-    if options.nil?
-      merge_vars = {
-        PLAN: self.plan,
-        POPTION: self.payment_option,
-        NDONATIONS: self.successful_invoices.size,
-        LDONATION: self.user.last_donation_date.try(:strftime, "%m/%d/%Y"),
-        SUBUPDATED: self.state_updated_at.try(:strftime, "%m/%d/%Y"),
-        VALUE: self.value
-      }
-    else
-      merge_vars = {
-        LINVOICE: options[:last_invoice].try(:strftime, "%m/%d/%Y"),
-        RETRYLINK: options[:retry_link]
-      }
-    end
+  def update_user_data options
+    merge_vars = {
+      PLAN: options[:plan],
+      POPTION: options[:payment_option],
+      SUBUPDATED: options[:state_updated_at],
+      LINVOICE: options[:last_invoice].try(:strftime, "%m/%d/%Y"),
+      RETRYLINK: options[:retry_link]
+    }
 
     begin
       Gibbon::API.lists.subscribe(

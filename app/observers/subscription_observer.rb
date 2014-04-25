@@ -7,7 +7,12 @@ module SubscriptionObserver
 
     # TODO it should run only when state changes
     after_save do
-      self.delay.update_user_data
+      self.delay.update_user_data(
+        plan: self.plan,
+        payment_option: self.payment_option,
+        state_updated_at: self.state_updated_at.try(:strftime, "%m/%d/%Y")
+      )
+
       self.delay.add_to_subscription_segment(self.user.email, self.state)
     end
   end
