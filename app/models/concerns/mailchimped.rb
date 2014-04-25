@@ -42,7 +42,7 @@ module Mailchimped
     add_to_segment email, ENV["MAILCHIMP_#{status.upcase}_PAYMENT_SEG_ID"]
   end
 
-  def update_user_data options
+  def update_user_data options = nil
     merge_vars = if options.nil?
       {
         PLAN: self.plan,
