@@ -48,7 +48,8 @@ module Mailchimped
       POPTION: options[:payment_option],
       SUBUPDATED: options[:state_updated_at],
       LINVOICE: options[:last_invoice].try(:strftime, "%m/%d/%Y"),
-      RETRYLINK: options[:retry_link]
+      RETRYLINK: options[:retry_link],
+      NPAYMENTS: options[:payments_count]
     }
 
     begin

@@ -7,12 +7,15 @@ module PaymentObserver
     after_create  :send_created_payment_email_slip,   if: -> { self.subscription.slip? }
     after_create  :send_created_payment_email_debit,  if: -> { self.subscription.debit? }
 
-    after_create do
-      self.delay.update_user_data retry_link: retry_payment_url(self) if !self.subscription.creditcard?
-    end
-
     after_save do
-      self.delay.add_to_single_payment_segment(self.user.email, self.state) if !self.subscription.creditcard?
+      if !self.subscription.creditcard?
+        self.delay.add_to_single_payment_segment(self.user.email, self.state)
+
+        self.delay.update_user_data(
+          retry_link: retry_payment_url(self),
+          payments_count: self.user.payments.successful.count
+        )
+      end
     end
 
     # SETUP an unique code for each payment, after its creation
