@@ -20,7 +20,7 @@ module PaymentObserver
     #   int + string: 123456PAYMENT is the payment for boleto and debito
     #   int: 123123 is the payment for creditcard
     def setup_code
-      self.code = "#{self.subscription.code}PAYMENT"
+      self.code = "#{self.subscription.code}_#{self.subscription.payments.count}_PAYMENT"
     end
 
 
