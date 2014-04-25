@@ -42,7 +42,7 @@ module Mailchimped
     add_to_segment email, ENV["MAILCHIMP_#{status.upcase}_PAYMENT_SEG_ID"]
   end
 
-  def update_user_data *options
+  def update_user_data options
     merge_vars = if options.nil?
       {
         PLAN: self.plan,
@@ -50,11 +50,12 @@ module Mailchimped
         NDONATIONS: self.successful_invoices.size,
         LDONATION: self.user.last_donation_date.try(:strftime, "%m/%d/%Y"),
         SUBUPDATED: self.state_updated_at.try(:strftime, "%m/%d/%Y"),
-        VALUE: self.value        
+        VALUE: self.value
       }
     else
       {
-        LINVOICE: options[:last_invoice].try(:strftime, "%m/%d/%Y")
+        LINVOICE: options[:last_invoice].try(:strftime, "%m/%d/%Y"),
+        RETRYLINK: options[:retry_link]
       }
     end
 
