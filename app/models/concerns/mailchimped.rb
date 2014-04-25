@@ -46,6 +46,7 @@ module Mailchimped
     merge_vars = {
       PLAN:       options[:plan],
       SUBUPDATED: options[:state_updated_at],
+      SUBVALUE:   options[:subscription_value],
       LINVOICE:   options[:last_invoice].try(:strftime, "%m/%d/%Y"),
       NINVOICES:  options[:invoices_count],
       RETRYLINK:  options[:retry_link],
