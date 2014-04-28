@@ -1,6 +1,6 @@
 # coding: utf-8
-class Notifications::PaymentMailer < ActionMailer::Base 
-  
+class Notifications::PaymentMailer < ActionMailer::Base
+
   layout 'notifications/payment_mailer'
 
   default from: "Fernanda <fernanda@meurio.org.br>",
@@ -22,7 +22,7 @@ class Notifications::PaymentMailer < ActionMailer::Base
 
 
   def created_payment_debit(id)
-    object(id)
+    @payment = Payment.find(id)
     mail(
       to: @payment.user.email,
       subject: "[MeuRio] O link para a sua doação foi gerado!"
@@ -41,7 +41,7 @@ class Notifications::PaymentMailer < ActionMailer::Base
     object(id)
 
     mail(
-      to: @payment.user.email, 
+      to: @payment.user.email,
       subject: "[MeuRio] Sua doação foi aprovada! É hora de festejar!"
     )
 
