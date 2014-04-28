@@ -9,11 +9,12 @@ p
 
 p
   |Agora que você já faz parte da festa, convide seus amigos! Se pelo menos um deles doar através do seu link exclusivo, que está logo abaixo, te enviaremos por correio uma camiseta lindona para você mostrar para todos que Faz Acontecer!
-p
-  strong
-    | Compartilhe o seu link exclusivo por face ou e-mail: 
-  = link_to nil, invite_url(code: "#{@payment.user.invite.code}")
+
+- if @payment.user.invite.present?
+  p
+    strong
+      | Compartilhe o seu link exclusivo por face ou e-mail:
+    = link_to nil, invite_url(code: "#{@payment.user.invite.code}")
 
 p
   |Muito obrigado!
-
