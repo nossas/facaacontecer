@@ -61,7 +61,7 @@ module PaymentObserver
     # Deliver an email informating the user's INVITER that he won a prize
     # if present, of course
     def notify_inviter
-      inviter = self.user.invite.host
+      inviter = self.user.invite.try(:host)
 
       # TODO: Only send the notify inviter email once for
       if inviter and has_only_one_authorized_payment?
