@@ -13,7 +13,7 @@ class Notifications::PaymentMailer < ActionMailer::Base
 
   # Email sent when a payment is created with URL and it's BOLETO
   def created_payment_slip(id)
-    object(id)
+    @payment = Payment.find(id)
     mail(
       to: @payment.user.email,
       subject: "[MeuRio] Seu boleto foi gerado!"
