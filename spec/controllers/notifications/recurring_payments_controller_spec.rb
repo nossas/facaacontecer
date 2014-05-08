@@ -217,7 +217,7 @@ describe Notifications::RecurringPaymentsController do
       }}
 
       it "should update the existing invoice" do
-        invoice.should_receive(:update_attributes).with(status: "waiting", created_on_moip_at: date)
+        invoice.should_receive(:update_attributes!).with(status: "waiting", created_on_moip_at: date)
         Invoice.stub(:find_by).with(uid: 1).and_return(invoice)
         subject.send(:create_or_update_invoice, resource, date)
       end
