@@ -57,13 +57,13 @@ class Notifications::RecurringPaymentsController < ApplicationController
 
   def create_or_update_invoice resource, date
     if invoice = Invoice.find_by(uid: resource["id"])
-      invoice.update_attributes status: Invoice::STATUS[resource["status"]["code"].to_s], created_on_moip_at: date
+      invoice.update_attributes! status: Invoice::STATUS[resource["status"]["code"].to_s], created_on_moip_at: date
     else
       Invoice.create!(
         uid: resource["id"],
         subscription_id: Subscription.find_by(code: resource["subscription_code"]).id,
         value: resource["amount"].to_f/100,
-        occurrence: resource["occurrence"],
+        occurrence: resource["occurrence"] || 1,
         status: Invoice::STATUS[resource["status"]["code"].to_s],
         created_on_moip_at: date
       )
