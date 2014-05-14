@@ -23,7 +23,9 @@ module UserObserver
           update_existing: true,
           merge_vars: {
             FNAME: self.first_name,
-            LNAME: self.last_name
+            LNAME: self.last_name,
+            PHONE: self.phone,
+            CITY: self.city
           }
         )
       rescue Exception => e
