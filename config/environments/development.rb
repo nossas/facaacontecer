@@ -27,11 +27,11 @@ Selfstarter::Application.configure do
   config.assets.compress = false
 
   # Expands the lines which load the assets
-  config.assets.debug = false 
+  config.assets.debug = false
 
   # Mailcatcher
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = { :address => "127.0.0.1", :port => 1025 }
 
-
+  config.default_url_options[:host] = "localhost:3000"
 end

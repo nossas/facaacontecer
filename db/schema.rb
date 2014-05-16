@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140423193953) do
+ActiveRecord::Schema.define(version: 20140516155747) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -88,6 +88,7 @@ ActiveRecord::Schema.define(version: 20140423193953) do
     t.integer  "days"
   end
 
+  create_view "successful_transactions", "         SELECT p.id,\n            psub.user_id,\n            'payments'::text AS relname\n           FROM (payments p\n      JOIN subscriptions psub ON ((psub.id = p.subscription_id)))\n     WHERE (((p.state)::text = 'finished'::text) OR ((p.state)::text = 'authorized'::text))\nUNION ALL\n         SELECT i.id,\n            isub.user_id,\n            'invoices'::text AS relname\n           FROM (invoices i\n      JOIN subscriptions isub ON ((isub.id = i.subscription_id)))\n     WHERE ((i.status)::text = 'finished'::text)", :force => true
   create_table "users", force: true do |t|
     t.string   "first_name",       null: false
     t.string   "last_name",        null: false
