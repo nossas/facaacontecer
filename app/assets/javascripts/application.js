@@ -34,6 +34,6 @@
 
 
 $(function(){
-  $(document).foundation(); 
+  $(document).foundation();
   Apoie.initialize();
 });
