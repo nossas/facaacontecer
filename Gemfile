@@ -49,7 +49,7 @@ gem 'foundation-rails', '~> 5.1.1.0'
 
 # MeuRio UI related gems
 gem 'gravatar_image_tag'
-gem 'meurio_ui', '~> 1.4.1'
+gem 'meurio_ui', github: "meurio/meurio_ui", branch: "minhascidades"
 
 group :production, :staging do
   gem 'newrelic_rpm'
