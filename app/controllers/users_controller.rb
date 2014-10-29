@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
 
-  before_actions do 
+  before_actions do
 
     actions(:new)              { @user = User.new(user_params) }
-    actions(:create) do 
+    actions(:create) do
       @user = User.where(email: user_params[:email]).first_or_initialize(user_params)
     end
     actions(:new)              { @user.subscriptions.build }
@@ -20,12 +20,13 @@ class UsersController < ApplicationController
 
 
   # POST /users/
-  def create 
+  def create
 
-    case 
+    case
       # If the user is a new user, try to save it
       when @user.new_record?
-        @user.save 
+        @user.auth_token = SecureRandom.hex
+        @user.save
 
       # if the user has already an account (with its email)
       # try to update it
@@ -44,13 +45,13 @@ class UsersController < ApplicationController
 
   private
   # Checking for user params on request
-  def user_params 
+  def user_params
     if params[:user]
       params.require(:user).permit(
-        %i(first_name last_name email cpf birthday 
-                postal_code address_street address_extra 
-                address_number address_district city state 
-                phone country), 
+        %i(first_name last_name email cpf birthday
+                postal_code address_street address_extra
+                address_number address_district city state
+                phone country),
                 :subscriptions_attributes => [:value, :plan, :payment_option, :project_id, :bank]
       )
     else
