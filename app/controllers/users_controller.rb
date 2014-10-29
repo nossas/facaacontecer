@@ -26,6 +26,7 @@ class UsersController < ApplicationController
       # If the user is a new user, try to save it
       when @user.new_record?
         @user.auth_token = SecureRandom.hex
+        @user.id = User.order(:id).last.id + 1
         @user.save
 
       # if the user has already an account (with its email)
