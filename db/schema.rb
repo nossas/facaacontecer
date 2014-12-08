@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141029173616) do
+ActiveRecord::Schema.define(version: 20141208172011) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,6 +58,10 @@ ActiveRecord::Schema.define(version: 20141029173616) do
     t.index ["subscription_id"], :name => "fk__invoices_subscription_id", :order => {"subscription_id" => :asc}
     t.index ["uid"], :name => "index_invoices_on_uid", :unique => true, :order => {"uid" => :asc}
     t.foreign_key ["subscription_id"], "subscriptions", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_invoices_subscription_id"
+  end
+
+  create_table "organizations", force: true do |t|
+    t.string "name"
   end
 
   create_table "payments", force: true do |t|
