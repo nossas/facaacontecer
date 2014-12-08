@@ -1,10 +1,10 @@
 Given(/^I choose "(.*?)" for "(.*?)"$/) do |arg1, arg2|
-  choose arg1 
+  choose arg1
 end
 
 
 Given(/^I select "(.*?)" for "(.*?)"$/) do |arg1, arg2|
-  select arg1, from: arg2 
+  select arg1, from: arg2
 end
 
 
@@ -56,7 +56,7 @@ Given(/^I subscribe using (.*?)$/) do |payment|
     }
   end
 
-  
+
 end
 
 
@@ -69,11 +69,9 @@ end
 
 Then(/^I should see the subscription boleto url$/) do
   if sub = Subscription.last
-    page.should have_xpath("//a[@href=\"#{sub.payments.last.url}\"]")
+    page.should have_css("a", text: "Clique aqui para imprimir seu boleto")
   else
     raise "Couldn't find subscription".white.on_red
   end
 
 end
-
-
