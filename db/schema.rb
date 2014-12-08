@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141208172011) do
+ActiveRecord::Schema.define(version: 20141208172500) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20141208172011) do
     t.string   "plan",             default: "0",          null: false
     t.string   "bank"
     t.datetime "state_updated_at"
+    t.integer  "organization_id"
     t.index ["code"], :name => "index_subscriptions_on_code", :unique => true, :order => {"code" => :asc}
     t.index ["project_id"], :name => "index_subscriptions_on_project_id", :order => {"project_id" => :asc}
     t.index ["user_id"], :name => "index_subscriptions_on_user_id", :order => {"user_id" => :asc}
