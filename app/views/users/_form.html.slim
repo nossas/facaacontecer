@@ -25,6 +25,11 @@ div.magellan-container {data-magellan-expedition="fixed"}
           .large-3.columns.end= usr.input :phone, input_html: { class: 'phone-mask', required: true }
 
         = usr.simple_fields_for :subscriptions, @user.subscriptions.last do |sub|
+          article.subscription-organizations.row
+            .large-12.columns
+              h3.text-center#subscription-organizations Escolha uma organização para doar
+              .text-center.selected-radio-button= sub.input :organization_id, as: :radio_buttons, collection: @organizations, input_html: { required: true }
+
           article.subscription-plans.row{data-magellan-destination="subscription-plans"}
             .large-12.columns
               h3.text-center#subscription-plans Valor da doação

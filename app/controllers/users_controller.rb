@@ -1,12 +1,9 @@
 class UsersController < ApplicationController
 
   before_actions do
-
-    actions(:new)              { @user = User.new(user_params) }
     actions(:create) do
       @user = User.where(email: user_params[:email]).first_or_initialize(user_params)
     end
-    actions(:new)              { @user.subscriptions.build }
     actions(:edit)             { @user = User.find_by(id: params[:id]) }
   end
 
@@ -16,8 +13,11 @@ class UsersController < ApplicationController
   def index; end
 
   # GET /users/new
-  def new; end
-
+  def new
+    @organizations = Organization.all
+    @user = User.new(user_params)
+    @user.subscriptions.build
+  end
 
   # POST /users/
   def create
@@ -53,7 +53,7 @@ class UsersController < ApplicationController
                 postal_code address_street address_extra
                 address_number address_district city state
                 phone country),
-                :subscriptions_attributes => [:value, :plan, :payment_option, :project_id, :bank]
+                :subscriptions_attributes => [:value, :plan, :payment_option, :project_id, :bank, :organization_id]
       )
     else
       {}
