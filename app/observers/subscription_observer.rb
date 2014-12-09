@@ -11,7 +11,8 @@ module SubscriptionObserver
       self.delay.update_user_data(
         plan: self.plan,
         subscription_value: self.value,
-        state_updated_at: self.state_updated_at.try(:strftime, "%m/%d/%Y")
+        state_updated_at: self.state_updated_at.try(:strftime, "%m/%d/%Y"),
+        organizations: self.user.organizations.map{ |o| o.name }
       )
     end
 

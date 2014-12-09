@@ -17,6 +17,7 @@ class Subscription < ActiveRecord::Base
   # Relationship with Projects and the correspondent user for each subscription
   belongs_to :project, inverse_of: :subscriptions
   belongs_to :user, inverse_of: :subscriptions
+  belongs_to :organization
 
   # Now we're recording payment instructions
   has_many :payments

@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   has_many  :subscriptions, dependent: :destroy, inverse_of: :user
   has_many  :payments,      through: :subscriptions
   has_many  :invoices,      through: :subscriptions
+  has_many  :organizations, through: :subscriptions
 
 
   # Validates if a CPF is valid/invalid
