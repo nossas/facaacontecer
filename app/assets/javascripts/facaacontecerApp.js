@@ -14,6 +14,9 @@ Apoie = {
     Apoie.watchPaymentOptionChoice();
     Apoie.watchShareButtons();
 
+    var organizationId = $("[name='user[subscriptions_attributes][0][organization_id]']").data("organization-id");
+    $("#user_subscriptions_attributes_0_organization_id_" + organizationId).click();
+
     $("#user_subscriptions_attributes_0_plan_monthly").click();
   },
 
