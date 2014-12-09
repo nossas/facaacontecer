@@ -14,8 +14,8 @@ class UsersController < ApplicationController
 
   # GET /users/new
   def new
-    @organizations = Organization.all
-    @organization_id = params[:organization_id] || Organization.first.id
+    @organizations = Organization.order(:created_at)
+    @organization_id = params[:organization_id] || @organizations.first.id
     @user = User.new(user_params)
     @user.subscriptions.build
   end
