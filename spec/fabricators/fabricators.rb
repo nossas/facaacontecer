@@ -34,6 +34,7 @@ Fabricator(:subscription) do
   plan "monthly"
   bank { "itau" }
   payment_option { "slip" }
+  organization
 end
 
 
@@ -55,4 +56,9 @@ Fabricator(:invoice) do
   value { 9.0 }
   occurrence { 1 }
   status { "started" }
+end
+
+Fabricator(:organization) do
+  name { "Meu Rio" }
+  mailchimp_list_id { "123" }
 end

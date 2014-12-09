@@ -40,7 +40,7 @@ class UsersController < ApplicationController
     return render :create if @user.errors.any?
 
     # Or redirect_to the subscription path if nothing wrong
-    redirect_to subscription_path(@user.subscriptions.last)
+    redirect_to subscription_path(Subscription.where(user_id: @user.id).order(:created_at).last)
 
   end
 

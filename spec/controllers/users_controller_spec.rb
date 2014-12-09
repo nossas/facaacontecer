@@ -5,15 +5,16 @@ describe UsersController do
   describe "#create" do
 
     before do
-      @user = Fabricate(:user, email: 'test@email.com', first_name: "Joao") 
+      @user = Fabricate(:user, email: 'test@email.com', first_name: "Joao")
       @project = Fabricate(:project)
+      @organization = Fabricate(:organization)
     end
 
     let(:http_params) do
-      { user: { 
+      { user: {
           first_name:         "Zé",
           last_name:          "Da Silva" ,
-          birthday:           "1988/11/12", 
+          birthday:           "1988/11/12",
           email:               "test@email.com",
           cpf:                CPF.generate.to_s,
           address_street:     "Rua Belisario Tavora 500",
@@ -32,7 +33,8 @@ describe UsersController do
               plan: "monthly",
               payment_option: 'creditcard',
               project_id: @project.id.to_s,
-              bank: ""
+              bank: "",
+              organization_id: @organization.id
             }
           ]
         }
@@ -52,7 +54,7 @@ describe UsersController do
       end
 
       it "should redirect_to the last subscription created" do
-        expect(response).to redirect_to action: :show, controller: :subscriptions, id: @user.subscriptions.last.id 
+        expect(response).to redirect_to action: :show, controller: :subscriptions, id: @user.subscriptions.last.id
       end
 
       it  "should not generate duplicated records for subscription" do
@@ -76,7 +78,7 @@ describe UsersController do
       end
 
       it "should redirect_to the last subscription created" do
-        expect(response).to redirect_to action: :show, controller: :subscriptions, id: User.last.subscriptions.last.id 
+        expect(response).to redirect_to action: :show, controller: :subscriptions, id: User.last.subscriptions.last.id
       end
 
     end
