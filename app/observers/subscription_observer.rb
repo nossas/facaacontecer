@@ -9,7 +9,7 @@ module SubscriptionObserver
 
     def update_mailchimp_user_data
       self.delay.update_user_data(
-        mailchimp_list_id: self.organization.id,
+        mailchimp_list_id: self.organization.mailchimp_list_id,
         plan: self.plan,
         subscription_value: self.value,
         state_updated_at: self.state_updated_at.try(:strftime, "%m/%d/%Y"),
