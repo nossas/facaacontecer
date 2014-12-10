@@ -17,6 +17,13 @@ Apoie = {
     var organizationId = $("[name='user[subscriptions_attributes][0][organization_id]']").data("organization-id");
     $("#user_subscriptions_attributes_0_organization_id_" + organizationId).click();
 
+    $('form').card({
+      container: $('.card-illustration'),
+      nameInput: "#user_creditcard_holder",
+      numberInput: "#user_creditcard_cardnumber",
+      expiryInput: "#user_creditcard_expiration"
+    });
+
     $("#user_subscriptions_attributes_0_plan_monthly").click();
   },
 

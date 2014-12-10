@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+source 'https://rails-assets.org'
 
 # Default ruby version
 ruby '2.1.0'
@@ -46,6 +47,7 @@ gem 'uglifier'
 gem 'angularjs-rails'
 gem 'jquery-inputmask-rails'
 gem 'foundation-rails', '~> 5.1.1.0'
+gem 'rails-assets-card'
 
 # MeuRio UI related gems
 gem 'gravatar_image_tag'

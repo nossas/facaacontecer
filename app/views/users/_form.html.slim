@@ -78,11 +78,12 @@ div.magellan-container {data-magellan-expedition="fixed"}
 
         article.subscription-payment-fields.creditcard.hidden.row
           .card-wrap
+            .card-illustration
             .card-fields
               = usr.simple_fields_for :creditcard do |credit|
+                .large-5.columns= credit.input :cardnumber, input_html: { pattern: "card", "ng-model" => "card_number", "ng-required" => "isCreditCard()", autocomplete: "off" }
                 .large-5.columns= credit.input :holder, input_html: { "ng-model" => "card_holder", "ng-required" => "isCreditCard()", autocomplete: "off" }
-                .large-5.columns= credit.input :cardnumber, input_html: { class: 'creditcard-mask', pattern: "card", "ng-model" => "card_number", "ng-required" => "isCreditCard()", autocomplete: "off" }
-                .large-2.columns.end= credit.input :expiration, input_html: { class: 'expiration-mask', "ng-model" => "card_expire", "ng-required" => "isCreditCard()", autocomplete: "off" }
+                .large-2.columns.end= credit.input :expiration, input_html: { "ng-model" => "card_expire", "ng-required" => "isCreditCard()", autocomplete: "off" }
               small.small-12.text-center.small-centered.columns
                 |As bandeiras suportadas pelo Moip são Visa e Master. Se o seu cartão for de uma bandeira diferente, por favor escolha outra opção de pagamento.
 
