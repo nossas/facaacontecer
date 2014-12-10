@@ -28,7 +28,7 @@ div.magellan-container {data-magellan-expedition="fixed"}
           article.subscription-organizations.row
             .large-12.columns
               h3.text-center#subscription-organizations Escolha uma organização para doar
-              .text-center.selected-radio-button= sub.input :organization_id, as: :radio_buttons, collection: @organizations, input_html: { required: true, data: {"organization-id" => @organization_id} }
+              .text-center.selected-radio-button= sub.input :organization_id, as: :radio_buttons, collection: @organizations, label_method: ->(o){ image_tag(o.try(:avatar)) + o.try(:name) }, input_html: { required: true, data: {"organization-id" => @organization_id} }
 
           article.subscription-plans.row{data-magellan-destination="subscription-plans"}
             .large-12.columns
