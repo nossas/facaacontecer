@@ -15,6 +15,7 @@
 //= require modernizr
 //= require foundation
 //= require meurio_ui
+//= require card
 //= require jquery.inputmask
 //= require jquery.inputmask.extensions
 //= require jquery.inputmask.date.extensions
@@ -25,13 +26,6 @@
 //= require moip/moip.subscription
 //= require facaacontecerApp
 //= require_tree ./angular
-//
-
-
-
-
-
-
 
 $(function(){
   $(document).foundation();
