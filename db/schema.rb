@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141209133128) do
+ActiveRecord::Schema.define(version: 20141210160724) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,7 +77,6 @@ ActiveRecord::Schema.define(version: 20141209133128) do
     t.string   "url"
     t.string   "sequence"
     t.string   "token"
-    t.index ["subscription_id"], :name => "fk__payments_subscription_id", :order => {"subscription_id" => :asc}
     t.index ["subscription_id"], :name => "index_payments_on_subscription_id", :order => {"subscription_id" => :asc}
     t.foreign_key ["subscription_id"], "subscriptions", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_payments_subscription_id"
   end
@@ -92,9 +91,10 @@ ActiveRecord::Schema.define(version: 20141209133128) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "days"
+    t.string   "slug"
   end
 
-  create_view "successful_transactions", " SELECT p.id,\n    psub.user_id,\n    'payments'::text AS relname\n   FROM (payments p\n     JOIN subscriptions psub ON ((psub.id = p.subscription_id)))\n  WHERE (((p.state)::text = 'finished'::text) OR ((p.state)::text = 'authorized'::text))\nUNION ALL\n SELECT i.id,\n    isub.user_id,\n    'invoices'::text AS relname\n   FROM (invoices i\n     JOIN subscriptions isub ON ((isub.id = i.subscription_id)))\n  WHERE ((i.status)::text = 'finished'::text)", :force => true
+  create_view "successful_transactions", "         SELECT p.id,\n            psub.user_id,\n            'payments'::text AS relname\n           FROM (payments p\n      JOIN subscriptions psub ON ((psub.id = p.subscription_id)))\n     WHERE (((p.state)::text = 'finished'::text) OR ((p.state)::text = 'authorized'::text))\nUNION ALL\n         SELECT i.id,\n            isub.user_id,\n            'invoices'::text AS relname\n           FROM (invoices i\n      JOIN subscriptions isub ON ((isub.id = i.subscription_id)))\n     WHERE ((i.status)::text = 'finished'::text)", :force => true
   create_table "users", force: true do |t|
     t.string   "first_name",       null: false
     t.string   "last_name",        null: false
