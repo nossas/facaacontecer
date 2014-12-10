@@ -1,6 +1,7 @@
 Selfstarter::Application.routes.draw do
   root :to => 'projects#index'
 
+  resources :projects, only: [:index, :show]
   resources :users, except: [:destroy, :update]
 
   resources :payments, only: [:show] do
