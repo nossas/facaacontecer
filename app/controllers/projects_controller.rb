@@ -1,18 +1,13 @@
 class ProjectsController < ApplicationController
 
-  # Setup invite when the param
-  # is present
+  # Setup invite when the param is present
   before_filter { session[:invite] = params[:code] if params[:code] }
  
-  before_actions do
-    actions(:index) do
-      # Querying only the first project, 
-      # because we dont' have more than 1
-      @project      = Project.first
-    end
-
+  def index
+    redirect_to Project.first
   end
-  
-  # GET /
-  def index; end
+
+  def show
+    @project = Project.find params[:id]
+  end
 end
