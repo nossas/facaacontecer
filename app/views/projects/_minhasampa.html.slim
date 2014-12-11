@@ -1,1 +1,17 @@
-h1 Minha Sampa
+.minhasampa
+  section.section1
+    .row.header
+      .logo-msp= image_tag "meurio.png"
+      .logo-fa= link_to image_tag("logo.png"), root_path
+      .donate= link_to 'Contribuir!', new_user_path, class: [:button, :radius, 'donate-btn']
+    .row.content
+      h1 Nossa cidade precisa da gente!
+      h3 Uma São Paulo melhor começa com gente mobilizada.
+      .donate= link_to 'Contribuir!', new_user_path, class: [:button, :radius, 'donate-btn']
+      .subscribers-count
+        h4
+          | #{Subscription.where(state: :active).count} pessoas
+        p
+          |fazendo a Rede Minha Sampa acontecer.
+    .row.footer
+      span foto Paula Lopes
