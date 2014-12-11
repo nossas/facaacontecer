@@ -1,7 +1,7 @@
 MoipSubscription = {
 
   billing: null,
-  customer: null, 
+  customer: null,
   messages: $('.subscription-messages'),
   button:   $('.subscription-form-button'),
   success:  $('#successful-message'),
@@ -91,7 +91,7 @@ MoipSubscription = {
     console.log('Building Billing...');
 
     var card = billing;
-    var expire = card.expire.split('/');
+    var expire = card.expire.split(' / ');
 
     var params = {
       fullname:           card.fullname,
@@ -106,7 +106,7 @@ MoipSubscription = {
 
   },
 
-  /** 
+  /**
    * Function to create new subscription
    * arguments: Object customer
    *            String plan_code
@@ -132,7 +132,7 @@ MoipSubscription = {
       // The plan ID
       .with_plan_code(plan)
 
-      // The return function of the new subscribing action    
+      // The return function of the new subscribing action
     ).callback(function(response){
 
 
@@ -152,7 +152,7 @@ MoipSubscription = {
         }
 
         self.button.show();
-      } 
+      }
       // If no errors were found
       else {
         console.log(response)
@@ -167,8 +167,8 @@ MoipSubscription = {
       /*  // The codes 1, 2 and 3 are good ones, so we can */
         //// move to the next step: save the subscription into our db
         //Selfstarter.saveSubscription(
-          //code, 
-          //// We receive 00,00 values. This removes the two ,00 
+          //code,
+          //// We receive 00,00 values. This removes the two ,00
           //// from the end
           //parseInt(response.amount.toString().slice(0,-2)),
           //// Setting up which form will be sent (in this case, the one with creditcard fields)
