@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141210160724) do
+ActiveRecord::Schema.define(version: 20141210193202) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(version: 20141210160724) do
   create_table "organizations", force: true do |t|
     t.string "name"
     t.string "mailchimp_list_id"
+    t.string "avatar"
   end
 
   create_table "payments", force: true do |t|
@@ -77,6 +78,7 @@ ActiveRecord::Schema.define(version: 20141210160724) do
     t.string   "url"
     t.string   "sequence"
     t.string   "token"
+    t.index ["subscription_id"], :name => "fk__payments_subscription_id", :order => {"subscription_id" => :asc}
     t.index ["subscription_id"], :name => "index_payments_on_subscription_id", :order => {"subscription_id" => :asc}
     t.foreign_key ["subscription_id"], "subscriptions", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_payments_subscription_id"
   end
