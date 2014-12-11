@@ -85,7 +85,9 @@ div.magellan-container {data-magellan-expedition="fixed"}
                 .large-5.columns= credit.input :holder, input_html: { "ng-model" => "card_holder", "ng-required" => "isCreditCard()", autocomplete: "off" }
                 .large-2.columns.end= credit.input :expiration, input_html: { "ng-model" => "card_expire", "ng-required" => "isCreditCard()", autocomplete: "off" }
               small.small-12.text-center.small-centered.columns
-                |As bandeiras suportadas pelo Moip são Visa e Master. Se o seu cartão for de uma bandeira diferente, por favor escolha outra opção de pagamento.
+                | Os cartões de crédito aceitos pelo Moip são Visa, Mastercard e American Express.
+                br
+                | Se o seu cartão for de uma bandeira diferente, por favor escolha outra opção de pagamento.
 
         article.user-address-info.row
           .large-12.columns
