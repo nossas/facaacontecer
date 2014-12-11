@@ -1,12 +1,7 @@
 header#header
   .row
     .small-1.columns.meurio= image_tag "meurio.png", class: :meurio_logo
-    .large-5.columns
-      = link_to image_tag("logo.png"), root_path, class: :logo
-      .alert
-        a.icon-warning href="#" data-dropdown="support-alert"
-        #support-alert.f-dropdown.content data-dropdown-content=true
-          | Esta versão do Faça Acontecer está disponível apenas para a cidade do Rio de Janeiro. Em breve disponibilizaremos para toda a #{link_to "Rede Minhas Cidades", "http://www.minhascidades.org.br/"}.
+    .large-5.columns= link_to image_tag("logo.png"), root_path, class: :logo
     .large-5.small-4.show-for-medium-up.columns.end.text-right
       - if current_page? root_path
         = link_to image_tag('btn-contrib.png', alt: "Contribua!"), new_user_path, class: :btn
