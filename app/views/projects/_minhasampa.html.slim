@@ -1,8 +1,7 @@
 .minhasampa
   .cover
     .row.cover-header
-      .logo-msp= image_tag "meurio.png"
-      .logo-fa= link_to image_tag("logo.png"), root_path
+      .logo= image_tag 'msp/header-faca.png'
       .donate= link_to 'Contribuir!', new_user_path, class: [:button, :radius, 'donate-btn']
     .row.content
       h1 Nossa cidade precisa da gente!
@@ -80,7 +79,7 @@
         br
         |(salários, impostos, décimo-terceiro e benefícios inclusos)
 
-      = image_tag 'msp/icone-positivo.png'
+      = image_tag 'msp/icone-dinheiro.png'
       .financial= image_tag 'msp/vitoria-01.jpg'
     .row
       .donate= link_to 'Contribuir!', new_user_path, class: [:button, :radius, 'donate-btn']
