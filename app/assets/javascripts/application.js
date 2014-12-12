@@ -29,5 +29,16 @@
 
 $(function(){
   $(document).foundation();
+
+  $("li[data-orbit-slide='0']").trigger("click")
+
+  $("#cover-orbit").on("after-slide-change.fndtn.orbit", function(event, orbit) {
+    $(".cover").removeClass("cover-slider-0");
+    $(".cover").removeClass("cover-slider-1");
+    $(".cover").removeClass("cover-slider-2");
+    $(".cover").removeClass("cover-slider-3");
+    $(".cover").addClass("cover-slider-" + orbit.slide_number);
+  });
+
   Apoie.initialize();
 });

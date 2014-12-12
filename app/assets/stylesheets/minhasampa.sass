@@ -1,0 +1,150 @@
+.minhasampa
+  h1, h2, h3, h4, a, p, span
+    font-family: DINPro
+  .donate
+    text-align: center    
+    .donate-btn
+      +border-radius(7px)
+      background-color: $orange
+      text-transform: uppercase
+      font-weight: 500 !important
+      font-size: 2em
+      padding: .2em 1em
+  .cover
+    padding: 1em
+    background: asset-url('msp/slide-01-img-01.png') center center
+    background-size: cover    
+    +transition(.5s)
+    &.cover-slider-0
+      background-image: asset-url('msp/slide-01-img-01.png')
+    &.cover-slider-1
+      background-image: asset-url('msp/slide-01-img-02.png')
+    &.cover-slider-2
+      background-image: asset-url('msp/slide-01-img-03.jpg')
+    &.cover-slider-3
+      background-image: asset-url('msp/slide-01-img-04.jpg')
+    &:after // preload images
+      display: none
+      content: asset-url('msp/slide-01-img-01.png') asset-url('msp/slide-01-img-02.png') asset-url('msp/slide-01-img-03.jpg') asset-url('msp/slide-01-img-04.jpg')
+    .orbit-container
+      .orbit-timer
+        display: none
+      .orbit-bullets
+        li
+          padding: 7px
+          margin: 0 10px
+          cursor: pointer
+          background: white
+          &.active
+            background: $msp-blue
+      .orbit-slides-container
+        min-height: 18em // orbit bug
+
+    h1, h3, h4, a, span
+      color: white
+    .cover-header
+      .logo-msp, .logo-fa, .donate
+        display: inline
+      .logo-fa
+        padding: 0 1em
+      .donate
+        float: right
+        padding: 0
+        .donate-btn
+          font-size: 1.5em
+    .content
+      padding: 5em 0 2em 0
+      text-align: center
+      h1
+        +grid-column(8, $center: true)
+        text-transform: uppercase
+        font-weight: 600
+        font-size: 3.5em
+        &.wider
+          +grid-column(10, $center: true)
+      h3
+        +grid-column(10, $center: true)
+        font-weight: 300 !important
+        font-size: 1.8em     
+      .donate
+        padding-top: 2em   
+      .subscribers-count
+        padding-top: 3em
+        h4
+          font-weight: 500 !important
+          font-size: 2.3em
+        p
+          color: white
+          font-weight: 300 !important
+    .cover-footer
+      span
+        font-size: .7em
+        color: white
+        float: right
+  section
+    padding-bottom: 3em
+    .title
+      background-color: $gray
+      padding-top: .8em
+    h2
+      text-transform: uppercase
+      text-align: center
+      color: white
+      font-size: 2.1em
+      font-weight: 500
+    .content      
+      padding: 2em 0 1em 0
+      p
+        text-align: center
+        line-height: 1.3em
+        font-size: 1.5em
+        font-weight: 300
+      .item
+        +grid-column(12)
+        padding: 1em 0 2em 0
+        a
+          text-decoration: underline
+          color: $msp-blue
+          font-weight: 500
+        &.small
+          p
+            +grid-column(10)
+            font-size: 1.11em
+            &.first
+              padding-top: 3.5em
+          img
+            +grid-column(2)
+            padding: 0
+        &.left
+          p
+            text-align: left
+        &.right
+          p
+            text-align: right
+          img
+            float: right !important
+    &.odd
+      background-color: $msp-blue
+      .item
+        .victory, .summary
+          h2
+            vertical-align: middle
+            text-align: left
+            display: inline
+        .copy
+          padding: 1.5em 0
+          border-bottom: solid white 1px
+          &.last
+            padding-bottom: 0
+            border: none
+          p
+            color: white
+    .financial
+      padding-bottom: 2em
+  .footer
+    background-color: $gray
+    padding: 2em
+    text-align: center
+    p
+      color: white
+

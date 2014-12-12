@@ -29,9 +29,7 @@ html[ng-app='facaAcontecerApp']
       ga('send', 'pageview');
 
   body[id=controller.controller_name.downcase class=controller.action_name.downcase ng-view]
-    = render 'layouts/header'
     = yield
-    = render 'layouts/footer'
     #fb-root
     = javascript_include_tag :application
     = yield :javascripts
