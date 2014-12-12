@@ -34,6 +34,8 @@
           padding: 7px
           margin: 0 10px
           cursor: pointer
+      .orbit-slides-container
+        min-height: 18em
 
     h1, h3, h4, a, span
       color: white
@@ -55,8 +57,8 @@
         text-transform: uppercase
         font-weight: 600
         font-size: 3.5em
-      .slide-4 h1
-        +grid-column(8, $center: true)
+        &.wider
+          +grid-column(10, $center: true)
       h3
         +grid-column(10, $center: true)
         font-weight: 300 !important
