@@ -23,7 +23,7 @@
       background-image: asset-url('msp/slide-01-img-03.jpg')
     &.cover-slider-3
       background-image: asset-url('msp/slide-01-img-04.jpg')
-    &:after
+    &:after // preload images
       display: none
       content: asset-url('msp/slide-01-img-01.png') asset-url('msp/slide-01-img-02.png') asset-url('msp/slide-01-img-03.jpg') asset-url('msp/slide-01-img-04.jpg')
     .orbit-container
@@ -34,8 +34,11 @@
           padding: 7px
           margin: 0 10px
           cursor: pointer
+          background: white
+          &.active
+            background: $msp-blue
       .orbit-slides-container
-        min-height: 18em
+        min-height: 18em // orbit bug
 
     h1, h3, h4, a, span
       color: white
