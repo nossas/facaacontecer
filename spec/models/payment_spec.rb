@@ -24,7 +24,7 @@ describe Payment do
 
 
     it "should send an email with LINK to BOLETO when the subscrition is BOLETO (slip)" do
-      expect(ActionMailer::Base.deliveries.last.subject).to eq("[MeuRio] Seu boleto foi gerado!")
+      expect(ActionMailer::Base.deliveries.last.subject).to eq("Seu boleto foi gerado!")
       expect(ActionMailer::Base.deliveries.last.to).to eq([@payment.user.email])
     end
   end
@@ -38,7 +38,7 @@ describe Payment do
 
 
     it "should send an email with LINK to BANK when the subscription is DEBITO (debit)" do
-      expect(ActionMailer::Base.deliveries.last.subject).to eq("[MeuRio] O link para a sua doação foi gerado!")
+      expect(ActionMailer::Base.deliveries.last.subject).to eq("O link para a sua doação foi gerado!")
       expect(ActionMailer::Base.deliveries.last.to).to eq([@payment.user.email])
     end
 

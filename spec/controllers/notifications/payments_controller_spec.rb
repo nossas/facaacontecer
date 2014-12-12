@@ -87,7 +87,7 @@ describe Notifications::PaymentsController do
       its(:state) { should == 'cancelled' }
 
       it "should send an Email informing the user about the cancellation" do
-        expect(ActionMailer::Base.deliveries.last.subject).to eq("[MeuRio] Oops, houve um problema com a sua doação")
+        expect(ActionMailer::Base.deliveries.last.subject).to eq("Oops, houve um problema com a sua doação")
         expect(ActionMailer::Base.deliveries.last.to).to eq([@payment.user.email])
       end
     end
@@ -127,7 +127,7 @@ describe Notifications::PaymentsController do
         expect(ActionMailer::Base.deliveries.last.to).to eq([@host.email])
       }
       it {
-        expect(ActionMailer::Base.deliveries.last.subject).to eq("[MeuRio] Você ganhou uma camiseta da Rede Meu Rio!")
+        expect(ActionMailer::Base.deliveries.last.subject).to eq("Você ganhou uma camiseta da Rede Meu Rio!")
       }
 
     end

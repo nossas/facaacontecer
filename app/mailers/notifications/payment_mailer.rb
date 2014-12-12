@@ -29,7 +29,7 @@ class Notifications::PaymentMailer < ActionMailer::Base
 
   def processing_payment(id)
     @payment = Payment.find(id)
-    @user = object.subscription.user
+    @user = @payment.subscription.user
     mail(
       to: @payment.user.email,
       subject: "Seu pagamento está sendo processado!"
@@ -38,7 +38,7 @@ class Notifications::PaymentMailer < ActionMailer::Base
 
   def authorized_payment(id)
     @payment = Payment.find(id)
-    @user = object.subscription.user
+    @user = @payment.subscription.user
     mail(
       to: @payment.user.email,
       subject: "Que lindo, sua doação foi aprovada!"
@@ -47,7 +47,7 @@ class Notifications::PaymentMailer < ActionMailer::Base
 
   def cancelled_payment(id)
     @payment = Payment.find(id)
-    @user = object.subscription.user
+    @user = @payment.subscription.user
     mail(
       to: @payment.user.email,
       subject: "Oops, houve um problema com a sua doação"
