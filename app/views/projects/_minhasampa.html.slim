@@ -1,7 +1,8 @@
 .minhasampa
   .cover
     .row.cover-header
-      .logo= image_tag 'msp/header-faca.png'
+      .logo-msp= image_tag 'msp/header-msp.png'
+      .logo-fa= image_tag 'msp/header-faca.png'
       .donate= link_to 'Contribuir!', new_user_path, class: [:button, :radius, 'donate-btn']
     .row.content
       h1 Nossa cidade precisa da gente!
@@ -23,7 +24,7 @@
 
       .item.small.left
         = image_tag 'msp/slide-02-icone-01.png'
-        p.first As mobilizações criadas por esses cidadãos ganham o apoio de uma equipe multidisciplinar de profissionais que cria e mantém aplicativos como o Panela de Pressão, o Multitude, o Imagine e o Compartilhaço. Baseada em critérios públicos, a equipe seleciona algumas das mobilizações para dar um suporte ainda maior, com estratégia, pesquisa, articulação e comunicação.
+        p.first As mobilizações criadas por esses cidadãos ganham o apoio de uma equipe multidisciplinar de profissionais que cria e mantém aplicativos como o #{ link_to 'Panela de Pressão', 'http://paneladepressao.nossascidades.org', target: :blank }, o #{ link_to 'Multitude', 'http://multitude.nossascidades.org', target: :blank }, o #{ link_to 'Imagine', 'http://imagine.nossascidades.org', target: :blank } e o #{ link_to 'Compartilhaço', 'http://compartilhaco.nossascidades.org', target: :blank }. Baseada em critérios públicos, a equipe seleciona algumas das mobilizações para dar um suporte ainda maior, com estratégia, pesquisa, articulação e comunicação.
         p Para manter essa equipe funcionando e dando suporte à Rede, precisamos de dinheiro.
 
       .item.small.right
@@ -111,7 +112,7 @@
           h2 Somos transparentes:
         = image_tag 'msp/vitoria-02.jpg'
         .copy
-          p Todos os nossos custos mensais estão listados em nossa página de doação. Bimestralmente, enviamos também uma newsletter para todos os nossos financiadores com as novidades e o balanço financeiro do período.
+          p Todos os nossos custos mensais estão listados em nossa página de doação. Além disso, com a newsletter enviada a cada dois meses aos nossos financiadores com as novidades do período divulgamos também o balanço financeiro do semestre.
 
       .item
         .summary
