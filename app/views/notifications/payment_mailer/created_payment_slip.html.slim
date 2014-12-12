@@ -1,12 +1,32 @@
-p
-  |Obrigado por ajudar a Rede Meu Rio a construir a cidade que todos nós merecemos!
-p
-  |O boleto para a sua doação, no valor de #{number_to_currency(@payment.subscription.value)}, 
-  |foi gerado e aguarda pagamento.
-p
-  |Se você perdeu o link para o seu boleto, é só clicar aqui: #{link_to(@payment.url, @payment.url)} 
-p
-  |Assim que o seu pagamento for confirmado, você receberá automaticamente um e-mail com maiores 
-  |detalhes sobre a transação e as celebrações que a nossa rede preparou para você, OK?
-p
-  |Seja bem-vindo à Rede e muito obrigado!
+/ TODO: argue to make just one version for this email copy
+- if @payment.subscription.project.slug == "meurio"
+  p Olá, #{@user.first_name}
+
+  p Ficamos muito felizes por você ajudar a Rede Meu Rio a construir a cidade que todos nós merecemos!
+
+  p O boleto para a sua doação, no valor de #{number_to_currency(@payment.subscription.value)}, foi gerado e aguarda pagamento.
+
+  p Se você perdeu o link para o seu boleto, é só clicar aqui: #{link_to(@payment.url, @payment.url)}
+
+  p Assim que o seu pagamento for confirmado, você receberá automaticamente um e-mail com maiores detalhes sobre a transação, OK?
+
+  p
+    | Abraço grande,
+    br
+    | Fernanda, João Mauro, Rodrigo, Guilherme, Courtney e toda a equipe Meu Rio.
+
+- else
+  p Olá, #{@user.first_name}
+
+  p É com muita alegria que recebemos seu apoio! Sua contribuição é fundamental para que a Rede Minha Sampa continue a trabalhar pela construção de uma São Paulo melhor para todos nós!
+
+  p O boleto para a sua doação, no valor de #{number_to_currency(@payment.subscription.value)}, foi gerado e aguarda pagamento.
+
+  p Se você perdeu o link para o seu boleto, é só clicar aqui: #{link_to(@payment.url, @payment.url)}
+
+  p Assim que o seu pagamento for confirmado, você receberá automaticamente um e-mail com maiores detalhes sobre a transação, OK?
+
+  p
+    | Grande abraço,
+    br
+    | Anna, Gut, Guilherme, Liane e Tiago.

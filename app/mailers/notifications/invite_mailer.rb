@@ -1,6 +1,6 @@
 # coding: utf-8
-class Notifications::InviteMailer < ActionMailer::Base 
-  
+class Notifications::InviteMailer < ActionMailer::Base
+
   default from: "Fernanda <fernanda@meurio.org.br>",
     bcc: "financiador@meurio.org.br",
     reply_to: "financiador@meurio.org.br"
@@ -14,7 +14,7 @@ class Notifications::InviteMailer < ActionMailer::Base
     mail(
       # The emails goes to the person who INVITED
       to: @inviter.email,
-      subject: "[MeuRio] Você ganhou uma camiseta da Rede Meu Rio!"
+      subject: "Você ganhou uma camiseta da Rede Meu Rio!"
     )
   end
 
