@@ -11,8 +11,30 @@
       font-size: 2em
       padding: .2em 1em
   .cover
-    background-color: #C80C3E
     padding: 1em
+    background: asset-url('msp/slide-01-img-01.png') center center
+    background-size: cover    
+    +transition(.5s)
+    &.cover-slider-0
+      background-image: asset-url('msp/slide-01-img-01.png')
+    &.cover-slider-1
+      background-image: asset-url('msp/slide-01-img-02.png')
+    &.cover-slider-2
+      background-image: asset-url('msp/slide-01-img-03.jpg')
+    &.cover-slider-3
+      background-image: asset-url('msp/slide-01-img-04.jpg')
+    &:after
+      display: none
+      content: asset-url('msp/slide-01-img-01.png') asset-url('msp/slide-01-img-02.png') asset-url('msp/slide-01-img-03.jpg') asset-url('msp/slide-01-img-04.jpg')
+    .orbit-container
+      .orbit-timer
+        display: none
+      .orbit-bullets
+        li
+          padding: 7px
+          margin: 0 10px
+          cursor: pointer
+
     h1, h3, h4, a, span
       color: white
     .cover-header
@@ -26,14 +48,17 @@
         .donate-btn
           font-size: 1.5em
     .content
-      padding: 10em 0 2em 0
+      padding: 5em 0 2em 0
       text-align: center
       h1
         +grid-column(8, $center: true)
         text-transform: uppercase
         font-weight: 600
         font-size: 3.5em
+      .slide-4 h1
+        +grid-column(8, $center: true)
       h3
+        +grid-column(10, $center: true)
         font-weight: 300 !important
         font-size: 1.8em     
       .donate
