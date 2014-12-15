@@ -102,22 +102,22 @@ body
       font-weight: 500
     .content
       +grid-column(12)
-      padding-top: 1em
-      padding-bottom: 2em
+      padding: 1em 0 2em 0
       p
+        +grid-column(12)
         text-align: center
         line-height: 1.3em
         font-size: 1.5em
         font-weight: 300
       .item
         +grid-column(12)
-        padding-top: 1em
-        padding-bottom: 2em
+        padding: 1em 0 2em 0
         a
           text-decoration: underline
           color: $msp-blue
           font-weight: 500
         &.small
+          +grid-column(12)
           p
             +grid-column(10)
             font-size: 1.11em
@@ -144,6 +144,7 @@ body
             text-align: left
             display: inline
         .copy
+          +grid-column(12)
           padding: 1.5em 0
           border-bottom: solid white 1px
           &.last
@@ -218,6 +219,3 @@ body
             margin-bottom: 1em
             img
               display: none
-
-
-
