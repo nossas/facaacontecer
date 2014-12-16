@@ -163,6 +163,7 @@ GEM
     rails-assets-card (0.1.4)
       rails-assets-jquery (>= 1.5)
     rails-assets-jquery (2.1.1)
+    rails-assets-tobiasahlin--SpinKit (1.0.0)
     rails_12factor (0.0.2)
       rails_serve_static_assets
       rails_stdout_logging
@@ -311,6 +312,7 @@ DEPENDENCIES
   puma
   rails (~> 4.0.3)
   rails-assets-card
+  rails-assets-tobiasahlin--SpinKit
   rails_12factor
   rspec-rails
   sass-rails (= 4.0.2)

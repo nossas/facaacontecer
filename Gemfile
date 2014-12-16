@@ -48,6 +48,7 @@ gem 'angularjs-rails'
 gem 'jquery-inputmask-rails'
 gem 'foundation-rails', '~> 5.1.1.0'
 gem 'rails-assets-card'
+gem 'rails-assets-tobiasahlin--SpinKit'
 
 # MeuRio UI related gems
 gem 'gravatar_image_tag'

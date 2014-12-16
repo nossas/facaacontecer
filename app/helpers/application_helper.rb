@@ -60,4 +60,12 @@ module ApplicationHelper
       'TO'
     ]
   end
+
+  def spinkit_loader
+    content_tag(:div, nil, class: ["sk-spinner", "sk-spinner-fading-circle"]) do
+      12.times do |i|
+        concat content_tag(:div, nil, class: ["sk-circle#{i+1}", "sk-circle"])
+      end
+    end
+  end
 end

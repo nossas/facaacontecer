@@ -1,19 +1,19 @@
 #loading-page
   #loading.row
     .large-2.large-centered.columns.text-center
-      = image_tag 'loading.gif'
+      = spinkit_loader
 
   #subscription-url[data-url=confirm_subscription_url(@subscription)]
 
   #successful-message.row
     .large-5.large-centered.columns.text-center
-      h4 
+      h4
         = t "subscriptions.success.message.#{@subscription.payment_option}"
   .row
     .large-6.large-centered.columns.text-center.end
-      .subscription-messages 
+      .subscription-messages
         h6
-          | Se você acredita que está vendo esta tela há tempo demais e que o pagamento foi interrompido por algum motivo, entre em contato através de financiador@meurio.org.br informando o seu email de cadastro. 
+          | Se você acredita que está vendo esta tela há tempo demais e que o pagamento foi interrompido por algum motivo, entre em contato através de financiador@meurio.org.br informando o seu email de cadastro.
       .subscription-form-button.hidden
         br
         = link_to "Clique para voltar ao formulário", "javascript:history.back(-1)", class: :button
