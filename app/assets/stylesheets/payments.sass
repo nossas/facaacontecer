@@ -1,0 +1,45 @@
+body#payments.show
+  color: white
+
+  h3
+    color: white
+
+body#payments.show
+  background: #F3F5F4
+  .payment-screen1
+    background: image-url('screen3.jpg') center center
+    background-size: cover
+    overflow: hidden
+    padding: 3em 0
+    p
+      padding: 0
+  .payment-screen2
+    background-size: cover
+    background: $green
+    padding: 2em 0
+    &.minhasampa
+      background: $pink
+
+  .payment-link
+    padding: 3em 0
+    a
+      margin: 0
+
+  input
+    border: 1px solid lightgray
+    font-size: 1em
+    display: inline-block
+    width: 80%
+  .bt-face, .bt-twitter
+    display: inline-block
+    margin-left: .4em
+
+@media screen and (max-width: 900px)
+  body#payments.show
+    min-width: 640px !important
+  .payment-screen1
+    background: lighten($olive, 2%) image-url('pattern-dots_68a612.png') !important
+    background-size: none !important
+  .payment-screen2
+    background: darken($green, 5%) image-url('pattern-dots_68a612.png') !important
+    background-size: none !important

@@ -1,4 +1,4 @@
-body#subscriptions.show, body#payments.show
+body#subscriptions.show
   min-width: 780px !important
   h1, h2, h3, h4, h6, p
     color: $gray
@@ -16,36 +16,3 @@ body#subscriptions.show
     color: darken(red, 18%)
   strong
     display: block
-
-body#payments.show
-  .confirming
-    margin-top: 2.5em
-
-body#payments.show
-  background: $olive image-url('pattern-dots_68a612.png')
-  .payment-screen1
-    background: image-url('screen3.jpg') center -90px no-repeat
-    background-size: cover
-  .payment-screen2
-    min-height: 380px
-    background-size: cover
-    background: image-url('payment-screen2.jpg') -200px top no-repeat
-
-  input
-    border: 1px solid lightgray
-    font-size: 1em
-    display: inline-block
-    width: 80%
-  .bt-face, .bt-twitter
-    display: inline-block
-    margin-left: .4em
-
-@media screen and (max-width: 900px)
-  body#payments.show
-    min-width: 640px !important
-  .payment-screen1
-    background: lighten($olive, 2%) image-url('pattern-dots_68a612.png') !important
-    background-size: none !important
-  .payment-screen2
-    background: darken($green, 5%) image-url('pattern-dots_68a612.png') !important
-    background-size: none !important
