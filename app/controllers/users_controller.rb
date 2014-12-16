@@ -37,7 +37,10 @@ class UsersController < ApplicationController
     end
 
     # Render the form if errors are present in the user (update or save)
-    return render :create if @user.errors.any?
+    if @user.errors.any?
+      @organizations = Organization.order(:id)
+      return render :create
+    end
 
     # Or redirect_to the subscription path if nothing wrong
     redirect_to subscription_path(Subscription.where(user_id: @user.id).order(:created_at).last)
