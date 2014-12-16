@@ -9,7 +9,7 @@ module PaymentBusiness
         # generate an unique identifier for this instruction
         # adding _payment suffix to it.
         id:             "#{code}_#{self.payments.count}_PAYMENT",
-        payment_reason: "Doação para o Nossas Cidades - http://nossascidades.org",
+        payment_reason: "Doação para a Rede #{self.organization.name} - http://nossascidades.org",
         values:         [value],
         payer:          user.business.build_payer,
         #return_url:    '',
