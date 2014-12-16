@@ -1,11 +1,4 @@
 GIT
-  remote: git://github.com/meurio/meurio_ui.git
-  revision: 2f713ac28c92c8f3f22330c3241b06dfc5e86a14
-  branch: minhascidades
-  specs:
-    meurio_ui (1.4.4)
-
-GIT
   remote: https://github.com/nicolasiensen/api-moip-assinaturas.git
   revision: 8e4142bc6ac99f713b0139f8a56cb93a008f4265
   specs:
@@ -136,6 +129,7 @@ GEM
       skinny (>= 0.1.2)
       sqlite3-ruby
       thin
+    meurio_ui (1.4.13)
     mime-types (1.25.1)
     mini_portile (0.5.2)
     minitest (4.7.5)
@@ -310,7 +304,7 @@ DEPENDENCIES
   jquery-inputmask-rails
   jquery-rails
   mailcatcher
-  meurio_ui!
+  meurio_ui
   mymoip
   newrelic_rpm
   pg

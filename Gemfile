@@ -51,7 +51,7 @@ gem 'rails-assets-card'
 
 # MeuRio UI related gems
 gem 'gravatar_image_tag'
-gem 'meurio_ui', github: "meurio/meurio_ui", branch: "minhascidades"
+gem 'meurio_ui'
 
 group :production, :staging do
   gem 'newrelic_rpm'

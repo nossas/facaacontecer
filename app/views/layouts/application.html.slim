@@ -29,6 +29,7 @@ html[ng-app='facaAcontecerApp']
       ga('send', 'pageview');
 
   body[id=controller.controller_name.downcase class=controller.action_name.downcase ng-view]
+    = meurio_header_for :facaacontecer
     = yield
     #fb-root
     = javascript_include_tag :application

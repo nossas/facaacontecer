@@ -96,7 +96,7 @@ ActiveRecord::Schema.define(version: 20141210193202) do
     t.string   "slug"
   end
 
-  create_view "successful_transactions", "         SELECT p.id,\n            psub.user_id,\n            'payments'::text AS relname\n           FROM (payments p\n      JOIN subscriptions psub ON ((psub.id = p.subscription_id)))\n     WHERE (((p.state)::text = 'finished'::text) OR ((p.state)::text = 'authorized'::text))\nUNION ALL\n         SELECT i.id,\n            isub.user_id,\n            'invoices'::text AS relname\n           FROM (invoices i\n      JOIN subscriptions isub ON ((isub.id = i.subscription_id)))\n     WHERE ((i.status)::text = 'finished'::text)", :force => true
+  create_view "successful_transactions", " SELECT p.id,\n    psub.user_id,\n    'payments'::text AS relname\n   FROM (payments p\n     JOIN subscriptions psub ON ((psub.id = p.subscription_id)))\n  WHERE (((p.state)::text = 'finished'::text) OR ((p.state)::text = 'authorized'::text))\nUNION ALL\n SELECT i.id,\n    isub.user_id,\n    'invoices'::text AS relname\n   FROM (invoices i\n     JOIN subscriptions isub ON ((isub.id = i.subscription_id)))\n  WHERE ((i.status)::text = 'finished'::text)", :force => true
   create_table "users", force: true do |t|
     t.string   "first_name",       null: false
     t.string   "last_name",        null: false
