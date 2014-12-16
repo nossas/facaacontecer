@@ -133,7 +133,7 @@ body#users
     padding: .4em 0
     +border-radius(8px)
     img
-      width: 50px
+      width: 30px
       margin-right: .5em
     &.selected, &:hover
       color: white
@@ -149,9 +149,16 @@ body#users
       cursor: not-allowed
 
 .subscription-organizations
+  label
+    img
+      +opacity(.5)
+      +filter(grayscale(50%))
+
   label, label.selected, label:hover
-    width: auto
     padding: .5em
+    img
+      +opacity(1)
+      +filter(grayscale(0))
 
 // The debit form
 .debit .debit-fields
