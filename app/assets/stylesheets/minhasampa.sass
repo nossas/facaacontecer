@@ -1,3 +1,6 @@
+body
+  min-width: 0 !important
+
 .minhasampa
   h1, h2, h3, h4, a, p, span
     font-family: DINPro
@@ -43,12 +46,15 @@
     h1, h3, h4, a, span
       color: white
     .cover-header
-      .logo-msp, .logo-fa, .donate
+      +grid-column(12)
+      .logo, .donate
+        +grid-column(6)
+      .logo-msp, .logo-fa, .logo, .donate
         display: inline
       .logo-fa
         padding: 0 1em
       .donate
-        float: right
+        text-align: right        
         padding: 0
         .donate-btn
           font-size: 1.5em
@@ -86,15 +92,19 @@
     .title
       background-color: $gray
       padding-top: .8em
+      h2
+        +grid-column(12)
     h2
       text-transform: uppercase
       text-align: center
       color: white
       font-size: 2.1em
       font-weight: 500
-    .content      
-      padding: 2em 0 1em 0
+    .content
+      +grid-column(12)
+      padding: 1em 0 2em 0
       p
+        +grid-column(12)
         text-align: center
         line-height: 1.3em
         font-size: 1.5em
@@ -107,6 +117,7 @@
           color: $msp-blue
           font-weight: 500
         &.small
+          +grid-column(12)
           p
             +grid-column(10)
             font-size: 1.11em
@@ -114,6 +125,7 @@
               padding-top: 3.5em
           img
             +grid-column(2)
+            max-width: 161px
             padding: 0
         &.left
           p
@@ -132,6 +144,7 @@
             text-align: left
             display: inline
         .copy
+          +grid-column(12)
           padding: 1.5em 0
           border-bottom: solid white 1px
           &.last
@@ -148,3 +161,61 @@
     p
       color: white
 
+@media screen and (max-width: 900px)
+  .minhasampa
+    .cover
+      .cover-header
+        .logo
+          +grid-column(8)
+        .donate
+          +grid-column(4)
+      .content
+        padding: 0
+        h1
+          +grid-column(10, $center: true)
+          font-size: 3em
+          padding-top: 1em
+          &.wider
+            +grid-column(12)
+        h3
+          font-size: 1.5em
+    section .content
+      .item.small
+        p
+          +grid-column(9)
+          &.first
+            padding-top: 2em
+        img
+          +grid-column(3)
+          padding: 0
+
+@media screen and (max-width: 700px)
+  .minhasampa
+    .cover
+      .cover-header
+        .logo
+          +grid-column(12)
+          text-align: center
+          .logo-fa
+            padding: 0
+        .donate
+          display: none
+      .content 
+        h1, h1.wider
+          +grid-column(12)
+          font-size: 2.4em
+        h3
+          +grid-column(12)
+          font-size: 1.3em
+      .orbit-slides-container
+        min-height: 23em // orbit bug
+    section
+      .title h2
+        font-size: 1.8em
+      .content
+        .item
+          .victory, .summary
+            text-align: center
+            margin-bottom: 1em
+            img
+              display: none
