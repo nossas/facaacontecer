@@ -8,7 +8,8 @@
 
   p Mas continuamos precisando de apoio para manutenção da Rede. Se pelo menos um dos seus amigos doar através do seu link exclusivo, que está logo abaixo, te enviaremos por correio uma camiseta lindona para você mostrar para todo mundo você Faz Acontecer!
 
-  p Compartilhe o seu link exclusivo por Face ou e-mail: #{link_to nil, invite_url(code: "#{@payment.user.invite.code}")}
+  - if @payment.user.invite.present?
+    p Compartilhe o seu link exclusivo por Face ou e-mail: #{link_to nil, invite_url(code: "#{@payment.user.invite.code}")}
 
   p
     | Abraço grande,
