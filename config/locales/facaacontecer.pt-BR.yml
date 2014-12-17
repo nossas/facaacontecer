@@ -3,7 +3,7 @@ pt-BR:
     title: "Faça a diferença por um Rio melhor!"
     description: "Financie a Rede Meu Rio e ajude a construir, com independência e transparência, a cidade que todos nós merecemos. Faça como eu, faça acontecer: http://bit.ly/eufacoacontecer"
     keywords: 'meu rio, doação, contribua, financie, independente'
-  
+
   subscriptions:
     plans:
       monthly: "Mensal"
@@ -20,13 +20,13 @@ pt-BR:
         slip: "Aguarde só um instantinho enquanto geramos o link para o seu boleto"
     status:
       authorized: "Autorizado"
-      started: "Iniciado"   
+      started: "Iniciado"
       printed: "Boleto impresso"
       finished: "Concluído"
       cancelled: "Cancelado"
-      waiting: "Em análise"    
+      waiting: "Em análise"
       reversed: "Estornado"
-      refunded: "Reembolsado"   
+      refunded: "Reembolsado"
 
 
   helpers:
@@ -65,11 +65,11 @@ pt-BR:
         payment_option: "Forma de pagamento"
         value: "Qual o valor?"
         bank: "Escolha seu banco"
-      creditcard: 
+      creditcard:
         holder: "Titular do cartão (como no cartão)"
         cardnumber: "Numero do cartão"
         expiration: "Data de validade"
-    
+
   activerecord:
     models:
       subscription: "Apoio"
@@ -81,18 +81,18 @@ pt-BR:
         <<: &user
       subscription:
         bank: "Banco"
-  
-        
-        
+
+
+
   home:
-    value_proposition: "Monte seu próprio crowdfunding!" 
+    value_proposition: "Monte seu próprio crowdfunding!"
     call_to_action: "Apoie agora!"
-    # The paragraph below the price. 
-    # You'd probably say something about how you're not 
+    # The paragraph below the price.
+    # You'd probably say something about how you're not
     # going to charge them before it ships (so it's less risky).
     reason_to_say_no: "Você terá este site aqui; igualzinho ou com seu próprio design. Tudo que você precisa é de um ótimo produto ou projeto! :-)"
     ships: "O projeto será realizado se financiado até %{date}"
-    key_points: 
+    key_points:
       what_is: "O que é o Selfstarter?"
       what_is_text: "Selfstarter é uma ferramenta open source para que qualquer possa criar seu próprio crowdfunding, diretamente aos seus apoiadores, amigos ou pessoas que estão interessadas no projeto/produto. Seja ele de produto maneiro ou de algum projeto bem legal!"
       how_to_use: "O que eu faço?"
