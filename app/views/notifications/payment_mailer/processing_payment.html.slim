@@ -1,7 +1,7 @@
 - plan = t("subscriptions.plans.#{@payment.subscription.plan}")
 
 / TODO: argue to make just one version for this email copy
-- if @payment.subscription.project.slug == "meurio"
+- if @payment.subscription.organization.slug == "meurio"
   p Ficamos muito felizes por você ajudar a Rede Meu Rio a construir a cidade que todos nós merecemos!
   p O seu pagamento #{plan}, no valor de #{number_to_currency(@payment.subscription.value)} está sendo processado pelo seu banco. Para a sua segurança, os dados informados poderão passar por uma análise e estão sujeitos a confirmação.
   p Assim que o seu pagamento for confirmado, você receberá automaticamente um e-mail com maiores detalhes sobre a transação, OK?

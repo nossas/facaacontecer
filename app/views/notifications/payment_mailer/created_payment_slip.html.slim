@@ -1,5 +1,5 @@
 / TODO: argue to make just one version for this email copy
-- if @payment.subscription.project.slug == "meurio"
+- if @payment.subscription.organization.slug == "meurio"
   p Ficamos muito felizes por você ajudar a Rede Meu Rio a construir a cidade que todos nós merecemos!
   p O boleto para a sua doação, no valor de #{number_to_currency(@payment.subscription.value)}, foi gerado e aguarda pagamento.
   p Se você perdeu o link para o seu boleto, é só clicar aqui: #{link_to(@payment.url, @payment.url)}

@@ -1,5 +1,5 @@
 / TODO: argue to make just one version for this email copy
-- if @payment.subscription.project.slug == "meurio"
+- if @payment.subscription.organization.slug == "meurio"
   p Ficamos muito felizes por você por ajudar a Rede Meu Rio a construir a cidade que todos nós merecemos!
   p Aqui está o link para realizar a trasferência bancária da sua doação para a conta da Rede Meu Rio, é só clicar aqui: #{link_to(@payment.url, @payment.url)}
   p Uma vez efetuada, sua doação no valor de #{number_to_currency(@payment.subscription.value)} será processada pelo seu banco. Para a sua segurança, os dados informados poderão passar por uma análise e estão sujeitos a confirmação.
