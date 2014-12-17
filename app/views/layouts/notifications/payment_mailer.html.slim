@@ -11,26 +11,33 @@ html
       | Olá #{@payment.user.first_name}!
     = yield
 
+    - if @payment.subscription.organization.slug == "meurio"
+      p
+        | Grande abraço,
+        br
+        | Anna, Gut, Guilherme, Liane e Tiago.
 
+    - else
+      p
+        | Abraço grande,
+        br
+        | Fernanda, João Mauro, Rodrigo, Guilherme, Courtney e toda a equipe Meu Rio.
 
-
-    p
-      |Fernanda, Miguel, Alexandre, Alessandra e toda a equipe Meu Rio.
     footer
       br
       | --
       p
         strong
-          |Saiba mais sobre o seu pagamento:
+          | Saiba mais sobre o seu pagamento:
       p.gray
         em
           | - ID do pagamento: #{@payment.code}
         br
         em
-          | - Destinatário: Meu Rio
+          | - Destinatário: #{@payment.subscription.organization.name}
         br
         em
-          | - Identificação na fatura: MOIP/MeuRio
+          | - Identificação na fatura: MOIP/#{@payment.subscription.organization.name}
         br
         em
           | - Meio de pagamento: #{t("subscriptions.payments.#{@payment.subscription.payment_option}")}
@@ -46,15 +53,4 @@ html
         p
           |Para dúvidas, sugestões ou cancelamento das contribuições, por favor entre em contato através de financiador@meurio.org.br informando o seu e-mail de cadastro.
 
-    / Meu Rio signature
-    table cellpadding="0" cellspacing="0" margin="0" style="margin-top: 50px"
-      tr
-        td valign="top"
-          img src="http://i.imgur.com/WoFiLj9.jpg" style="margin-right: 10px; width: 200px"
-        td valign="top"
-          span style="color: #039046; font-size: 15px; font-family: arial, sans serif; font-weight: bold"
-            | Rede Meu Rio
-          p style="color: #81929e; font-size: 12px; font-family: arial, sans serif; margin-top: 5px; margin-bottom: 5px"
-            | A Rede Meu Rio é formada por milhares de cariocas, de certidão e de coração, que acreditam que um Rio mais inclusivo e participativo seria muito mais lindo. Juntos, criamos e lançamos mobilizações com o apoio de uma equipe que mantém os aplicativos da Rede Minhas Cidades no Rio de Janeiro.
-          a href="http://meurio.org.br" style="color: #039046; font-size: 12px; font-family: arial, sans serif"
-            | Clique aqui para saber mais!
+    p= raw @organization.email_signature_html

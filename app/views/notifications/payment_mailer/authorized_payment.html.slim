@@ -1,33 +1,13 @@
 / TODO: argue to make just one version for this email copy
 - if @payment.subscription.project.slug == "meurio"
-  p Olá, #{@user.first_name}
-
   p Sua contribuição acaba de ser confirmada!
-
   p A sua participação como contibuinte da Rede Meu Rio faz toda a diferença para construção da cidade que todos nós merecemos.
-
   p Mas continuamos precisando de apoio para manutenção da Rede. Se pelo menos um dos seus amigos doar através do seu link exclusivo, que está logo abaixo, te enviaremos por correio uma camiseta lindona para você mostrar para todo mundo você Faz Acontecer!
-
   - if @payment.user.invite.present?
     p Compartilhe o seu link exclusivo por Face ou e-mail: #{link_to nil, invite_url(code: "#{@payment.user.invite.code}")}
 
-  p
-    | Abraço grande,
-    br
-    | Fernanda, João Mauro, Rodrigo, Guilherme, Courtney e toda a equipe Meu Rio.
-
 - else
-  p Olá, #{@user.first_name}
-
   p Sua contribuição acaba de ser confirmada!
-
   p A sua participação como financiador da Rede Minha Sampa faz toda a diferença para construção da São Paulo que todos nós merecemos.
-
   p Agora, com o apoio de ainda mais gente poderemos acelerar essas transformações que tanto desejamos pra nossa cidade. Compartilhe esse link com seus amigos e mostre para todo mundo que você Faz Acontecer!
-
   p #{link_to nil, invite_url(code: "#{@payment.user.invite.code}")}
-
-  p
-    | Grande abraço,
-    br
-    | Anna, Gut, Guilherme, Liane e Tiago.
