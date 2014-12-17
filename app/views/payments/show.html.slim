@@ -18,7 +18,7 @@
         - elsif @payment.subscription.debit? && @payment.subscription.waiting?
           = link_to "Clique aqui para ir para o site do seu banco", @payment.url, class: [:button, :radius, :large], target: '_blank'
 
-  .payment-screen2 class=@payment.subscription.project.slug
+  .payment-screen2 class=@payment.subscription.organization.slug
     .row
       section.large-10.large-centered.columns.confirming.text-center
         p
