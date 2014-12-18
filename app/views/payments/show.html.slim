@@ -28,8 +28,8 @@
           p
             strong Compartilhe!
           p
-            = link_to image_tag('bt-face.png', size: '32x32'), "https://www.facebook.com/sharer/sharer.php?u=#{URI::encode(project_url(@payment.subscription.project))}", class: ["share-button", "bt-face"]
+            = link_to image_tag('bt-face.png', size: '32x32'), "https://www.facebook.com/sharer/sharer.php?u=#{URI::encode(project_url(@project))}", class: ["share-button", "bt-face"]
             - if @payment.subscription.project.slug == "meurio"
-              = link_to image_tag('bt-twitter.png', size: '32x32'), "https://twitter.com/share?url=#{URI::encode(project_url(@payment.subscription.project))}&text=#{URI::encode("Ajude a financiar a Rede Meu Rio! Faça como eu, faça acontecer:")}&", class: ["share-button", "bt-twitter"]
+              = link_to image_tag('bt-twitter.png', size: '32x32'), "https://twitter.com/share?url=#{URI::encode(project_url(@project))}&text=#{URI::encode("Ajude a financiar a Rede Meu Rio! Faça como eu, faça acontecer:")}&", class: ["share-button", "bt-twitter"]
             - else
-              = link_to image_tag('bt-twitter.png', size: '32x32'), "https://twitter.com/share?url=#{URI::encode(project_url(@payment.subscription.project))}&text=#{URI::encode("Ajude a financiar a Rede @Minha_Sampa! Faça como eu, faça acontecer:")}&", class: ["share-button", "bt-twitter"]
+              = link_to image_tag('bt-twitter.png', size: '32x32'), "https://twitter.com/share?url=#{URI::encode(project_url(@project))}&text=#{URI::encode("Ajude a financiar a Rede @Minha_Sampa! Faça como eu, faça acontecer:")}&", class: ["share-button", "bt-twitter"]

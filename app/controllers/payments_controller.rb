@@ -14,7 +14,9 @@ class PaymentsController < ApplicationController
 
 
   # GET /payments/:id
-  def show; end
+  def show
+    @project = Project.find_by_slug(@payment.subscription.organization.slug)
+  end
 
   def retry
     payment = Payment.find(params[:id])
