@@ -5,7 +5,7 @@ class Notifications::PaymentMailer < ActionMailer::Base
 
   default from: "Fernanda <fernanda@nossascidades.org>", reply_to: "fernanda@nossascidades.org"
 
-  default_url_options[:host] = 'apoie.meurio.org.br'
+  default_url_options[:host] = 'apoie.nossascidades.org'
 
   def created_payment_slip(id)
     @payment = Payment.find(id)

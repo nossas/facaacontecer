@@ -3,7 +3,7 @@ class Notifications::InviteMailer < ActionMailer::Base
 
   default from: "Fernanda <fernanda@nossascidades.org>", reply_to: "fernanda@nossascidades.org"
 
-  default_url_options[:host] = 'apoie.meurio.org.br'
+  default_url_options[:host] = 'apoie.nossascidades.org'
 
   def created_guest(user_id, host_id)
     object(user_id)
