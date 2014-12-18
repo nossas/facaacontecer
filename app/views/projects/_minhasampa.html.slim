@@ -13,6 +13,8 @@
             .slide-content
               h1 Nossa cidade precisa da gente!
               h3 Uma São Paulo melhor começa com gente mobilizada.
+          .row.cover-footer
+            span foto Pops Lopes
         li.slide-2
           .row
             .slide-content
@@ -28,6 +30,8 @@
             .slide-content
               h1.wider Não precisamos de muito, mas de muitos.
               h3 Para continuar esse trabalho precisamos de gente que acredita em uma São Paulo para as pessoas.
+          .row.cover-footer
+            span foto Pops Lopes
 
       .donate= link_to 'Contribuir!', new_user_path(organization_id: 2), class: [:button, :radius, 'donate-btn']
       /.subscribers-count
@@ -35,8 +39,6 @@
           | #{Subscription.where(state: :active).count} pessoas
         p
           |fazendo a Rede Minha Sampa acontecer.
-    .row.cover-footer
-      span foto Pops Lopes
   section
     .title
       .row
@@ -49,19 +51,19 @@
           = image_tag 'msp/slide-02-icone-01.png'
           p.first
             span.item-title Nossa equipe
-            | As mobilizações criadas por esses cidadãos ganham o apoio de uma equipe multidisciplinar de profissionais que cria e mantém aplicativos como o #{ link_to 'Panela de Pressão', 'http://paneladepressao.nossascidades.org', target: :blank }, o #{ link_to 'Multitude', 'http://multitude.nossascidades.org', target: :blank }, o #{ link_to 'Imagine', 'http://imagine.nossascidades.org', target: :blank } e o #{ link_to 'Compartilhaço', 'http://compartilhaco.nossascidades.org', target: :blank }. Baseada em critérios públicos, a equipe seleciona algumas das mobilizações para dar um suporte ainda maior, com estratégia, pesquisa, articulação e comunicação.
+            | As mobilizações criadas por esses cidadãos ganham o apoio de uma equipe multidisciplinar de profissionais que cria e mantém aplicativos como o Panela de Pressão, o Multitude, o Imagine e o Compartilhaço. Baseada em critérios públicos, a equipe seleciona algumas das mobilizações para dar um suporte ainda maior, com estratégia, pesquisa, articulação e comunicação.
 
         .item.small.right
           p.first
             span.item-title Nossa independência
-            | Para manter essa equipe funcionando e dando suporte à Rede, precisamos de dinheiro. Acontece que a Rede Minha Sampa é #{content_tag :strong, 'independente'}. Isso quer dizer que não temos rabo preso com nenhum governo, político, partido ou empresa pública. E é por isso que para conseguir o dinheiro necessário ao funcionamento da nossa equipe, contamos com pessoas apaixonadas por essa São Paulo tão diversa e acolhedora e que entende que só pessoas mobilizadas poderão construir uma cidade melhor.
+            | Para manter essa equipe funcionando e dando suporte à Rede, precisamos de dinheiro. Acontece que a Rede Minha Sampa é independente. Isso quer dizer que não temos rabo preso com nenhum governo, político, partido ou empresa pública. E é por isso que para conseguir o dinheiro necessário ao funcionamento da nossa equipe, temos que contar com pessoas apaixonadas por essa São Paulo tão diversa e acolhedora.
           = image_tag 'msp/slide-02-icone-02.png'
 
         .item.small.left
           = image_tag 'msp/slide-02-icone-03.png'
           p.first
             span.item-title Nosso futuro
-            | Não precisamos de muito. #{content_tag :strong, 'Mas precisamos de MUITOS.'} Muita gente que pode contribuir com pouco todos os meses para ajudar a financiar a construção de uma cidade mais inclusiva, sustentável, compartilhada, criativa e boa de se viver. Que tal colaborar com o valor daquela cervejinha ou daquele cinema para ver nossa cidade se transformar para melhor?!
+            | Não precisamos de muito. Mas precisamos de MUITOS. Muita gente que pode contribuir com pouco todos os meses para ajudar a financiar a construção de uma cidade mais inclusiva, sustentável, compartilhada, criativa e boa de se viver. Que tal colaborar com o valor daquela cervejinha ou daquele cinema para ver nossa cidade se transformar para melhor?!
           p #{content_tag :strong, 'Faça a Rede Minha Sampa acontecer!'}
 
     .row
@@ -106,7 +108,7 @@
         p Além de criar ferramentas de participação, nosso pequeno time dá conta das mobilizações iniciadas por aproximadamente 20 mil pessoas. Aqui, usamos uma estrutura eficiente e ágil para aumentar ao máximo o impacto de cada real que recebemos. Todos os meses, investimos nossos recursos conforme ilustrado abaixo, com algumas pequenas variações.
 
         p
-          |Custo mensal da Rede Minha Sampa:
+          strong Custo mensal da Rede Minha Sampa:
           br
           |(salários, impostos, décimo-terceiro e benefícios inclusos)
 
