@@ -112,7 +112,65 @@
           |(salários, impostos, décimo-terceiro e benefícios inclusos)
 
         = image_tag 'msp/icone-dinheiro.png'
-        .financial= image_tag 'msp/vitoria-01.jpg'
+        .financial
+          table
+            tr
+              th colspan="2" Equipe exclusivamente dedicada ao Minha Sampa:
+            tr
+              td 1 Diretora Executiva
+              td R$ 8.400,00
+            tr
+              td 2 Coordenadores de Mobilização
+              td R$ 13.600,00
+            tr
+              td 1 Estagiário
+              td R$ 2.300,00
+            tr
+              th colspan="2" Equipe Compartilhada com o Meu Rio:
+            tr
+              td 1 Diretor de Produção
+              td R$ 4.500,00
+            tr
+              td 1 Coordenador de Comunicação
+              td R$ 3.600,00
+            tr
+              td 1 Programador Senior
+              td R$ 6.000,00
+            tr
+              td 1 Programador Junior
+              td R$ 3.500,00
+            tr
+              th colspan="2" Administrativo e Legal:
+            tr
+              td 1 Assistente Administrativo
+              td R$ 3.000,00
+            tr
+              td Contabilidade
+              td R$ 2.000,00
+            tr
+              td Assistência Jurídica
+              td R$ 1.500,00
+            tr
+              th colspan="2" Materiais de trabalho e escritório:
+            tr
+              td Mailing e Software
+              td R$ 2.000,00
+            tr
+              td Amortização de equipamentos
+              td R$ 500,00
+            tr
+              td Materiais de mobilização
+              td R$ 1.500,00
+            tr
+              td Materiais de escritório
+              td R$ 500,00
+            tr
+              td Aluguel e contas
+              td R$ 6.000,00
+            tr
+              td.total Custo mensal
+              td.total R$ 58.900,00
+
     .row
       .donate= link_to 'Contribuir!', new_user_path(organization_id: 2), class: [:button, :radius, 'donate-btn']
 
