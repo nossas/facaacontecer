@@ -26,8 +26,10 @@
           | Agora que você faz parte dessa rede de pessoas mobilizadas, convide seus amigos! Com o apoio de mais gente podemos acelerar as transformações que tanto desejamos pra nossa cidade. Compartilhe esse link e mostre para todo mundo que você Faz Acontecer!
         - if @payment.user.invite.present?
           p
-            strong Compartilhe o seu link exclusivo por Face e por email:
+            strong Compartilhe!
           p
-            = text_field_tag :link, invite_url(code: @payment.user.invite.code)
-            = link_to image_tag('bt-face.png', size: '32x32'), "https://www.facebook.com/sharer/sharer.php?u=#{URI::encode(invite_url(code: @payment.user.invite.code))}", class: ["share-button", "bt-face"]
-            = link_to image_tag('bt-twitter.png', size: '32x32'), "https://twitter.com/share?url=#{URI::encode(invite_url(code: @payment.user.invite.code))}&text=#{URI::encode("Ajude a financiar o Meu Rio! Faça como eu, faça acontecer:")}&", class: ["share-button", "bt-twitter"]
+            = link_to image_tag('bt-face.png', size: '32x32'), "https://www.facebook.com/sharer/sharer.php?u=#{URI::encode(project_url(@payment.subscription.project))}", class: ["share-button", "bt-face"]
+            - if @payment.subscription.project.slug == "meurio"
+              = link_to image_tag('bt-twitter.png', size: '32x32'), "https://twitter.com/share?url=#{URI::encode(project_url(@payment.subscription.project))}&text=#{URI::encode("Ajude a financiar a Rede Meu Rio! Faça como eu, faça acontecer:")}&", class: ["share-button", "bt-twitter"]
+            - else
+              = link_to image_tag('bt-twitter.png', size: '32x32'), "https://twitter.com/share?url=#{URI::encode(project_url(@payment.subscription.project))}&text=#{URI::encode("Ajude a financiar a Rede @Minha_Sampa! Faça como eu, faça acontecer:")}&", class: ["share-button", "bt-twitter"]
