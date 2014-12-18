@@ -5,7 +5,7 @@ body
   h1, h2, h3, h4, a, p, span
     font-family: DINPro
   .donate
-    text-align: center    
+    text-align: center
     .donate-btn
       +border-radius(7px)
       background-color: $orange
@@ -16,7 +16,7 @@ body
   .cover
     padding: 1em
     background: asset-url('msp/slide-01-img-01.png') center center
-    background-size: cover    
+    background-size: cover
     +transition(.5s)
     &.cover-slider-0
       background-image: asset-url('msp/slide-01-img-01.png')
@@ -54,7 +54,7 @@ body
       .logo-fa
         padding: 0 1em
       .donate
-        text-align: right        
+        text-align: right
         padding: 0
         .donate-btn
           font-size: 1.5em
@@ -71,9 +71,9 @@ body
       h3
         +grid-column(10, $center: true)
         font-weight: 300 !important
-        font-size: 1.8em     
+        font-size: 1.8em
       .donate
-        padding-top: 2em   
+        padding-top: 2em
       .subscribers-count
         padding-top: 3em
         h4
@@ -111,7 +111,7 @@ body
         font-weight: 300
       .item
         +grid-column(12)
-        padding: 1em 0 2em 0
+        padding: 3em 0 2em 0
         a
           text-decoration: underline
           color: $msp-blue
@@ -121,8 +121,11 @@ body
           p
             +grid-column(10)
             font-size: 1.11em
-            &.first
-              padding-top: 3.5em
+            .item-title
+              font-size: 1.5em
+              font-weight: bold
+              display: block
+              margin-bottom: 1em
           img
             +grid-column(2)
             max-width: 161px
@@ -200,7 +203,7 @@ body
             padding: 0
         .donate
           display: none
-      .content 
+      .content
         h1, h1.wider
           +grid-column(12)
           font-size: 2.4em
