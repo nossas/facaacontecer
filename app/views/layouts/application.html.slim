@@ -1,16 +1,16 @@
 doctype html
 html[ng-app='facaAcontecerApp']
   head
-    title= t('seo.title')
+    title="#{content_for?(:og_title) ? yield(:og_title) : t('seo.title')}"
     meta name="viewport"            content="width=device-width, maximum-scale=1.0"
-    meta name="description"         content=t('seo.description')
     meta name="keywords"            content=t('seo.keywords')
-    meta property="og:title"        content=t('seo.title')
-    meta property="og:description"  content=t('seo.description')
-    meta property="og:site_name"    content=t('seo.title')
-    meta property="og:image"        content="https://i.imgur.com/JB3kzDH.jpg"
+    meta name="description"         content="#{content_for?(:og_description) ? yield(:og_description) : t('seo.description')}"
+    meta property="og:title"        content="#{content_for?(:og_title) ? yield(:og_title) : t('seo.title')}"
+    meta property="og:description"  content="#{content_for?(:og_description) ? yield(:og_description) : t('seo.description')}"
+    meta property="og:site_name"    content="#{content_for?(:og_site_name) ? yield(:og_site_name) : t('seo.title')}"
+    meta property="og:image"        content="#{content_for?(:og_image) ? yield(:og_image) : "https://i.imgur.com/JB3kzDH.jpg"}"
+    meta property="og:url"          content="#{content_for?(:og_url) ? yield(:og_url) : project_url(Project.first)}"
     meta property="og:type"         content="website"
-    meta property="og:url"          content="http://apoie.meurio.org.br"
     meta property="fb:admins"       content="100001105729764,100000428222603"
     meta property="fb:app_id"       content="177910022269006"
     meta property="fb:page_id"      content="241897672509479"
