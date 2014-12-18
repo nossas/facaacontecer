@@ -10,6 +10,9 @@ div.magellan-container {data-magellan-expedition="fixed"}
     header
       h3.text-center Obrigado pelo interesse em contribuir com a Rede que vai mudar a cara das nossas cidades!
       p.text-center Para concluir a sua doação, é só preencher os 3 passos do formulário abaixo. Nós não vamos armazenar os dados do seu pagamento, que vai ser processado em um ambiente completamente seguro pelo Moip. Se preferir fazer a sua doação por telefone, é só ligar para (21) 3079-1333 em horário comercial.
+      p.text-center
+        a href='https://www.expeditedssl.com/simple-ssl-scanner/scan?target_domain=apoie.nossascidades.org' target='_blank' alt='Expedited SSL Scanner'
+          img src='https://www.expeditedssl.com/ssl-secure-badge.png'
     .subscription-form.large-12.columns
       = simple_form_for @user, url: users_path, method: :post, html: { "data-abide" => true } do |usr|
 
