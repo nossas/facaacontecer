@@ -10,13 +10,14 @@
               p
                 | Assim que seu pagamento for confirmado você receberá um email da nossa equipe.
 
-  .payment-link
-    .row
-      .large-10.large-centered.columns.text-center
-        - if @payment.subscription.slip? && @payment.subscription.waiting?
-          = link_to "Clique aqui para imprimir seu boleto", @payment.url, class: [:button, :radius, :large], target: '_blank'
-        - elsif @payment.subscription.debit? && @payment.subscription.waiting?
-          = link_to "Clique aqui para ir para o site do seu banco", @payment.url, class: [:button, :radius, :large], target: '_blank'
+  - if @payment.subscription.slip? && @payment.subscription.waiting?
+    .payment-link
+      .row
+        .large-10.large-centered.columns.text-center= link_to "Clique aqui para imprimir seu boleto", @payment.url, class: [:button, :radius, :large], target: '_blank'
+  - elsif @payment.subscription.debit? && @payment.subscription.waiting?
+    .payment-link
+      .row
+        .large-10.large-centered.columns.text-center= link_to "Clique aqui para ir para o site do seu banco", @payment.url, class: [:button, :radius, :large], target: '_blank'
 
   .payment-screen2 class=@payment.subscription.organization.slug
     .row
