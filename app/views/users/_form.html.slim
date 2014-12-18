@@ -8,7 +8,7 @@ div.magellan-container {data-magellan-expedition="fixed"}
 .row[ng-controller='SubscriptionCtrl']
   section.form-wrap
     header
-      h3.text-center Obrigado pelo interesse em contribuir com a Rede Meu Rio!
+      h3.text-center Obrigado pelo interesse em contribuir com a Rede que vai mudar a cara das nossas cidades!
       p.text-center Para concluir a sua doação, é só preencher os 3 passos do formulário abaixo. Nós não vamos armazenar os dados do seu pagamento, que vai ser processado em um ambiente completamente seguro pelo Moip. Se preferir fazer a sua doação por telefone, é só ligar para (21) 3079-1333 em horário comercial.
     .subscription-form.large-12.columns
       = simple_form_for @user, url: users_path, method: :post, html: { "data-abide" => true } do |usr|
@@ -27,7 +27,7 @@ div.magellan-container {data-magellan-expedition="fixed"}
         = usr.simple_fields_for :subscriptions, @user.subscriptions.last do |sub|
           article.subscription-organizations.row
             .large-12.columns
-              h3.text-center#subscription-organizations Escolha uma organização para doar
+              h3.text-center#subscription-organizations Para qual rede você quer contribuir?!
               .text-center.selected-radio-button= sub.input :organization_id, as: :radio_buttons, collection: @organizations, label_method: ->(o){ image_tag(o.try(:avatar_url)) + o.try(:name) }, input_html: { required: true, data: {"organization-id" => @organization_id} }
 
           article.subscription-plans.row{data-magellan-destination="subscription-plans"}
