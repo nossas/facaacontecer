@@ -1,9 +1,7 @@
 # coding: utf-8
 class Notifications::InviteMailer < ActionMailer::Base
 
-  default from: "Fernanda <fernanda@meurio.org.br>",
-    bcc: "financiador@meurio.org.br",
-    reply_to: "financiador@meurio.org.br"
+  default from: "Fernanda <fernanda@nossascidades.org>", reply_to: "fernanda@nossascidades.org"
 
   default_url_options[:host] = 'apoie.meurio.org.br'
 
