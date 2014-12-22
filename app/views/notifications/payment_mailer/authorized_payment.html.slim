@@ -10,4 +10,4 @@
   p Sua contribuição acaba de ser confirmada!
   p A sua participação como financiador da Rede Minha Sampa faz toda a diferença para construção da São Paulo que todos nós merecemos.
   p Agora, com o apoio de ainda mais gente poderemos acelerar essas transformações que tanto desejamos pra nossa cidade. Compartilhe esse link com seus amigos e mostre para todo mundo que você Faz Acontecer!
-  p #{link_to nil, invite_url(code: "#{@payment.user.invite.code}")}
+  p #{link_to nil, project_url(Project.find_by_slug(@payment.subscription.organization.slug))}
