@@ -52,7 +52,7 @@ module PaymentObserver
 
     # Deliver an email informing that the payment is being processed
     def notify_user
-      Notifications::PaymentMailer.delay.processing_payment(self.id)
+      # Notifications::PaymentMailer.delay.processing_payment(self.id)
     end
 
 
