@@ -1,7 +1,7 @@
 # coding: utf-8
 class Notifications::InviteMailer < ActionMailer::Base
 
-  default from: "Fernanda <fernanda@nossascidades.org>", reply_to: "fernanda@nossascidades.org"
+  default from: "Rodrigo <rodrigo@meurio.org.br>", reply_to: "rodrigo@meurio.org.br"
 
   default_url_options[:host] = 'apoie.nossascidades.org'
 

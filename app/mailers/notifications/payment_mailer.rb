@@ -3,7 +3,7 @@ class Notifications::PaymentMailer < ActionMailer::Base
 
   layout 'notifications/payment_mailer'
 
-  default from: "Fernanda <fernanda@nossascidades.org>", reply_to: "fernanda@nossascidades.org"
+  default from: "Rodrigo <rodrigo@meurio.org.br>", reply_to: "rodrigo@meurio.org.br"
 
   default_url_options[:host] = 'apoie.nossascidades.org'
 
@@ -12,7 +12,8 @@ class Notifications::PaymentMailer < ActionMailer::Base
     @user = @payment.subscription.user
     mail(
       to: @payment.user.email,
-      subject: "Seu boleto foi gerado!"
+      subject: "Seu boleto foi gerado!",
+      from: @payment.subscription.organization.slug == "meurio" ? "rodrigo@meurio.org.br" : "anna@minhasampa.org.br"
     )
   end
 
@@ -21,7 +22,8 @@ class Notifications::PaymentMailer < ActionMailer::Base
     @user = @payment.subscription.user
     mail(
       to: @payment.user.email,
-      subject: "O link para a sua doação foi gerado!"
+      subject: "O link para a sua doação foi gerado!",
+      from: @payment.subscription.organization.slug == "meurio" ? "rodrigo@meurio.org.br" : "anna@minhasampa.org.br"
     )
   end
 
@@ -30,7 +32,8 @@ class Notifications::PaymentMailer < ActionMailer::Base
     @user = @payment.subscription.user
     mail(
       to: @payment.user.email,
-      subject: "Seu pagamento está sendo processado!"
+      subject: "Seu pagamento está sendo processado!",
+      from: @payment.subscription.organization.slug == "meurio" ? "rodrigo@meurio.org.br" : "anna@minhasampa.org.br"
     )
   end
 
@@ -39,7 +42,8 @@ class Notifications::PaymentMailer < ActionMailer::Base
     @user = @payment.subscription.user
     mail(
       to: @payment.user.email,
-      subject: "Que lindo, sua doação foi aprovada!"
+      subject: "Que lindo, sua doação foi aprovada!",
+      from: @payment.subscription.organization.slug == "meurio" ? "rodrigo@meurio.org.br" : "anna@minhasampa.org.br"
     )
   end
 
@@ -48,7 +52,8 @@ class Notifications::PaymentMailer < ActionMailer::Base
     @user = @payment.subscription.user
     mail(
       to: @payment.user.email,
-      subject: "Oops, houve um problema com a sua doação"
+      subject: "Oops, houve um problema com a sua doação",
+      from: @payment.subscription.organization.slug == "meurio" ? "rodrigo@meurio.org.br" : "anna@minhasampa.org.br"
     )
   end
 end
