@@ -59,7 +59,7 @@ module Mailchimped
 
     begin
       Gibbon::API.lists.subscribe(
-        id: options[:mailchimp_list_id],
+        id: ENV["MAILCHIMP_LIST_ID"],
         email: { email: self.user.email },
         double_optin: false,
         update_existing: true,
