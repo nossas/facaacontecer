@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   has_many  :payments,      through: :subscriptions
   has_many  :invoices,      through: :subscriptions
   has_many  :organizations, through: :subscriptions
+  belongs_to :organization
 
 
   # Validates if a CPF is valid/invalid

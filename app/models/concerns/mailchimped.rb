@@ -54,6 +54,7 @@ module Mailchimped
       LPAYMENT:   options[:last_payment_created_at].try(:strftime, "%m/%d/%Y"),
       PAYVALUE:   options[:payment_value],
       PAYOPTION:  options[:payment_option],
+      ORG:        options[:organization],
       groupings: [ name: 'Doador', groups: options[:organizations] ]
     }
 

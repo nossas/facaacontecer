@@ -12,7 +12,8 @@ module SubscriptionObserver
         plan: self.plan,
         subscription_value: self.value,
         state_updated_at: self.state_updated_at.try(:strftime, "%m/%d/%Y"),
-        organizations: self.user.organizations.map{ |o| o.name }
+        organizations: self.user.organizations.map{ |o| o.name },
+        organization: self.user.organization.name
       )
     end
 
