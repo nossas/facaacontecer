@@ -27,7 +27,7 @@ class UsersController < ApplicationController
       # If the user is a new user, try to save it
       when @user.new_record?
         @user.auth_token = SecureRandom.hex
-        @user.organization_id = user_params[:subscriptions_attributes][0][:organization_id]
+        @user.organization_id = user_params[:subscriptions_attributes]["0"][:organization_id]
         @user.id = (User.order(:id).last.try(:id) || 0) + 1
         @user.save
 
