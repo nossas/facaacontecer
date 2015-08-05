@@ -14,7 +14,7 @@ class UsersController < ApplicationController
 
   # GET /users/new
   def new
-    @organizations = Organization.order(:id)
+    @organizations = Organization.where("slug IN ('meurio', 'minhasampa')").order(:id)
     @organization_id = params[:organization_id] || @organizations.first.try(:id)
     @user = User.new(user_params)
     @user.subscriptions.build
