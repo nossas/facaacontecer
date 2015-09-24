@@ -42,7 +42,7 @@ class Notifications::PaymentMailer < ActionMailer::Base
     @user = @payment.subscription.user
     mail(
       to: @payment.user.email,
-      subject: "Que lindo, sua doação foi aprovada!",
+      subject: @payment.subscription.organization.slug == "meurio" ? "Que lindo, sua doação foi aprovada!": "Obrigada! Sua doação para o Minha Sampa foi realizada",
       from: @payment.subscription.organization.slug == "meurio" ? "joao@meurio.org.br" : "anna@minhasampa.org.br"
     )
   end
