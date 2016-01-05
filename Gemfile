@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 source 'https://rails-assets.org'
 
 # Default ruby version
-ruby '2.1.0'
+ruby '2.1.2'
 
 # Latest rails version
 gem 'rails', '~> 4.0.3'
