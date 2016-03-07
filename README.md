@@ -1,13 +1,13 @@
 # Faça Acontecer
 Plataforma de crowdfunding para campanhas. Inspirado pelo Selfstarter!
 
-[![Build Status](https://travis-ci.org/meurio/facaacontecer.png?branch=master)](https://travis-ci.org/meurio/facaacontecer)
+[![Build Status](https://travis-ci.org/ourcities/facaacontecer.png?branch=master)](https://travis-ci.org/meurio/facaacontecer)
 [![Code Climate](https://codeclimate.com/github/meurio/facaacontecer.png)](https://codeclimate.com/github/meurio/facaacontecer)
 [![Coverage](https://codeclimate.com/github/meurio/facaacontecer/coverage.png)](https://codeclimate.com/github/meurio/facaacontecer)
 
 ## Este projeto
 
-- Livremente inspirado pelo [Selfstarter](https://github.com/lockitron/selfstarter). 
+- Livremente inspirado pelo [Selfstarter](https://github.com/lockitron/selfstarter).
 - Os commits iniciais do Selfstarter foram preservados.
 - Depende do MoIP Assinaturas, veja: http://site.moip.com.br/assinaturas/
 - Depende da Gem MYMOIP.
