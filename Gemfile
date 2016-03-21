@@ -40,19 +40,19 @@ gem "cpf_validator"                   # validate cpfs
 gem 'validates_timeliness', '~> 3.0'  # validate dates/intervals
 
 # Assets related gems
-gem 'jquery-rails'
-gem 'compass-rails'
+gem 'jquery-rails', '3.1.0'
+gem 'compass-rails', '1.1.7'
 gem 'sass-rails', '4.0.2'
 gem 'uglifier'
-gem 'angularjs-rails'
+gem 'angularjs-rails', '1.2.14'
 gem 'jquery-inputmask-rails'
 gem 'foundation-rails', '~> 5.1.1.0'
-gem 'rails-assets-card'
-gem 'rails-assets-tobiasahlin--SpinKit'
+gem 'rails-assets-card', '0.1.4'
+gem 'rails-assets-tobiasahlin--SpinKit', '1.0.0'
 
 # MeuRio UI related gems
 gem 'gravatar_image_tag'
-gem 'meurio_ui'
+gem 'meurio_ui', '1.4.13'
 
 group :production, :staging do
   gem 'newrelic_rpm'
