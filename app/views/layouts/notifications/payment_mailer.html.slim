@@ -21,7 +21,7 @@ html
       p
         | Abraço grande,
         br
-        | João, Rafael, Courtney, Fernanda, Guilherme, Thainã e toda equipe do Meu Rio.
+        | Rafael e toda a Equipe do Meu Rio
 
     footer
       br
@@ -54,6 +54,6 @@ html
           - if @payment.subscription.organization.slug == "minhasampa"
             | Para dúvidas, sugestões ou cancelamento das contribuições, por favor entre em contato através de anna@minhasampa.org.br informando o seu e-mail de cadastro.
           - else
-            | Para dúvidas, sugestões ou cancelamento das contribuições, por favor entre em contato através de joao@meurio.org.br informando o seu e-mail de cadastro.
+            | Para dúvidas, sugestões ou cancelamento das contribuições, por favor entre em contato através de financiador@meurio.org.br informando o seu e-mail de cadastro.
 
     p= raw @payment.subscription.organization.email_signature_html

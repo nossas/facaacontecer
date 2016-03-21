@@ -3,7 +3,7 @@ class Notifications::PaymentMailer < ActionMailer::Base
 
   layout 'notifications/payment_mailer'
 
-  default from: "João Mauro <joao@meurio.org.br>", reply_to: "joao@meurio.org.br"
+  default from: "Equipe do Meu Rio <financiador@meurio.org.br>", reply_to: "financiador@meurio.org.br"
 
   default_url_options[:host] = 'apoie.nossascidades.org'
 
@@ -13,7 +13,7 @@ class Notifications::PaymentMailer < ActionMailer::Base
     mail(
       to: @payment.user.email,
       subject: "Seu boleto foi gerado!",
-      from: @payment.subscription.organization.slug == "meurio" ? "joao@meurio.org.br" : "anna@minhasampa.org.br"
+      from: @payment.subscription.organization.slug == "meurio" ? "financiador@meurio.org.br" : "anna@minhasampa.org.br"
     )
   end
 
@@ -23,7 +23,7 @@ class Notifications::PaymentMailer < ActionMailer::Base
     mail(
       to: @payment.user.email,
       subject: "O link para a sua doação foi gerado!",
-      from: @payment.subscription.organization.slug == "meurio" ? "joao@meurio.org.br" : "anna@minhasampa.org.br"
+      from: @payment.subscription.organization.slug == "meurio" ? "financiador@meurio.org.br" : "anna@minhasampa.org.br"
     )
   end
 
@@ -33,7 +33,7 @@ class Notifications::PaymentMailer < ActionMailer::Base
     mail(
       to: @payment.user.email,
       subject: "Seu pagamento está sendo processado!",
-      from: @payment.subscription.organization.slug == "meurio" ? "joao@meurio.org.br" : "anna@minhasampa.org.br"
+      from: @payment.subscription.organization.slug == "meurio" ? "financiador@meurio.org.br" : "anna@minhasampa.org.br"
     )
   end
 
@@ -43,7 +43,7 @@ class Notifications::PaymentMailer < ActionMailer::Base
     mail(
       to: @payment.user.email,
       subject: @payment.subscription.organization.slug == "meurio" ? "Que lindo, sua doação foi aprovada!": "Obrigada! Sua doação para o Minha Sampa foi realizada",
-      from: @payment.subscription.organization.slug == "meurio" ? "joao@meurio.org.br" : "anna@minhasampa.org.br"
+      from: @payment.subscription.organization.slug == "meurio" ? "financiador@meurio.org.br" : "anna@minhasampa.org.br"
     )
   end
 
@@ -53,7 +53,7 @@ class Notifications::PaymentMailer < ActionMailer::Base
     mail(
       to: @payment.user.email,
       subject: "Oops, houve um problema com a sua doação",
-      from: @payment.subscription.organization.slug == "meurio" ? "joao@meurio.org.br" : "anna@minhasampa.org.br"
+      from: @payment.subscription.organization.slug == "meurio" ? "financiador@meurio.org.br" : "anna@minhasampa.org.br"
     )
   end
 end
