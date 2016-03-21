@@ -7,7 +7,6 @@ Feature: New subscription for the current campaign
   Background:
     Given the following organization:
       | name              | Meu Rio |
-      | mailchimp_list_id | 123 |
     Given the following project:
       | title | Projeto |
       | goal  | 450000  |

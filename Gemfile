@@ -17,7 +17,7 @@ gem 'pg'
 gem 'schema_plus'
 
 # Controller-related gems
-gem 'before_actions'
+gem 'before_actions', '1.0.0'
 
 # Template-related gems
 gem 'simple_form'
@@ -30,10 +30,10 @@ gem 'state_machine'
 
 # Payment/Gateway related gems
 gem 'mymoip'                    # ~>  https://github.com/Irio/mymoip
-gem 'api-moip-assinaturas', git: 'https://github.com/nicolasiensen/api-moip-assinaturas.git', require: 'moip'
+gem 'api-moip-assinaturas', git: 'https://github.com/ourcities/api-moip-assinaturas.git', require: 'moip'
 
 # Mailchimp API wraper
-gem 'gibbon'
+gem 'gibbon', '1.1.5'
 
 # Model-validation related gems
 gem "cpf_validator"                   # validate cpfs
@@ -65,7 +65,7 @@ group :development do
 end
 
 group :development, :test do
-  gem 'rspec-rails'
+  gem 'rspec-rails', '2.14.1'
   gem 'colorize'
 end
 

@@ -22,9 +22,9 @@ ActiveRecord::Schema.define(version: 20150509103934) do
     t.integer  "parent_user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.index ["user_id"], :name => "fk__invites_user_id", :order => {"user_id" => :asc}
-    t.index ["code", "user_id"], :name => "index_invites_on_code_and_user_id", :unique => true, :order => {"code" => :asc, "user_id" => :asc}
-    t.index ["user_id", "parent_user_id"], :name => "index_invites_on_user_id_and_parent_user_id", :order => {"user_id" => :asc, "parent_user_id" => :asc}
+    t.index ["code", "user_id"], :name => "index_invites_on_code_and_user_id", :unique => true
+    t.index ["user_id", "parent_user_id"], :name => "index_invites_on_user_id_and_parent_user_id"
+    t.index ["user_id"], :name => "fk__invites_user_id"
   end
 
   create_table "subscriptions", force: true do |t|
@@ -42,9 +42,9 @@ ActiveRecord::Schema.define(version: 20150509103934) do
     t.string   "bank"
     t.datetime "state_updated_at"
     t.integer  "organization_id"
-    t.index ["code"], :name => "index_subscriptions_on_code", :unique => true, :order => {"code" => :asc}
-    t.index ["project_id"], :name => "index_subscriptions_on_project_id", :order => {"project_id" => :asc}
-    t.index ["user_id"], :name => "index_subscriptions_on_user_id", :order => {"user_id" => :asc}
+    t.index ["code"], :name => "index_subscriptions_on_code", :unique => true
+    t.index ["project_id"], :name => "index_subscriptions_on_project_id"
+    t.index ["user_id"], :name => "index_subscriptions_on_user_id"
   end
 
   create_table "invoices", force: true do |t|
@@ -56,8 +56,8 @@ ActiveRecord::Schema.define(version: 20150509103934) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "created_on_moip_at"
-    t.index ["subscription_id"], :name => "fk__invoices_subscription_id", :order => {"subscription_id" => :asc}
-    t.index ["uid"], :name => "index_invoices_on_uid", :unique => true, :order => {"uid" => :asc}
+    t.index ["subscription_id"], :name => "fk__invoices_subscription_id"
+    t.index ["uid"], :name => "index_invoices_on_uid", :unique => true
     t.foreign_key ["subscription_id"], "subscriptions", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_invoices_subscription_id"
   end
 
@@ -79,8 +79,8 @@ ActiveRecord::Schema.define(version: 20150509103934) do
     t.string   "url"
     t.string   "sequence"
     t.string   "token"
-    t.index ["subscription_id"], :name => "fk__payments_subscription_id", :order => {"subscription_id" => :asc}
-    t.index ["subscription_id"], :name => "index_payments_on_subscription_id", :order => {"subscription_id" => :asc}
+    t.index ["subscription_id"], :name => "fk__payments_subscription_id"
+    t.index ["subscription_id"], :name => "index_payments_on_subscription_id"
     t.foreign_key ["subscription_id"], "subscriptions", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_payments_subscription_id"
   end
 
@@ -117,8 +117,6 @@ ActiveRecord::Schema.define(version: 20150509103934) do
     t.datetime "updated_at"
     t.string   "auth_token"
     t.integer  "organization_id"
-    t.index ["organization_id"], :name => "fk__users_organization_id", :order => {"organization_id" => :asc}
-    t.foreign_key ["organization_id"], "organizations", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_users_organization_id"
   end
 
 end

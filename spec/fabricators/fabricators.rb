@@ -60,5 +60,4 @@ end
 
 Fabricator(:organization) do
   name { "Meu Rio" }
-  mailchimp_list_id { "123" }
 end
